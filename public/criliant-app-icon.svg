@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256"><title>CRILIANT</title><rect width="256" height="256" rx="57.6" fill="#0B0F19"/><g transform="translate(7.04 7.04) scale(0.945)">
+  <title id="title">Criliant Isometric Prism Mark</title>
+  <!-- Top Arm (Sky Cyan) -->
+  <polygon points="128,44 204,88 166,110 128,88 90,110 52,88" fill="#38BDF8"/>
+  <!-- Left Spine (Deep Obsidian Navy) -->
+  <polygon points="52,88 90,110 90,146 52,168" fill="#0B0F19"/>
+  <!-- Bottom Arm (Electric Cobalt) -->
+  <polygon points="52,168 90,146 128,168 166,146 204,168 128,212" fill="#2563EB"/>
+  <!-- Brilliant Diamond Spark (Arctic White) -->
+  <polygon points="152,128 174,106 196,128 174,150" fill="#2563EB"/>
+  <circle cx="174" cy="128" r="4" fill="#38BDF8"/>
+</g></svg>

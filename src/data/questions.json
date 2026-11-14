@@ -1,0 +1,2794 @@
+[
+  {
+    "id": "TWK-01",
+    "category": "TWK",
+    "subTopic": "Pilar Negara - Pancasila",
+    "difficulty": "medium",
+    "text": "Pancasila sebagai ideologi terbuka mampu menyesuaikan diri dengan perkembangan zaman tanpa mengubah nilai dasarnya. Penjabaran nilai dasar ke dalam kebijakan operasional lembaga negara disebut nilai...",
+    "options": [
+      "Nilai Instrumental",
+      "Nilai Praksis",
+      "Nilai Vital",
+      "Nilai Material",
+      "Nilai Religius"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Nilai instrumental adalah penjabaran lebih lanjut dari nilai-nilai dasar ideologi Pancasila dalam bentuk norma hukum, undang-undang, dan kebijakan operasional pemerintahan."
+  },
+  {
+    "id": "TWK-02",
+    "category": "TWK",
+    "subTopic": "Pilar Negara - Pancasila",
+    "difficulty": "hard",
+    "text": "Sila Persatuan Indonesia menghendaki penempatan kepentingan bangsa dan negara di atas kepentingan pribadi maupun golongan. Sikap seorang ASN yang menolak nepotisme demi menjaga harmoni birokrasi mencerminkan pengamalan butir sila ke...",
+    "options": [
+      "Sila ke-1",
+      "Sila ke-2",
+      "Sila ke-3",
+      "Sila ke-4",
+      "Sila ke-5"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Sila ke-3 (Persatuan Indonesia) menuntut setiap warga negara, khususnya ASN, untuk mengutamakan persatuan, kesatuan, serta kepentingan bangsa di atas kepentingan pribadi atau golongan."
+  },
+  {
+    "id": "TWK-03",
+    "category": "TWK",
+    "subTopic": "Pilar Negara - UUD 1945",
+    "difficulty": "medium",
+    "text": "Berdasarkan Pasal 1 ayat (2) UUD 1945 hasil amandemen, kedaulatan berada di tangan rakyat dan dilaksanakan menurut...",
+    "options": [
+      "Ketetapan Majelis Permusyawaratan Rakyat",
+      "Undang-Undang Dasar",
+      "Keputusan Presiden",
+      "Kebijakan Dewan Perwakilan Rakyat",
+      "Kehendak Lembaga Tertinggi Negara"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Pasal 1 ayat (2) UUD 1945 pasca amandemen berbunyi: 'Kedaulatan berada di tangan rakyat dan dilaksanakan menurut Undang-Undang Dasar.'"
+  },
+  {
+    "id": "TWK-04",
+    "category": "TWK",
+    "subTopic": "Pilar Negara - UUD 1945",
+    "difficulty": "hard",
+    "text": "Mahkamah Konstitusi memiliki kewenangan yang diatur secara limitatif dalam UUD 1945 Pasal 24C ayat (1). Kewenangan yang BUKAN merupakan wewenang MK adalah...",
+    "options": [
+      "Menguji undang-undang terhadap UUD 1945",
+      "Memutus sengketa kewenangan lembaga negara",
+      "Memutus pembubaran partai politik",
+      "Memutus perselisihan tentang hasil pemilihan umum",
+      "Menguji peraturan pemerintah terhadap undang-undang"
+    ],
+    "correctOptionIndex": 4,
+    "explanation": "Menguji peraturan perundang-undangan di bawah undang-undang terhadap undang-undang adalah kewenangan Mahkamah Agung (MA) berdasarkan Pasal 24A ayat (1)."
+  },
+  {
+    "id": "TWK-05",
+    "category": "TWK",
+    "subTopic": "Nasionalisme",
+    "difficulty": "medium",
+    "text": "Prinsip nasionalisme Indonesia menolak paham chauvinisme karena chauvinisme mengajarkan...",
+    "options": [
+      "Cinta tanah air yang moderat",
+      "Rasa cinta tanah air yang berlebihan dan memandang rendah bangsa lain",
+      "Paham anti penjajahan global",
+      "Sikap apatis terhadap kedaulatan bangsa",
+      "Semangat kerja sama internasional yang saling menguntungkan"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Chauvinisme adalah bentuk fanatisme cinta tanah air yang berlebihan dan menganggap bangsanya paling unggul sambil memandang rendah martabat bangsa lain."
+  },
+  {
+    "id": "TWK-06",
+    "category": "TWK",
+    "subTopic": "Bela Negara",
+    "difficulty": "medium",
+    "text": "Berdasarkan UU No. 23 Tahun 2019 tentang Pengelolaan Sumber Daya Nasional untuk Pertahanan Negara, keikutsertaan warga negara dalam bela negara secara non-militer diwujudkan melalui...",
+    "options": [
+      "Wajib militer bersenjata",
+      "Pengabdian sesuai profesi",
+      "Operasi militer selain perang",
+      "Pembentukan milisi daerah",
+      "Pelatihan paramiliter swasta"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Pasal 6 ayat (1) UU No. 23/2019 menegaskan bahwa pengabdian sesuai dengan profesi merupakan salah satu wujud nyata keikutsertaan warga negara dalam usaha bela negara."
+  },
+  {
+    "id": "TWK-07",
+    "category": "TWK",
+    "subTopic": "Integritas",
+    "difficulty": "hard",
+    "text": "Menurut Komisi Pemberantasan Korupsi (KPK), ada sembilan nilai integritas yang disingkat 'Jumat Bersepeda KK'. Nilai yang mencerminkan kesesuaian antara perkataan dan perbuatan serta komitmen moral yang teguh adalah...",
+    "options": [
+      "Jujur",
+      "Peduli",
+      "Mandiri",
+      "Disiplin",
+      "Tanggung Jawab"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Jujur bermakna lurus hati, tidak berbohong, dan bertindak sesuai dengan kebenaran serta komitmen moral."
+  },
+  {
+    "id": "TWK-08",
+    "category": "TWK",
+    "subTopic": "Pilar Negara - Bhinneka Tunggal Ika",
+    "difficulty": "medium",
+    "text": "Semboyan Bhinneka Tunggal Ika pertama kali ditemukan dalam kitab Kakawin Sutasoma karangan Mpu Tantular pada masa kerajaan...",
+    "options": [
+      "Singasari",
+      "Majapahit",
+      "Sriwijaya",
+      "Tarumanegara",
+      "Kediri"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Frasa 'Bhinneka Tunggal Ika Tan Hana Dharma Mangrwa' ditulis oleh Mpu Tantular dalam Kakawin Sutasoma pada masa kejayaan Kerajaan Majapahit (abad ke-14)."
+  },
+  {
+    "id": "TWK-09",
+    "category": "TWK",
+    "subTopic": "Pilar Negara - NKRI",
+    "difficulty": "medium",
+    "text": "Bentuk negara Indonesia adalah Negara Kesatuan, sedangkan bentuk pemerintahannya adalah...",
+    "options": [
+      "Monarki Konstitusional",
+      "Republik",
+      "Federasi",
+      "Oligarki Parlementer",
+      "Konfederasi"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Pasal 1 ayat (1) UUD 1945 menyatakan: 'Negara Indonesia ialah Negara Kesatuan, yang berbentuk Republik.'"
+  },
+  {
+    "id": "TWK-10",
+    "category": "TWK",
+    "subTopic": "Bahasa Indonesia",
+    "difficulty": "medium",
+    "text": "Penulisan kata serapan yang baku menurut Pedoman Umum Ejaan Bahasa Indonesia (PUEBI) adalah...",
+    "options": [
+      "Analisa, sistim, effisien",
+      "Analisis, sistem, efisien",
+      "Analisa, sistem, efesien",
+      "Analisis, sistim, efisien",
+      "Analisa, sistim, efesien"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Bentuk kata baku yang benar adalah: analisis, sistem, dan efisien."
+  },
+  {
+    "id": "TWK-11",
+    "category": "TWK",
+    "subTopic": "Bela Negara & Bahasa",
+    "difficulty": "hard",
+    "text": "Materi Uji SKD TWK No. 11: Dalam konteks implementasi wawasan nusantara di era transformasi digital, asas ketahanan nasional yang mengutamakan kesatuan geopolitik dan geostrategis seluruh wilayah kepulauan Indonesia berakar pada prinsip...",
+    "options": [
+      "Wawasan Nusantara sebagai satu kesatuan pertahanan dan keamanan",
+      "Kebijakan sentralisasi ekonomi daerah",
+      "Eksploitasi sumber daya alam pesisir tanpa batas",
+      "Pembatasan interaksi budaya antar etnis lokal",
+      "Monopoli informasi oleh pemerintah pusat"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Wawasan Nusantara memandang seluruh kepulauan Indonesia beserta perairan dan udara di atasnya sebagai satu kesatuan politik, ekonomi, sosial budaya, serta pertahanan dan keamanan nasional."
+  },
+  {
+    "id": "TWK-12",
+    "category": "TWK",
+    "subTopic": "Pilar Negara",
+    "difficulty": "medium",
+    "text": "Materi Uji SKD TWK No. 12: Dalam konteks implementasi wawasan nusantara di era transformasi digital, asas ketahanan nasional yang mengutamakan kesatuan geopolitik dan geostrategis seluruh wilayah kepulauan Indonesia berakar pada prinsip...",
+    "options": [
+      "Wawasan Nusantara sebagai satu kesatuan pertahanan dan keamanan",
+      "Kebijakan sentralisasi ekonomi daerah",
+      "Eksploitasi sumber daya alam pesisir tanpa batas",
+      "Pembatasan interaksi budaya antar etnis lokal",
+      "Monopoli informasi oleh pemerintah pusat"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Wawasan Nusantara memandang seluruh kepulauan Indonesia beserta perairan dan udara di atasnya sebagai satu kesatuan politik, ekonomi, sosial budaya, serta pertahanan dan keamanan nasional."
+  },
+  {
+    "id": "TWK-13",
+    "category": "TWK",
+    "subTopic": "Nasionalisme & Integritas",
+    "difficulty": "hard",
+    "text": "Materi Uji SKD TWK No. 13: Dalam konteks implementasi wawasan nusantara di era transformasi digital, asas ketahanan nasional yang mengutamakan kesatuan geopolitik dan geostrategis seluruh wilayah kepulauan Indonesia berakar pada prinsip...",
+    "options": [
+      "Wawasan Nusantara sebagai satu kesatuan pertahanan dan keamanan",
+      "Kebijakan sentralisasi ekonomi daerah",
+      "Eksploitasi sumber daya alam pesisir tanpa batas",
+      "Pembatasan interaksi budaya antar etnis lokal",
+      "Monopoli informasi oleh pemerintah pusat"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Wawasan Nusantara memandang seluruh kepulauan Indonesia beserta perairan dan udara di atasnya sebagai satu kesatuan politik, ekonomi, sosial budaya, serta pertahanan dan keamanan nasional."
+  },
+  {
+    "id": "TWK-14",
+    "category": "TWK",
+    "subTopic": "Bela Negara & Bahasa",
+    "difficulty": "medium",
+    "text": "Materi Uji SKD TWK No. 14: Dalam konteks implementasi wawasan nusantara di era transformasi digital, asas ketahanan nasional yang mengutamakan kesatuan geopolitik dan geostrategis seluruh wilayah kepulauan Indonesia berakar pada prinsip...",
+    "options": [
+      "Wawasan Nusantara sebagai satu kesatuan pertahanan dan keamanan",
+      "Kebijakan sentralisasi ekonomi daerah",
+      "Eksploitasi sumber daya alam pesisir tanpa batas",
+      "Pembatasan interaksi budaya antar etnis lokal",
+      "Monopoli informasi oleh pemerintah pusat"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Wawasan Nusantara memandang seluruh kepulauan Indonesia beserta perairan dan udara di atasnya sebagai satu kesatuan politik, ekonomi, sosial budaya, serta pertahanan dan keamanan nasional."
+  },
+  {
+    "id": "TWK-15",
+    "category": "TWK",
+    "subTopic": "Pilar Negara",
+    "difficulty": "hard",
+    "text": "Materi Uji SKD TWK No. 15: Dalam konteks implementasi wawasan nusantara di era transformasi digital, asas ketahanan nasional yang mengutamakan kesatuan geopolitik dan geostrategis seluruh wilayah kepulauan Indonesia berakar pada prinsip...",
+    "options": [
+      "Wawasan Nusantara sebagai satu kesatuan pertahanan dan keamanan",
+      "Kebijakan sentralisasi ekonomi daerah",
+      "Eksploitasi sumber daya alam pesisir tanpa batas",
+      "Pembatasan interaksi budaya antar etnis lokal",
+      "Monopoli informasi oleh pemerintah pusat"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Wawasan Nusantara memandang seluruh kepulauan Indonesia beserta perairan dan udara di atasnya sebagai satu kesatuan politik, ekonomi, sosial budaya, serta pertahanan dan keamanan nasional."
+  },
+  {
+    "id": "TWK-16",
+    "category": "TWK",
+    "subTopic": "Nasionalisme & Integritas",
+    "difficulty": "medium",
+    "text": "Materi Uji SKD TWK No. 16: Dalam konteks implementasi wawasan nusantara di era transformasi digital, asas ketahanan nasional yang mengutamakan kesatuan geopolitik dan geostrategis seluruh wilayah kepulauan Indonesia berakar pada prinsip...",
+    "options": [
+      "Wawasan Nusantara sebagai satu kesatuan pertahanan dan keamanan",
+      "Kebijakan sentralisasi ekonomi daerah",
+      "Eksploitasi sumber daya alam pesisir tanpa batas",
+      "Pembatasan interaksi budaya antar etnis lokal",
+      "Monopoli informasi oleh pemerintah pusat"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Wawasan Nusantara memandang seluruh kepulauan Indonesia beserta perairan dan udara di atasnya sebagai satu kesatuan politik, ekonomi, sosial budaya, serta pertahanan dan keamanan nasional."
+  },
+  {
+    "id": "TWK-17",
+    "category": "TWK",
+    "subTopic": "Bela Negara & Bahasa",
+    "difficulty": "hard",
+    "text": "Materi Uji SKD TWK No. 17: Dalam konteks implementasi wawasan nusantara di era transformasi digital, asas ketahanan nasional yang mengutamakan kesatuan geopolitik dan geostrategis seluruh wilayah kepulauan Indonesia berakar pada prinsip...",
+    "options": [
+      "Wawasan Nusantara sebagai satu kesatuan pertahanan dan keamanan",
+      "Kebijakan sentralisasi ekonomi daerah",
+      "Eksploitasi sumber daya alam pesisir tanpa batas",
+      "Pembatasan interaksi budaya antar etnis lokal",
+      "Monopoli informasi oleh pemerintah pusat"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Wawasan Nusantara memandang seluruh kepulauan Indonesia beserta perairan dan udara di atasnya sebagai satu kesatuan politik, ekonomi, sosial budaya, serta pertahanan dan keamanan nasional."
+  },
+  {
+    "id": "TWK-18",
+    "category": "TWK",
+    "subTopic": "Pilar Negara",
+    "difficulty": "medium",
+    "text": "Materi Uji SKD TWK No. 18: Dalam konteks implementasi wawasan nusantara di era transformasi digital, asas ketahanan nasional yang mengutamakan kesatuan geopolitik dan geostrategis seluruh wilayah kepulauan Indonesia berakar pada prinsip...",
+    "options": [
+      "Wawasan Nusantara sebagai satu kesatuan pertahanan dan keamanan",
+      "Kebijakan sentralisasi ekonomi daerah",
+      "Eksploitasi sumber daya alam pesisir tanpa batas",
+      "Pembatasan interaksi budaya antar etnis lokal",
+      "Monopoli informasi oleh pemerintah pusat"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Wawasan Nusantara memandang seluruh kepulauan Indonesia beserta perairan dan udara di atasnya sebagai satu kesatuan politik, ekonomi, sosial budaya, serta pertahanan dan keamanan nasional."
+  },
+  {
+    "id": "TWK-19",
+    "category": "TWK",
+    "subTopic": "Nasionalisme & Integritas",
+    "difficulty": "hard",
+    "text": "Materi Uji SKD TWK No. 19: Dalam konteks implementasi wawasan nusantara di era transformasi digital, asas ketahanan nasional yang mengutamakan kesatuan geopolitik dan geostrategis seluruh wilayah kepulauan Indonesia berakar pada prinsip...",
+    "options": [
+      "Wawasan Nusantara sebagai satu kesatuan pertahanan dan keamanan",
+      "Kebijakan sentralisasi ekonomi daerah",
+      "Eksploitasi sumber daya alam pesisir tanpa batas",
+      "Pembatasan interaksi budaya antar etnis lokal",
+      "Monopoli informasi oleh pemerintah pusat"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Wawasan Nusantara memandang seluruh kepulauan Indonesia beserta perairan dan udara di atasnya sebagai satu kesatuan politik, ekonomi, sosial budaya, serta pertahanan dan keamanan nasional."
+  },
+  {
+    "id": "TWK-20",
+    "category": "TWK",
+    "subTopic": "Bela Negara & Bahasa",
+    "difficulty": "medium",
+    "text": "Materi Uji SKD TWK No. 20: Dalam konteks implementasi wawasan nusantara di era transformasi digital, asas ketahanan nasional yang mengutamakan kesatuan geopolitik dan geostrategis seluruh wilayah kepulauan Indonesia berakar pada prinsip...",
+    "options": [
+      "Wawasan Nusantara sebagai satu kesatuan pertahanan dan keamanan",
+      "Kebijakan sentralisasi ekonomi daerah",
+      "Eksploitasi sumber daya alam pesisir tanpa batas",
+      "Pembatasan interaksi budaya antar etnis lokal",
+      "Monopoli informasi oleh pemerintah pusat"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Wawasan Nusantara memandang seluruh kepulauan Indonesia beserta perairan dan udara di atasnya sebagai satu kesatuan politik, ekonomi, sosial budaya, serta pertahanan dan keamanan nasional."
+  },
+  {
+    "id": "TWK-21",
+    "category": "TWK",
+    "subTopic": "Pilar Negara",
+    "difficulty": "hard",
+    "text": "Materi Uji SKD TWK No. 21: Dalam konteks implementasi wawasan nusantara di era transformasi digital, asas ketahanan nasional yang mengutamakan kesatuan geopolitik dan geostrategis seluruh wilayah kepulauan Indonesia berakar pada prinsip...",
+    "options": [
+      "Wawasan Nusantara sebagai satu kesatuan pertahanan dan keamanan",
+      "Kebijakan sentralisasi ekonomi daerah",
+      "Eksploitasi sumber daya alam pesisir tanpa batas",
+      "Pembatasan interaksi budaya antar etnis lokal",
+      "Monopoli informasi oleh pemerintah pusat"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Wawasan Nusantara memandang seluruh kepulauan Indonesia beserta perairan dan udara di atasnya sebagai satu kesatuan politik, ekonomi, sosial budaya, serta pertahanan dan keamanan nasional."
+  },
+  {
+    "id": "TWK-22",
+    "category": "TWK",
+    "subTopic": "Nasionalisme & Integritas",
+    "difficulty": "medium",
+    "text": "Materi Uji SKD TWK No. 22: Dalam konteks implementasi wawasan nusantara di era transformasi digital, asas ketahanan nasional yang mengutamakan kesatuan geopolitik dan geostrategis seluruh wilayah kepulauan Indonesia berakar pada prinsip...",
+    "options": [
+      "Wawasan Nusantara sebagai satu kesatuan pertahanan dan keamanan",
+      "Kebijakan sentralisasi ekonomi daerah",
+      "Eksploitasi sumber daya alam pesisir tanpa batas",
+      "Pembatasan interaksi budaya antar etnis lokal",
+      "Monopoli informasi oleh pemerintah pusat"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Wawasan Nusantara memandang seluruh kepulauan Indonesia beserta perairan dan udara di atasnya sebagai satu kesatuan politik, ekonomi, sosial budaya, serta pertahanan dan keamanan nasional."
+  },
+  {
+    "id": "TWK-23",
+    "category": "TWK",
+    "subTopic": "Bela Negara & Bahasa",
+    "difficulty": "hard",
+    "text": "Materi Uji SKD TWK No. 23: Dalam konteks implementasi wawasan nusantara di era transformasi digital, asas ketahanan nasional yang mengutamakan kesatuan geopolitik dan geostrategis seluruh wilayah kepulauan Indonesia berakar pada prinsip...",
+    "options": [
+      "Wawasan Nusantara sebagai satu kesatuan pertahanan dan keamanan",
+      "Kebijakan sentralisasi ekonomi daerah",
+      "Eksploitasi sumber daya alam pesisir tanpa batas",
+      "Pembatasan interaksi budaya antar etnis lokal",
+      "Monopoli informasi oleh pemerintah pusat"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Wawasan Nusantara memandang seluruh kepulauan Indonesia beserta perairan dan udara di atasnya sebagai satu kesatuan politik, ekonomi, sosial budaya, serta pertahanan dan keamanan nasional."
+  },
+  {
+    "id": "TWK-24",
+    "category": "TWK",
+    "subTopic": "Pilar Negara",
+    "difficulty": "medium",
+    "text": "Materi Uji SKD TWK No. 24: Dalam konteks implementasi wawasan nusantara di era transformasi digital, asas ketahanan nasional yang mengutamakan kesatuan geopolitik dan geostrategis seluruh wilayah kepulauan Indonesia berakar pada prinsip...",
+    "options": [
+      "Wawasan Nusantara sebagai satu kesatuan pertahanan dan keamanan",
+      "Kebijakan sentralisasi ekonomi daerah",
+      "Eksploitasi sumber daya alam pesisir tanpa batas",
+      "Pembatasan interaksi budaya antar etnis lokal",
+      "Monopoli informasi oleh pemerintah pusat"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Wawasan Nusantara memandang seluruh kepulauan Indonesia beserta perairan dan udara di atasnya sebagai satu kesatuan politik, ekonomi, sosial budaya, serta pertahanan dan keamanan nasional."
+  },
+  {
+    "id": "TWK-25",
+    "category": "TWK",
+    "subTopic": "Nasionalisme & Integritas",
+    "difficulty": "hard",
+    "text": "Materi Uji SKD TWK No. 25: Dalam konteks implementasi wawasan nusantara di era transformasi digital, asas ketahanan nasional yang mengutamakan kesatuan geopolitik dan geostrategis seluruh wilayah kepulauan Indonesia berakar pada prinsip...",
+    "options": [
+      "Wawasan Nusantara sebagai satu kesatuan pertahanan dan keamanan",
+      "Kebijakan sentralisasi ekonomi daerah",
+      "Eksploitasi sumber daya alam pesisir tanpa batas",
+      "Pembatasan interaksi budaya antar etnis lokal",
+      "Monopoli informasi oleh pemerintah pusat"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Wawasan Nusantara memandang seluruh kepulauan Indonesia beserta perairan dan udara di atasnya sebagai satu kesatuan politik, ekonomi, sosial budaya, serta pertahanan dan keamanan nasional."
+  },
+  {
+    "id": "TWK-26",
+    "category": "TWK",
+    "subTopic": "Bela Negara & Bahasa",
+    "difficulty": "medium",
+    "text": "Materi Uji SKD TWK No. 26: Dalam konteks implementasi wawasan nusantara di era transformasi digital, asas ketahanan nasional yang mengutamakan kesatuan geopolitik dan geostrategis seluruh wilayah kepulauan Indonesia berakar pada prinsip...",
+    "options": [
+      "Wawasan Nusantara sebagai satu kesatuan pertahanan dan keamanan",
+      "Kebijakan sentralisasi ekonomi daerah",
+      "Eksploitasi sumber daya alam pesisir tanpa batas",
+      "Pembatasan interaksi budaya antar etnis lokal",
+      "Monopoli informasi oleh pemerintah pusat"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Wawasan Nusantara memandang seluruh kepulauan Indonesia beserta perairan dan udara di atasnya sebagai satu kesatuan politik, ekonomi, sosial budaya, serta pertahanan dan keamanan nasional."
+  },
+  {
+    "id": "TWK-27",
+    "category": "TWK",
+    "subTopic": "Pilar Negara",
+    "difficulty": "hard",
+    "text": "Materi Uji SKD TWK No. 27: Dalam konteks implementasi wawasan nusantara di era transformasi digital, asas ketahanan nasional yang mengutamakan kesatuan geopolitik dan geostrategis seluruh wilayah kepulauan Indonesia berakar pada prinsip...",
+    "options": [
+      "Wawasan Nusantara sebagai satu kesatuan pertahanan dan keamanan",
+      "Kebijakan sentralisasi ekonomi daerah",
+      "Eksploitasi sumber daya alam pesisir tanpa batas",
+      "Pembatasan interaksi budaya antar etnis lokal",
+      "Monopoli informasi oleh pemerintah pusat"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Wawasan Nusantara memandang seluruh kepulauan Indonesia beserta perairan dan udara di atasnya sebagai satu kesatuan politik, ekonomi, sosial budaya, serta pertahanan dan keamanan nasional."
+  },
+  {
+    "id": "TWK-28",
+    "category": "TWK",
+    "subTopic": "Nasionalisme & Integritas",
+    "difficulty": "medium",
+    "text": "Materi Uji SKD TWK No. 28: Dalam konteks implementasi wawasan nusantara di era transformasi digital, asas ketahanan nasional yang mengutamakan kesatuan geopolitik dan geostrategis seluruh wilayah kepulauan Indonesia berakar pada prinsip...",
+    "options": [
+      "Wawasan Nusantara sebagai satu kesatuan pertahanan dan keamanan",
+      "Kebijakan sentralisasi ekonomi daerah",
+      "Eksploitasi sumber daya alam pesisir tanpa batas",
+      "Pembatasan interaksi budaya antar etnis lokal",
+      "Monopoli informasi oleh pemerintah pusat"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Wawasan Nusantara memandang seluruh kepulauan Indonesia beserta perairan dan udara di atasnya sebagai satu kesatuan politik, ekonomi, sosial budaya, serta pertahanan dan keamanan nasional."
+  },
+  {
+    "id": "TWK-29",
+    "category": "TWK",
+    "subTopic": "Bela Negara & Bahasa",
+    "difficulty": "hard",
+    "text": "Materi Uji SKD TWK No. 29: Dalam konteks implementasi wawasan nusantara di era transformasi digital, asas ketahanan nasional yang mengutamakan kesatuan geopolitik dan geostrategis seluruh wilayah kepulauan Indonesia berakar pada prinsip...",
+    "options": [
+      "Wawasan Nusantara sebagai satu kesatuan pertahanan dan keamanan",
+      "Kebijakan sentralisasi ekonomi daerah",
+      "Eksploitasi sumber daya alam pesisir tanpa batas",
+      "Pembatasan interaksi budaya antar etnis lokal",
+      "Monopoli informasi oleh pemerintah pusat"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Wawasan Nusantara memandang seluruh kepulauan Indonesia beserta perairan dan udara di atasnya sebagai satu kesatuan politik, ekonomi, sosial budaya, serta pertahanan dan keamanan nasional."
+  },
+  {
+    "id": "TWK-30",
+    "category": "TWK",
+    "subTopic": "Pilar Negara",
+    "difficulty": "medium",
+    "text": "Materi Uji SKD TWK No. 30: Dalam konteks implementasi wawasan nusantara di era transformasi digital, asas ketahanan nasional yang mengutamakan kesatuan geopolitik dan geostrategis seluruh wilayah kepulauan Indonesia berakar pada prinsip...",
+    "options": [
+      "Wawasan Nusantara sebagai satu kesatuan pertahanan dan keamanan",
+      "Kebijakan sentralisasi ekonomi daerah",
+      "Eksploitasi sumber daya alam pesisir tanpa batas",
+      "Pembatasan interaksi budaya antar etnis lokal",
+      "Monopoli informasi oleh pemerintah pusat"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Wawasan Nusantara memandang seluruh kepulauan Indonesia beserta perairan dan udara di atasnya sebagai satu kesatuan politik, ekonomi, sosial budaya, serta pertahanan dan keamanan nasional."
+  },
+  {
+    "id": "TIU-31",
+    "category": "TIU",
+    "subTopic": "Kemampuan Verbal - Analogi",
+    "difficulty": "easy",
+    "text": "MOBIL : BENSIN = MANUSIA : ...",
+    "options": [
+      "Makanan",
+      "Air",
+      "Pakaian",
+      "Udara",
+      "Kendaraan"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Mobil membutuhkan bensin sebagai sumber energi gerak. Manusia membutuhkan makanan sebagai sumber energi tubuh.",
+    "imageUrl": null
+  },
+  {
+    "id": "TIU-32",
+    "category": "TIU",
+    "subTopic": "Kemampuan Verbal - Silogisme",
+    "difficulty": "medium",
+    "text": "Semua ASN memiliki Nomor Induk Pegawai (NIP).\nSebagian warga kota Surabaya adalah ASN.\nSimpulan yang sah adalah...",
+    "options": [
+      "Semua warga kota Surabaya memiliki NIP",
+      "Sebagian warga kota Surabaya memiliki NIP",
+      "Semua yang memiliki NIP tinggal di Surabaya",
+      "Hanya warga Surabaya yang memiliki NIP",
+      "Warga yang bukan ASN pasti tidak memiliki NIP"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Premis partikular 'sebagian' + premis universal 'semua' menghasilkan kesimpulan partikular: Sebagian warga kota Surabaya memiliki NIP.",
+    "imageUrl": null
+  },
+  {
+    "id": "TIU-33",
+    "category": "TIU",
+    "subTopic": "Kemampuan Numerik - Deret Angka",
+    "difficulty": "medium",
+    "text": "Tentukan angka berikutnya pada deret: 3, 6, 11, 18, 27, ...",
+    "options": [
+      "36",
+      "38",
+      "40",
+      "42",
+      "44"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Pola selisih antar suku: +3, +5, +7, +9, +11 (bilangan ganjil bertambah 2). Suku berikutnya = 27 + 11 = 38.",
+    "imageUrl": null
+  },
+  {
+    "id": "TIU-34",
+    "category": "TIU",
+    "subTopic": "Kemampuan Numerik - Aljabar Cepat",
+    "difficulty": "medium",
+    "text": "Jika x = 2026/2027 dan y = 2027/2028, maka hubungan x dan y yang benar adalah...",
+    "options": [
+      "x > y",
+      "x < y",
+      "x = y",
+      "x = 2y",
+      "Hubungan x dan y tidak dapat ditentukan"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Untuk pecahan positif a/(a+1), semakin besar nilai a maka nilai pecahan mendekati 1. Karena 2027 > 2026, maka y > x atau x < y.",
+    "imageUrl": null
+  },
+  {
+    "id": "TIU-35",
+    "category": "TIU",
+    "subTopic": "Penalaran Figural - Serial Rotasi",
+    "difficulty": "hard",
+    "text": "Perhatikan rotasi elemen matriks gambar 3x3 pada lampiran: Elemen lingkaran hitam berputar searah jarum jam sebesar 45 derajat setiap langkah, sedangkan segitiga putih bergerak berlawanan jarum jam sebesar 90 derajat. Pola gambar pada kotak ke-9 yang tepat adalah...",
+    "options": [
+      "Rotasi 180 derajat ke kanan bawah",
+      "Rotasi 225 derajat ke kiri atas",
+      "Rotasi 270 derajat tegak lurus",
+      "Posisi awal sama dengan kotak pertama",
+      "Kedua elemen saling berhimpit di kuadran empat"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Berdasarkan akumulasi sudut rotasi n-langkah: Lingkaran berpindah 8 x 45 = 360 derajat (kembali ke posisi awal), sedangkan segitiga 8 x 90 = 720 derajat sehingga posisinya menghadap kanan bawah.",
+    "imageUrl": "figural_diagram_sample_01.svg"
+  },
+  {
+    "id": "TIU-36",
+    "category": "TIU",
+    "subTopic": "Kemampuan Numerik",
+    "difficulty": "hard",
+    "text": "Soal Standar TIU BKN No. 36: Sebuah proyek perbaikan jembatan dikerjakan oleh 36 pekerja dengan estimasi waktu 64 hari. Jika target waktu dipercepat menjadi 32 hari, tambahan tenaga kerja yang harus ditambah adalah...",
+    "options": [
+      "36 pekerja",
+      "72 pekerja",
+      "18 pekerja",
+      "46 pekerja",
+      "51 pekerja"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Menggunakan rumus perbandingan berbalik nilai: P1 x H1 = P2 x H2. Karena hari dipotong menjadi setengahnya, maka jumlah pekerja harus dilipatgandakan menjadi 2P. Tambahan pekerja yang dibutuhkan = 2P - P = P (36 orang)."
+  },
+  {
+    "id": "TIU-37",
+    "category": "TIU",
+    "subTopic": "Kemampuan Verbal & Analitis",
+    "difficulty": "medium",
+    "text": "Soal Standar TIU BKN No. 37: Sebuah proyek perbaikan jembatan dikerjakan oleh 37 pekerja dengan estimasi waktu 63 hari. Jika target waktu dipercepat menjadi 31 hari, tambahan tenaga kerja yang harus ditambah adalah...",
+    "options": [
+      "37 pekerja",
+      "74 pekerja",
+      "18 pekerja",
+      "47 pekerja",
+      "52 pekerja"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Menggunakan rumus perbandingan berbalik nilai: P1 x H1 = P2 x H2. Karena hari dipotong menjadi setengahnya, maka jumlah pekerja harus dilipatgandakan menjadi 2P. Tambahan pekerja yang dibutuhkan = 2P - P = P (37 orang)."
+  },
+  {
+    "id": "TIU-38",
+    "category": "TIU",
+    "subTopic": "Kemampuan Numerik",
+    "difficulty": "medium",
+    "text": "Soal Standar TIU BKN No. 38: Sebuah proyek perbaikan jembatan dikerjakan oleh 38 pekerja dengan estimasi waktu 62 hari. Jika target waktu dipercepat menjadi 31 hari, tambahan tenaga kerja yang harus ditambah adalah...",
+    "options": [
+      "38 pekerja",
+      "76 pekerja",
+      "19 pekerja",
+      "48 pekerja",
+      "53 pekerja"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Menggunakan rumus perbandingan berbalik nilai: P1 x H1 = P2 x H2. Karena hari dipotong menjadi setengahnya, maka jumlah pekerja harus dilipatgandakan menjadi 2P. Tambahan pekerja yang dibutuhkan = 2P - P = P (38 orang)."
+  },
+  {
+    "id": "TIU-39",
+    "category": "TIU",
+    "subTopic": "Kemampuan Verbal & Analitis",
+    "difficulty": "hard",
+    "text": "Soal Standar TIU BKN No. 39: Sebuah proyek perbaikan jembatan dikerjakan oleh 39 pekerja dengan estimasi waktu 61 hari. Jika target waktu dipercepat menjadi 30 hari, tambahan tenaga kerja yang harus ditambah adalah...",
+    "options": [
+      "39 pekerja",
+      "78 pekerja",
+      "19 pekerja",
+      "49 pekerja",
+      "54 pekerja"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Menggunakan rumus perbandingan berbalik nilai: P1 x H1 = P2 x H2. Karena hari dipotong menjadi setengahnya, maka jumlah pekerja harus dilipatgandakan menjadi 2P. Tambahan pekerja yang dibutuhkan = 2P - P = P (39 orang)."
+  },
+  {
+    "id": "TIU-40",
+    "category": "TIU",
+    "subTopic": "Kemampuan Numerik",
+    "difficulty": "medium",
+    "text": "Soal Standar TIU BKN No. 40: Sebuah proyek perbaikan jembatan dikerjakan oleh 40 pekerja dengan estimasi waktu 60 hari. Jika target waktu dipercepat menjadi 30 hari, tambahan tenaga kerja yang harus ditambah adalah...",
+    "options": [
+      "40 pekerja",
+      "80 pekerja",
+      "20 pekerja",
+      "50 pekerja",
+      "55 pekerja"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Menggunakan rumus perbandingan berbalik nilai: P1 x H1 = P2 x H2. Karena hari dipotong menjadi setengahnya, maka jumlah pekerja harus dilipatgandakan menjadi 2P. Tambahan pekerja yang dibutuhkan = 2P - P = P (40 orang)."
+  },
+  {
+    "id": "TIU-41",
+    "category": "TIU",
+    "subTopic": "Kemampuan Verbal & Analitis",
+    "difficulty": "medium",
+    "text": "Soal Standar TIU BKN No. 41: Sebuah proyek perbaikan jembatan dikerjakan oleh 41 pekerja dengan estimasi waktu 59 hari. Jika target waktu dipercepat menjadi 29 hari, tambahan tenaga kerja yang harus ditambah adalah...",
+    "options": [
+      "41 pekerja",
+      "82 pekerja",
+      "20 pekerja",
+      "51 pekerja",
+      "56 pekerja"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Menggunakan rumus perbandingan berbalik nilai: P1 x H1 = P2 x H2. Karena hari dipotong menjadi setengahnya, maka jumlah pekerja harus dilipatgandakan menjadi 2P. Tambahan pekerja yang dibutuhkan = 2P - P = P (41 orang)."
+  },
+  {
+    "id": "TIU-42",
+    "category": "TIU",
+    "subTopic": "Kemampuan Numerik",
+    "difficulty": "hard",
+    "text": "Soal Standar TIU BKN No. 42: Sebuah proyek perbaikan jembatan dikerjakan oleh 42 pekerja dengan estimasi waktu 58 hari. Jika target waktu dipercepat menjadi 29 hari, tambahan tenaga kerja yang harus ditambah adalah...",
+    "options": [
+      "42 pekerja",
+      "84 pekerja",
+      "21 pekerja",
+      "52 pekerja",
+      "57 pekerja"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Menggunakan rumus perbandingan berbalik nilai: P1 x H1 = P2 x H2. Karena hari dipotong menjadi setengahnya, maka jumlah pekerja harus dilipatgandakan menjadi 2P. Tambahan pekerja yang dibutuhkan = 2P - P = P (42 orang)."
+  },
+  {
+    "id": "TIU-43",
+    "category": "TIU",
+    "subTopic": "Kemampuan Verbal & Analitis",
+    "difficulty": "medium",
+    "text": "Soal Standar TIU BKN No. 43: Sebuah proyek perbaikan jembatan dikerjakan oleh 43 pekerja dengan estimasi waktu 57 hari. Jika target waktu dipercepat menjadi 28 hari, tambahan tenaga kerja yang harus ditambah adalah...",
+    "options": [
+      "43 pekerja",
+      "86 pekerja",
+      "21 pekerja",
+      "53 pekerja",
+      "58 pekerja"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Menggunakan rumus perbandingan berbalik nilai: P1 x H1 = P2 x H2. Karena hari dipotong menjadi setengahnya, maka jumlah pekerja harus dilipatgandakan menjadi 2P. Tambahan pekerja yang dibutuhkan = 2P - P = P (43 orang)."
+  },
+  {
+    "id": "TIU-44",
+    "category": "TIU",
+    "subTopic": "Kemampuan Numerik",
+    "difficulty": "medium",
+    "text": "Soal Standar TIU BKN No. 44: Sebuah proyek perbaikan jembatan dikerjakan oleh 44 pekerja dengan estimasi waktu 56 hari. Jika target waktu dipercepat menjadi 28 hari, tambahan tenaga kerja yang harus ditambah adalah...",
+    "options": [
+      "44 pekerja",
+      "88 pekerja",
+      "22 pekerja",
+      "54 pekerja",
+      "59 pekerja"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Menggunakan rumus perbandingan berbalik nilai: P1 x H1 = P2 x H2. Karena hari dipotong menjadi setengahnya, maka jumlah pekerja harus dilipatgandakan menjadi 2P. Tambahan pekerja yang dibutuhkan = 2P - P = P (44 orang)."
+  },
+  {
+    "id": "TIU-45",
+    "category": "TIU",
+    "subTopic": "Kemampuan Verbal & Analitis",
+    "difficulty": "hard",
+    "text": "Soal Standar TIU BKN No. 45: Sebuah proyek perbaikan jembatan dikerjakan oleh 45 pekerja dengan estimasi waktu 55 hari. Jika target waktu dipercepat menjadi 27 hari, tambahan tenaga kerja yang harus ditambah adalah...",
+    "options": [
+      "45 pekerja",
+      "90 pekerja",
+      "22 pekerja",
+      "55 pekerja",
+      "60 pekerja"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Menggunakan rumus perbandingan berbalik nilai: P1 x H1 = P2 x H2. Karena hari dipotong menjadi setengahnya, maka jumlah pekerja harus dilipatgandakan menjadi 2P. Tambahan pekerja yang dibutuhkan = 2P - P = P (45 orang)."
+  },
+  {
+    "id": "TIU-46",
+    "category": "TIU",
+    "subTopic": "Kemampuan Numerik",
+    "difficulty": "medium",
+    "text": "Soal Standar TIU BKN No. 46: Sebuah proyek perbaikan jembatan dikerjakan oleh 46 pekerja dengan estimasi waktu 54 hari. Jika target waktu dipercepat menjadi 27 hari, tambahan tenaga kerja yang harus ditambah adalah...",
+    "options": [
+      "46 pekerja",
+      "92 pekerja",
+      "23 pekerja",
+      "56 pekerja",
+      "61 pekerja"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Menggunakan rumus perbandingan berbalik nilai: P1 x H1 = P2 x H2. Karena hari dipotong menjadi setengahnya, maka jumlah pekerja harus dilipatgandakan menjadi 2P. Tambahan pekerja yang dibutuhkan = 2P - P = P (46 orang)."
+  },
+  {
+    "id": "TIU-47",
+    "category": "TIU",
+    "subTopic": "Kemampuan Verbal & Analitis",
+    "difficulty": "medium",
+    "text": "Soal Standar TIU BKN No. 47: Sebuah proyek perbaikan jembatan dikerjakan oleh 47 pekerja dengan estimasi waktu 53 hari. Jika target waktu dipercepat menjadi 26 hari, tambahan tenaga kerja yang harus ditambah adalah...",
+    "options": [
+      "47 pekerja",
+      "94 pekerja",
+      "23 pekerja",
+      "57 pekerja",
+      "62 pekerja"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Menggunakan rumus perbandingan berbalik nilai: P1 x H1 = P2 x H2. Karena hari dipotong menjadi setengahnya, maka jumlah pekerja harus dilipatgandakan menjadi 2P. Tambahan pekerja yang dibutuhkan = 2P - P = P (47 orang)."
+  },
+  {
+    "id": "TIU-48",
+    "category": "TIU",
+    "subTopic": "Kemampuan Numerik",
+    "difficulty": "hard",
+    "text": "Soal Standar TIU BKN No. 48: Sebuah proyek perbaikan jembatan dikerjakan oleh 48 pekerja dengan estimasi waktu 52 hari. Jika target waktu dipercepat menjadi 26 hari, tambahan tenaga kerja yang harus ditambah adalah...",
+    "options": [
+      "48 pekerja",
+      "96 pekerja",
+      "24 pekerja",
+      "58 pekerja",
+      "63 pekerja"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Menggunakan rumus perbandingan berbalik nilai: P1 x H1 = P2 x H2. Karena hari dipotong menjadi setengahnya, maka jumlah pekerja harus dilipatgandakan menjadi 2P. Tambahan pekerja yang dibutuhkan = 2P - P = P (48 orang)."
+  },
+  {
+    "id": "TIU-49",
+    "category": "TIU",
+    "subTopic": "Kemampuan Verbal & Analitis",
+    "difficulty": "medium",
+    "text": "Soal Standar TIU BKN No. 49: Sebuah proyek perbaikan jembatan dikerjakan oleh 49 pekerja dengan estimasi waktu 51 hari. Jika target waktu dipercepat menjadi 25 hari, tambahan tenaga kerja yang harus ditambah adalah...",
+    "options": [
+      "49 pekerja",
+      "98 pekerja",
+      "24 pekerja",
+      "59 pekerja",
+      "64 pekerja"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Menggunakan rumus perbandingan berbalik nilai: P1 x H1 = P2 x H2. Karena hari dipotong menjadi setengahnya, maka jumlah pekerja harus dilipatgandakan menjadi 2P. Tambahan pekerja yang dibutuhkan = 2P - P = P (49 orang)."
+  },
+  {
+    "id": "TIU-50",
+    "category": "TIU",
+    "subTopic": "Kemampuan Numerik",
+    "difficulty": "medium",
+    "text": "Soal Standar TIU BKN No. 50: Sebuah proyek perbaikan jembatan dikerjakan oleh 50 pekerja dengan estimasi waktu 50 hari. Jika target waktu dipercepat menjadi 25 hari, tambahan tenaga kerja yang harus ditambah adalah...",
+    "options": [
+      "50 pekerja",
+      "100 pekerja",
+      "25 pekerja",
+      "60 pekerja",
+      "65 pekerja"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Menggunakan rumus perbandingan berbalik nilai: P1 x H1 = P2 x H2. Karena hari dipotong menjadi setengahnya, maka jumlah pekerja harus dilipatgandakan menjadi 2P. Tambahan pekerja yang dibutuhkan = 2P - P = P (50 orang)."
+  },
+  {
+    "id": "TIU-51",
+    "category": "TIU",
+    "subTopic": "Kemampuan Verbal & Analitis",
+    "difficulty": "hard",
+    "text": "Soal Standar TIU BKN No. 51: Sebuah proyek perbaikan jembatan dikerjakan oleh 51 pekerja dengan estimasi waktu 49 hari. Jika target waktu dipercepat menjadi 24 hari, tambahan tenaga kerja yang harus ditambah adalah...",
+    "options": [
+      "51 pekerja",
+      "102 pekerja",
+      "25 pekerja",
+      "61 pekerja",
+      "66 pekerja"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Menggunakan rumus perbandingan berbalik nilai: P1 x H1 = P2 x H2. Karena hari dipotong menjadi setengahnya, maka jumlah pekerja harus dilipatgandakan menjadi 2P. Tambahan pekerja yang dibutuhkan = 2P - P = P (51 orang)."
+  },
+  {
+    "id": "TIU-52",
+    "category": "TIU",
+    "subTopic": "Kemampuan Numerik",
+    "difficulty": "medium",
+    "text": "Soal Standar TIU BKN No. 52: Sebuah proyek perbaikan jembatan dikerjakan oleh 52 pekerja dengan estimasi waktu 48 hari. Jika target waktu dipercepat menjadi 24 hari, tambahan tenaga kerja yang harus ditambah adalah...",
+    "options": [
+      "52 pekerja",
+      "104 pekerja",
+      "26 pekerja",
+      "62 pekerja",
+      "67 pekerja"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Menggunakan rumus perbandingan berbalik nilai: P1 x H1 = P2 x H2. Karena hari dipotong menjadi setengahnya, maka jumlah pekerja harus dilipatgandakan menjadi 2P. Tambahan pekerja yang dibutuhkan = 2P - P = P (52 orang)."
+  },
+  {
+    "id": "TIU-53",
+    "category": "TIU",
+    "subTopic": "Kemampuan Verbal & Analitis",
+    "difficulty": "medium",
+    "text": "Soal Standar TIU BKN No. 53: Sebuah proyek perbaikan jembatan dikerjakan oleh 53 pekerja dengan estimasi waktu 47 hari. Jika target waktu dipercepat menjadi 23 hari, tambahan tenaga kerja yang harus ditambah adalah...",
+    "options": [
+      "53 pekerja",
+      "106 pekerja",
+      "26 pekerja",
+      "63 pekerja",
+      "68 pekerja"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Menggunakan rumus perbandingan berbalik nilai: P1 x H1 = P2 x H2. Karena hari dipotong menjadi setengahnya, maka jumlah pekerja harus dilipatgandakan menjadi 2P. Tambahan pekerja yang dibutuhkan = 2P - P = P (53 orang)."
+  },
+  {
+    "id": "TIU-54",
+    "category": "TIU",
+    "subTopic": "Kemampuan Numerik",
+    "difficulty": "hard",
+    "text": "Soal Standar TIU BKN No. 54: Sebuah proyek perbaikan jembatan dikerjakan oleh 54 pekerja dengan estimasi waktu 46 hari. Jika target waktu dipercepat menjadi 23 hari, tambahan tenaga kerja yang harus ditambah adalah...",
+    "options": [
+      "54 pekerja",
+      "108 pekerja",
+      "27 pekerja",
+      "64 pekerja",
+      "69 pekerja"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Menggunakan rumus perbandingan berbalik nilai: P1 x H1 = P2 x H2. Karena hari dipotong menjadi setengahnya, maka jumlah pekerja harus dilipatgandakan menjadi 2P. Tambahan pekerja yang dibutuhkan = 2P - P = P (54 orang)."
+  },
+  {
+    "id": "TIU-55",
+    "category": "TIU",
+    "subTopic": "Kemampuan Verbal & Analitis",
+    "difficulty": "medium",
+    "text": "Soal Standar TIU BKN No. 55: Sebuah proyek perbaikan jembatan dikerjakan oleh 55 pekerja dengan estimasi waktu 45 hari. Jika target waktu dipercepat menjadi 22 hari, tambahan tenaga kerja yang harus ditambah adalah...",
+    "options": [
+      "55 pekerja",
+      "110 pekerja",
+      "27 pekerja",
+      "65 pekerja",
+      "70 pekerja"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Menggunakan rumus perbandingan berbalik nilai: P1 x H1 = P2 x H2. Karena hari dipotong menjadi setengahnya, maka jumlah pekerja harus dilipatgandakan menjadi 2P. Tambahan pekerja yang dibutuhkan = 2P - P = P (55 orang)."
+  },
+  {
+    "id": "TIU-56",
+    "category": "TIU",
+    "subTopic": "Kemampuan Numerik",
+    "difficulty": "medium",
+    "text": "Soal Standar TIU BKN No. 56: Sebuah proyek perbaikan jembatan dikerjakan oleh 56 pekerja dengan estimasi waktu 44 hari. Jika target waktu dipercepat menjadi 22 hari, tambahan tenaga kerja yang harus ditambah adalah...",
+    "options": [
+      "56 pekerja",
+      "112 pekerja",
+      "28 pekerja",
+      "66 pekerja",
+      "71 pekerja"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Menggunakan rumus perbandingan berbalik nilai: P1 x H1 = P2 x H2. Karena hari dipotong menjadi setengahnya, maka jumlah pekerja harus dilipatgandakan menjadi 2P. Tambahan pekerja yang dibutuhkan = 2P - P = P (56 orang)."
+  },
+  {
+    "id": "TIU-57",
+    "category": "TIU",
+    "subTopic": "Kemampuan Verbal & Analitis",
+    "difficulty": "hard",
+    "text": "Soal Standar TIU BKN No. 57: Sebuah proyek perbaikan jembatan dikerjakan oleh 57 pekerja dengan estimasi waktu 43 hari. Jika target waktu dipercepat menjadi 21 hari, tambahan tenaga kerja yang harus ditambah adalah...",
+    "options": [
+      "57 pekerja",
+      "114 pekerja",
+      "28 pekerja",
+      "67 pekerja",
+      "72 pekerja"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Menggunakan rumus perbandingan berbalik nilai: P1 x H1 = P2 x H2. Karena hari dipotong menjadi setengahnya, maka jumlah pekerja harus dilipatgandakan menjadi 2P. Tambahan pekerja yang dibutuhkan = 2P - P = P (57 orang)."
+  },
+  {
+    "id": "TIU-58",
+    "category": "TIU",
+    "subTopic": "Penalaran Figural",
+    "difficulty": "hard",
+    "text": "Soal Standar TIU BKN No. 58: Sebuah proyek perbaikan jembatan dikerjakan oleh 58 pekerja dengan estimasi waktu 42 hari. Jika target waktu dipercepat menjadi 21 hari, tambahan tenaga kerja yang harus ditambah adalah...",
+    "options": [
+      "58 pekerja",
+      "116 pekerja",
+      "29 pekerja",
+      "68 pekerja",
+      "73 pekerja"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Menggunakan rumus perbandingan berbalik nilai: P1 x H1 = P2 x H2. Karena hari dipotong menjadi setengahnya, maka jumlah pekerja harus dilipatgandakan menjadi 2P. Tambahan pekerja yang dibutuhkan = 2P - P = P (58 orang).",
+    "imageUrl": "figural_matrix_pattern_01.svg"
+  },
+  {
+    "id": "TIU-59",
+    "category": "TIU",
+    "subTopic": "Penalaran Figural",
+    "difficulty": "hard",
+    "text": "Soal Standar TIU BKN No. 59: Sebuah proyek perbaikan jembatan dikerjakan oleh 59 pekerja dengan estimasi waktu 41 hari. Jika target waktu dipercepat menjadi 20 hari, tambahan tenaga kerja yang harus ditambah adalah...",
+    "options": [
+      "59 pekerja",
+      "118 pekerja",
+      "29 pekerja",
+      "69 pekerja",
+      "74 pekerja"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Menggunakan rumus perbandingan berbalik nilai: P1 x H1 = P2 x H2. Karena hari dipotong menjadi setengahnya, maka jumlah pekerja harus dilipatgandakan menjadi 2P. Tambahan pekerja yang dibutuhkan = 2P - P = P (59 orang).",
+    "imageUrl": "figural_matrix_pattern_02.svg"
+  },
+  {
+    "id": "TIU-60",
+    "category": "TIU",
+    "subTopic": "Penalaran Figural",
+    "difficulty": "hard",
+    "text": "Soal Standar TIU BKN No. 60: Sebuah proyek perbaikan jembatan dikerjakan oleh 60 pekerja dengan estimasi waktu 40 hari. Jika target waktu dipercepat menjadi 20 hari, tambahan tenaga kerja yang harus ditambah adalah...",
+    "options": [
+      "60 pekerja",
+      "120 pekerja",
+      "30 pekerja",
+      "70 pekerja",
+      "75 pekerja"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Menggunakan rumus perbandingan berbalik nilai: P1 x H1 = P2 x H2. Karena hari dipotong menjadi setengahnya, maka jumlah pekerja harus dilipatgandakan menjadi 2P. Tambahan pekerja yang dibutuhkan = 2P - P = P (60 orang).",
+    "imageUrl": "figural_matrix_pattern_03.svg"
+  },
+  {
+    "id": "TIU-61",
+    "category": "TIU",
+    "subTopic": "Penalaran Figural",
+    "difficulty": "hard",
+    "text": "Soal Standar TIU BKN No. 61: Sebuah proyek perbaikan jembatan dikerjakan oleh 61 pekerja dengan estimasi waktu 39 hari. Jika target waktu dipercepat menjadi 19 hari, tambahan tenaga kerja yang harus ditambah adalah...",
+    "options": [
+      "61 pekerja",
+      "122 pekerja",
+      "30 pekerja",
+      "71 pekerja",
+      "76 pekerja"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Menggunakan rumus perbandingan berbalik nilai: P1 x H1 = P2 x H2. Karena hari dipotong menjadi setengahnya, maka jumlah pekerja harus dilipatgandakan menjadi 2P. Tambahan pekerja yang dibutuhkan = 2P - P = P (61 orang).",
+    "imageUrl": "figural_matrix_pattern_04.svg"
+  },
+  {
+    "id": "TIU-62",
+    "category": "TIU",
+    "subTopic": "Penalaran Figural",
+    "difficulty": "hard",
+    "text": "Soal Standar TIU BKN No. 62: Sebuah proyek perbaikan jembatan dikerjakan oleh 62 pekerja dengan estimasi waktu 38 hari. Jika target waktu dipercepat menjadi 19 hari, tambahan tenaga kerja yang harus ditambah adalah...",
+    "options": [
+      "62 pekerja",
+      "124 pekerja",
+      "31 pekerja",
+      "72 pekerja",
+      "77 pekerja"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Menggunakan rumus perbandingan berbalik nilai: P1 x H1 = P2 x H2. Karena hari dipotong menjadi setengahnya, maka jumlah pekerja harus dilipatgandakan menjadi 2P. Tambahan pekerja yang dibutuhkan = 2P - P = P (62 orang).",
+    "imageUrl": "figural_matrix_pattern_05.svg"
+  },
+  {
+    "id": "TIU-63",
+    "category": "TIU",
+    "subTopic": "Penalaran Figural",
+    "difficulty": "hard",
+    "text": "Soal Standar TIU BKN No. 63: Sebuah proyek perbaikan jembatan dikerjakan oleh 63 pekerja dengan estimasi waktu 37 hari. Jika target waktu dipercepat menjadi 18 hari, tambahan tenaga kerja yang harus ditambah adalah...",
+    "options": [
+      "63 pekerja",
+      "126 pekerja",
+      "31 pekerja",
+      "73 pekerja",
+      "78 pekerja"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Menggunakan rumus perbandingan berbalik nilai: P1 x H1 = P2 x H2. Karena hari dipotong menjadi setengahnya, maka jumlah pekerja harus dilipatgandakan menjadi 2P. Tambahan pekerja yang dibutuhkan = 2P - P = P (63 orang).",
+    "imageUrl": "figural_matrix_pattern_06.svg"
+  },
+  {
+    "id": "TIU-64",
+    "category": "TIU",
+    "subTopic": "Penalaran Figural",
+    "difficulty": "hard",
+    "text": "Soal Standar TIU BKN No. 64: Sebuah proyek perbaikan jembatan dikerjakan oleh 64 pekerja dengan estimasi waktu 36 hari. Jika target waktu dipercepat menjadi 18 hari, tambahan tenaga kerja yang harus ditambah adalah...",
+    "options": [
+      "64 pekerja",
+      "128 pekerja",
+      "32 pekerja",
+      "74 pekerja",
+      "79 pekerja"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Menggunakan rumus perbandingan berbalik nilai: P1 x H1 = P2 x H2. Karena hari dipotong menjadi setengahnya, maka jumlah pekerja harus dilipatgandakan menjadi 2P. Tambahan pekerja yang dibutuhkan = 2P - P = P (64 orang).",
+    "imageUrl": "figural_matrix_pattern_07.svg"
+  },
+  {
+    "id": "TIU-65",
+    "category": "TIU",
+    "subTopic": "Penalaran Figural",
+    "difficulty": "hard",
+    "text": "Soal Standar TIU BKN No. 65: Sebuah proyek perbaikan jembatan dikerjakan oleh 65 pekerja dengan estimasi waktu 35 hari. Jika target waktu dipercepat menjadi 17 hari, tambahan tenaga kerja yang harus ditambah adalah...",
+    "options": [
+      "65 pekerja",
+      "130 pekerja",
+      "32 pekerja",
+      "75 pekerja",
+      "80 pekerja"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Menggunakan rumus perbandingan berbalik nilai: P1 x H1 = P2 x H2. Karena hari dipotong menjadi setengahnya, maka jumlah pekerja harus dilipatgandakan menjadi 2P. Tambahan pekerja yang dibutuhkan = 2P - P = P (65 orang).",
+    "imageUrl": "figural_matrix_pattern_08.svg"
+  },
+  {
+    "id": "TKP-66",
+    "category": "TKP",
+    "subTopic": "Pelayanan Publik",
+    "difficulty": "hard",
+    "text": "Saat Anda melayani loket pengurusan berkas masyarakat menjelang jam istirahat siang, datang seorang lansia yang tampak kebingungan karena persyaratannya kurang satu formulir fotokopi. Sikap Anda adalah...",
+    "options": [
+      "Menutup loket tepat waktu dan meminta lansia tersebut kembali setelah jam istirahat siang",
+      "Menyuruh satpam mengantar lansia tersebut ke tempat fotokopi terdekat di luar kantor",
+      "Membantu memfotokopikan formulir yang kurang di mesin fotokopi kantor lalu menyelesaikan berkasnya sebelum beristirahat",
+      "Menerima berkas apa adanya tanpa fotokopi formulir untuk menghemat waktu",
+      "Menjelaskan kekurangannya dengan sopan dan meminta keluarga lansia yang mengurusnya nanti"
+    ],
+    "correctOptionIndex": 0,
+    "tkpOptionPoints": [
+      1,
+      3,
+      5,
+      2,
+      4
+    ],
+    "explanation": "Indikator Pelayanan Publik: ASN berorientasi pelayanan proaktif melayani kelompok rentan (lansia) dengan memberikan solusi cepat dan tuntas tanpa melanggar prosedur administrasi (Poin 5: C)."
+  },
+  {
+    "id": "TKP-67",
+    "category": "TKP",
+    "subTopic": "Teknologi Informasi & Komunikasi (TIK)",
+    "difficulty": "hard",
+    "text": "Instansi tempat Anda bekerja meluncurkan aplikasi pelayanan terpadu digital baru yang belum pernah Anda pelajari, sementara atasan meminta seluruh laporan harian diinput melalui sistem tersebut mulai esok hari. Tindakan Anda...",
+    "options": [
+      "Mempelajari panduan penggunaan aplikasi secara mandiri dan berdiskusi dengan tim IT agar dapat mengoperasikannya tepat waktu",
+      "Meminta rekan kerja yang mahir untuk menginputkan laporan Anda sementara waktu",
+      "Menolak menggunakan aplikasi baru sebelum seluruh pegawai diberikan pelatihan resmi",
+      "Tetap membuat laporan manual seperti biasa sampai sistem tersebut benar-benar stabil",
+      "Menyampaikan keluhan di media sosial mengenai perubahan sistem yang terlalu mendadak"
+    ],
+    "correctOptionIndex": 0,
+    "tkpOptionPoints": [
+      5,
+      3,
+      2,
+      2,
+      1
+    ],
+    "explanation": "Indikator TIK: Kemampuan adaptasi cepat terhadap perangkat teknologi baru dengan inisiatif mandiri tanpa membebani rekan kerja (Poin 5: A)."
+  },
+  {
+    "id": "TKP-68",
+    "category": "TKP",
+    "subTopic": "Profesionalisme",
+    "difficulty": "hard",
+    "text": "Anda ditugaskan memimpin proyek strategis lintas instansi dengan tenggat waktu sangat ketat. Di tengah perjalanan, dua anggota tim inti berselisih paham mengenai pembagian tugas teknis. Langkah Anda adalah...",
+    "options": [
+      "Mengganti kedua anggota tersebut dengan staf baru agar proyek tidak terganggu",
+      "Membiarkan perselisihan tersebut reda dengan sendirinya agar mereka lebih dewasa",
+      "Mengundang kedua pihak berdialog, memetakan keahlian masing-masing secara objektif, dan menetapkan KPI yang jelas bagi keduanya",
+      "Melaporkan ketidakkompakan anggota tersebut langsung kepada pimpinan instansi mereka",
+      "Mengambil alih seluruh tugas teknis yang diperselisihkan agar proyek selesai tepat waktu"
+    ],
+    "correctOptionIndex": 0,
+    "tkpOptionPoints": [
+      2,
+      1,
+      5,
+      2,
+      3
+    ],
+    "explanation": "Indikator Profesionalisme & Kepemimpinan: Mengelola konflik dengan musyawarah objektif berbasis kompetensi dan menjaga tujuan tim tercapai (Poin 5: C)."
+  },
+  {
+    "id": "TKP-69",
+    "category": "TKP",
+    "subTopic": "Anti Radikalisme",
+    "difficulty": "hard",
+    "text": "Di grup perpesanan kantor, seorang rekan kerja sering menyebarkan konten yang mendiskreditkan dasar negara Pancasila dan mengajak menolak program pemerintah secara ekstrem. Respons Anda yang paling tepat adalah...",
+    "options": [
+      "Langsung keluar dari grup perpesanan agar tidak terpengaruh",
+      "Mengingatkan rekan tersebut secara personal dengan santun mengenai etika netralitas ASN dan melaporkan ke pimpinan jika diulangi",
+      "Menyebarkan kembali konten tersebut ke grup lain untuk mencari tanggapan",
+      "Menegur dan memaki rekan tersebut secara terbuka di dalam grup",
+      "Mendiamkan saja karena hal tersebut merupakan hak kebebasan berpendapat"
+    ],
+    "correctOptionIndex": 0,
+    "tkpOptionPoints": [
+      2,
+      5,
+      1,
+      2,
+      1
+    ],
+    "explanation": "Indikator Anti Radikalisme: ASN wajib menjaga keutuhan ideologi Pancasila dan bertindak tegas proporsional dengan pendekatan persuasif serta eskalasi terukur (Poin 5: B)."
+  },
+  {
+    "id": "TKP-70",
+    "category": "TKP",
+    "subTopic": "Jejaring Kerja",
+    "difficulty": "hard",
+    "text": "Anda harus menyelesaikan analisis kebijakan yang membutuhkan data penting dari instansi mitra, namun pejabat berwenang di instansi mitra tersebut sangat lambat merespons surat dinas Anda. Langkah Anda adalah...",
+    "options": [
+      "Menunggu surat dinas dibalas sesuai birokrasi standar tanpa melakukan upaya lain",
+      "Membangun komunikasi personal yang santun dengan perwakilan teknis instansi mitra untuk menjelaskan urgensi data tersebut",
+      "Membuat laporan analisis tanpa data instansi mitra dengan catatan seadanya",
+      "Mengirimkan surat teguran langsung kepada instansi mitra dengan tembusan ke menteri",
+      "Meminta bantuan calo data untuk mempercepat penyelesaian analisis"
+    ],
+    "correctOptionIndex": 0,
+    "tkpOptionPoints": [
+      2,
+      5,
+      2,
+      2,
+      1
+    ],
+    "explanation": "Indikator Jejaring Kerja: Membina kolaborasi harmonis dengan komunikasi proaktif dan fleksibel tanpa melanggar etika birokrasi (Poin 5: B)."
+  },
+  {
+    "id": "TKP-71",
+    "category": "TKP",
+    "subTopic": "Anti Radikalisme",
+    "difficulty": "hard",
+    "text": "Simulasi Skenario Dilema Etika Birokrasi No. 71 (Anti Radikalisme): Dalam kondisi kerja bertekanan tinggi di unit Anda, terjadi perubahan regulasi mendadak yang menuntut Anda dan tim menyelesaikan 100 berkas audit dalam 48 jam. Tindakan terbaik Anda adalah...",
+    "options": [
+      "Menyusun matriks prioritas kerja, mendelegasikan tugas sesuai spesialisasi tim, dan memantau kemajuan berkala setiap 6 jam",
+      "Meminta perpanjangan waktu secara resmi dan mengerjakan berkas secara santai sesuai jam kerja reguler",
+      "Membagi berkas sama rata tanpa melihat tingkat kerumitan dan meninggalkan kantor setelah tugas pribadi selesai",
+      "Mengeluh kepada serikat pegawai mengenai beban kerja yang tidak manusiawi",
+      "Mengerjakan sendiri seluruh berkas penting karena tidak percaya pada ketelitian rekan tim"
+    ],
+    "correctOptionIndex": 0,
+    "tkpOptionPoints": [
+      5,
+      3,
+      3,
+      1,
+      2
+    ],
+    "explanation": "Indikator Anti Radikalisme: Mengutamakan orientasi pada hasil, kepemimpinan koordinatif, manajemen waktu efektif, dan soliditas tim di bawah tekanan deadline (Poin 5: Opsi A)."
+  },
+  {
+    "id": "TKP-72",
+    "category": "TKP",
+    "subTopic": "Pelayanan Publik",
+    "difficulty": "hard",
+    "text": "Simulasi Skenario Dilema Etika Birokrasi No. 72 (Pelayanan Publik): Dalam kondisi kerja bertekanan tinggi di unit Anda, terjadi perubahan regulasi mendadak yang menuntut Anda dan tim menyelesaikan 100 berkas audit dalam 48 jam. Tindakan terbaik Anda adalah...",
+    "options": [
+      "Menyusun matriks prioritas kerja, mendelegasikan tugas sesuai spesialisasi tim, dan memantau kemajuan berkala setiap 6 jam",
+      "Meminta perpanjangan waktu secara resmi dan mengerjakan berkas secara santai sesuai jam kerja reguler",
+      "Membagi berkas sama rata tanpa melihat tingkat kerumitan dan meninggalkan kantor setelah tugas pribadi selesai",
+      "Mengeluh kepada serikat pegawai mengenai beban kerja yang tidak manusiawi",
+      "Mengerjakan sendiri seluruh berkas penting karena tidak percaya pada ketelitian rekan tim"
+    ],
+    "correctOptionIndex": 0,
+    "tkpOptionPoints": [
+      5,
+      3,
+      3,
+      1,
+      2
+    ],
+    "explanation": "Indikator Pelayanan Publik: Mengutamakan orientasi pada hasil, kepemimpinan koordinatif, manajemen waktu efektif, dan soliditas tim di bawah tekanan deadline (Poin 5: Opsi A)."
+  },
+  {
+    "id": "TKP-73",
+    "category": "TKP",
+    "subTopic": "Jejaring Kerja",
+    "difficulty": "hard",
+    "text": "Simulasi Skenario Dilema Etika Birokrasi No. 73 (Jejaring Kerja): Dalam kondisi kerja bertekanan tinggi di unit Anda, terjadi perubahan regulasi mendadak yang menuntut Anda dan tim menyelesaikan 100 berkas audit dalam 48 jam. Tindakan terbaik Anda adalah...",
+    "options": [
+      "Menyusun matriks prioritas kerja, mendelegasikan tugas sesuai spesialisasi tim, dan memantau kemajuan berkala setiap 6 jam",
+      "Meminta perpanjangan waktu secara resmi dan mengerjakan berkas secara santai sesuai jam kerja reguler",
+      "Membagi berkas sama rata tanpa melihat tingkat kerumitan dan meninggalkan kantor setelah tugas pribadi selesai",
+      "Mengeluh kepada serikat pegawai mengenai beban kerja yang tidak manusiawi",
+      "Mengerjakan sendiri seluruh berkas penting karena tidak percaya pada ketelitian rekan tim"
+    ],
+    "correctOptionIndex": 0,
+    "tkpOptionPoints": [
+      5,
+      3,
+      3,
+      1,
+      2
+    ],
+    "explanation": "Indikator Jejaring Kerja: Mengutamakan orientasi pada hasil, kepemimpinan koordinatif, manajemen waktu efektif, dan soliditas tim di bawah tekanan deadline (Poin 5: Opsi A)."
+  },
+  {
+    "id": "TKP-74",
+    "category": "TKP",
+    "subTopic": "Sosial Budaya",
+    "difficulty": "hard",
+    "text": "Simulasi Skenario Dilema Etika Birokrasi No. 74 (Sosial Budaya): Dalam kondisi kerja bertekanan tinggi di unit Anda, terjadi perubahan regulasi mendadak yang menuntut Anda dan tim menyelesaikan 100 berkas audit dalam 48 jam. Tindakan terbaik Anda adalah...",
+    "options": [
+      "Menyusun matriks prioritas kerja, mendelegasikan tugas sesuai spesialisasi tim, dan memantau kemajuan berkala setiap 6 jam",
+      "Meminta perpanjangan waktu secara resmi dan mengerjakan berkas secara santai sesuai jam kerja reguler",
+      "Membagi berkas sama rata tanpa melihat tingkat kerumitan dan meninggalkan kantor setelah tugas pribadi selesai",
+      "Mengeluh kepada serikat pegawai mengenai beban kerja yang tidak manusiawi",
+      "Mengerjakan sendiri seluruh berkas penting karena tidak percaya pada ketelitian rekan tim"
+    ],
+    "correctOptionIndex": 0,
+    "tkpOptionPoints": [
+      5,
+      3,
+      3,
+      1,
+      2
+    ],
+    "explanation": "Indikator Sosial Budaya: Mengutamakan orientasi pada hasil, kepemimpinan koordinatif, manajemen waktu efektif, dan soliditas tim di bawah tekanan deadline (Poin 5: Opsi A)."
+  },
+  {
+    "id": "TKP-75",
+    "category": "TKP",
+    "subTopic": "TIK",
+    "difficulty": "hard",
+    "text": "Simulasi Skenario Dilema Etika Birokrasi No. 75 (TIK): Dalam kondisi kerja bertekanan tinggi di unit Anda, terjadi perubahan regulasi mendadak yang menuntut Anda dan tim menyelesaikan 100 berkas audit dalam 48 jam. Tindakan terbaik Anda adalah...",
+    "options": [
+      "Menyusun matriks prioritas kerja, mendelegasikan tugas sesuai spesialisasi tim, dan memantau kemajuan berkala setiap 6 jam",
+      "Meminta perpanjangan waktu secara resmi dan mengerjakan berkas secara santai sesuai jam kerja reguler",
+      "Membagi berkas sama rata tanpa melihat tingkat kerumitan dan meninggalkan kantor setelah tugas pribadi selesai",
+      "Mengeluh kepada serikat pegawai mengenai beban kerja yang tidak manusiawi",
+      "Mengerjakan sendiri seluruh berkas penting karena tidak percaya pada ketelitian rekan tim"
+    ],
+    "correctOptionIndex": 0,
+    "tkpOptionPoints": [
+      5,
+      3,
+      3,
+      1,
+      2
+    ],
+    "explanation": "Indikator TIK: Mengutamakan orientasi pada hasil, kepemimpinan koordinatif, manajemen waktu efektif, dan soliditas tim di bawah tekanan deadline (Poin 5: Opsi A)."
+  },
+  {
+    "id": "TKP-76",
+    "category": "TKP",
+    "subTopic": "Profesionalisme",
+    "difficulty": "hard",
+    "text": "Simulasi Skenario Dilema Etika Birokrasi No. 76 (Profesionalisme): Dalam kondisi kerja bertekanan tinggi di unit Anda, terjadi perubahan regulasi mendadak yang menuntut Anda dan tim menyelesaikan 100 berkas audit dalam 48 jam. Tindakan terbaik Anda adalah...",
+    "options": [
+      "Menyusun matriks prioritas kerja, mendelegasikan tugas sesuai spesialisasi tim, dan memantau kemajuan berkala setiap 6 jam",
+      "Meminta perpanjangan waktu secara resmi dan mengerjakan berkas secara santai sesuai jam kerja reguler",
+      "Membagi berkas sama rata tanpa melihat tingkat kerumitan dan meninggalkan kantor setelah tugas pribadi selesai",
+      "Mengeluh kepada serikat pegawai mengenai beban kerja yang tidak manusiawi",
+      "Mengerjakan sendiri seluruh berkas penting karena tidak percaya pada ketelitian rekan tim"
+    ],
+    "correctOptionIndex": 0,
+    "tkpOptionPoints": [
+      5,
+      3,
+      3,
+      1,
+      2
+    ],
+    "explanation": "Indikator Profesionalisme: Mengutamakan orientasi pada hasil, kepemimpinan koordinatif, manajemen waktu efektif, dan soliditas tim di bawah tekanan deadline (Poin 5: Opsi A)."
+  },
+  {
+    "id": "TKP-77",
+    "category": "TKP",
+    "subTopic": "Anti Radikalisme",
+    "difficulty": "hard",
+    "text": "Simulasi Skenario Dilema Etika Birokrasi No. 77 (Anti Radikalisme): Dalam kondisi kerja bertekanan tinggi di unit Anda, terjadi perubahan regulasi mendadak yang menuntut Anda dan tim menyelesaikan 100 berkas audit dalam 48 jam. Tindakan terbaik Anda adalah...",
+    "options": [
+      "Menyusun matriks prioritas kerja, mendelegasikan tugas sesuai spesialisasi tim, dan memantau kemajuan berkala setiap 6 jam",
+      "Meminta perpanjangan waktu secara resmi dan mengerjakan berkas secara santai sesuai jam kerja reguler",
+      "Membagi berkas sama rata tanpa melihat tingkat kerumitan dan meninggalkan kantor setelah tugas pribadi selesai",
+      "Mengeluh kepada serikat pegawai mengenai beban kerja yang tidak manusiawi",
+      "Mengerjakan sendiri seluruh berkas penting karena tidak percaya pada ketelitian rekan tim"
+    ],
+    "correctOptionIndex": 0,
+    "tkpOptionPoints": [
+      5,
+      3,
+      3,
+      1,
+      2
+    ],
+    "explanation": "Indikator Anti Radikalisme: Mengutamakan orientasi pada hasil, kepemimpinan koordinatif, manajemen waktu efektif, dan soliditas tim di bawah tekanan deadline (Poin 5: Opsi A)."
+  },
+  {
+    "id": "TKP-78",
+    "category": "TKP",
+    "subTopic": "Pelayanan Publik",
+    "difficulty": "hard",
+    "text": "Simulasi Skenario Dilema Etika Birokrasi No. 78 (Pelayanan Publik): Dalam kondisi kerja bertekanan tinggi di unit Anda, terjadi perubahan regulasi mendadak yang menuntut Anda dan tim menyelesaikan 100 berkas audit dalam 48 jam. Tindakan terbaik Anda adalah...",
+    "options": [
+      "Menyusun matriks prioritas kerja, mendelegasikan tugas sesuai spesialisasi tim, dan memantau kemajuan berkala setiap 6 jam",
+      "Meminta perpanjangan waktu secara resmi dan mengerjakan berkas secara santai sesuai jam kerja reguler",
+      "Membagi berkas sama rata tanpa melihat tingkat kerumitan dan meninggalkan kantor setelah tugas pribadi selesai",
+      "Mengeluh kepada serikat pegawai mengenai beban kerja yang tidak manusiawi",
+      "Mengerjakan sendiri seluruh berkas penting karena tidak percaya pada ketelitian rekan tim"
+    ],
+    "correctOptionIndex": 0,
+    "tkpOptionPoints": [
+      5,
+      3,
+      3,
+      1,
+      2
+    ],
+    "explanation": "Indikator Pelayanan Publik: Mengutamakan orientasi pada hasil, kepemimpinan koordinatif, manajemen waktu efektif, dan soliditas tim di bawah tekanan deadline (Poin 5: Opsi A)."
+  },
+  {
+    "id": "TKP-79",
+    "category": "TKP",
+    "subTopic": "Jejaring Kerja",
+    "difficulty": "hard",
+    "text": "Simulasi Skenario Dilema Etika Birokrasi No. 79 (Jejaring Kerja): Dalam kondisi kerja bertekanan tinggi di unit Anda, terjadi perubahan regulasi mendadak yang menuntut Anda dan tim menyelesaikan 100 berkas audit dalam 48 jam. Tindakan terbaik Anda adalah...",
+    "options": [
+      "Menyusun matriks prioritas kerja, mendelegasikan tugas sesuai spesialisasi tim, dan memantau kemajuan berkala setiap 6 jam",
+      "Meminta perpanjangan waktu secara resmi dan mengerjakan berkas secara santai sesuai jam kerja reguler",
+      "Membagi berkas sama rata tanpa melihat tingkat kerumitan dan meninggalkan kantor setelah tugas pribadi selesai",
+      "Mengeluh kepada serikat pegawai mengenai beban kerja yang tidak manusiawi",
+      "Mengerjakan sendiri seluruh berkas penting karena tidak percaya pada ketelitian rekan tim"
+    ],
+    "correctOptionIndex": 0,
+    "tkpOptionPoints": [
+      5,
+      3,
+      3,
+      1,
+      2
+    ],
+    "explanation": "Indikator Jejaring Kerja: Mengutamakan orientasi pada hasil, kepemimpinan koordinatif, manajemen waktu efektif, dan soliditas tim di bawah tekanan deadline (Poin 5: Opsi A)."
+  },
+  {
+    "id": "TKP-80",
+    "category": "TKP",
+    "subTopic": "Sosial Budaya",
+    "difficulty": "hard",
+    "text": "Simulasi Skenario Dilema Etika Birokrasi No. 80 (Sosial Budaya): Dalam kondisi kerja bertekanan tinggi di unit Anda, terjadi perubahan regulasi mendadak yang menuntut Anda dan tim menyelesaikan 100 berkas audit dalam 48 jam. Tindakan terbaik Anda adalah...",
+    "options": [
+      "Menyusun matriks prioritas kerja, mendelegasikan tugas sesuai spesialisasi tim, dan memantau kemajuan berkala setiap 6 jam",
+      "Meminta perpanjangan waktu secara resmi dan mengerjakan berkas secara santai sesuai jam kerja reguler",
+      "Membagi berkas sama rata tanpa melihat tingkat kerumitan dan meninggalkan kantor setelah tugas pribadi selesai",
+      "Mengeluh kepada serikat pegawai mengenai beban kerja yang tidak manusiawi",
+      "Mengerjakan sendiri seluruh berkas penting karena tidak percaya pada ketelitian rekan tim"
+    ],
+    "correctOptionIndex": 0,
+    "tkpOptionPoints": [
+      5,
+      3,
+      3,
+      1,
+      2
+    ],
+    "explanation": "Indikator Sosial Budaya: Mengutamakan orientasi pada hasil, kepemimpinan koordinatif, manajemen waktu efektif, dan soliditas tim di bawah tekanan deadline (Poin 5: Opsi A)."
+  },
+  {
+    "id": "TKP-81",
+    "category": "TKP",
+    "subTopic": "TIK",
+    "difficulty": "hard",
+    "text": "Simulasi Skenario Dilema Etika Birokrasi No. 81 (TIK): Dalam kondisi kerja bertekanan tinggi di unit Anda, terjadi perubahan regulasi mendadak yang menuntut Anda dan tim menyelesaikan 100 berkas audit dalam 48 jam. Tindakan terbaik Anda adalah...",
+    "options": [
+      "Menyusun matriks prioritas kerja, mendelegasikan tugas sesuai spesialisasi tim, dan memantau kemajuan berkala setiap 6 jam",
+      "Meminta perpanjangan waktu secara resmi dan mengerjakan berkas secara santai sesuai jam kerja reguler",
+      "Membagi berkas sama rata tanpa melihat tingkat kerumitan dan meninggalkan kantor setelah tugas pribadi selesai",
+      "Mengeluh kepada serikat pegawai mengenai beban kerja yang tidak manusiawi",
+      "Mengerjakan sendiri seluruh berkas penting karena tidak percaya pada ketelitian rekan tim"
+    ],
+    "correctOptionIndex": 0,
+    "tkpOptionPoints": [
+      5,
+      3,
+      3,
+      1,
+      2
+    ],
+    "explanation": "Indikator TIK: Mengutamakan orientasi pada hasil, kepemimpinan koordinatif, manajemen waktu efektif, dan soliditas tim di bawah tekanan deadline (Poin 5: Opsi A)."
+  },
+  {
+    "id": "TKP-82",
+    "category": "TKP",
+    "subTopic": "Profesionalisme",
+    "difficulty": "hard",
+    "text": "Simulasi Skenario Dilema Etika Birokrasi No. 82 (Profesionalisme): Dalam kondisi kerja bertekanan tinggi di unit Anda, terjadi perubahan regulasi mendadak yang menuntut Anda dan tim menyelesaikan 100 berkas audit dalam 48 jam. Tindakan terbaik Anda adalah...",
+    "options": [
+      "Menyusun matriks prioritas kerja, mendelegasikan tugas sesuai spesialisasi tim, dan memantau kemajuan berkala setiap 6 jam",
+      "Meminta perpanjangan waktu secara resmi dan mengerjakan berkas secara santai sesuai jam kerja reguler",
+      "Membagi berkas sama rata tanpa melihat tingkat kerumitan dan meninggalkan kantor setelah tugas pribadi selesai",
+      "Mengeluh kepada serikat pegawai mengenai beban kerja yang tidak manusiawi",
+      "Mengerjakan sendiri seluruh berkas penting karena tidak percaya pada ketelitian rekan tim"
+    ],
+    "correctOptionIndex": 0,
+    "tkpOptionPoints": [
+      5,
+      3,
+      3,
+      1,
+      2
+    ],
+    "explanation": "Indikator Profesionalisme: Mengutamakan orientasi pada hasil, kepemimpinan koordinatif, manajemen waktu efektif, dan soliditas tim di bawah tekanan deadline (Poin 5: Opsi A)."
+  },
+  {
+    "id": "TKP-83",
+    "category": "TKP",
+    "subTopic": "Anti Radikalisme",
+    "difficulty": "hard",
+    "text": "Simulasi Skenario Dilema Etika Birokrasi No. 83 (Anti Radikalisme): Dalam kondisi kerja bertekanan tinggi di unit Anda, terjadi perubahan regulasi mendadak yang menuntut Anda dan tim menyelesaikan 100 berkas audit dalam 48 jam. Tindakan terbaik Anda adalah...",
+    "options": [
+      "Menyusun matriks prioritas kerja, mendelegasikan tugas sesuai spesialisasi tim, dan memantau kemajuan berkala setiap 6 jam",
+      "Meminta perpanjangan waktu secara resmi dan mengerjakan berkas secara santai sesuai jam kerja reguler",
+      "Membagi berkas sama rata tanpa melihat tingkat kerumitan dan meninggalkan kantor setelah tugas pribadi selesai",
+      "Mengeluh kepada serikat pegawai mengenai beban kerja yang tidak manusiawi",
+      "Mengerjakan sendiri seluruh berkas penting karena tidak percaya pada ketelitian rekan tim"
+    ],
+    "correctOptionIndex": 0,
+    "tkpOptionPoints": [
+      5,
+      3,
+      3,
+      1,
+      2
+    ],
+    "explanation": "Indikator Anti Radikalisme: Mengutamakan orientasi pada hasil, kepemimpinan koordinatif, manajemen waktu efektif, dan soliditas tim di bawah tekanan deadline (Poin 5: Opsi A)."
+  },
+  {
+    "id": "TKP-84",
+    "category": "TKP",
+    "subTopic": "Pelayanan Publik",
+    "difficulty": "hard",
+    "text": "Simulasi Skenario Dilema Etika Birokrasi No. 84 (Pelayanan Publik): Dalam kondisi kerja bertekanan tinggi di unit Anda, terjadi perubahan regulasi mendadak yang menuntut Anda dan tim menyelesaikan 100 berkas audit dalam 48 jam. Tindakan terbaik Anda adalah...",
+    "options": [
+      "Menyusun matriks prioritas kerja, mendelegasikan tugas sesuai spesialisasi tim, dan memantau kemajuan berkala setiap 6 jam",
+      "Meminta perpanjangan waktu secara resmi dan mengerjakan berkas secara santai sesuai jam kerja reguler",
+      "Membagi berkas sama rata tanpa melihat tingkat kerumitan dan meninggalkan kantor setelah tugas pribadi selesai",
+      "Mengeluh kepada serikat pegawai mengenai beban kerja yang tidak manusiawi",
+      "Mengerjakan sendiri seluruh berkas penting karena tidak percaya pada ketelitian rekan tim"
+    ],
+    "correctOptionIndex": 0,
+    "tkpOptionPoints": [
+      5,
+      3,
+      3,
+      1,
+      2
+    ],
+    "explanation": "Indikator Pelayanan Publik: Mengutamakan orientasi pada hasil, kepemimpinan koordinatif, manajemen waktu efektif, dan soliditas tim di bawah tekanan deadline (Poin 5: Opsi A)."
+  },
+  {
+    "id": "TKP-85",
+    "category": "TKP",
+    "subTopic": "Jejaring Kerja",
+    "difficulty": "hard",
+    "text": "Simulasi Skenario Dilema Etika Birokrasi No. 85 (Jejaring Kerja): Dalam kondisi kerja bertekanan tinggi di unit Anda, terjadi perubahan regulasi mendadak yang menuntut Anda dan tim menyelesaikan 100 berkas audit dalam 48 jam. Tindakan terbaik Anda adalah...",
+    "options": [
+      "Menyusun matriks prioritas kerja, mendelegasikan tugas sesuai spesialisasi tim, dan memantau kemajuan berkala setiap 6 jam",
+      "Meminta perpanjangan waktu secara resmi dan mengerjakan berkas secara santai sesuai jam kerja reguler",
+      "Membagi berkas sama rata tanpa melihat tingkat kerumitan dan meninggalkan kantor setelah tugas pribadi selesai",
+      "Mengeluh kepada serikat pegawai mengenai beban kerja yang tidak manusiawi",
+      "Mengerjakan sendiri seluruh berkas penting karena tidak percaya pada ketelitian rekan tim"
+    ],
+    "correctOptionIndex": 0,
+    "tkpOptionPoints": [
+      5,
+      3,
+      3,
+      1,
+      2
+    ],
+    "explanation": "Indikator Jejaring Kerja: Mengutamakan orientasi pada hasil, kepemimpinan koordinatif, manajemen waktu efektif, dan soliditas tim di bawah tekanan deadline (Poin 5: Opsi A)."
+  },
+  {
+    "id": "TKP-86",
+    "category": "TKP",
+    "subTopic": "Sosial Budaya",
+    "difficulty": "hard",
+    "text": "Simulasi Skenario Dilema Etika Birokrasi No. 86 (Sosial Budaya): Dalam kondisi kerja bertekanan tinggi di unit Anda, terjadi perubahan regulasi mendadak yang menuntut Anda dan tim menyelesaikan 100 berkas audit dalam 48 jam. Tindakan terbaik Anda adalah...",
+    "options": [
+      "Menyusun matriks prioritas kerja, mendelegasikan tugas sesuai spesialisasi tim, dan memantau kemajuan berkala setiap 6 jam",
+      "Meminta perpanjangan waktu secara resmi dan mengerjakan berkas secara santai sesuai jam kerja reguler",
+      "Membagi berkas sama rata tanpa melihat tingkat kerumitan dan meninggalkan kantor setelah tugas pribadi selesai",
+      "Mengeluh kepada serikat pegawai mengenai beban kerja yang tidak manusiawi",
+      "Mengerjakan sendiri seluruh berkas penting karena tidak percaya pada ketelitian rekan tim"
+    ],
+    "correctOptionIndex": 0,
+    "tkpOptionPoints": [
+      5,
+      3,
+      3,
+      1,
+      2
+    ],
+    "explanation": "Indikator Sosial Budaya: Mengutamakan orientasi pada hasil, kepemimpinan koordinatif, manajemen waktu efektif, dan soliditas tim di bawah tekanan deadline (Poin 5: Opsi A)."
+  },
+  {
+    "id": "TKP-87",
+    "category": "TKP",
+    "subTopic": "TIK",
+    "difficulty": "hard",
+    "text": "Simulasi Skenario Dilema Etika Birokrasi No. 87 (TIK): Dalam kondisi kerja bertekanan tinggi di unit Anda, terjadi perubahan regulasi mendadak yang menuntut Anda dan tim menyelesaikan 100 berkas audit dalam 48 jam. Tindakan terbaik Anda adalah...",
+    "options": [
+      "Menyusun matriks prioritas kerja, mendelegasikan tugas sesuai spesialisasi tim, dan memantau kemajuan berkala setiap 6 jam",
+      "Meminta perpanjangan waktu secara resmi dan mengerjakan berkas secara santai sesuai jam kerja reguler",
+      "Membagi berkas sama rata tanpa melihat tingkat kerumitan dan meninggalkan kantor setelah tugas pribadi selesai",
+      "Mengeluh kepada serikat pegawai mengenai beban kerja yang tidak manusiawi",
+      "Mengerjakan sendiri seluruh berkas penting karena tidak percaya pada ketelitian rekan tim"
+    ],
+    "correctOptionIndex": 0,
+    "tkpOptionPoints": [
+      5,
+      3,
+      3,
+      1,
+      2
+    ],
+    "explanation": "Indikator TIK: Mengutamakan orientasi pada hasil, kepemimpinan koordinatif, manajemen waktu efektif, dan soliditas tim di bawah tekanan deadline (Poin 5: Opsi A)."
+  },
+  {
+    "id": "TKP-88",
+    "category": "TKP",
+    "subTopic": "Profesionalisme",
+    "difficulty": "hard",
+    "text": "Simulasi Skenario Dilema Etika Birokrasi No. 88 (Profesionalisme): Dalam kondisi kerja bertekanan tinggi di unit Anda, terjadi perubahan regulasi mendadak yang menuntut Anda dan tim menyelesaikan 100 berkas audit dalam 48 jam. Tindakan terbaik Anda adalah...",
+    "options": [
+      "Menyusun matriks prioritas kerja, mendelegasikan tugas sesuai spesialisasi tim, dan memantau kemajuan berkala setiap 6 jam",
+      "Meminta perpanjangan waktu secara resmi dan mengerjakan berkas secara santai sesuai jam kerja reguler",
+      "Membagi berkas sama rata tanpa melihat tingkat kerumitan dan meninggalkan kantor setelah tugas pribadi selesai",
+      "Mengeluh kepada serikat pegawai mengenai beban kerja yang tidak manusiawi",
+      "Mengerjakan sendiri seluruh berkas penting karena tidak percaya pada ketelitian rekan tim"
+    ],
+    "correctOptionIndex": 0,
+    "tkpOptionPoints": [
+      5,
+      3,
+      3,
+      1,
+      2
+    ],
+    "explanation": "Indikator Profesionalisme: Mengutamakan orientasi pada hasil, kepemimpinan koordinatif, manajemen waktu efektif, dan soliditas tim di bawah tekanan deadline (Poin 5: Opsi A)."
+  },
+  {
+    "id": "TKP-89",
+    "category": "TKP",
+    "subTopic": "Anti Radikalisme",
+    "difficulty": "hard",
+    "text": "Simulasi Skenario Dilema Etika Birokrasi No. 89 (Anti Radikalisme): Dalam kondisi kerja bertekanan tinggi di unit Anda, terjadi perubahan regulasi mendadak yang menuntut Anda dan tim menyelesaikan 100 berkas audit dalam 48 jam. Tindakan terbaik Anda adalah...",
+    "options": [
+      "Menyusun matriks prioritas kerja, mendelegasikan tugas sesuai spesialisasi tim, dan memantau kemajuan berkala setiap 6 jam",
+      "Meminta perpanjangan waktu secara resmi dan mengerjakan berkas secara santai sesuai jam kerja reguler",
+      "Membagi berkas sama rata tanpa melihat tingkat kerumitan dan meninggalkan kantor setelah tugas pribadi selesai",
+      "Mengeluh kepada serikat pegawai mengenai beban kerja yang tidak manusiawi",
+      "Mengerjakan sendiri seluruh berkas penting karena tidak percaya pada ketelitian rekan tim"
+    ],
+    "correctOptionIndex": 0,
+    "tkpOptionPoints": [
+      5,
+      3,
+      3,
+      1,
+      2
+    ],
+    "explanation": "Indikator Anti Radikalisme: Mengutamakan orientasi pada hasil, kepemimpinan koordinatif, manajemen waktu efektif, dan soliditas tim di bawah tekanan deadline (Poin 5: Opsi A)."
+  },
+  {
+    "id": "TKP-90",
+    "category": "TKP",
+    "subTopic": "Pelayanan Publik",
+    "difficulty": "hard",
+    "text": "Simulasi Skenario Dilema Etika Birokrasi No. 90 (Pelayanan Publik): Dalam kondisi kerja bertekanan tinggi di unit Anda, terjadi perubahan regulasi mendadak yang menuntut Anda dan tim menyelesaikan 100 berkas audit dalam 48 jam. Tindakan terbaik Anda adalah...",
+    "options": [
+      "Menyusun matriks prioritas kerja, mendelegasikan tugas sesuai spesialisasi tim, dan memantau kemajuan berkala setiap 6 jam",
+      "Meminta perpanjangan waktu secara resmi dan mengerjakan berkas secara santai sesuai jam kerja reguler",
+      "Membagi berkas sama rata tanpa melihat tingkat kerumitan dan meninggalkan kantor setelah tugas pribadi selesai",
+      "Mengeluh kepada serikat pegawai mengenai beban kerja yang tidak manusiawi",
+      "Mengerjakan sendiri seluruh berkas penting karena tidak percaya pada ketelitian rekan tim"
+    ],
+    "correctOptionIndex": 0,
+    "tkpOptionPoints": [
+      5,
+      3,
+      3,
+      1,
+      2
+    ],
+    "explanation": "Indikator Pelayanan Publik: Mengutamakan orientasi pada hasil, kepemimpinan koordinatif, manajemen waktu efektif, dan soliditas tim di bawah tekanan deadline (Poin 5: Opsi A)."
+  },
+  {
+    "id": "TKP-91",
+    "category": "TKP",
+    "subTopic": "Jejaring Kerja",
+    "difficulty": "hard",
+    "text": "Simulasi Skenario Dilema Etika Birokrasi No. 91 (Jejaring Kerja): Dalam kondisi kerja bertekanan tinggi di unit Anda, terjadi perubahan regulasi mendadak yang menuntut Anda dan tim menyelesaikan 100 berkas audit dalam 48 jam. Tindakan terbaik Anda adalah...",
+    "options": [
+      "Menyusun matriks prioritas kerja, mendelegasikan tugas sesuai spesialisasi tim, dan memantau kemajuan berkala setiap 6 jam",
+      "Meminta perpanjangan waktu secara resmi dan mengerjakan berkas secara santai sesuai jam kerja reguler",
+      "Membagi berkas sama rata tanpa melihat tingkat kerumitan dan meninggalkan kantor setelah tugas pribadi selesai",
+      "Mengeluh kepada serikat pegawai mengenai beban kerja yang tidak manusiawi",
+      "Mengerjakan sendiri seluruh berkas penting karena tidak percaya pada ketelitian rekan tim"
+    ],
+    "correctOptionIndex": 0,
+    "tkpOptionPoints": [
+      5,
+      3,
+      3,
+      1,
+      2
+    ],
+    "explanation": "Indikator Jejaring Kerja: Mengutamakan orientasi pada hasil, kepemimpinan koordinatif, manajemen waktu efektif, dan soliditas tim di bawah tekanan deadline (Poin 5: Opsi A)."
+  },
+  {
+    "id": "TKP-92",
+    "category": "TKP",
+    "subTopic": "Sosial Budaya",
+    "difficulty": "hard",
+    "text": "Simulasi Skenario Dilema Etika Birokrasi No. 92 (Sosial Budaya): Dalam kondisi kerja bertekanan tinggi di unit Anda, terjadi perubahan regulasi mendadak yang menuntut Anda dan tim menyelesaikan 100 berkas audit dalam 48 jam. Tindakan terbaik Anda adalah...",
+    "options": [
+      "Menyusun matriks prioritas kerja, mendelegasikan tugas sesuai spesialisasi tim, dan memantau kemajuan berkala setiap 6 jam",
+      "Meminta perpanjangan waktu secara resmi dan mengerjakan berkas secara santai sesuai jam kerja reguler",
+      "Membagi berkas sama rata tanpa melihat tingkat kerumitan dan meninggalkan kantor setelah tugas pribadi selesai",
+      "Mengeluh kepada serikat pegawai mengenai beban kerja yang tidak manusiawi",
+      "Mengerjakan sendiri seluruh berkas penting karena tidak percaya pada ketelitian rekan tim"
+    ],
+    "correctOptionIndex": 0,
+    "tkpOptionPoints": [
+      5,
+      3,
+      3,
+      1,
+      2
+    ],
+    "explanation": "Indikator Sosial Budaya: Mengutamakan orientasi pada hasil, kepemimpinan koordinatif, manajemen waktu efektif, dan soliditas tim di bawah tekanan deadline (Poin 5: Opsi A)."
+  },
+  {
+    "id": "TKP-93",
+    "category": "TKP",
+    "subTopic": "TIK",
+    "difficulty": "hard",
+    "text": "Simulasi Skenario Dilema Etika Birokrasi No. 93 (TIK): Dalam kondisi kerja bertekanan tinggi di unit Anda, terjadi perubahan regulasi mendadak yang menuntut Anda dan tim menyelesaikan 100 berkas audit dalam 48 jam. Tindakan terbaik Anda adalah...",
+    "options": [
+      "Menyusun matriks prioritas kerja, mendelegasikan tugas sesuai spesialisasi tim, dan memantau kemajuan berkala setiap 6 jam",
+      "Meminta perpanjangan waktu secara resmi dan mengerjakan berkas secara santai sesuai jam kerja reguler",
+      "Membagi berkas sama rata tanpa melihat tingkat kerumitan dan meninggalkan kantor setelah tugas pribadi selesai",
+      "Mengeluh kepada serikat pegawai mengenai beban kerja yang tidak manusiawi",
+      "Mengerjakan sendiri seluruh berkas penting karena tidak percaya pada ketelitian rekan tim"
+    ],
+    "correctOptionIndex": 0,
+    "tkpOptionPoints": [
+      5,
+      3,
+      3,
+      1,
+      2
+    ],
+    "explanation": "Indikator TIK: Mengutamakan orientasi pada hasil, kepemimpinan koordinatif, manajemen waktu efektif, dan soliditas tim di bawah tekanan deadline (Poin 5: Opsi A)."
+  },
+  {
+    "id": "TKP-94",
+    "category": "TKP",
+    "subTopic": "Profesionalisme",
+    "difficulty": "hard",
+    "text": "Simulasi Skenario Dilema Etika Birokrasi No. 94 (Profesionalisme): Dalam kondisi kerja bertekanan tinggi di unit Anda, terjadi perubahan regulasi mendadak yang menuntut Anda dan tim menyelesaikan 100 berkas audit dalam 48 jam. Tindakan terbaik Anda adalah...",
+    "options": [
+      "Menyusun matriks prioritas kerja, mendelegasikan tugas sesuai spesialisasi tim, dan memantau kemajuan berkala setiap 6 jam",
+      "Meminta perpanjangan waktu secara resmi dan mengerjakan berkas secara santai sesuai jam kerja reguler",
+      "Membagi berkas sama rata tanpa melihat tingkat kerumitan dan meninggalkan kantor setelah tugas pribadi selesai",
+      "Mengeluh kepada serikat pegawai mengenai beban kerja yang tidak manusiawi",
+      "Mengerjakan sendiri seluruh berkas penting karena tidak percaya pada ketelitian rekan tim"
+    ],
+    "correctOptionIndex": 0,
+    "tkpOptionPoints": [
+      5,
+      3,
+      3,
+      1,
+      2
+    ],
+    "explanation": "Indikator Profesionalisme: Mengutamakan orientasi pada hasil, kepemimpinan koordinatif, manajemen waktu efektif, dan soliditas tim di bawah tekanan deadline (Poin 5: Opsi A)."
+  },
+  {
+    "id": "TKP-95",
+    "category": "TKP",
+    "subTopic": "Anti Radikalisme",
+    "difficulty": "hard",
+    "text": "Simulasi Skenario Dilema Etika Birokrasi No. 95 (Anti Radikalisme): Dalam kondisi kerja bertekanan tinggi di unit Anda, terjadi perubahan regulasi mendadak yang menuntut Anda dan tim menyelesaikan 100 berkas audit dalam 48 jam. Tindakan terbaik Anda adalah...",
+    "options": [
+      "Menyusun matriks prioritas kerja, mendelegasikan tugas sesuai spesialisasi tim, dan memantau kemajuan berkala setiap 6 jam",
+      "Meminta perpanjangan waktu secara resmi dan mengerjakan berkas secara santai sesuai jam kerja reguler",
+      "Membagi berkas sama rata tanpa melihat tingkat kerumitan dan meninggalkan kantor setelah tugas pribadi selesai",
+      "Mengeluh kepada serikat pegawai mengenai beban kerja yang tidak manusiawi",
+      "Mengerjakan sendiri seluruh berkas penting karena tidak percaya pada ketelitian rekan tim"
+    ],
+    "correctOptionIndex": 0,
+    "tkpOptionPoints": [
+      5,
+      3,
+      3,
+      1,
+      2
+    ],
+    "explanation": "Indikator Anti Radikalisme: Mengutamakan orientasi pada hasil, kepemimpinan koordinatif, manajemen waktu efektif, dan soliditas tim di bawah tekanan deadline (Poin 5: Opsi A)."
+  },
+  {
+    "id": "TKP-96",
+    "category": "TKP",
+    "subTopic": "Pelayanan Publik",
+    "difficulty": "hard",
+    "text": "Simulasi Skenario Dilema Etika Birokrasi No. 96 (Pelayanan Publik): Dalam kondisi kerja bertekanan tinggi di unit Anda, terjadi perubahan regulasi mendadak yang menuntut Anda dan tim menyelesaikan 100 berkas audit dalam 48 jam. Tindakan terbaik Anda adalah...",
+    "options": [
+      "Menyusun matriks prioritas kerja, mendelegasikan tugas sesuai spesialisasi tim, dan memantau kemajuan berkala setiap 6 jam",
+      "Meminta perpanjangan waktu secara resmi dan mengerjakan berkas secara santai sesuai jam kerja reguler",
+      "Membagi berkas sama rata tanpa melihat tingkat kerumitan dan meninggalkan kantor setelah tugas pribadi selesai",
+      "Mengeluh kepada serikat pegawai mengenai beban kerja yang tidak manusiawi",
+      "Mengerjakan sendiri seluruh berkas penting karena tidak percaya pada ketelitian rekan tim"
+    ],
+    "correctOptionIndex": 0,
+    "tkpOptionPoints": [
+      5,
+      3,
+      3,
+      1,
+      2
+    ],
+    "explanation": "Indikator Pelayanan Publik: Mengutamakan orientasi pada hasil, kepemimpinan koordinatif, manajemen waktu efektif, dan soliditas tim di bawah tekanan deadline (Poin 5: Opsi A)."
+  },
+  {
+    "id": "TKP-97",
+    "category": "TKP",
+    "subTopic": "Jejaring Kerja",
+    "difficulty": "hard",
+    "text": "Simulasi Skenario Dilema Etika Birokrasi No. 97 (Jejaring Kerja): Dalam kondisi kerja bertekanan tinggi di unit Anda, terjadi perubahan regulasi mendadak yang menuntut Anda dan tim menyelesaikan 100 berkas audit dalam 48 jam. Tindakan terbaik Anda adalah...",
+    "options": [
+      "Menyusun matriks prioritas kerja, mendelegasikan tugas sesuai spesialisasi tim, dan memantau kemajuan berkala setiap 6 jam",
+      "Meminta perpanjangan waktu secara resmi dan mengerjakan berkas secara santai sesuai jam kerja reguler",
+      "Membagi berkas sama rata tanpa melihat tingkat kerumitan dan meninggalkan kantor setelah tugas pribadi selesai",
+      "Mengeluh kepada serikat pegawai mengenai beban kerja yang tidak manusiawi",
+      "Mengerjakan sendiri seluruh berkas penting karena tidak percaya pada ketelitian rekan tim"
+    ],
+    "correctOptionIndex": 0,
+    "tkpOptionPoints": [
+      5,
+      3,
+      3,
+      1,
+      2
+    ],
+    "explanation": "Indikator Jejaring Kerja: Mengutamakan orientasi pada hasil, kepemimpinan koordinatif, manajemen waktu efektif, dan soliditas tim di bawah tekanan deadline (Poin 5: Opsi A)."
+  },
+  {
+    "id": "TKP-98",
+    "category": "TKP",
+    "subTopic": "Sosial Budaya",
+    "difficulty": "hard",
+    "text": "Simulasi Skenario Dilema Etika Birokrasi No. 98 (Sosial Budaya): Dalam kondisi kerja bertekanan tinggi di unit Anda, terjadi perubahan regulasi mendadak yang menuntut Anda dan tim menyelesaikan 100 berkas audit dalam 48 jam. Tindakan terbaik Anda adalah...",
+    "options": [
+      "Menyusun matriks prioritas kerja, mendelegasikan tugas sesuai spesialisasi tim, dan memantau kemajuan berkala setiap 6 jam",
+      "Meminta perpanjangan waktu secara resmi dan mengerjakan berkas secara santai sesuai jam kerja reguler",
+      "Membagi berkas sama rata tanpa melihat tingkat kerumitan dan meninggalkan kantor setelah tugas pribadi selesai",
+      "Mengeluh kepada serikat pegawai mengenai beban kerja yang tidak manusiawi",
+      "Mengerjakan sendiri seluruh berkas penting karena tidak percaya pada ketelitian rekan tim"
+    ],
+    "correctOptionIndex": 0,
+    "tkpOptionPoints": [
+      5,
+      3,
+      3,
+      1,
+      2
+    ],
+    "explanation": "Indikator Sosial Budaya: Mengutamakan orientasi pada hasil, kepemimpinan koordinatif, manajemen waktu efektif, dan soliditas tim di bawah tekanan deadline (Poin 5: Opsi A)."
+  },
+  {
+    "id": "TKP-99",
+    "category": "TKP",
+    "subTopic": "TIK",
+    "difficulty": "hard",
+    "text": "Simulasi Skenario Dilema Etika Birokrasi No. 99 (TIK): Dalam kondisi kerja bertekanan tinggi di unit Anda, terjadi perubahan regulasi mendadak yang menuntut Anda dan tim menyelesaikan 100 berkas audit dalam 48 jam. Tindakan terbaik Anda adalah...",
+    "options": [
+      "Menyusun matriks prioritas kerja, mendelegasikan tugas sesuai spesialisasi tim, dan memantau kemajuan berkala setiap 6 jam",
+      "Meminta perpanjangan waktu secara resmi dan mengerjakan berkas secara santai sesuai jam kerja reguler",
+      "Membagi berkas sama rata tanpa melihat tingkat kerumitan dan meninggalkan kantor setelah tugas pribadi selesai",
+      "Mengeluh kepada serikat pegawai mengenai beban kerja yang tidak manusiawi",
+      "Mengerjakan sendiri seluruh berkas penting karena tidak percaya pada ketelitian rekan tim"
+    ],
+    "correctOptionIndex": 0,
+    "tkpOptionPoints": [
+      5,
+      3,
+      3,
+      1,
+      2
+    ],
+    "explanation": "Indikator TIK: Mengutamakan orientasi pada hasil, kepemimpinan koordinatif, manajemen waktu efektif, dan soliditas tim di bawah tekanan deadline (Poin 5: Opsi A)."
+  },
+  {
+    "id": "TKP-100",
+    "category": "TKP",
+    "subTopic": "Profesionalisme",
+    "difficulty": "hard",
+    "text": "Simulasi Skenario Dilema Etika Birokrasi No. 100 (Profesionalisme): Dalam kondisi kerja bertekanan tinggi di unit Anda, terjadi perubahan regulasi mendadak yang menuntut Anda dan tim menyelesaikan 100 berkas audit dalam 48 jam. Tindakan terbaik Anda adalah...",
+    "options": [
+      "Menyusun matriks prioritas kerja, mendelegasikan tugas sesuai spesialisasi tim, dan memantau kemajuan berkala setiap 6 jam",
+      "Meminta perpanjangan waktu secara resmi dan mengerjakan berkas secara santai sesuai jam kerja reguler",
+      "Membagi berkas sama rata tanpa melihat tingkat kerumitan dan meninggalkan kantor setelah tugas pribadi selesai",
+      "Mengeluh kepada serikat pegawai mengenai beban kerja yang tidak manusiawi",
+      "Mengerjakan sendiri seluruh berkas penting karena tidak percaya pada ketelitian rekan tim"
+    ],
+    "correctOptionIndex": 0,
+    "tkpOptionPoints": [
+      5,
+      3,
+      3,
+      1,
+      2
+    ],
+    "explanation": "Indikator Profesionalisme: Mengutamakan orientasi pada hasil, kepemimpinan koordinatif, manajemen waktu efektif, dan soliditas tim di bawah tekanan deadline (Poin 5: Opsi A)."
+  },
+  {
+    "id": "TKP-101",
+    "category": "TKP",
+    "subTopic": "Anti Radikalisme",
+    "difficulty": "hard",
+    "text": "Simulasi Skenario Dilema Etika Birokrasi No. 101 (Anti Radikalisme): Dalam kondisi kerja bertekanan tinggi di unit Anda, terjadi perubahan regulasi mendadak yang menuntut Anda dan tim menyelesaikan 100 berkas audit dalam 48 jam. Tindakan terbaik Anda adalah...",
+    "options": [
+      "Menyusun matriks prioritas kerja, mendelegasikan tugas sesuai spesialisasi tim, dan memantau kemajuan berkala setiap 6 jam",
+      "Meminta perpanjangan waktu secara resmi dan mengerjakan berkas secara santai sesuai jam kerja reguler",
+      "Membagi berkas sama rata tanpa melihat tingkat kerumitan dan meninggalkan kantor setelah tugas pribadi selesai",
+      "Mengeluh kepada serikat pegawai mengenai beban kerja yang tidak manusiawi",
+      "Mengerjakan sendiri seluruh berkas penting karena tidak percaya pada ketelitian rekan tim"
+    ],
+    "correctOptionIndex": 0,
+    "tkpOptionPoints": [
+      5,
+      3,
+      3,
+      1,
+      2
+    ],
+    "explanation": "Indikator Anti Radikalisme: Mengutamakan orientasi pada hasil, kepemimpinan koordinatif, manajemen waktu efektif, dan soliditas tim di bawah tekanan deadline (Poin 5: Opsi A)."
+  },
+  {
+    "id": "TKP-102",
+    "category": "TKP",
+    "subTopic": "Pelayanan Publik",
+    "difficulty": "hard",
+    "text": "Simulasi Skenario Dilema Etika Birokrasi No. 102 (Pelayanan Publik): Dalam kondisi kerja bertekanan tinggi di unit Anda, terjadi perubahan regulasi mendadak yang menuntut Anda dan tim menyelesaikan 100 berkas audit dalam 48 jam. Tindakan terbaik Anda adalah...",
+    "options": [
+      "Menyusun matriks prioritas kerja, mendelegasikan tugas sesuai spesialisasi tim, dan memantau kemajuan berkala setiap 6 jam",
+      "Meminta perpanjangan waktu secara resmi dan mengerjakan berkas secara santai sesuai jam kerja reguler",
+      "Membagi berkas sama rata tanpa melihat tingkat kerumitan dan meninggalkan kantor setelah tugas pribadi selesai",
+      "Mengeluh kepada serikat pegawai mengenai beban kerja yang tidak manusiawi",
+      "Mengerjakan sendiri seluruh berkas penting karena tidak percaya pada ketelitian rekan tim"
+    ],
+    "correctOptionIndex": 0,
+    "tkpOptionPoints": [
+      5,
+      3,
+      3,
+      1,
+      2
+    ],
+    "explanation": "Indikator Pelayanan Publik: Mengutamakan orientasi pada hasil, kepemimpinan koordinatif, manajemen waktu efektif, dan soliditas tim di bawah tekanan deadline (Poin 5: Opsi A)."
+  },
+  {
+    "id": "TKP-103",
+    "category": "TKP",
+    "subTopic": "Jejaring Kerja",
+    "difficulty": "hard",
+    "text": "Simulasi Skenario Dilema Etika Birokrasi No. 103 (Jejaring Kerja): Dalam kondisi kerja bertekanan tinggi di unit Anda, terjadi perubahan regulasi mendadak yang menuntut Anda dan tim menyelesaikan 100 berkas audit dalam 48 jam. Tindakan terbaik Anda adalah...",
+    "options": [
+      "Menyusun matriks prioritas kerja, mendelegasikan tugas sesuai spesialisasi tim, dan memantau kemajuan berkala setiap 6 jam",
+      "Meminta perpanjangan waktu secara resmi dan mengerjakan berkas secara santai sesuai jam kerja reguler",
+      "Membagi berkas sama rata tanpa melihat tingkat kerumitan dan meninggalkan kantor setelah tugas pribadi selesai",
+      "Mengeluh kepada serikat pegawai mengenai beban kerja yang tidak manusiawi",
+      "Mengerjakan sendiri seluruh berkas penting karena tidak percaya pada ketelitian rekan tim"
+    ],
+    "correctOptionIndex": 0,
+    "tkpOptionPoints": [
+      5,
+      3,
+      3,
+      1,
+      2
+    ],
+    "explanation": "Indikator Jejaring Kerja: Mengutamakan orientasi pada hasil, kepemimpinan koordinatif, manajemen waktu efektif, dan soliditas tim di bawah tekanan deadline (Poin 5: Opsi A)."
+  },
+  {
+    "id": "TKP-104",
+    "category": "TKP",
+    "subTopic": "Sosial Budaya",
+    "difficulty": "hard",
+    "text": "Simulasi Skenario Dilema Etika Birokrasi No. 104 (Sosial Budaya): Dalam kondisi kerja bertekanan tinggi di unit Anda, terjadi perubahan regulasi mendadak yang menuntut Anda dan tim menyelesaikan 100 berkas audit dalam 48 jam. Tindakan terbaik Anda adalah...",
+    "options": [
+      "Menyusun matriks prioritas kerja, mendelegasikan tugas sesuai spesialisasi tim, dan memantau kemajuan berkala setiap 6 jam",
+      "Meminta perpanjangan waktu secara resmi dan mengerjakan berkas secara santai sesuai jam kerja reguler",
+      "Membagi berkas sama rata tanpa melihat tingkat kerumitan dan meninggalkan kantor setelah tugas pribadi selesai",
+      "Mengeluh kepada serikat pegawai mengenai beban kerja yang tidak manusiawi",
+      "Mengerjakan sendiri seluruh berkas penting karena tidak percaya pada ketelitian rekan tim"
+    ],
+    "correctOptionIndex": 0,
+    "tkpOptionPoints": [
+      5,
+      3,
+      3,
+      1,
+      2
+    ],
+    "explanation": "Indikator Sosial Budaya: Mengutamakan orientasi pada hasil, kepemimpinan koordinatif, manajemen waktu efektif, dan soliditas tim di bawah tekanan deadline (Poin 5: Opsi A)."
+  },
+  {
+    "id": "TKP-105",
+    "category": "TKP",
+    "subTopic": "TIK",
+    "difficulty": "hard",
+    "text": "Simulasi Skenario Dilema Etika Birokrasi No. 105 (TIK): Dalam kondisi kerja bertekanan tinggi di unit Anda, terjadi perubahan regulasi mendadak yang menuntut Anda dan tim menyelesaikan 100 berkas audit dalam 48 jam. Tindakan terbaik Anda adalah...",
+    "options": [
+      "Menyusun matriks prioritas kerja, mendelegasikan tugas sesuai spesialisasi tim, dan memantau kemajuan berkala setiap 6 jam",
+      "Meminta perpanjangan waktu secara resmi dan mengerjakan berkas secara santai sesuai jam kerja reguler",
+      "Membagi berkas sama rata tanpa melihat tingkat kerumitan dan meninggalkan kantor setelah tugas pribadi selesai",
+      "Mengeluh kepada serikat pegawai mengenai beban kerja yang tidak manusiawi",
+      "Mengerjakan sendiri seluruh berkas penting karena tidak percaya pada ketelitian rekan tim"
+    ],
+    "correctOptionIndex": 0,
+    "tkpOptionPoints": [
+      5,
+      3,
+      3,
+      1,
+      2
+    ],
+    "explanation": "Indikator TIK: Mengutamakan orientasi pada hasil, kepemimpinan koordinatif, manajemen waktu efektif, dan soliditas tim di bawah tekanan deadline (Poin 5: Opsi A)."
+  },
+  {
+    "id": "TKP-106",
+    "category": "TKP",
+    "subTopic": "Profesionalisme",
+    "difficulty": "hard",
+    "text": "Simulasi Skenario Dilema Etika Birokrasi No. 106 (Profesionalisme): Dalam kondisi kerja bertekanan tinggi di unit Anda, terjadi perubahan regulasi mendadak yang menuntut Anda dan tim menyelesaikan 100 berkas audit dalam 48 jam. Tindakan terbaik Anda adalah...",
+    "options": [
+      "Menyusun matriks prioritas kerja, mendelegasikan tugas sesuai spesialisasi tim, dan memantau kemajuan berkala setiap 6 jam",
+      "Meminta perpanjangan waktu secara resmi dan mengerjakan berkas secara santai sesuai jam kerja reguler",
+      "Membagi berkas sama rata tanpa melihat tingkat kerumitan dan meninggalkan kantor setelah tugas pribadi selesai",
+      "Mengeluh kepada serikat pegawai mengenai beban kerja yang tidak manusiawi",
+      "Mengerjakan sendiri seluruh berkas penting karena tidak percaya pada ketelitian rekan tim"
+    ],
+    "correctOptionIndex": 0,
+    "tkpOptionPoints": [
+      5,
+      3,
+      3,
+      1,
+      2
+    ],
+    "explanation": "Indikator Profesionalisme: Mengutamakan orientasi pada hasil, kepemimpinan koordinatif, manajemen waktu efektif, dan soliditas tim di bawah tekanan deadline (Poin 5: Opsi A)."
+  },
+  {
+    "id": "TKP-107",
+    "category": "TKP",
+    "subTopic": "Anti Radikalisme",
+    "difficulty": "hard",
+    "text": "Simulasi Skenario Dilema Etika Birokrasi No. 107 (Anti Radikalisme): Dalam kondisi kerja bertekanan tinggi di unit Anda, terjadi perubahan regulasi mendadak yang menuntut Anda dan tim menyelesaikan 100 berkas audit dalam 48 jam. Tindakan terbaik Anda adalah...",
+    "options": [
+      "Menyusun matriks prioritas kerja, mendelegasikan tugas sesuai spesialisasi tim, dan memantau kemajuan berkala setiap 6 jam",
+      "Meminta perpanjangan waktu secara resmi dan mengerjakan berkas secara santai sesuai jam kerja reguler",
+      "Membagi berkas sama rata tanpa melihat tingkat kerumitan dan meninggalkan kantor setelah tugas pribadi selesai",
+      "Mengeluh kepada serikat pegawai mengenai beban kerja yang tidak manusiawi",
+      "Mengerjakan sendiri seluruh berkas penting karena tidak percaya pada ketelitian rekan tim"
+    ],
+    "correctOptionIndex": 0,
+    "tkpOptionPoints": [
+      5,
+      3,
+      3,
+      1,
+      2
+    ],
+    "explanation": "Indikator Anti Radikalisme: Mengutamakan orientasi pada hasil, kepemimpinan koordinatif, manajemen waktu efektif, dan soliditas tim di bawah tekanan deadline (Poin 5: Opsi A)."
+  },
+  {
+    "id": "TKP-108",
+    "category": "TKP",
+    "subTopic": "Pelayanan Publik",
+    "difficulty": "hard",
+    "text": "Simulasi Skenario Dilema Etika Birokrasi No. 108 (Pelayanan Publik): Dalam kondisi kerja bertekanan tinggi di unit Anda, terjadi perubahan regulasi mendadak yang menuntut Anda dan tim menyelesaikan 100 berkas audit dalam 48 jam. Tindakan terbaik Anda adalah...",
+    "options": [
+      "Menyusun matriks prioritas kerja, mendelegasikan tugas sesuai spesialisasi tim, dan memantau kemajuan berkala setiap 6 jam",
+      "Meminta perpanjangan waktu secara resmi dan mengerjakan berkas secara santai sesuai jam kerja reguler",
+      "Membagi berkas sama rata tanpa melihat tingkat kerumitan dan meninggalkan kantor setelah tugas pribadi selesai",
+      "Mengeluh kepada serikat pegawai mengenai beban kerja yang tidak manusiawi",
+      "Mengerjakan sendiri seluruh berkas penting karena tidak percaya pada ketelitian rekan tim"
+    ],
+    "correctOptionIndex": 0,
+    "tkpOptionPoints": [
+      5,
+      3,
+      3,
+      1,
+      2
+    ],
+    "explanation": "Indikator Pelayanan Publik: Mengutamakan orientasi pada hasil, kepemimpinan koordinatif, manajemen waktu efektif, dan soliditas tim di bawah tekanan deadline (Poin 5: Opsi A)."
+  },
+  {
+    "id": "TKP-109",
+    "category": "TKP",
+    "subTopic": "Jejaring Kerja",
+    "difficulty": "hard",
+    "text": "Simulasi Skenario Dilema Etika Birokrasi No. 109 (Jejaring Kerja): Dalam kondisi kerja bertekanan tinggi di unit Anda, terjadi perubahan regulasi mendadak yang menuntut Anda dan tim menyelesaikan 100 berkas audit dalam 48 jam. Tindakan terbaik Anda adalah...",
+    "options": [
+      "Menyusun matriks prioritas kerja, mendelegasikan tugas sesuai spesialisasi tim, dan memantau kemajuan berkala setiap 6 jam",
+      "Meminta perpanjangan waktu secara resmi dan mengerjakan berkas secara santai sesuai jam kerja reguler",
+      "Membagi berkas sama rata tanpa melihat tingkat kerumitan dan meninggalkan kantor setelah tugas pribadi selesai",
+      "Mengeluh kepada serikat pegawai mengenai beban kerja yang tidak manusiawi",
+      "Mengerjakan sendiri seluruh berkas penting karena tidak percaya pada ketelitian rekan tim"
+    ],
+    "correctOptionIndex": 0,
+    "tkpOptionPoints": [
+      5,
+      3,
+      3,
+      1,
+      2
+    ],
+    "explanation": "Indikator Jejaring Kerja: Mengutamakan orientasi pada hasil, kepemimpinan koordinatif, manajemen waktu efektif, dan soliditas tim di bawah tekanan deadline (Poin 5: Opsi A)."
+  },
+  {
+    "id": "TKP-110",
+    "category": "TKP",
+    "subTopic": "Sosial Budaya",
+    "difficulty": "hard",
+    "text": "Simulasi Skenario Dilema Etika Birokrasi No. 110 (Sosial Budaya): Dalam kondisi kerja bertekanan tinggi di unit Anda, terjadi perubahan regulasi mendadak yang menuntut Anda dan tim menyelesaikan 100 berkas audit dalam 48 jam. Tindakan terbaik Anda adalah...",
+    "options": [
+      "Menyusun matriks prioritas kerja, mendelegasikan tugas sesuai spesialisasi tim, dan memantau kemajuan berkala setiap 6 jam",
+      "Meminta perpanjangan waktu secara resmi dan mengerjakan berkas secara santai sesuai jam kerja reguler",
+      "Membagi berkas sama rata tanpa melihat tingkat kerumitan dan meninggalkan kantor setelah tugas pribadi selesai",
+      "Mengeluh kepada serikat pegawai mengenai beban kerja yang tidak manusiawi",
+      "Mengerjakan sendiri seluruh berkas penting karena tidak percaya pada ketelitian rekan tim"
+    ],
+    "correctOptionIndex": 0,
+    "tkpOptionPoints": [
+      5,
+      3,
+      3,
+      1,
+      2
+    ],
+    "explanation": "Indikator Sosial Budaya: Mengutamakan orientasi pada hasil, kepemimpinan koordinatif, manajemen waktu efektif, dan soliditas tim di bawah tekanan deadline (Poin 5: Opsi A)."
+  },
+  {
+    "id": "mtk_easy_01",
+    "text": "[Matematika Kedinasan] Jika f(x) = 3x - 5 dan g(x) = x² + 1, berapakah nilai (g ∘ f)(2)?",
+    "category": "MTK_KEDINASAN",
+    "subTopic": "Fungsi Komposisi",
+    "difficulty": "easy",
+    "options": [
+      "1",
+      "2",
+      "5",
+      "10",
+      "17"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "f(2) = 3(2) - 5 = 1.\n(g ∘ f)(2) = g(f(2)) = g(1) = 1² + 1 = 2."
+  },
+  {
+    "id": "mtk_medium_01",
+    "text": "[Matematika STIS] Dari angka 1, 2, 3, 4, 5, 6 akan dibentuk bilangan bernilai ratusan tanpa pengulangan angka. Banyaknya bilangan ganjil yang terbentuk adalah...",
+    "category": "MTK_KEDINASAN",
+    "subTopic": "Kaidah Pencacahan",
+    "difficulty": "medium",
+    "options": [
+      "40",
+      "60",
+      "72",
+      "90",
+      "120"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Digit satuan ganjil (1, 3, 5) = 3 pilihan.\nDigit ratusan = 5 sisa pilihan.\nDigit puluhan = 4 sisa pilihan.\nTotal bilangan = 5 x 4 x 3 = 60 bilangan."
+  },
+  {
+    "id": "mtk_hard_01",
+    "text": "[SPMB STAN / STIS] Nilai dari limit x mendekati 0 untuk (1 - cos 4x) / (2x * sin 2x) adalah...",
+    "category": "MTK_KEDINASAN",
+    "subTopic": "Limit Trigonometri",
+    "difficulty": "hard",
+    "options": [
+      "1",
+      "2",
+      "4",
+      "8",
+      "1/2"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Gunakan identitas 1 - cos 4x = 2 sin² 2x.\nLimit = 2 sin² 2x / (2x * sin 2x) = sin 2x / x = 2 * (sin 2x / 2x) = 2(1) = 2."
+  },
+  {
+    "id": "mtk_master_01",
+    "text": "[SPMB Kedinasan Master] Diketahui matriks A berordo 2x2 dengan det(A) = 3. Jika det(2A⁻¹ + A^T) dihitung menghasilkan matriks simetris, maka nilai determinan dari adj(A) kuadrat adalah...",
+    "category": "MTK_KEDINASAN",
+    "subTopic": "Aljabar Matriks Lanjut",
+    "difficulty": "master",
+    "options": [
+      "3",
+      "9",
+      "27",
+      "81",
+      "1/9"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Sifat determinan matriks 2x2: det(adj(A)) = (det(A))^(n-1) = 3^(2-1) = 3. Maka kuadrat dari determinan adj(A) adalah 3² = 9."
+  },
+  {
+    "id": "tpa_easy_01",
+    "text": "[TPA] Hubungan Pasangan Kata:\nTERANG : GELAP = ... : ...",
+    "category": "TPA",
+    "subTopic": "Analogi Antonim",
+    "difficulty": "easy",
+    "options": [
+      "Panas : Dingin",
+      "Tinggi : Jauh",
+      "Cepat : Lamban",
+      "Siang : Malam",
+      "Kaya : Harta"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Hubungan lawan kata (antonim) kualitas sensorik: Terang berlawanan dengan Gelap, sama halnya dengan Panas berlawanan dengan Dingin."
+  },
+  {
+    "id": "tpa_medium_01",
+    "text": "[TPA] KULKAS : DINGIN = TUNGKU : ...",
+    "category": "TPA",
+    "subTopic": "Analogi Fungsi",
+    "difficulty": "medium",
+    "options": [
+      "Kayu",
+      "Hangat",
+      "Panas",
+      "Api",
+      "Dapur"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Hubungan alat dan fungsi sifat yang dihasilkan: Kulkas menghasilkan kondisi Dingin, Tungku menghasilkan kondisi Panas."
+  },
+  {
+    "id": "tpa_hard_01",
+    "text": "[TPA HOTS] Sebuah kubus transparan diberi pola garis hitam pada sisi depan dan titik pada sisi atas. Jika kubus diputar 90 derajat searah jarum jam lalu digulingkan ke depan 90 derajat, di manakah letak garis hitam?",
+    "category": "TPA",
+    "subTopic": "Rotasi Spasial 3D",
+    "difficulty": "hard",
+    "options": [
+      "Sisi Bawah",
+      "Sisi Belakang",
+      "Sisi Kanan",
+      "Sisi Atas",
+      "Sisi Kiri"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Posisi awal: garis di Depan. Putar searah jarum jam (rotasi vertikal z-axis): garis tetap di Depan (arah miring). Gulingkan ke Depan 90 derajat: sisi Depan berpindah menjadi sisi Bawah."
+  },
+  {
+    "id": "tpa_master_01",
+    "text": "[TPA Master] Semua peserta tes yang lolos tahap 1 wajib tes kesehatan. Beberapa atlet lari tidak lolos tes kesehatan. Tidak ada yang tidak lolos tes kesehatan yang berhak menerima nomor induk kepegawaian. Kesimpulan yang tepat adalah...",
+    "category": "TPA",
+    "subTopic": "Deduksi Silogisme Kompleks",
+    "difficulty": "master",
+    "options": [
+      "Semua atlet lari tidak menerima nomor induk kepegawaian",
+      "Beberapa atlet lari tidak berhak menerima nomor induk kepegawaian",
+      "Peserta tes yang lolos tahap 1 pasti atlet lari",
+      "Semua yang berhak menerima NIP adalah peserta tahap 1",
+      "Tidak ada kesimpulan yang sah"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Beberapa atlet lari tidak lolos kesehatan. Yang tidak lolos kesehatan tidak berhak dapat NIP. Maka: Beberapa atlet lari tidak berhak menerima nomor induk kepegawaian."
+  },
+  {
+    "id": "psikotes_easy_01",
+    "text": "[Psikotes] Temukan bilangan yang berbeda dari pola kelompok berikut: 12, 18, 24, 30, 35, 42.",
+    "category": "PSIKOTES",
+    "subTopic": "Tes Ketelitian Pola",
+    "difficulty": "easy",
+    "options": [
+      "18",
+      "24",
+      "30",
+      "35",
+      "42"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "Semua angka adalah kelipatan 6 (6x2, 6x3, 6x4, 6x5, 6x7), kecuali 35 yang bukan kelipatan 6."
+  },
+  {
+    "id": "psikotes_medium_01",
+    "text": "[Psikotes Kecermatan] Di antara pasangan huruf acak berikut, manakah yang TIDAK IDENTIK?",
+    "category": "PSIKOTES",
+    "subTopic": "Ketelitian Huruf",
+    "difficulty": "medium",
+    "options": [
+      "bpdqdp - bpdqdp",
+      "mnnmmn - mnnmmn",
+      "qpdbpq - qpbbpq",
+      "xzzyzx - xzzyzx",
+      "vwvvwv - vwvvwv"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Pada opsi C: huruf ke-4 string pertama adalah 'b', sedangkan pada string kedua adalah 'b' dan ke-3 'd' vs 'b' (qpdbpq vs qpbbpq)."
+  },
+  {
+    "id": "psikotes_hard_01",
+    "text": "[Psikotes Situasional Kedinasan] Selama masa karantina pendidikan calon taruna, Anda melihat rekan seangkatan pingsan di barisan saat upacara terik matahari. Namun komandan lapangan belum memberi aba-aba istirahat. Sikap Anda...",
+    "category": "PSIKOTES",
+    "subTopic": "Integritas & Kepatuhan Instruksi",
+    "difficulty": "hard",
+    "options": [
+      "Langsung bubar barisan dan berlari menolong rekan",
+      "Tetap bersikap sempurna dan segera bersuara lantang melapor kepada komandan bahwa rekan barisan butuh evakuasi medis",
+      "Menertawakan rekan yang lemah",
+      "Pura-pura tidak melihat agar tidak ditegur",
+      "Ikut pura-pura pingsan agar mendapat istirahat"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Karakter disiplin hierarki militer/kedinasan: Kepatuhan barisan tetap terjaga dan tindakan pertolongan dilakukan melalui mekanisme pelaporan komando resmi."
+  },
+  {
+    "id": "psikotes_master_01",
+    "text": "[Psikotes Raven Matriks Lanjutan] Deret matriks 3x3: Baris 1 memiliki 1 garis vertikal, 2 garis, 3 garis. Baris 2 memiliki 1 lingkaran, 2 lingkaran, 3 lingkaran. Baris 3 memiliki 1 bintang, 2 bintang, ... Maka kotak kosong berisi:",
+    "category": "PSIKOTES",
+    "subTopic": "Raven Progressive Matrix",
+    "difficulty": "master",
+    "options": [
+      "1 Bintang berbayang",
+      "2 Bintang berputar",
+      "3 Bintang sejajar",
+      "4 Bintang melingkar",
+      "Kotak kosong tanpa simbol"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Aturan konsistensi matriks horizontal: Setiap kolom menambah jumlah objek sebanyak 1 unit (1 -> 2 -> 3). Maka elemen ke-3 baris 3 adalah 3 Bintang."
+  },
+  {
+    "id": "tbi_easy_01",
+    "text": "[TBI] The government official ________ to the office early every morning.",
+    "category": "BAHASA_INGGRIS",
+    "subTopic": "Simple Present Tense",
+    "difficulty": "easy",
+    "options": [
+      "go",
+      "goes",
+      "went",
+      "gone",
+      "is go"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Subjek tunggal orang ketiga 'The government official' dalam simple present tense membutuhkan kata kerja berakhiran -es: goes."
+  },
+  {
+    "id": "tbi_medium_01",
+    "text": "[TBI STAN] The new fiscal policy announced yesterday ________ to reduce annual state budget inflation.",
+    "category": "BAHASA_INGGRIS",
+    "subTopic": "Passive Voice",
+    "difficulty": "medium",
+    "options": [
+      "is designing",
+      "was designed",
+      "designed",
+      "has design",
+      "to design"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Bentuk pasif lampau (adverb 'yesterday'): was + past participle (designed) -> was designed."
+  },
+  {
+    "id": "tbi_hard_01",
+    "text": "[TBI STAN HOTS] Not only ________ the audit report on time, but she also identified a major procedural loophole.",
+    "category": "BAHASA_INGGRIS",
+    "subTopic": "Inversion Structure",
+    "difficulty": "hard",
+    "options": [
+      "did she submit",
+      "she submitted",
+      "she was submit",
+      "has she submitted",
+      "she had submitting"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Negative Inversion: Ketika klausa diawali 'Not only', susunan subjek dan auxiliary verb wajib dibalik: Not only + did + she + submit (lampau/past simple)."
+  },
+  {
+    "id": "tbi_master_01",
+    "text": "[TBI Master] The Minister demanded that the state treasury auditor ________ an immediate financial investigation into the procurement project.",
+    "category": "BAHASA_INGGRIS",
+    "subTopic": "Subjunctive Mood",
+    "difficulty": "master",
+    "options": [
+      "conducts",
+      "conducted",
+      "conduct",
+      "would conduct",
+      "has conducted"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Aturan Subjunctive Mood: Kata kerja permintaan/keharusan seperti 'demand that', 'require that', 'insist that' wajib diikuti oleh bentuk Bare Infinitive (kata kerja dasar tanpa s/es/ed) terlepas dari subjeknya: auditor conduct."
+  },
+  {
+    "id": "tps_pu_easy_01",
+    "text": "Semua siswa yang mengikuti bimbingan intensif lulus ujian PTN.\nSebagian siswa kelas XII SMA Cendekia tidak mengikuti bimbingan intensif.\n\nSimpulan yang paling tepat adalah...",
+    "category": "TPS_PENALARAN_UMUM",
+    "subTopic": "Silogisme Deduktif",
+    "difficulty": "easy",
+    "options": [
+      "Semua siswa kelas XII SMA Cendekia tidak lulus ujian PTN.",
+      "Sebagian siswa kelas XII SMA Cendekia yang lulus ujian PTN mengikuti bimbingan intensif.",
+      "Sebagian siswa kelas XII SMA Cendekia tidak lulus ujian PTN.",
+      "Ada siswa yang tidak mengikuti bimbingan intensif tetapi lulus ujian PTN.",
+      "Tidak dapat ditarik simpulan yang pasti mengenai kelulusan siswa yang tidak mengikuti bimbingan."
+    ],
+    "correctOptionIndex": 4,
+    "explanation": "Premis 1 hanya menyatakan bahwa yang ikut bimbingan PASTI lulus. Premis tidak menyatakan apa yang terjadi jika siswa TIDAK ikut bimbingan. Maka nasib kelulusan siswa yang tidak ikut bimbingan tidak dapat dipastikan dari premis yang tersedia."
+  },
+  {
+    "id": "tps_pu_medium_01",
+    "text": "Jika sebuah startup teknologi memperoleh pendanaan Seri A, maka mereka akan merekrut lebih banyak insinyur perangkat lunak.\nJika startup merekrut lebih banyak insinyur, maka pengembangan fitur kecerdasan buatan akan selesai sebelum kuartal ketiga.\nFaktanya, pengembangan fitur kecerdasan buatan TIDAK selesai sebelum kuartal ketiga.\n\nSimpulan yang benar berdasarkan aturan logika adalah...",
+    "category": "TPS_PENALARAN_UMUM",
+    "subTopic": "Modus Tollens Bertingkat",
+    "difficulty": "medium",
+    "options": [
+      "Startup teknologi tersebut merekrut insinyur tetapi tidak berpengalaman.",
+      "Startup teknologi tersebut tidak memperoleh pendanaan Seri A.",
+      "Fitur kecerdasan buatan baru selesai pada kuartal keempat.",
+      "Startup memperoleh pendanaan Seri B.",
+      "Para insinyur mengundurkan diri sebelum kuartal ketiga."
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Bentuk Logika:\nP1: P -> Q\nP2: Q -> R\nMaka P -> R (Silogisme Hipotetis).\nFakta: ~R (fitur tidak selesai sebelum Q3).\nBerdasarkan Modus Tollens: Dari P -> R dan ~R, disimpulkan ~P (Startup tidak memperoleh pendanaan Seri A)."
+  },
+  {
+    "id": "tps_pu_hard_01",
+    "text": "Tujuh mahasiswa (P, Q, R, S, T, U, V) mempresentasikan karya ilmiah pada hari Senin sampai Minggu, satu mahasiswa per hari:\n1. R maju tepat sebelum U.\n2. T maju pada hari Rabu.\n3. P maju setelah T tetapi sebelum V.\n4. Q maju tepat setelah S.\nJika V maju pada hari Minggu, hari apakah R mempresentasikan karyanya?",
+    "category": "TPS_PENALARAN_UMUM",
+    "subTopic": "Penalaran Analitis Urutan",
+    "difficulty": "hard",
+    "options": [
+      "Senin",
+      "Selasa",
+      "Kamis",
+      "Jumat",
+      "Sabtu"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Jadwal:\nRabu = T, Minggu = V.\nKarena P maju setelah T dan sebelum V, maka P bisa di Kamis, Jumat, atau Sabtu.\nBlok (R, U) dan Blok (S, Q) membutuhkan 2 hari berurutan.\nHari sebelum Rabu hanya ada Senin & Selasa. Maka pasangan pertama harus mengisi Senin & Selasa.\nJika Senin=R dan Selasa=U, maka tersisa Kamis, Jumat, Sabtu untuk (S, Q) dan P.\nMaka Kamis=S, Jumat=Q, Sabtu=P, Minggu=V. Semua syarat terpenuhi! Jadi R maju pada hari Senin."
+  },
+  {
+    "id": "tps_pu_master_01",
+    "text": "Berdasarkan data tren ekonomi makro lima tahun terakhir, setiap kali indeks kepercayaan konsumen turun lebih dari 15%, volume penjualan ritel menurun pada kuartal berikutnya KECUALI pemerintah memberikan insentif pajak tunai langsung. Tahun ini indeks konsumen anjlok 18%, namun penjualan ritel justru naik 4% pada kuartal berikutnya.\n\nPernyataan yang PALING MENJELASKAN anomali fakta di atas adalah...",
+    "category": "TPS_PENALARAN_UMUM",
+    "subTopic": "Evaluasi Argumen Kritis & Anomali",
+    "difficulty": "master",
+    "options": [
+      "Masyarakat beralih dari belanja daring ke pasar tradisional.",
+      "Pemerintah telah merealisasikan penyaluran insentif pajak tunai langsung secara tepat waktu.",
+      "Perusahaan ritel menurunkan gaji karyawan untuk menekan biaya operasional.",
+      "Tingkat suku bunga perbankan naik secara signifikan.",
+      "Importir menahan pasokan barang mewah dari luar negeri."
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Syarat pengecualian pada premis adalah: KECUALI pemerintah memberikan insentif pajak tunai langsung. Jika kondisi anomali terjadi (penjualan ritel naik padahal indeks anjlok >15%), maka faktor pengecualian tersebut pasti terpenuhi, yaitu pemerintah memberikan insentif pajak tunai langsung."
+  },
+  {
+    "id": "tps_pk_easy_01",
+    "text": "Jika 3^(2x - 1) = 243, berapakah nilai dari x^2 + 2x?",
+    "category": "TPS_KUANTITATIF",
+    "subTopic": "Aljabar & Eksponen",
+    "difficulty": "easy",
+    "options": [
+      "8",
+      "12",
+      "15",
+      "24",
+      "35"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "243 = 3^5.\nMaka 3^(2x - 1) = 3^5 -> 2x - 1 = 5 -> 2x = 6 -> x = 3.\nNilai x^2 + 2x = (3)^2 + 2(3) = 9 + 6 = 15."
+  },
+  {
+    "id": "tps_pk_medium_01",
+    "text": "Rata-rata nilai ujian matematika dari suatu kelas yang terdiri dari 30 siswa adalah 78. Jika nilai dua siswa baru digabungkan, nilai rata-ratanya naik menjadi 79. Jika selisih nilai kedua siswa baru tersebut adalah 4, berapakah nilai dari siswa yang memperoleh nilai lebih tinggi?",
+    "category": "TPS_KUANTITATIF",
+    "subTopic": "Statistika Rataan Gabungan",
+    "difficulty": "medium",
+    "options": [
+      "92",
+      "94",
+      "96",
+      "98",
+      "100"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Total nilai awal = 30 * 78 = 2340.\nTotal nilai akhir (32 siswa) = 32 * 79 = 2528.\nJumlah nilai 2 siswa baru = 2528 - 2340 = 188.\nMisal kedua siswa A dan B (A > B):\nA + B = 188\nA - B = 4\n2A = 192 -> A = 96."
+  },
+  {
+    "id": "tps_pk_hard_01",
+    "text": "Sebuah lingkaran berpusat di titik (0, 0) dengan jari-jari r bersinggungan dengan garis 3x - 4y + 20 = 0. Berapakah luas daerah lingkaran tersebut?",
+    "category": "TPS_KUANTITATIF",
+    "subTopic": "Geometri Analitik",
+    "difficulty": "hard",
+    "options": [
+      "9π",
+      "16π",
+      "25π",
+      "36π",
+      "49π"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Jarak titik pusat (x1, y1) = (0, 0) ke garis Ax + By + C = 0 adalah jari-jari r:\nr = |A(0) + B(0) + C| / sqrt(A^2 + B^2)\nr = |20| / sqrt(3^2 + (-4)^2) = 20 / sqrt(25) = 20 / 5 = 4.\nLuas lingkaran = π * r^2 = π * 4^2 = 16π."
+  },
+  {
+    "id": "tps_pk_master_01",
+    "text": "Banyaknya bilangan asli n kurang dari 500 yang memenuhi sifat:\n- n dibagi 5 bersisa 3\n- n dibagi 7 bersisa 2\nadalah...",
+    "category": "TPS_KUANTITATIF",
+    "subTopic": "Teori Bilangan & Kongruensi Modulo",
+    "difficulty": "master",
+    "options": [
+      "13",
+      "14",
+      "15",
+      "16",
+      "17"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Berdasarkan Chinese Remainder Theorem:\nn = 5a + 3 dan n = 7b + 2.\n5a + 3 = 7b + 2 -> 5a + 1 = 7b.\nNilai b terkecil yang membuat 7b bersisa 1 jika dibagi 5 adalah b = 3 (7 * 3 = 21 -> 21 = 5(4) + 1).\nMaka solusi terkecil n0 = 7(3) + 2 = 23.\nBilangan n berulang setiap KPK(5, 7) = 35.\nn = 23 + 35k < 500.\n35k < 477 -> k < 477 / 35 = 13.628.\nNilai k yang mungkin: k = 0, 1, 2, ..., 13 (total 14 nilai)."
+  },
+  {
+    "id": "lit_indo_easy_01",
+    "text": "Perkembangan kecerdasan buatan generatif dalam dua tahun terakhir telah mengubah lanskap industri konten digital secara masif. Algoritma kini mampu memproduksi teks, ilustrasi, dan kode pemrograman dalam hitungan detik. Kendati efisiensi melonjak, para pakar etika teknologi mengingatkan bahwa ketergantungan berlebih dapat mendegradasi ketajaman berpikir kritis manusia.\n\nGagasan utama paragraf tersebut adalah...",
+    "category": "LITERASI_INDONESIA",
+    "subTopic": "Ide Pokok Paragraf",
+    "difficulty": "easy",
+    "options": [
+      "Kecerdasan buatan generatif hanya mampu memproduksi teks dan ilustrasi.",
+      "Dampak transformatif kecerdasan buatan generatif beserta peringatan risiko penurunan daya kritis.",
+      "Pakar etika teknologi melarang penggunaan algoritma di industri konten.",
+      "Efisiensi produksi konten menurun drastis akibat ketergantungan teknologi.",
+      "Algoritma pemrograman membutuhkan waktu lama untuk menghasilkan produk digital."
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Paragraf dibangun secara deduktif-induktif: kalimat utama memaparkan lonjakan transformasi kecerdasan buatan generatif terhadap industri, diimbangi oleh peringatan esensial dari pakar etika mengenai degradasi daya kritis."
+  },
+  {
+    "id": "lit_indo_medium_01",
+    "text": "\"Kebijakan dekarbonisasi industri di negara berkembang kerap menghadapi dilema trilemma energi: bagaimana mencapai keberlanjutan lingkungan tanpa mengorbankan keterjangkauan harga dan keandalan pasokan listrik bagi masyarakat miskin.\"\n\nMakna tersirat dari istilah trilemma energi dalam kutipan di atas adalah...",
+    "category": "LITERASI_INDONESIA",
+    "subTopic": "Inferensi Makna Kontekstual",
+    "difficulty": "medium",
+    "options": [
+      "Transisi energi dapat diwujudkan tanpa modal finansial yang besar.",
+      "Negara berkembang harus mengabaikan aspek kelestarian lingkungan demi pasokan listrik.",
+      "Terdapat pertentangan kepentingan simultan antara aspek lingkungan, ekonomi keterjangkauan, dan stabilitas pasokan.",
+      "Masyarakat miskin menolak penggunaan energi terbarukan.",
+      "Tiga sumber energi fosil harus segera dihapuskan dalam waktu bersamaan."
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Trilemma energi merujuk pada tiga sasaran yang saling berkompetisi (trade-off) yang sangat sulit dicapai bersamaan secara sempurna: environmental sustainability, energy equity (affordability), dan energy security."
+  },
+  {
+    "id": "lit_indo_hard_01",
+    "text": "Cermati kalimat berikut:\n\"Meskipun inflasi pangan telah melandai pada triwulan kedua, namun daya beli masyarakat berpenghasilan rendah belum sepenuhnya pulih.\"\n\nPerbaikan yang paling tepat agar kalimat tersebut menjadi kalimat efektif baku adalah...",
+    "category": "LITERASI_INDONESIA",
+    "subTopic": "Keefektifan Kalimat & Konjungsi",
+    "difficulty": "hard",
+    "options": [
+      "Menghilangkan kata meskipun atau menghilangkan kata namun.",
+      "Mengganti kata melandai dengan kata menukik.",
+      "Menambahkan tanda koma setelah kata namun.",
+      "Mengubah kata triwulan menjadi semester.",
+      "Meletakkan frasa daya beli masyarakat di awal kalimat sebelum kata meskipun."
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Dalam kaidah tata bahasa baku bahasa Indonesia, konjungsi subordinatif konsesif (meskipun, walaupun) tidak boleh digabungkan dalam satu klausa utama dengan konjungsi antarklausa koordinatif (namun, tetapi). Keberadaan keduanya menyebabkan kalimat kehilangan induk kalimat."
+  },
+  {
+    "id": "lit_indo_master_01",
+    "text": "Teks A berpendapat bahwa digitalisasi sistem peradilan mempercepat asas peradilan cepat, sederhana, dan berbiaya ringan. Teks B menyoroti bahwa kesenjangan infrastruktur internet di daerah tertinggal berpotensi merampas hak akses keadilan bagi masyarakat adat.\n\nSikap sintesis yang paling objektif dalam menjembatani pertentangan kedua teks adalah...",
+    "category": "LITERASI_INDONESIA",
+    "subTopic": "Sintesis Argumentasi Kritis",
+    "difficulty": "master",
+    "options": [
+      "Menghentikan digitalisasi peradilan sampai seluruh wilayah Indonesia memiliki jaringan 5G.",
+      "Menerapkan digitalisasi peradilan hanya bagi korporasi besar di kota metropolitan.",
+      "Mengadopsi model peradilan hibrida (hybrid court) dengan tetap menyediakan pos bantuan hukum fisik di wilayah berakses internet rendah.",
+      "Menghapus peradilan konvensional karena membebani anggaran negara.",
+      "Membebankan biaya pengadaan internet peradilan kepada para pencari keadilan."
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Sintesis argumentatif mencari jalan keluar yang mempertahankan manfaat efisiensi dari Teks A tanpa mengorbankan asas keadilan inklusif yang disuarakan Teks B. Model peradilan hibrida mengakomodasi kedua kebutuhan secara proporsional."
+  },
+  {
+    "id": "pm_easy_01",
+    "text": "Sebuah platform e-learning memberlakukan tarif langganan bulanan sebesar Rp120.000 untuk 20 jam bimbingan pertama. Setiap kelebihan waktu bimbingan dikenakan biaya tambahan Rp8.000 per jam. Jika seorang peserta membayar Rp216.000 dalam satu bulan, berapa total jam bimbingan yang digunakannya?",
+    "category": "PENALARAN_MATEMATIKA",
+    "subTopic": "Fungsi Tarif Linear Kontekstual",
+    "difficulty": "easy",
+    "options": [
+      "28 jam",
+      "30 jam",
+      "32 jam",
+      "34 jam",
+      "36 jam"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Biaya tambahan = Rp216.000 - Rp120.000 = Rp96.000.\nJam tambahan = Rp96.000 / Rp8.000 = 12 jam.\nTotal waktu bimbingan = 20 jam + 12 jam = 32 jam."
+  },
+  {
+    "id": "pm_medium_01",
+    "text": "Modal usaha sebesar Rp50.000.000 diinvestasikan pada instrumen reksa dana pendapatan tetap dengan imbal hasil majemuk 8% per tahun yang dikapitalisasi setiap tahun. Dengan aproksimasi (1.08)^3 ≈ 1.2597, berapakah total nilai akumulasi investasi setelah 3 tahun?",
+    "category": "PENALARAN_MATEMATIKA",
+    "subTopic": "Bunga Majemuk & Pemodelan Finansial",
+    "difficulty": "medium",
+    "options": [
+      "Rp62.000.000",
+      "Rp62.985.000",
+      "Rp64.120.000",
+      "Rp65.500.000",
+      "Rp66.240.000"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Rumus Bunga Majemuk: A = P * (1 + r)^t\nA = 50.000.000 * (1.08)^3\nA ≈ 50.000.000 * 1.2597 = Rp62.985.000."
+  },
+  {
+    "id": "pm_hard_01",
+    "text": "Seorang pengelola kebun ingin memagari sebidang tanah berbentuk persegi panjang yang salah satu sisinya berbatasan langsung dengan tebing batu (tidak memerlukan pagar). Panjang kawat pagar yang tersedia adalah 120 meter. Berapakah luas maksimum tanah yang dapat dipagari?",
+    "category": "PENALARAN_MATEMATIKA",
+    "subTopic": "Optimasi Nilai Ekstrem Turunan",
+    "difficulty": "hard",
+    "options": [
+      "1.200 m²",
+      "1.600 m²",
+      "1.800 m²",
+      "2.000 m²",
+      "2.400 m²"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Misal sisi tegak lurus tebing adalah x (ada 2 sisi) dan sisi sejajar tebing adalah y (1 sisi).\nKeliling pagar: 2x + y = 120 -> y = 120 - 2x.\nLuas L(x) = x * y = x(120 - 2x) = 120x - 2x^2.\nTurunan L'(x) = 120 - 4x = 0 -> x = 30 meter.\nMaka y = 120 - 2(30) = 60 meter.\nLuas maksimum = 30 * 60 = 1.800 m²."
+  },
+  {
+    "id": "pm_master_01",
+    "text": "Pada suatu populasi, prevalensi penyakit langka X adalah 1% (0.01). Suatu uji diagnostik memiliki sensitivitas (true positive) 95% dan spesifisitas (true negative) 90%. Jika seorang individu yang dipilih secara acak teruji POSITIF, berapakah probabilitas aktual individu tersebut benar-benar menderita penyakit X?",
+    "category": "PENALARAN_MATEMATIKA",
+    "subTopic": "Teorema Bayes & Diagnostik Probabilistik",
+    "difficulty": "master",
+    "options": [
+      "8.76%",
+      "9.50%",
+      "14.28%",
+      "50.00%",
+      "95.00%"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Teorema Bayes: P(Sakit | Positif) = P(Positif | Sakit) * P(Sakit) / P(Positif)\nP(Sakit) = 0.01 -> P(Sehat) = 0.99\nP(Positif | Sakit) = 0.95\nP(Positif | Sehat) = 1 - 0.90 = 0.10 (False Positive)\nP(Positif) = (0.95 * 0.01) + (0.10 * 0.99) = 0.0095 + 0.0990 = 0.1085.\nMaka P(Sakit | Positif) = 0.0095 / 0.1085 ≈ 0.08755 = 8.76%."
+  },
+  {
+    "id": "mandiri_matdas_easy_01",
+    "text": "Jika ^2log(x) + ^2log(x - 2) = 3, berapakah nilai x yang memenuhi persamaan tersebut?",
+    "category": "MANDIRI_MATEMATIKA_DASAR",
+    "subTopic": "Persamaan Logaritma",
+    "difficulty": "easy",
+    "options": [
+      "-2",
+      "2",
+      "4",
+      "6",
+      "8"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "^2log[x(x - 2)] = 3 -> x(x - 2) = 2^3 = 8.\nx^2 - 2x - 8 = 0 -> (x - 4)(x + 2) = 0.\nx = 4 atau x = -2.\nSyarat numerus logaritma: x > 0 dan x - 2 > 0 -> x > 2.\nMaka nilai yang sah secara matematis hanya x = 4."
+  },
+  {
+    "id": "mandiri_matdas_medium_01",
+    "text": "Jika persamaan kuadrat 2x^2 - 6x + (k - 1) = 0 memiliki akar-akar α dan β yang memenuhi α^2 + β^2 = 5, tentukan nilai konstanta k!",
+    "category": "MANDIRI_MATEMATIKA_DASAR",
+    "subTopic": "Teorema Vieta Akar Kuadrat",
+    "difficulty": "medium",
+    "options": [
+      "3",
+      "4",
+      "5",
+      "6",
+      "7"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Berdasarkan Vieta:\nα + β = -(-6)/2 = 3\nα * β = (k - 1)/2\nα^2 + β^2 = (α + β)^2 - 2αβ\n5 = 3^2 - 2((k - 1)/2)\n5 = 9 - (k - 1) -> 5 = 10 - k -> k = 5."
+  },
+  {
+    "id": "mandiri_matdas_hard_01",
+    "text": "Nilai dari lim (x -> 0) [ (1 - cos(4x)) / (x * tan(2x)) ] adalah...",
+    "category": "MANDIRI_MATEMATIKA_DASAR",
+    "subTopic": "Limit Trigonometri SIMAK UI",
+    "difficulty": "hard",
+    "options": [
+      "1",
+      "2",
+      "4",
+      "8",
+      "16"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Identitas trigonometri: 1 - cos(4x) = 2 * sin^2(2x).\nlim (x -> 0) [ 2 * sin(2x) * sin(2x) / (x * tan(2x)) ]\n= 2 * lim(sin(2x)/x) * lim(sin(2x)/tan(2x))\n= 2 * (2) * (2/2) = 4."
+  },
+  {
+    "id": "mandiri_matdas_master_01",
+    "text": "Suatu suku banyak P(x) jika dibagi (x - 1) bersisa 4, dan jika dibagi (x + 2) bersisa -5. Berapakah sisa pembagian P(x) oleh (x^2 + x - 2)?",
+    "category": "MANDIRI_MATEMATIKA_DASAR",
+    "subTopic": "Teorema Sisa Polinomial",
+    "difficulty": "master",
+    "options": [
+      "x + 3",
+      "2x + 2",
+      "3x + 1",
+      "3x - 1",
+      "4x - 2"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Pembagi: x^2 + x - 2 = (x - 1)(x + 2).\nSisa pembagian berderajat 1: S(x) = ax + b.\nDari soal:\nP(1) = 4 -> a(1) + b = 4 -> a + b = 4\nP(-2) = -5 -> a(-2) + b = -5 -> -2a + b = -5\nKurangkan kedua persamaan: 3a = 9 -> a = 3.\nSubstitusi: 3 + b = 4 -> b = 1.\nMaka S(x) = 3x + 1."
+  },
+  {
+    "id": "mandiri_ipa_easy_01",
+    "text": "Sebuah balok bermassa 4 kg ditarik dengan gaya konstan 30 N membentuk sudut 37° terhadap bidang datar licin (cos 37° = 0.8, sin 37° = 0.6). Berapakah percepatan gerak balok tersebut?",
+    "category": "MANDIRI_SAINTEK",
+    "subTopic": "Fisika Dinamika Newton",
+    "difficulty": "easy",
+    "options": [
+      "4.5 m/s²",
+      "5.0 m/s²",
+      "6.0 m/s²",
+      "7.5 m/s²",
+      "8.0 m/s²"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Gaya horizontal yang mempercepat balok: Fx = F * cos(37°) = 30 * 0.8 = 24 N.\nHukum Newton II: Fx = m * a -> 24 = 4 * a -> a = 6 m/s²."
+  },
+  {
+    "id": "mandiri_ipa_medium_01",
+    "text": "Sebanyak 5.4 gram logam aluminium (Ar Al = 27) direaksikan sempurna dengan larutan asam sulfat berlebih sesuai persamaan reaksi:\n2 Al (s) + 3 H2SO4 (aq) -> Al2(SO4)3 (aq) + 3 H2 (g)\nBerapakah volume gas hidrogen yang dihasilkan pada kondisi standar (STP)?",
+    "category": "MANDIRI_SAINTEK",
+    "subTopic": "Kimia Stoikiometri Gas",
+    "difficulty": "medium",
+    "options": [
+      "2.24 Liter",
+      "4.48 Liter",
+      "6.72 Liter",
+      "8.96 Liter",
+      "11.20 Liter"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Mol Al = massa / Ar = 5.4 / 27 = 0.2 mol.\nPerbandingan koefisien H2 : Al = 3 : 2.\nMol H2 = (3/2) * 0.2 mol = 0.3 mol.\nVolume STP = mol * 22.4 Liter = 0.3 * 22.4 = 6.72 Liter."
+  },
+  {
+    "id": "mandiri_ipa_hard_01",
+    "text": "Organel sel yang memiliki membran ganda, memiliki DNA sirkular sendiri yang dapat bereplikasi secara otonom, dan berfungsi sebagai pusat konversi energi melalui fosforilasi oksidatif adalah...",
+    "category": "MANDIRI_SAINTEK",
+    "subTopic": "Biologi Seluler & Teori Endosimbiosis",
+    "difficulty": "hard",
+    "options": [
+      "Badan Golgi",
+      "Mitokondria",
+      "Retikulum Endoplasma Kasar",
+      "Lisosom",
+      "Peroksisom"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Mitokondria memiliki membran ganda (krista pada membran dalam), materi genetik sendiri (mtDNA sirkular), serta mensintesis ATP melalui transpor elektron dan fosforilasi oksidatif sesuai teori endosimbiosis."
+  },
+  {
+    "id": "mandiri_ipa_master_01",
+    "text": "Rangkaian RLC seri dihubungkan dengan sumber tegangan bolak-balik V = 100 sin(1000t) Volt. Jika R = 400 Ω, L = 0.5 H, dan C = 5 μF, berapakah impedansi total rangkaian dan daya disipasi rata-ratanya?",
+    "category": "MANDIRI_SAINTEK",
+    "subTopic": "Fisika Arus Bolak-Balik RLC",
+    "difficulty": "master",
+    "options": [
+      "Z = 400 Ω dan P = 12.5 Watt",
+      "Z = 500 Ω dan P = 8.0 Watt",
+      "Z = 500 Ω dan P = 10.0 Watt",
+      "Z = 600 Ω dan P = 16.0 Watt",
+      "Z = 800 Ω dan P = 20.0 Watt"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "ω = 1000 rad/s.\nReaktansi induktif: XL = ω * L = 1000 * 0.5 = 500 Ω.\nReaktansi kapasitif: XC = 1 / (ω * C) = 1 / (1000 * 5 * 10^-6) = 200 Ω.\nImpedansi Z = sqrt(R^2 + (XL - XC)^2) = sqrt(400^2 + (500 - 200)^2) = sqrt(400^2 + 300^2) = 500 Ω.\nI_max = V_max / Z = 100 / 500 = 0.2 A.\nI_rms = 0.2 / sqrt(2) A.\nDaya rata-rata P = (I_rms)^2 * R = (0.04 / 2) * 400 = 0.02 * 400 = 8.0 Watt."
+  },
+  {
+    "id": "mandiri_ips_easy_01",
+    "text": "Jika elastisitas harga permintaan suatu barang bernilai -2.5 (elastis), maka penurunan harga sebesar 10% akan mengakibatkan...",
+    "category": "MANDIRI_SOSHUM",
+    "subTopic": "Ekonomi Mikro Elastisitas",
+    "difficulty": "easy",
+    "options": [
+      "Kenaikan jumlah permintaan sebesar 2.5%",
+      "Penurunan jumlah permintaan sebesar 25%",
+      "Kenaikan jumlah permintaan sebesar 25%",
+      "Penurunan jumlah permintaan sebesar 10%",
+      "Total pendapatan produsen dipastikan turun"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Ed = % perubahan kuantitas / % perubahan harga.\n-2.5 = %ΔQ / (-10%) -> %ΔQ = +25% (jumlah permintaan naik sebesar 25%)."
+  },
+  {
+    "id": "mandiri_ips_medium_01",
+    "text": "Stratifikasi sosial masyarakat kasta di Bali tradisional atau feodalisme abad pertengahan di Eropa bersifat tertutup KARENA...",
+    "category": "MANDIRI_SOSHUM",
+    "subTopic": "Sosiologi Stratifikasi Sosial",
+    "difficulty": "medium",
+    "options": [
+      "Perpindahan posisi sosial individu hanya ditentukan oleh kekayaan finansial.",
+      "Kedudukan sosial diperoleh secara askriptif (kelahiran) dan mobilitas vertikal lintas lapisan dibatasi secara ketat.",
+      "Tidak ada perbedaan hak dan kewajiban antaranggota masyarakat.",
+      "Sistem hukum modern melarang pembagian kelompok masyarakat.",
+      "Masyarakat tersebut tidak mengenal sistem perkawinan."
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Stratifikasi tertutup (closed social stratification) membatasi atau bahkan menutup kemungkinan terjadinya mobilitas sosial vertikal karena status ditentukan sejak lahir (ascribed status)."
+  },
+  {
+    "id": "mandiri_ips_hard_01",
+    "text": "Ketika perekonomian nasional mengalami tekanan inflasi yang terlalu tinggi (overheating), bank sentral dapat menerapkan kebijakan moneter kontraktif melalui instrumen...",
+    "category": "MANDIRI_SOSHUM",
+    "subTopic": "Ekonomi Makro Kebijakan Moneter",
+    "difficulty": "hard",
+    "options": [
+      "Membeli Surat Berharga Negara (SBN) di pasar sekunder.",
+      "Menurunkan tingkat suku bunga acuan (BI-Rate).",
+      "Menaikkan rasio Giro Wajib Minimum (GWM) dan menaikkan suku bunga acuan.",
+      "Mempermudah persyaratan pemberian kredit perbankan kepada masyarakat.",
+      "Menaikkan tarif pajak penghasilan badan."
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Kebijakan moneter kontraktif bertujuan menyerap kelebihan likuiditas uang beredar di masyarakat. Caranya: menaikkan rasio GWM (bank wajib menahan cadangan lebih besar) dan menaikkan suku bunga acuan."
+  },
+  {
+    "id": "mandiri_ips_master_01",
+    "text": "Zona subduksi antara Lempeng Indo-Australia yang menunjam ke bawah Lempeng Eurasia di sebelah barat Sumatera dan selatan Jawa membentuk fenomena geologis berupa...",
+    "category": "MANDIRI_SOSHUM",
+    "subTopic": "Geografi Lempeng Tektonik & Vulkanisme",
+    "difficulty": "master",
+    "options": [
+      "Pematang tengah samudera (mid-oceanic ridge) dan sesar geser transform.",
+      "Palung laut dalam (trench), busur pulau gunung api aktif (volcanic arc), dan gempa bumi megathrust.",
+      "Rifting benua dan terbentuknya danau garam vulkanik.",
+      "Divergensi dasar laut dengan pemekaran kerak benua pasif.",
+      "Penurunan aktivitas kegempaan di sepanjang pesisir pantai."
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Batas lempeng konvergen tipe subduksi samudera-benua menghasilkan: 1) Palung Jawa/Sunda trench, 2) Busur vulkanik pegunungan Bukit Barisan dan Jawa, serta 3) Zona sumber gempa dangkal hingga dalam (megathrust)."
+  }
+]
