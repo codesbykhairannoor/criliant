@@ -30,7 +30,7 @@ export type Category =
 
 export type CategoryGroup = 'SKD_CPNS' | 'KEDINASAN' | 'SNBT_UTBK' | 'UJIAN_MANDIRI';
 
-export type DifficultyLevel = 'easy' | 'medium' | 'hard_hots';
+export type DifficultyLevel = 'easy' | 'medium' | 'hard' | 'hard_hots';
 
 export interface Question {
   id: string;

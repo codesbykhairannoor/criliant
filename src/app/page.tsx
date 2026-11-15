@@ -11,7 +11,8 @@ import {
 } from '@/types';
 import { INITIAL_POSTS } from '@/data/constants';
 import { EXAM_PACKAGES, getFilteredQuestionsForTrack } from '@/data/examPackages';
-import questionsData from '@/data/questions.json';
+import { QuestionService } from '@/services/questionService';
+import { QuestionRepository } from '@/server/questions/repository';
 
 import { LeftSidebar } from '@/components/layout/LeftSidebar';
 import { RightSidebar } from '@/components/layout/RightSidebar';
@@ -53,10 +54,21 @@ export default function HomePage() {
   const [reportingPostId, setReportingPostId] = useState<string | null>(null);
   const [toastNotification, setToastNotification] = useState<ToastData | null>(null);
 
-  // 4. Data Posts & Bookmarks
+  // 4. Data Posts & Bank Soal (Dynamic Service Layer)
   const [posts, setPosts] = useState<StreamPost[]>(INITIAL_POSTS);
   const [bookmarkedIds, setBookmarkedIds] = useState<Set<string>>(new Set(['TWK-01', 'TWK-02']));
-  const allQuestions = questionsData as unknown as Question[];
+  const [allQuestions, setAllQuestions] = useState<Question[]>(() => QuestionRepository.getAll());
+
+  // Load questions dynamically from API
+  useEffect(() => {
+    QuestionService.getQuestions()
+      .then((qs) => {
+        if (qs && qs.length > 0) {
+          setAllQuestions(qs);
+        }
+      })
+      .catch((err) => console.error('Failed to load questions from QuestionService:', err));
+  }, []);
 
   const showToast = (title: string, message: string, type: 'success' | 'warning' | 'info' = 'info') => {
     setToastNotification({ title, message, type });
@@ -281,21 +293,34 @@ export default function HomePage() {
   };
 
   // 5. Official Exam Package Launcher (100% Sesuai Kurikulum Kamar)
-  const handleStartExam = (packageOrModeId: string) => {
+  const handleStartExam = async (packageOrModeId: string) => {
     const packagesForTrack = EXAM_PACKAGES[activeTrack] || EXAM_PACKAGES.cpns;
     const selectedPkg = packagesForTrack.find((p) => p.id === packageOrModeId) || packagesForTrack[0];
 
-    const questionsForExam = getFilteredQuestionsForTrack(
-      allQuestions,
-      activeTrack,
-      selectedPkg.questionCount,
-      selectedPkg.targetedCategories
-    );
+    try {
+      const questionsForExam = await QuestionService.generateExamSession(
+        activeTrack,
+        selectedPkg.questionCount,
+        selectedPkg.targetedCategories
+      );
 
-    setExamMode('TRYOUT_FULL');
-    setExamDuration(selectedPkg.durationSeconds);
-    setExamQuestions(questionsForExam);
-    setIsExamModalOpen(true);
+      setExamMode('TRYOUT_FULL');
+      setExamDuration(selectedPkg.durationSeconds);
+      setExamQuestions(questionsForExam);
+      setIsExamModalOpen(true);
+    } catch (err) {
+      console.warn('Using sync fallback for exam session:', err);
+      const fallbackQuestions = getFilteredQuestionsForTrack(
+        allQuestions,
+        activeTrack,
+        selectedPkg.questionCount,
+        selectedPkg.targetedCategories
+      );
+      setExamMode('TRYOUT_FULL');
+      setExamDuration(selectedPkg.durationSeconds);
+      setExamQuestions(fallbackQuestions);
+      setIsExamModalOpen(true);
+    }
   };
 
   const handleFinishExam = (summary: ExamResultSummary) => {
