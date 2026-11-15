@@ -28,6 +28,7 @@ export interface ExamPackage {
   questionCount: number;
   iconEmoji: string;
   subTests: Array<{ name: string; count: number; note: string }>;
+  targetedCategories?: Category[];
 }
 
 export const EXAM_PACKAGES: Record<StudyTrack, ExamPackage[]> = {
@@ -47,6 +48,7 @@ export const EXAM_PACKAGES: Record<StudyTrack, ExamPackage[]> = {
         { name: '35 TIU', count: 35, note: 'Passing Grade: 80' },
         { name: '45 TKP', count: 45, note: 'Passing Grade: 166' },
       ],
+      targetedCategories: ['TWK', 'TIU', 'TKP'],
     },
     {
       id: 'CPNS_DRILL_TIU',
@@ -63,6 +65,7 @@ export const EXAM_PACKAGES: Record<StudyTrack, ExamPackage[]> = {
         { name: 'Silogisme', count: 8, note: 'Logika Sah' },
         { name: 'Analogi', count: 7, note: 'Verbal' },
       ],
+      targetedCategories: ['TIU'],
     },
     {
       id: 'CPNS_DRILL_TKP',
@@ -79,6 +82,7 @@ export const EXAM_PACKAGES: Record<StudyTrack, ExamPackage[]> = {
         { name: 'Jejaring Kerja', count: 6, note: 'Skala 1-5' },
         { name: 'Anti-Radikalisme', count: 6, note: 'Skala 1-5' },
       ],
+      targetedCategories: ['TKP'],
     },
   ],
   snbt: [
@@ -97,6 +101,7 @@ export const EXAM_PACKAGES: Record<StudyTrack, ExamPackage[]> = {
         { name: 'Kuantitatif', count: 30, note: 'Aljabar & Data' },
         { name: 'Literasi & MTK', count: 50, note: 'Wacana Kritis' },
       ],
+      targetedCategories: ['TPS_PENALARAN_UMUM', 'TPS_KUANTITATIF', 'LITERASI_INDONESIA', 'PENALARAN_MATEMATIKA'],
     },
     {
       id: 'SNBT_DRILL_TPS',
@@ -112,6 +117,7 @@ export const EXAM_PACKAGES: Record<StudyTrack, ExamPackage[]> = {
         { name: 'Penalaran Umum', count: 12, note: 'Induktif' },
         { name: 'Pengetahuan Kuantitatif', count: 13, note: 'Aritmetika' },
       ],
+      targetedCategories: ['TPS_PENALARAN_UMUM', 'TPS_KUANTITATIF'],
     },
     {
       id: 'SNBT_DRILL_MATH',
@@ -127,6 +133,7 @@ export const EXAM_PACKAGES: Record<StudyTrack, ExamPackage[]> = {
         { name: 'Pemodelan Fungsi', count: 10, note: 'Aljabar' },
         { name: 'Statistika & Peluang', count: 10, note: 'Analisis' },
       ],
+      targetedCategories: ['PENALARAN_MATEMATIKA'],
     },
   ],
   kedinasan: [
@@ -145,6 +152,7 @@ export const EXAM_PACKAGES: Record<StudyTrack, ExamPackage[]> = {
         { name: 'TBI B.Inggris', count: 35, note: 'Nilai Mati ≥ 60' },
         { name: 'Psikotes Matriks', count: 10, note: 'Angka Hilang' },
       ],
+      targetedCategories: ['TPA', 'BAHASA_INGGRIS', 'MTK_KEDINASAN', 'PSIKOTES'],
     },
     {
       id: 'KEDINASAN_DRILL_TBI',
@@ -160,6 +168,7 @@ export const EXAM_PACKAGES: Record<StudyTrack, ExamPackage[]> = {
         { name: 'Inversion & Conditional', count: 15, note: 'Grammar' },
         { name: 'Reading Comprehension', count: 10, note: 'Speed Reading' },
       ],
+      targetedCategories: ['BAHASA_INGGRIS'],
     },
     {
       id: 'KEDINASAN_DRILL_TPA',
@@ -175,22 +184,30 @@ export const EXAM_PACKAGES: Record<StudyTrack, ExamPackage[]> = {
         { name: 'Matriks Angka', count: 15, note: 'Ketelitian' },
         { name: 'Spasial Gambar', count: 10, note: 'Visual 3D' },
       ],
+      targetedCategories: ['TPA', 'PSIKOTES'],
     },
   ],
 };
 
-// Helper untuk menyaring bank soal 100% murni sesuai kamar
+// Helper untuk menyaring bank soal 100% murni sesuai kurikulum kamar & paket yang dipilih
 export function getFilteredQuestionsForTrack(
   allQuestions: Question[],
   track: StudyTrack,
-  count?: number
+  count?: number,
+  targetedCategories?: Category[]
 ): Question[] {
-  const allowedCategories = TRACK_CATEGORIES[track] || TRACK_CATEGORIES.cpns;
+  // Jika paket memiliki sub-kategori spesifik (misal: hanya TIU, atau hanya Penalaran MTK)
+  const allowedCategories = targetedCategories && targetedCategories.length > 0
+    ? targetedCategories
+    : (TRACK_CATEGORIES[track] || TRACK_CATEGORIES.cpns);
+
   const filtered = allQuestions.filter((q) => allowedCategories.includes(q.category));
 
   if (filtered.length === 0) {
-    // Fallback bila bank soal track spesifik belum lengkap: gunakan semua soal
-    return count ? allQuestions.slice(0, count) : allQuestions;
+    // Fallback cadangan bila kategori spesifik belum ada soal: gunakan kategori umum kamar
+    const fallbackKamar = allQuestions.filter((q) => (TRACK_CATEGORIES[track] || []).includes(q.category));
+    const fallbackPool = fallbackKamar.length > 0 ? fallbackKamar : allQuestions;
+    return count ? fallbackPool.slice(0, count) : fallbackPool;
   }
 
   // Shuffle acak

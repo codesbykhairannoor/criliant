@@ -288,7 +288,8 @@ export default function HomePage() {
     const questionsForExam = getFilteredQuestionsForTrack(
       allQuestions,
       activeTrack,
-      selectedPkg.questionCount
+      selectedPkg.questionCount,
+      selectedPkg.targetedCategories
     );
 
     setExamMode('TRYOUT_FULL');
