@@ -85,7 +85,7 @@ export const SNBT_QUESTION_BANK: Question[] = [
     text: 'Diberikan fungsi f(x) = (2x - 3) / (x + 4) untuk x ≠ -4. Jika g(x) = 3x + 1, nilai dari (f ∘ g)(2) adalah...',
     category: 'TPS_KUANTITATIF',
     subTopic: 'Fungsi Komposisi Aljabar',
-    options: ['1', '11/11', '1.5', '11/11 (=1)', '11/10'],
+    options: ['1', '1.5', '2', '11/10', '11/12'],
     correctOptionIndex: 0,
     explanation: 'g(2) = 3(2) + 1 = 7. Maka (f ∘ g)(2) = f(g(2)) = f(7) = (2(7) - 3) / (7 + 4) = (14 - 3) / 11 = 11 / 11 = 1.',
     difficulty: 'easy'

@@ -77,29 +77,29 @@ export const ArenaView: React.FC<ArenaViewProps> = ({
         </p>
 
         {/* Dual Mode Switcher: Paket Mandiri vs Weekly Contest */}
-        <div className="grid grid-cols-2 gap-2 mt-4 p-1 bg-slate-100 dark:bg-slate-900/60 rounded-2xl border border-slate-200/70 dark:border-slate-800">
+        <div className="grid grid-cols-2 gap-1.5 sm:gap-2 mt-4 p-1 bg-slate-100 dark:bg-slate-900/60 rounded-2xl border border-slate-200/70 dark:border-slate-800">
           <button
             onClick={() => setArenaSubTab('packages')}
-            className={`py-2 px-3 text-xs font-bold rounded-xl transition-all flex items-center justify-center gap-2 ${
+            className={`py-2 px-2 sm:px-3 text-[11px] sm:text-xs font-bold rounded-xl transition-all flex items-center justify-center gap-1.5 sm:gap-2 ${
               arenaSubTab === 'packages'
                 ? 'bg-white dark:bg-[#162137] text-blue-600 dark:text-blue-400 shadow-xs'
                 : 'text-slate-500 hover:text-slate-900 dark:hover:text-white'
             }`}
           >
-            <Layers className="w-4 h-4" />
-            <span>Paket Simulasi & Drill</span>
+            <Layers className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" />
+            <span className="truncate">Paket &amp; Drill</span>
           </button>
           <button
             onClick={() => setArenaSubTab('contests')}
-            className={`py-2 px-3 text-xs font-bold rounded-xl transition-all flex items-center justify-center gap-2 ${
+            className={`py-2 px-2 sm:px-3 text-[11px] sm:text-xs font-bold rounded-xl transition-all flex items-center justify-center gap-1.5 sm:gap-2 ${
               arenaSubTab === 'contests'
                 ? 'bg-white dark:bg-[#162137] text-amber-500 dark:text-amber-400 shadow-xs'
                 : 'text-slate-500 hover:text-slate-900 dark:hover:text-white'
             }`}
           >
-            <Trophy className="w-4 h-4 text-amber-500" />
-            <span>Weekly & Night Contest</span>
-            <span className="text-[9px] font-black uppercase px-1.5 py-0.2 bg-rose-500 text-white rounded-full">
+            <Trophy className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-500 flex-shrink-0" />
+            <span className="truncate">Contest Arena</span>
+            <span className="text-[9px] font-black uppercase px-1.5 py-0.2 bg-rose-500 text-white rounded-full flex-shrink-0">
               LIVE
             </span>
           </button>

@@ -7,16 +7,14 @@ import {
   Award,
   Search,
   ShieldCheck,
-  ChevronRight,
-  Target,
   GraduationCap,
-  Shield
+  Shield,
+  X
 } from 'lucide-react';
 import {
   PASSING_GRADE_TWK,
   PASSING_GRADE_TIU,
-  PASSING_GRADE_TKP,
-  CASHTAGS_BY_TRACK
+  PASSING_GRADE_TKP
 } from '@/data/constants';
 
 interface RightSidebarProps {
@@ -24,13 +22,15 @@ interface RightSidebarProps {
   onSelectCashtag: (tag: string) => void;
   onStartExam: (modeId: string) => void;
   streakDays: number;
+  searchQuery: string;
+  onSearchChange: (q: string) => void;
 }
 
 export const RightSidebar: React.FC<RightSidebarProps> = ({
   activeTrack,
   onSelectCashtag,
-  onStartExam,
-  streakDays,
+  searchQuery,
+  onSearchChange,
 }) => {
   // 1. Trending tags 100% tersaring per jalur aktif
   const trendingTagsByTrack: Record<StudyTrack, Array<{ tag: string; posts: string; sub: string }>> = {
@@ -84,9 +84,20 @@ export const RightSidebar: React.FC<RightSidebarProps> = ({
         <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
         <input
           type="text"
+          value={searchQuery}
+          onChange={(e) => onSearchChange(e.target.value)}
           placeholder={`Cari topik di Kamar ${activeTrack.toUpperCase()}...`}
-          className="w-full pl-9 pr-4 py-2 bg-white dark:bg-[#111726] hover:bg-slate-50 dark:hover:bg-slate-800/80 focus:bg-white dark:focus:bg-[#111726] text-xs font-semibold rounded-xl border border-slate-200/80 dark:border-slate-800 focus:border-blue-500 focus:outline-none transition-all text-slate-900 dark:text-white placeholder:text-slate-400 shadow-xs"
+          className="w-full pl-9 pr-8 py-2 bg-white dark:bg-[#111726] hover:bg-slate-50 dark:hover:bg-slate-800/80 focus:bg-white dark:focus:bg-[#111726] text-xs font-semibold rounded-xl border border-slate-200/80 dark:border-slate-800 focus:border-blue-500 focus:outline-none transition-all text-slate-900 dark:text-white placeholder:text-slate-400 shadow-xs"
         />
+        {searchQuery && (
+          <button
+            onClick={() => onSearchChange('')}
+            className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+            aria-label="Hapus pencarian"
+          >
+            <X className="w-3.5 h-3.5" />
+          </button>
+        )}
       </div>
 
       {/* 2. TRENDING TOPICS (100% Terisolasi per Kamar Ujian) */}

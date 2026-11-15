@@ -22,6 +22,13 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({
   const [bio, setBio] = useState(userProfile.bio);
   const [track, setTrack] = useState<StudyTrack>(userProfile.studyTrack);
 
+  React.useEffect(() => {
+    setName(userProfile.name);
+    setTargetAgency(userProfile.targetAgency);
+    setBio(userProfile.bio);
+    setTrack(userProfile.studyTrack);
+  }, [userProfile]);
+
   if (!isOpen) return null;
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -41,7 +48,7 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-md flex items-center justify-center p-4">
-      <div className="bg-white dark:bg-[#0B0F19] rounded-3xl max-w-md w-full p-6 sm:p-7 shadow-2xl border border-slate-200 dark:border-[#1E293B] space-y-5 animate-in zoom-in-95 duration-200 transition-colors">
+      <div className="bg-white dark:bg-[#0B0F19] rounded-3xl max-w-md w-full p-6 sm:p-7 shadow-2xl border border-slate-200 dark:border-[#1E293B] space-y-5 animate-in zoom-in-95 duration-200 transition-colors max-h-[92vh] overflow-y-auto">
         {/* Header */}
         <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-[#1E293B]">
           <div className="flex items-center gap-2">
@@ -58,17 +65,17 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({
 
         {/* Avatar Preview */}
         <div className="flex items-center gap-3.5 bg-slate-50 dark:bg-[#0F172A] p-3.5 rounded-2xl border border-slate-200/80 dark:border-[#1E293B]">
-          <div className="w-12 h-12 rounded-full bg-[#2563EB] text-white font-black text-lg flex items-center justify-center shadow-md">
+          <div className="w-12 h-12 rounded-full bg-[#2563EB] text-white font-black text-lg flex items-center justify-center shadow-md flex-shrink-0">
             {name.trim().charAt(0).toUpperCase() || 'P'}
           </div>
-          <div>
+          <div className="min-w-0">
             <div className="flex items-center gap-1.5">
-              <span className="font-extrabold text-sm text-[#0F1419] dark:text-white">{name || 'Nama Pejuang'}</span>
-              <span className="text-[10px] bg-blue-100 dark:bg-blue-950/60 text-[#2563EB] dark:text-[#38BDF8] font-bold px-1.5 py-0.2 rounded">
-                Guest Sesi
+              <span className="font-extrabold text-sm text-[#0F1419] dark:text-white truncate">{name || 'Nama Pejuang'}</span>
+              <span className="text-[10px] bg-blue-100 dark:bg-blue-950/60 text-[#2563EB] dark:text-[#38BDF8] font-bold px-1.5 py-0.2 rounded flex-shrink-0">
+                Aktif
               </span>
             </div>
-            <p className="text-xs text-slate-500 dark:text-slate-400">Target: {targetAgency || 'Kemenkeu'}</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400 truncate">Target: {targetAgency || 'Kemenkeu'}</p>
           </div>
         </div>
 
@@ -103,8 +110,8 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({
           </div>
           <p className="text-[10px] opacity-75 leading-tight pt-1 border-t border-black/5 dark:border-white/5">
             {userProfile.isCompetenceVerified
-              ? '✅ Akunmu bebas bot dan memiliki hak penuh upvote/downvote dalam ekosistem Criliant.'
-              : 'ℹ️ Jawab minimal 1 kuis mikro di feed untuk mengaktifkan hak voting dan membuktikan kamu bukan bot.'}
+              ? '✅ Akunmu terverifikasi bebas bot dengan hak penuh suka (❤️), komentar, dan lapor dalam ekosistem Criliant.'
+              : 'ℹ️ Jawab minimal 1 kuis mikro di feed untuk mengaktifkan lencana Verified Human.'}
           </p>
         </div>
 

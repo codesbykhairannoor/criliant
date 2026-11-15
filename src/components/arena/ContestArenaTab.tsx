@@ -1,21 +1,19 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { ScheduledContest, ContestParticipantStanding, ContestTier, UserProfile } from '@/types';
+import React, { useState } from 'react';
+import { ScheduledContest, ContestParticipantStanding, UserProfile } from '@/types';
 import { CONTEST_TIER_CONFIG, getTierFromRating } from '@/data/contests';
+import { ContestStandingsModal } from './ContestStandingsModal';
 import {
   Trophy,
-  Flame,
   Clock,
   Users,
   CheckCircle2,
   Calendar,
   ChevronRight,
   TrendingUp,
-  Sparkles,
-  AlertCircle,
   PlayCircle,
-  History
+  History,
 } from 'lucide-react';
 
 interface ContestArenaTabProps {
@@ -35,9 +33,11 @@ export const ContestArenaTab: React.FC<ContestArenaTabProps> = ({
   const [standings, setStandings] = useState<ContestParticipantStanding[]>([]);
   const [isLoadingStandings, setIsLoadingStandings] = useState(false);
 
-  const userRating = userProfile?.contestRating || 1500;
+  const userRating = userProfile?.contestRating ?? 1500;
+  const contestsAttended = userProfile?.contestsAttended ?? 0;
   const userTier = getTierFromRating(userRating);
   const tierConfig = CONTEST_TIER_CONFIG[userTier];
+  const estimatedTopPct = Math.max(1, Math.min(99, Math.round(100 - ((userRating - 1000) / 1400) * 100)));
 
   const liveContests = contests.filter((c) => c.status === 'LIVE');
   const upcomingContests = contests.filter((c) => c.status === 'UPCOMING');
@@ -62,40 +62,38 @@ export const ContestArenaTab: React.FC<ContestArenaTabProps> = ({
   return (
     <div className="space-y-6 select-none">
       {/* 1. LEETCODE ELO RATING HERO CARD */}
-      <div className="bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 text-white rounded-3xl p-5 sm:p-6 border border-indigo-900/60 shadow-xl relative overflow-hidden">
+      <div className="bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 text-white rounded-3xl p-4 sm:p-6 border border-indigo-900/60 shadow-xl relative overflow-hidden">
         <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
 
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 relative z-10">
           <div>
-            <div className="flex items-center gap-2 mb-2">
+            <div className="flex items-center gap-2 mb-2 flex-wrap">
               <span className="text-[10px] font-black uppercase tracking-wider bg-indigo-500/20 text-indigo-300 px-2.5 py-0.5 rounded-full border border-indigo-400/30 flex items-center gap-1">
                 <Trophy className="w-3.5 h-3.5 text-amber-400" />
-                LeetCode-Style Competitive Arena
+                Competitive Arena
               </span>
-              <span className="text-xs text-slate-400 font-bold">
-                Musim 2026/2027
-              </span>
+              <span className="text-xs text-slate-400 font-bold">Musim 2026/2027</span>
             </div>
-            <h3 className="text-xl sm:text-2xl font-black tracking-tight text-white flex items-center gap-2">
+            <h3 className="text-lg sm:text-2xl font-black tracking-tight text-white flex items-center gap-2">
               <span>Peringkat Kompetitif</span>
               <span className="text-2xl">{tierConfig.icon}</span>
             </h3>
             <p className="text-xs text-slate-300 mt-1 max-w-md leading-relaxed">
-              Ikuti Weekly CAT Grand Prix dan Midweek Night Clash untuk mendongkrak skor ELO Rating dan memperebutkan Tier Grandmaster Nasional.
+              Ikuti Weekly Grand Prix dan Night Clash untuk mendongkrak skor ELO Rating dan memperebutkan Tier Grandmaster Nasional.
             </p>
           </div>
 
           {/* User ELO Score Card */}
-          <div className="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/15 flex items-center gap-4 flex-shrink-0">
+          <div className="bg-white/10 backdrop-blur-md p-3.5 sm:p-4 rounded-2xl border border-white/15 flex items-center justify-between sm:justify-start gap-4 flex-shrink-0">
             <div>
               <span className="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">
                 Contest Rating
               </span>
               <div className="flex items-baseline gap-1.5">
-                <span className="text-3xl font-black text-amber-400">{userRating}</span>
+                <span className="text-2xl sm:text-3xl font-black text-amber-400">{userRating}</span>
                 <span className="text-xs font-bold text-slate-300">ELO</span>
               </div>
-              <span className={`inline-block text-[11px] font-extrabold px-2 py-0.5 rounded-md mt-1 border ${tierConfig.badgeBg}`}>
+              <span className={`inline-block text-[10px] sm:text-[11px] font-extrabold px-2 py-0.5 rounded-md mt-1 border ${tierConfig.badgeBg}`}>
                 {tierConfig.label}
               </span>
             </div>
@@ -104,29 +102,28 @@ export const ContestArenaTab: React.FC<ContestArenaTabProps> = ({
               <span className="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">
                 Kontes Diikuti
               </span>
-              <span className="text-xl font-black text-white">
-                {userProfile?.contestsAttended || 3}
-              </span>
-              <span className="text-[10px] text-emerald-400 block font-bold mt-0.5 flex items-center justify-end gap-0.5">
-                <TrendingUp className="w-3 h-3" /> Top 4.2%
+              <span className="text-xl font-black text-white">{contestsAttended}</span>
+              <span className="text-[10px] text-emerald-400 font-bold mt-0.5 flex items-center justify-end gap-0.5">
+                <TrendingUp className="w-3 h-3" />
+                {contestsAttended > 0 ? `Top ${estimatedTopPct}%` : 'Belum tanding'}
               </span>
             </div>
           </div>
         </div>
 
         {/* Tier Roadmap Mini Bar */}
-        <div className="mt-5 pt-4 border-t border-white/10 grid grid-cols-2 sm:grid-cols-5 gap-2 text-center text-[10px] font-bold">
+        <div className="mt-4 pt-4 border-t border-white/10 grid grid-cols-2 sm:grid-cols-5 gap-2 text-center text-[10px] font-bold">
           <div className="p-1.5 rounded-lg bg-amber-950/40 border border-amber-800/40 text-amber-300">
             🟤 Novice (&lt;1400)
           </div>
           <div className="p-1.5 rounded-lg bg-emerald-950/40 border border-emerald-800/40 text-emerald-300">
-            🟢 Fighter (1400-1599)
+            🟢 Fighter (1400+)
           </div>
           <div className="p-1.5 rounded-lg bg-blue-950/40 border border-blue-800/40 text-blue-300">
-            🔵 Expert (1600-1849)
+            🔵 Expert (1600+)
           </div>
           <div className="p-1.5 rounded-lg bg-purple-950/40 border border-purple-800/40 text-purple-300">
-            🟣 Master (1850-2099)
+            🟣 Master (1850+)
           </div>
           <div className="p-1.5 rounded-lg bg-rose-950/40 border border-rose-800/40 text-rose-300 col-span-2 sm:col-span-1">
             👑 Grandmaster (2100+)
@@ -134,7 +131,7 @@ export const ContestArenaTab: React.FC<ContestArenaTabProps> = ({
         </div>
       </div>
 
-      {/* 2. LIVE CONTESTS (SEDANG BERLANGSUNG) */}
+      {/* 2. LIVE CONTESTS */}
       {liveContests.length > 0 && (
         <div className="space-y-3">
           <div className="flex items-center gap-2 px-1">
@@ -150,11 +147,11 @@ export const ContestArenaTab: React.FC<ContestArenaTabProps> = ({
           {liveContests.map((c) => (
             <div
               key={c.id}
-              className="bg-white dark:bg-[#111726] rounded-3xl p-5 border-2 border-rose-500 shadow-lg shadow-rose-500/10 relative overflow-hidden space-y-4"
+              className="bg-white dark:bg-[#111726] rounded-3xl p-4 sm:p-5 border-2 border-rose-500 shadow-lg shadow-rose-500/10 relative overflow-hidden space-y-4"
             >
               <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
                 <div>
-                  <div className="flex items-center gap-2 mb-1.5">
+                  <div className="flex items-center gap-2 mb-1.5 flex-wrap">
                     <span className="text-[10px] font-black uppercase bg-rose-100 dark:bg-rose-950/80 text-rose-700 dark:text-rose-300 px-2.5 py-0.5 rounded-full border border-rose-300 dark:border-rose-800 animate-pulse">
                       🔴 SEDANG BERLANGSUNG
                     </span>
@@ -163,7 +160,7 @@ export const ContestArenaTab: React.FC<ContestArenaTabProps> = ({
                       {c.durationMinutes} Menit Presisi
                     </span>
                   </div>
-                  <h4 className="text-lg font-black text-slate-900 dark:text-white">
+                  <h4 className="text-base sm:text-lg font-black text-slate-900 dark:text-white">
                     {c.title}
                   </h4>
                   <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
@@ -182,11 +179,10 @@ export const ContestArenaTab: React.FC<ContestArenaTabProps> = ({
                 </div>
               </div>
 
-              {/* Action Buttons */}
               <div className="flex flex-col sm:flex-row gap-2.5 pt-1">
                 <button
                   onClick={() => onEnterContest(c)}
-                  className="flex-1 py-3 px-4 bg-rose-600 hover:bg-rose-700 text-white font-black text-xs sm:text-sm rounded-2xl shadow-md shadow-rose-600/25 transition-all flex items-center justify-center gap-2 active:scale-98"
+                  className="flex-1 py-3 px-4 bg-rose-600 hover:bg-rose-700 text-white font-black text-xs sm:text-sm rounded-2xl shadow-md shadow-rose-600/25 transition-all flex items-center justify-center gap-2 active:scale-[0.98]"
                 >
                   <PlayCircle className="w-4 h-4" />
                   <span>Masuk Ruang Ujian Live ({c.questionCount} Soal)</span>
@@ -204,16 +200,14 @@ export const ContestArenaTab: React.FC<ContestArenaTabProps> = ({
         </div>
       )}
 
-      {/* 3. UPCOMING CONTESTS (JADWAL AKAN DATANG) */}
+      {/* 3. UPCOMING CONTESTS */}
       <div className="space-y-3">
-        <div className="flex items-center justify-between px-1">
+        <div className="flex items-center justify-between px-1 gap-2">
           <h4 className="text-xs font-black uppercase tracking-wider text-slate-900 dark:text-white flex items-center gap-1.5">
             <Calendar className="w-4 h-4 text-blue-600 dark:text-blue-400" />
-            Jadwal Kontes Resmi Mendatang
+            Jadwal Kontes Mendatang
           </h4>
-          <span className="text-[10px] text-slate-400 font-bold">
-            Waktu Indonesia Barat (WIB)
-          </span>
+          <span className="text-[10px] text-slate-400 font-bold">Waktu WIB</span>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
@@ -223,14 +217,14 @@ export const ContestArenaTab: React.FC<ContestArenaTabProps> = ({
             return (
               <div
                 key={c.id}
-                className="bg-white dark:bg-[#111726] p-5 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm flex flex-col justify-between space-y-4 hover:border-slate-300 dark:hover:border-slate-700 transition-all"
+                className="bg-white dark:bg-[#111726] p-4 sm:p-5 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm flex flex-col justify-between space-y-4 hover:border-slate-300 dark:hover:border-slate-700 transition-all"
               >
                 <div>
-                  <div className="flex items-center justify-between text-xs mb-2">
-                    <span className="text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-200/50 dark:border-blue-800/40">
+                  <div className="flex items-center justify-between text-xs mb-2 gap-2">
+                    <span className="text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-200/50 dark:border-blue-800/40 truncate">
                       {c.badgeTag}
                     </span>
-                    <span className="text-[11px] font-bold text-slate-400 flex items-center gap-1">
+                    <span className="text-[11px] font-bold text-slate-400 flex items-center gap-1 flex-shrink-0">
                       <Clock className="w-3.5 h-3.5" />
                       {c.durationMinutes}m
                     </span>
@@ -251,7 +245,7 @@ export const ContestArenaTab: React.FC<ContestArenaTabProps> = ({
                       {c.registeredCount.toLocaleString('id-ID')} Pendaftar
                     </span>
                     <span className="font-bold text-slate-700 dark:text-slate-300">
-                      {c.questionCount} Soal HOTS
+                      {c.questionCount} Soal
                     </span>
                   </div>
 
@@ -260,13 +254,13 @@ export const ContestArenaTab: React.FC<ContestArenaTabProps> = ({
                     className={`w-full py-2.5 px-3 rounded-xl font-bold text-xs transition-all flex items-center justify-center gap-1.5 ${
                       isRegistered
                         ? 'bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800'
-                        : 'bg-blue-600 hover:bg-blue-700 text-white shadow-xs active:scale-98'
+                        : 'bg-blue-600 hover:bg-blue-700 text-white shadow-xs active:scale-[0.98]'
                     }`}
                   >
                     {isRegistered ? (
                       <>
                         <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                        <span>Sudah Terdaftar (Pasang Alarm)</span>
+                        <span>Sudah Terdaftar</span>
                       </>
                     ) : (
                       <>
@@ -284,14 +278,12 @@ export const ContestArenaTab: React.FC<ContestArenaTabProps> = ({
 
       {/* 4. PAST CONTESTS / VIRTUAL CONTEST ARCHIVE */}
       <div className="space-y-3">
-        <div className="flex items-center justify-between px-1">
+        <div className="flex items-center justify-between px-1 gap-2">
           <h4 className="text-xs font-black uppercase tracking-wider text-slate-900 dark:text-white flex items-center gap-1.5">
             <History className="w-4 h-4 text-slate-400" />
-            Arsip Virtual Contest (Latihan Mandiri)
+            Arsip Virtual Contest
           </h4>
-          <span className="text-[10px] text-slate-400 font-bold">
-            Simulasi Offline Realistis
-          </span>
+          <span className="text-[10px] text-slate-400 font-bold">Latihan Mandiri</span>
         </div>
 
         <div className="space-y-2.5">
@@ -306,12 +298,10 @@ export const ContestArenaTab: React.FC<ContestArenaTabProps> = ({
                     Selesai
                   </span>
                   <span className="text-[11px] font-bold text-slate-400">
-                    {c.registeredCount.toLocaleString('id-ID')} Peserta Telah Tanding
+                    {c.registeredCount.toLocaleString('id-ID')} Peserta
                   </span>
                 </div>
-                <h5 className="font-bold text-sm text-slate-900 dark:text-white">
-                  {c.title}
-                </h5>
+                <h5 className="font-bold text-sm text-slate-900 dark:text-white">{c.title}</h5>
               </div>
 
               <div className="flex items-center gap-2 flex-shrink-0">
@@ -324,9 +314,9 @@ export const ContestArenaTab: React.FC<ContestArenaTabProps> = ({
                 </button>
                 <button
                   onClick={() => onEnterContest(c)}
-                  className="py-2 px-3.5 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl transition-all flex items-center gap-1.5 active:scale-98"
+                  className="py-2 px-3.5 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl transition-all flex items-center gap-1.5 active:scale-[0.98]"
                 >
-                  <span>Mulai Virtual Test</span>
+                  <span>Virtual Test</span>
                   <ChevronRight className="w-3.5 h-3.5" />
                 </button>
               </div>
@@ -335,115 +325,13 @@ export const ContestArenaTab: React.FC<ContestArenaTabProps> = ({
         </div>
       </div>
 
-      {/* 5. MODAL LEADERBOARD / KLASEMEN KONTES */}
-      {selectedContestForModal && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
-          <div className="bg-white dark:bg-[#0B0F19] rounded-3xl max-w-2xl w-full max-h-[85vh] flex flex-col justify-between shadow-2xl border border-slate-200 dark:border-[#1E293B] overflow-hidden transition-colors">
-            {/* Header Modal */}
-            <div className="p-5 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
-              <div>
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="text-[10px] font-black uppercase px-2 py-0.5 rounded bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 border border-amber-200/50">
-                    Leaderboard Nasional
-                  </span>
-                  <span className="text-xs text-slate-400 font-bold">
-                    {selectedContestForModal.registeredCount.toLocaleString('id-ID')} Peserta
-                  </span>
-                </div>
-                <h3 className="text-base sm:text-lg font-black text-slate-900 dark:text-white">
-                  {selectedContestForModal.title}
-                </h3>
-              </div>
-              <button
-                onClick={() => setSelectedContestForModal(null)}
-                className="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-900 dark:hover:text-white flex items-center justify-center font-bold"
-              >
-                ✕
-              </button>
-            </div>
-
-            {/* Standings Table Body */}
-            <div className="p-5 overflow-y-auto space-y-2 flex-1">
-              {isLoadingStandings ? (
-                <div className="py-12 text-center text-xs font-bold text-slate-400 animate-pulse">
-                  Memuat peringkat klasemen...
-                </div>
-              ) : (
-                standings.map((s) => {
-                  const sTier = CONTEST_TIER_CONFIG[s.tier];
-                  const minutes = Math.floor(s.penaltyTimeSeconds / 60);
-                  const seconds = s.penaltyTimeSeconds % 60;
-                  const timeFormatted = `${minutes}m ${seconds}s`;
-
-                  return (
-                    <div
-                      key={s.userId}
-                      className={`p-3 rounded-2xl border flex items-center justify-between gap-3 transition-colors ${
-                        s.rank === 1
-                          ? 'bg-amber-50/70 dark:bg-amber-950/30 border-amber-300 dark:border-amber-800/60'
-                          : s.rank <= 3
-                          ? 'bg-slate-50 dark:bg-slate-900/60 border-slate-200 dark:border-slate-800'
-                          : 'bg-white dark:bg-[#111726] border-slate-100 dark:border-slate-800/80'
-                      }`}
-                    >
-                      <div className="flex items-center gap-3">
-                        <span
-                          className={`w-7 h-7 rounded-xl flex items-center justify-center font-black text-xs ${
-                            s.rank === 1
-                              ? 'bg-amber-500 text-white shadow-xs'
-                              : s.rank === 2
-                              ? 'bg-slate-300 text-slate-800'
-                              : s.rank === 3
-                              ? 'bg-amber-700 text-white'
-                              : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400'
-                          }`}
-                        >
-                          {s.rank}
-                        </span>
-
-                        <div className="w-8 h-8 rounded-xl bg-blue-600 text-white font-black text-xs flex items-center justify-center">
-                          {s.avatarInitial}
-                        </div>
-
-                        <div>
-                          <div className="flex items-center gap-1.5">
-                            <span className="font-bold text-xs text-slate-900 dark:text-white">
-                              {s.userName}
-                            </span>
-                            <span className="text-[10px]">{sTier.icon}</span>
-                          </div>
-                          <span className={`text-[10px] font-bold ${sTier.textColor}`}>
-                            {s.rating} ELO • {sTier.label}
-                          </span>
-                        </div>
-                      </div>
-
-                      <div className="text-right">
-                        <span className="text-sm font-black text-blue-600 dark:text-blue-400 block">
-                          {s.score} Poin
-                        </span>
-                        <span className="text-[10px] font-medium text-slate-400 block">
-                          ⏱️ {timeFormatted}
-                        </span>
-                      </div>
-                    </div>
-                  );
-                })
-              )}
-            </div>
-
-            {/* Modal Footer */}
-            <div className="p-4 bg-slate-50 dark:bg-[#0D1322] border-t border-slate-100 dark:border-slate-800 flex justify-end">
-              <button
-                onClick={() => setSelectedContestForModal(null)}
-                className="py-2 px-5 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-bold text-xs rounded-xl"
-              >
-                Tutup Klasemen
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      {/* 5. STANDINGS MODAL */}
+      <ContestStandingsModal
+        contest={selectedContestForModal}
+        standings={standings}
+        isLoading={isLoadingStandings}
+        onClose={() => setSelectedContestForModal(null)}
+      />
     </div>
   );
 };

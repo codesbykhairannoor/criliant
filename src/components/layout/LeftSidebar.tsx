@@ -21,6 +21,7 @@ import {
 } from 'lucide-react';
 import { StudyTrack, UserProfile } from '@/types';
 import { STUDY_TRACKS } from '@/data/constants';
+import { EXAM_PACKAGES } from '@/data/examPackages';
 import { useTheme } from '@/context/ThemeContext';
 import { AuthTriggerReason } from '@/components/auth/AuthModal';
 
@@ -30,6 +31,7 @@ interface LeftSidebarProps {
   activeTrack: StudyTrack;
   setActiveTrack: (track: StudyTrack) => void;
   userProfile: UserProfile | null;
+  totalQuestionsCount?: number;
   onOpenCreatePost: () => void;
   onStartExam: (modeId: string) => void;
   onOpenEditProfile: () => void;
@@ -43,19 +45,26 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
   activeTrack,
   setActiveTrack,
   userProfile,
+  totalQuestionsCount = 60,
   onOpenCreatePost,
-  onStartExam,
   onOpenEditProfile,
   onOpenAuthModal,
   onLogout,
 }) => {
   const { isDark, toggleTheme } = useTheme();
+  const flagshipCount = (EXAM_PACKAGES[activeTrack] || EXAM_PACKAGES.cpns)[0]?.questionCount || 110;
+  const arenaLabel =
+    activeTrack === 'snbt'
+      ? 'Arena UTBK SNBT'
+      : activeTrack === 'kedinasan'
+        ? 'Arena Kedinasan'
+        : 'Arena CAT BKN';
 
   const navItems = [
     { id: 'feed', label: 'Feed Utama', icon: Home, badge: 'Live' },
     { id: 'profile', label: 'Profil Pejuang', icon: User },
-    { id: 'arena', label: 'Arena CAT BKN', icon: Swords, badge: '110 Soal' },
-    { id: 'bank', label: 'Bank Soal', icon: BookOpen, badge: '154+' },
+    { id: 'arena', label: arenaLabel, icon: Swords, badge: `${flagshipCount} Soal` },
+    { id: 'bank', label: 'Bank Soal', icon: BookOpen, badge: `${totalQuestionsCount}+` },
     { id: 'bookmarks', label: 'Soal Tersimpan', icon: Bookmark },
   ];
 

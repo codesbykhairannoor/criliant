@@ -7,23 +7,20 @@ import {
   ShieldCheck,
   ShieldAlert,
   Flame,
-  Award,
-  BookOpen,
-  Heart,
   UserPlus,
   UserCheck,
   Edit3,
-  Calendar,
   Target,
-  Sparkles,
-  ArrowLeft
+  ArrowLeft,
+  Trophy,
 } from 'lucide-react';
 import { AuthTriggerReason } from '@/components/auth/AuthModal';
+import { CONTEST_TIER_CONFIG, getTierFromRating } from '@/data/contests';
 
 interface ProfileViewProps {
   userProfile: UserProfile | null;
   currentUser: UserProfile | null;
-  targetUser?: UserProfile | null; // Profile being viewed (can be self or another creator)
+  targetUser?: UserProfile | null;
   posts: StreamPost[];
   bookmarkedIds: Set<string>;
   onLike: (postId: string) => void;
@@ -36,10 +33,10 @@ interface ProfileViewProps {
   onToggleFollow: (targetUserId: string) => void;
   onRequireAuth?: (reason: AuthTriggerReason) => void;
   onBackToFeed: () => void;
+  onGoToArena?: () => void;
 }
 
 export const ProfileView: React.FC<ProfileViewProps> = ({
-  userProfile,
   currentUser,
   targetUser,
   posts,
@@ -54,23 +51,26 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
   onToggleFollow,
   onRequireAuth,
   onBackToFeed,
+  onGoToArena,
 }) => {
-  // If targetUser is null, view self profile
-  const profileToDisplay = targetUser || currentUser || {
+  const profileToDisplay: UserProfile = targetUser || currentUser || {
     id: 'guest_user',
     name: 'Pejuang Tamu',
     targetAgency: 'Kementerian Keuangan (DJP)',
     avatarInitial: 'P',
-    bio: 'Pejuang NIP 2026. Belajar konsisten bersama ribuan pejuang lainnya di Criliant! 🎯',
+    bio: 'Pejuang Seleksi 2026. Belajar konsisten bersama ribuan pejuang lainnya di Criliant! 🎯',
     streakDays: 1,
     studyTrack: 'cpns' as StudyTrack,
     quizzesSolvedCount: 0,
     isCompetenceVerified: false,
     reputationKarma: 10,
-    followersCount: 142,
-    followingCount: 28,
+    followersCount: 0,
+    followingCount: 0,
     followingIds: [],
-    highestExamScore: 485,
+    highestExamScore: 0,
+    contestRating: 1500,
+    contestsAttended: 0,
+    ratingHistory: [],
   };
 
   const isSelf = currentUser?.id === profileToDisplay.id;
@@ -78,16 +78,16 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
 
   const [activeTab, setActiveTab] = useState<'posts' | 'quiz' | 'bookmarks' | 'rating'>('posts');
 
-  // Filter posts created by this profile
   const profilePosts = posts.filter(
     (p) => p.authorName.toLowerCase() === profileToDisplay.name.toLowerCase() || p.authorId === profileToDisplay.id
   );
-
   const profileQuizzes = profilePosts.filter((p) => p.microQuiz !== null);
-
   const bookmarkedPosts = posts.filter((p) => bookmarkedIds.has(p.id));
+  const totalHeartsReceived = profilePosts.reduce((acc, p) => acc + (p.likeCount ?? p.score ?? 0), 0);
 
-  const totalHeartsReceived = profilePosts.reduce((acc, p) => acc + (p.likeCount || p.score || 0), 0);
+  const rating = profileToDisplay.contestRating ?? 1500;
+  const tierInfo = CONTEST_TIER_CONFIG[getTierFromRating(rating)];
+  const ratingHistory = profileToDisplay.ratingHistory || [];
 
   return (
     <div className="space-y-4 max-w-2xl mx-auto pb-12">
@@ -107,10 +107,13 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
 
       {/* Hero Card: ID Card Pejuang */}
       <div className="bg-white dark:bg-[#111726] rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm overflow-hidden transition-colors">
-        {/* Dynamic Gradient Banner */}
-        <div className="h-28 sm:h-32 bg-gradient-to-r from-blue-600 via-indigo-600 to-sky-500 relative p-4 flex justify-between items-start">
+        <div className="h-24 sm:h-32 bg-gradient-to-r from-blue-600 via-indigo-600 to-sky-500 relative p-4 flex justify-between items-start">
           <span className="bg-white/20 backdrop-blur-md text-white text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full border border-white/20 flex items-center gap-1">
-            {profileToDisplay.studyTrack === 'snbt' ? '🎓 SNBT UTBK 2026' : profileToDisplay.studyTrack === 'kedinasan' ? '🛡️ SPMB Kedinasan' : '🏛️ SKD BKN 2026'}
+            {profileToDisplay.studyTrack === 'snbt'
+              ? '🎓 SNBT UTBK 2026'
+              : profileToDisplay.studyTrack === 'kedinasan'
+                ? '🛡️ SPMB Kedinasan'
+                : '🏛️ SKD BKN 2026'}
           </span>
 
           {isSelf ? (
@@ -152,9 +155,9 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
         </div>
 
         {/* Identity & Avatar Section */}
-        <div className="px-5 pb-5 pt-0 relative">
-          <div className="flex justify-between items-end -mt-10 sm:-mt-12 mb-3">
-            <div className="w-20 h-20 sm:w-22 sm:h-22 rounded-2xl bg-gradient-to-tr from-blue-700 to-indigo-800 border-4 border-white dark:border-[#111726] text-white font-black text-2xl flex items-center justify-center shadow-lg">
+        <div className="px-4 sm:px-5 pb-5 pt-0 relative">
+          <div className="flex justify-between items-end -mt-9 sm:-mt-12 mb-3">
+            <div className="w-18 h-18 sm:w-22 sm:h-22 rounded-2xl bg-gradient-to-tr from-blue-700 to-indigo-800 border-4 border-white dark:border-[#111726] text-white font-black text-2xl flex items-center justify-center shadow-lg">
               {profileToDisplay.avatarInitial}
             </div>
 
@@ -183,7 +186,7 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
 
           <div>
             <div className="flex items-center gap-2 flex-wrap">
-              <h2 className="text-xl font-black text-slate-900 dark:text-white">
+              <h2 className="text-lg sm:text-xl font-black text-slate-900 dark:text-white">
                 {profileToDisplay.name}
               </h2>
               {profileToDisplay.highestExamScore && profileToDisplay.highestExamScore >= 450 && (
@@ -203,17 +206,17 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
             </p>
           </div>
 
-          {/* Followers & Following Row */}
-          <div className="flex items-center gap-6 mt-4 pt-3.5 border-t border-slate-100 dark:border-slate-800 text-xs">
-            <div className="flex items-center gap-1.5 cursor-pointer hover:underline">
+          {/* Followers & Streak Row */}
+          <div className="flex items-center gap-4 sm:gap-6 mt-4 pt-3.5 border-t border-slate-100 dark:border-slate-800 text-xs flex-wrap">
+            <div className="flex items-center gap-1.5">
               <span className="font-black text-slate-900 dark:text-white">
-                {profileToDisplay.followersCount || 142}
+                {profileToDisplay.followersCount ?? 0}
               </span>
               <span className="text-slate-500 dark:text-slate-400">Pengikut</span>
             </div>
-            <div className="flex items-center gap-1.5 cursor-pointer hover:underline">
+            <div className="flex items-center gap-1.5">
               <span className="font-black text-slate-900 dark:text-white">
-                {profileToDisplay.followingCount || (profileToDisplay.followingIds?.length || 24)}
+                {profileToDisplay.followingIds?.length ?? profileToDisplay.followingCount ?? 0}
               </span>
               <span className="text-slate-500 dark:text-slate-400">Mengikuti</span>
             </div>
@@ -223,34 +226,34 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
             </div>
           </div>
 
-          {/* 4 Study Dossier & LeetCode ELO Metrics */}
+          {/* 4 Study Dossier Metrics */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-3 pt-3 border-t border-slate-100 dark:border-slate-800">
             <div className="p-2.5 bg-indigo-50/70 dark:bg-indigo-950/30 rounded-xl border border-indigo-200/60 dark:border-indigo-900/50 text-center">
               <p className="text-[9px] text-indigo-600 dark:text-indigo-400 font-bold uppercase tracking-wider flex items-center justify-center gap-1">
-                <span>🏆</span> ELO Rating
+                <span>{tierInfo.icon}</span> ELO Rating
               </p>
               <p className="text-base font-black text-indigo-700 dark:text-indigo-300 mt-0.5">
-                {profileToDisplay.contestRating || 1500}
+                {rating}
               </p>
-              <span className="text-[9px] font-bold text-slate-500 dark:text-slate-400 block">
-                Top 4.2%
+              <span className="text-[9px] font-bold text-slate-500 dark:text-slate-400 block truncate">
+                {tierInfo.label}
               </span>
             </div>
 
             <div className="p-2.5 bg-slate-50 dark:bg-[#0D1322] rounded-xl border border-slate-200/70 dark:border-slate-800 text-center">
               <p className="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Skor Terbaik</p>
               <p className="text-base font-black text-blue-600 dark:text-blue-400 mt-0.5">
-                {profileToDisplay.highestExamScore || 485}
+                {profileToDisplay.highestExamScore ?? 0}
               </p>
               <span className="text-[9px] font-bold text-slate-500 dark:text-slate-400 block">
-                CAT Nasional
+                Simulasi Terbaik
               </span>
             </div>
 
             <div className="p-2.5 bg-slate-50 dark:bg-[#0D1322] rounded-xl border border-slate-200/70 dark:border-slate-800 text-center">
               <p className="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Soal Selesai</p>
               <p className="text-base font-black text-slate-800 dark:text-slate-100 mt-0.5">
-                {profileToDisplay.quizzesSolvedCount || 14}
+                {profileToDisplay.quizzesSolvedCount ?? 0}
               </p>
               <span className="text-[9px] font-bold text-slate-500 dark:text-slate-400 block">
                 Proof of Comp.
@@ -260,21 +263,21 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
             <div className="p-2.5 bg-slate-50 dark:bg-[#0D1322] rounded-xl border border-slate-200/70 dark:border-slate-800 text-center">
               <p className="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Apresiasi</p>
               <p className="text-base font-black text-rose-500 mt-0.5">
-                ❤️ {totalHeartsReceived || 428}
+                ❤️ {totalHeartsReceived}
               </p>
               <span className="text-[9px] font-bold text-slate-500 dark:text-slate-400 block">
-                Reputasi
+                Total Love
               </span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Segmented Feed Filter Tabs */}
-      <div className="bg-white dark:bg-[#111726] rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm p-1.5 flex gap-1 text-xs select-none">
+      {/* Scrollable Tabs on Mobile */}
+      <div className="bg-white dark:bg-[#111726] rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm p-1.5 flex gap-1 text-xs select-none overflow-x-auto no-scrollbar">
         <button
           onClick={() => setActiveTab('posts')}
-          className={`flex-1 py-2 font-bold rounded-xl transition-all text-center ${
+          className={`flex-1 min-w-[92px] py-2 px-2 font-bold rounded-xl transition-all text-center whitespace-nowrap ${
             activeTab === 'posts'
               ? 'bg-slate-100 dark:bg-[#162137] text-blue-600 dark:text-blue-400 shadow-xs'
               : 'text-slate-500 hover:text-slate-900 dark:hover:text-white'
@@ -285,7 +288,7 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
 
         <button
           onClick={() => setActiveTab('quiz')}
-          className={`flex-1 py-2 font-bold rounded-xl transition-all text-center ${
+          className={`flex-1 min-w-[92px] py-2 px-2 font-bold rounded-xl transition-all text-center whitespace-nowrap ${
             activeTab === 'quiz'
               ? 'bg-slate-100 dark:bg-[#162137] text-blue-600 dark:text-blue-400 shadow-xs'
               : 'text-slate-500 hover:text-slate-900 dark:hover:text-white'
@@ -297,7 +300,7 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
         {isSelf && (
           <button
             onClick={() => setActiveTab('bookmarks')}
-            className={`flex-1 py-2 font-bold rounded-xl transition-all text-center ${
+            className={`flex-1 min-w-[96px] py-2 px-2 font-bold rounded-xl transition-all text-center whitespace-nowrap ${
               activeTab === 'bookmarks'
                 ? 'bg-slate-100 dark:bg-[#162137] text-blue-600 dark:text-blue-400 shadow-xs'
                 : 'text-slate-500 hover:text-slate-900 dark:hover:text-white'
@@ -309,13 +312,13 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
 
         <button
           onClick={() => setActiveTab('rating')}
-          className={`flex-1 py-2 font-bold rounded-xl transition-all text-center ${
+          className={`flex-1 min-w-[110px] py-2 px-2 font-bold rounded-xl transition-all text-center whitespace-nowrap ${
             activeTab === 'rating'
               ? 'bg-slate-100 dark:bg-[#162137] text-amber-500 dark:text-amber-400 shadow-xs'
               : 'text-slate-500 hover:text-slate-900 dark:hover:text-white'
           }`}
         >
-          🏆 Rating & Kontes
+          🏆 Rating ({ratingHistory.length})
         </button>
       </div>
 
@@ -393,66 +396,78 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
           )
         )}
 
-        {/* LeetCode Style Rating History Sub-Tab */}
+        {/* Real Rating History Sub-Tab */}
         {activeTab === 'rating' && (
-          <div className="space-y-3">
-            <div className="bg-white dark:bg-[#111726] p-5 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-4">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h4 className="text-sm font-black text-slate-900 dark:text-white flex items-center gap-1.5">
-                    <span>👑</span> Riwayat Rating Kontes Resmi
-                  </h4>
-                  <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
-                    Perkembangan ELO Rating dari Weekly CAT Grand Prix dan Night Clash
-                  </p>
-                </div>
-                <div className="text-right">
-                  <span className="text-xl font-black text-amber-500">
-                    {profileToDisplay.contestRating || 1500}
-                  </span>
-                  <span className="text-[10px] text-slate-400 block font-bold">Rating Saat Ini</span>
-                </div>
+          <div className="bg-white dark:bg-[#111726] p-4 sm:p-5 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-4">
+            <div className="flex items-center justify-between gap-2">
+              <div>
+                <h4 className="text-sm font-black text-slate-900 dark:text-white flex items-center gap-1.5">
+                  <span>👑</span> Riwayat Rating Kontes Resmi
+                </h4>
+                <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
+                  Perkembangan ELO Rating dari Weekly Grand Prix & Night Clash
+                </p>
               </div>
-
-              {/* Contest Log Rows */}
-              <div className="space-y-2 pt-2">
-                <div className="p-3 rounded-2xl border border-slate-100 dark:border-slate-800/80 bg-slate-50 dark:bg-slate-900/50 flex items-center justify-between">
-                  <div>
-                    <span className="text-[10px] font-bold text-slate-400 block">10 November 2026</span>
-                    <h5 className="font-bold text-xs text-slate-900 dark:text-white mt-0.5">
-                      Weekly CAT BKN Grand Prix #47
-                    </h5>
-                    <span className="text-[10px] text-slate-500 font-medium">
-                      Peringkat: #42 dari 6.140 Peserta
-                    </span>
-                  </div>
-                  <div className="text-right">
-                    <span className="text-xs font-black text-emerald-600 dark:text-emerald-400 block">
-                      +48 ELO 📈
-                    </span>
-                    <span className="text-[10px] font-bold text-slate-400">Skor: 485/550</span>
-                  </div>
-                </div>
-
-                <div className="p-3 rounded-2xl border border-slate-100 dark:border-slate-800/80 bg-slate-50 dark:bg-slate-900/50 flex items-center justify-between">
-                  <div>
-                    <span className="text-[10px] font-bold text-slate-400 block">3 November 2026</span>
-                    <h5 className="font-bold text-xs text-slate-900 dark:text-white mt-0.5">
-                      Midweek Night Clash #11 (TIU Speedrun)
-                    </h5>
-                    <span className="text-[10px] text-slate-500 font-medium">
-                      Peringkat: #89 dari 3.200 Peserta
-                    </span>
-                  </div>
-                  <div className="text-right">
-                    <span className="text-xs font-black text-emerald-600 dark:text-emerald-400 block">
-                      +32 ELO 📈
-                    </span>
-                    <span className="text-[10px] font-bold text-slate-400">Skor: 140/150</span>
-                  </div>
-                </div>
+              <div className="text-right flex-shrink-0">
+                <span className="text-xl font-black text-amber-500">{rating}</span>
+                <span className="text-[10px] text-slate-400 block font-bold">{tierInfo.label}</span>
               </div>
             </div>
+
+            {ratingHistory.length > 0 ? (
+              <div className="space-y-2 pt-2">
+                {ratingHistory.map((item, idx) => (
+                  <div
+                    key={`${item.contestId}_${idx}`}
+                    className="p-3 rounded-2xl border border-slate-100 dark:border-slate-800/80 bg-slate-50 dark:bg-slate-900/50 flex items-center justify-between gap-2"
+                  >
+                    <div className="min-w-0">
+                      <span className="text-[10px] font-bold text-slate-400 block">{item.date}</span>
+                      <h5 className="font-bold text-xs text-slate-900 dark:text-white mt-0.5 truncate">
+                        {item.contestTitle}
+                      </h5>
+                      <span className="text-[10px] text-slate-500 font-medium">
+                        Peringkat #{item.rank} dari {item.totalParticipants.toLocaleString('id-ID')} Peserta
+                      </span>
+                    </div>
+                    <div className="text-right flex-shrink-0">
+                      <span
+                        className={`text-xs font-black block ${
+                          item.deltaRating >= 0
+                            ? 'text-emerald-600 dark:text-emerald-400'
+                            : 'text-rose-500'
+                        }`}
+                      >
+                        {item.deltaRating >= 0 ? `+${item.deltaRating}` : item.deltaRating} ELO
+                      </span>
+                      <span className="text-[10px] font-bold text-slate-400">
+                        Skor: {item.score} • ELO {item.newRating}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="py-8 text-center space-y-3 border border-dashed border-slate-200 dark:border-slate-800 rounded-2xl">
+                <Trophy className="w-8 h-8 text-amber-400 mx-auto" />
+                <div>
+                  <p className="text-xs font-bold text-slate-700 dark:text-slate-200">
+                    Belum ada riwayat pertandingan kontes
+                  </p>
+                  <p className="text-[11px] text-slate-400 mt-0.5 px-4">
+                    Ikuti Weekly Contest atau Night Clash di Arena untuk mendapatkan perubahan ELO Rating pertamamu!
+                  </p>
+                </div>
+                {onGoToArena && (
+                  <button
+                    onClick={onGoToArena}
+                    className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-xl shadow-sm transition-all"
+                  >
+                    Buka Arena Kontes
+                  </button>
+                )}
+              </div>
+            )}
           </div>
         )}
       </div>

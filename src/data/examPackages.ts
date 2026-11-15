@@ -237,6 +237,161 @@ export const EXAM_PACKAGES: Record<StudyTrack, ExamPackage[]> = {
   ],
 };
 
+export const SPECIAL_EXAM_PACKAGES: Record<string, ExamPackage> = {
+  // CPNS Daily & Flash Bites
+  DAILY_TWK: {
+    id: 'DAILY_TWK',
+    track: 'cpns',
+    title: 'Flash Bite: TWK Integritas & UUD',
+    subtitle: '5 Soal Kilat Wawasan Kebangsaan',
+    description: 'Pemanasan 3 menit pasal UUD 1945, Pancasila, dan integritas ASN.',
+    badge: '3 Menit • 5 Soal',
+    durationSeconds: 3 * 60,
+    questionCount: 5,
+    iconEmoji: '⚖️',
+    subTests: [{ name: 'TWK Kilat', count: 5, note: 'Pilar Negara' }],
+    targetedCategories: ['TWK'],
+  },
+  DAILY_TIU: {
+    id: 'DAILY_TIU',
+    track: 'cpns',
+    title: 'Flash Bite: TIU Hitung Cepat',
+    subtitle: '5 Soal Kilat Deret & Silogisme',
+    description: 'Asah kecepatan hitung numerik dan pola bilangan dalam 4 menit.',
+    badge: '4 Menit • 5 Soal',
+    durationSeconds: 4 * 60,
+    questionCount: 5,
+    iconEmoji: '⚡',
+    subTests: [{ name: 'TIU Kilat', count: 5, note: 'Pola & Numerik' }],
+    targetedCategories: ['TIU'],
+  },
+  DAILY_TKP: {
+    id: 'DAILY_TKP',
+    track: 'cpns',
+    title: 'Flash Bite: TKP Anti-Radikalisme',
+    subtitle: '5 Soal Studi Kasus Skala 1–5',
+    description: 'Uji insting pelayanan publik dan profesionalisme ASN dalam 3 menit.',
+    badge: '3 Menit • 5 Soal',
+    durationSeconds: 3 * 60,
+    questionCount: 5,
+    iconEmoji: '🛡️',
+    subTests: [{ name: 'TKP Kilat', count: 5, note: 'Bobot 1–5' }],
+    targetedCategories: ['TKP'],
+  },
+
+  // SNBT Flash Bites
+  DAILY_SNBT_PU: {
+    id: 'DAILY_SNBT_PU',
+    track: 'snbt',
+    title: 'Flash Bite: TPS Penalaran Umum',
+    subtitle: '5 Soal Kilat Logika Silogisme',
+    description: 'Latihan cepat penalaran deduktif dan induktif standar BPPP.',
+    badge: '3 Menit • 5 Soal',
+    durationSeconds: 3 * 60,
+    questionCount: 5,
+    iconEmoji: '🧠',
+    subTests: [{ name: 'Penalaran Umum', count: 5, note: 'Logika' }],
+    targetedCategories: ['TPS_PENALARAN_UMUM'],
+  },
+  DAILY_SNBT_PM: {
+    id: 'DAILY_SNBT_PM',
+    track: 'snbt',
+    title: 'Flash Bite: Penalaran Matematika',
+    subtitle: '5 Soal Pemodelan Aljabar & Data',
+    description: 'Pemanasan soal cerita kontekstual matematika UTBK.',
+    badge: '5 Menit • 5 Soal',
+    durationSeconds: 5 * 60,
+    questionCount: 5,
+    iconEmoji: '📐',
+    subTests: [{ name: 'Penalaran MTK', count: 5, note: 'HOTS UTBK' }],
+    targetedCategories: ['PENALARAN_MATEMATIKA', 'TPS_KUANTITATIF'],
+  },
+  DAILY_SNBT_LIT: {
+    id: 'DAILY_SNBT_LIT',
+    track: 'snbt',
+    title: 'Flash Bite: Literasi Bahasa',
+    subtitle: '5 Soal Analisis Teks & Wacana',
+    description: 'Menemukan ide pokok dan validitas argumen bacaan dalam 4 menit.',
+    badge: '4 Menit • 5 Soal',
+    durationSeconds: 4 * 60,
+    questionCount: 5,
+    iconEmoji: '📖',
+    subTests: [{ name: 'Literasi Teks', count: 5, note: 'Kritis' }],
+    targetedCategories: ['LITERASI_INDONESIA'],
+  },
+
+  // Kedinasan Flash Bites
+  DAILY_KED_TBI: {
+    id: 'DAILY_KED_TBI',
+    track: 'kedinasan',
+    title: 'Flash Bite: TBI Grammar SPMB',
+    subtitle: '5 Soal Inverted Structure & Reading',
+    description: 'Jaga konsistensi nilai mati Bahasa Inggris SPMB PKN STAN.',
+    badge: '3 Menit • 5 Soal',
+    durationSeconds: 3 * 60,
+    questionCount: 5,
+    iconEmoji: '🌐',
+    subTests: [{ name: 'TBI Kilat', count: 5, note: 'Grammar' }],
+    targetedCategories: ['BAHASA_INGGRIS'],
+  },
+  DAILY_KED_TPA: {
+    id: 'DAILY_KED_TPA',
+    track: 'kedinasan',
+    title: 'Flash Bite: TPA Angka Hilang',
+    subtitle: '5 Soal Psikotes Matriks & Pola',
+    description: 'Uji ketelitian membaca matriks angka dan penalaran analitis.',
+    badge: '4 Menit • 5 Soal',
+    durationSeconds: 4 * 60,
+    questionCount: 5,
+    iconEmoji: '🔢',
+    subTests: [{ name: 'TPA & Psikotes', count: 5, note: 'Spasial' }],
+    targetedCategories: ['TPA', 'PSIKOTES'],
+  },
+  DAILY_KED_MTK: {
+    id: 'DAILY_KED_MTK',
+    track: 'kedinasan',
+    title: 'Flash Bite: MTK Diskrit Kedinasan',
+    subtitle: '5 Soal Kombinatorika & Matriks',
+    description: 'Soal cepat matematika terapan tingkat lanjut Polstat STIS.',
+    badge: '5 Menit • 5 Soal',
+    durationSeconds: 5 * 60,
+    questionCount: 5,
+    iconEmoji: '📐',
+    subTests: [{ name: 'MTK Diskrit', count: 5, note: 'STIS' }],
+    targetedCategories: ['MTK_KEDINASAN'],
+  },
+};
+
+export function resolveExamPackage(track: StudyTrack, packageOrModeId: string): ExamPackage {
+  const packagesForTrack = EXAM_PACKAGES[track] || EXAM_PACKAGES.cpns;
+
+  if (packageOrModeId === 'TRYOUT_FULL') {
+    return packagesForTrack[0];
+  }
+
+  if (packageOrModeId === 'DAILY') {
+    return {
+      id: `DAILY_${track.toUpperCase()}`,
+      track,
+      title: `Tantangan Harian ${track.toUpperCase()}`,
+      subtitle: '10 Soal Kurasi Campuran Hari Ini',
+      description: 'Latihan harian 10 soal campuran sesuai jalur aktif untuk menjaga streak belajarmu.',
+      badge: '10 Menit • 10 Soal',
+      durationSeconds: 10 * 60,
+      questionCount: 10,
+      iconEmoji: '⚡',
+      subTests: [{ name: 'Campuran Harian', count: 10, note: 'Jaga Streak' }],
+      targetedCategories: TRACK_CATEGORIES[track],
+    };
+  }
+
+  if (SPECIAL_EXAM_PACKAGES[packageOrModeId]) {
+    return SPECIAL_EXAM_PACKAGES[packageOrModeId];
+  }
+
+  return packagesForTrack.find((p) => p.id === packageOrModeId) || packagesForTrack[0];
+}
+
 // Helper untuk menyaring bank soal 100% murni sesuai kurikulum kamar & paket yang dipilih
 export function getFilteredQuestionsForTrack(
   allQuestions: Question[],

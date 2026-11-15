@@ -19,8 +19,12 @@ export const CreatePostBox: React.FC<CreatePostBoxProps> = ({
   onAddPost,
   onRequireAuth,
 }) => {
+  const cashtags = (CASHTAGS_BY_TRACK[activeTrack] || CASHTAGS_BY_TRACK.cpns).filter(
+    (t) => t.startsWith('$')
+  );
+
   const [content, setContent] = useState('');
-  const [selectedCashtag, setSelectedCashtag] = useState('$TIU');
+  const [selectedCashtag, setSelectedCashtag] = useState(cashtags[0] || '$TIU');
   const [isMicroQuizMode, setIsMicroQuizMode] = useState(false);
   const [quizQuestion, setQuizQuestion] = useState('');
   const [options, setOptions] = useState(['', '', '', '']);
@@ -33,9 +37,11 @@ export const CreatePostBox: React.FC<CreatePostBoxProps> = ({
   const [isCompressing, setIsCompressing] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const cashtags = (CASHTAGS_BY_TRACK[activeTrack] || CASHTAGS_BY_TRACK.cpns).filter(
-    (t) => t.startsWith('$')
-  );
+  React.useEffect(() => {
+    if (!cashtags.includes(selectedCashtag)) {
+      setSelectedCashtag(cashtags[0] || '$TIU');
+    }
+  }, [activeTrack, cashtags, selectedCashtag]);
 
   // Client-Side Canvas WebP Compression (Reduces 5MB camera photos to ~50KB)
   const handleImageFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -102,6 +108,7 @@ export const CreatePostBox: React.FC<CreatePostBoxProps> = ({
 
     const newPost: StreamPost = {
       id: `post_${Date.now()}`,
+      authorId: userProfile.id,
       authorName: userProfile.name,
       authorBadge: 'Pejuang Aktif',
       avatarInitial: userProfile.avatarInitial,
@@ -111,9 +118,10 @@ export const CreatePostBox: React.FC<CreatePostBoxProps> = ({
       content: content.trim() || (selectedImage ? 'Ada yang bisa bantu selesaikan soal di foto ini?' : 'Coba kerjakan kuis mikro ini yuk:'),
       imageUrl: selectedImage,
       upvoteCount: 1,
+      likeCount: 1,
       score: 1,
-      userVote: 1,
       commentCount: 0,
+      isLiked: true,
       isUpvoted: true,
       comments: [],
       microQuiz: isMicroQuizMode && quizQuestion.trim() && options.every(o => o.trim())
@@ -142,10 +150,10 @@ export const CreatePostBox: React.FC<CreatePostBoxProps> = ({
 
   if (!userProfile) {
     return (
-      <div className="bg-white dark:bg-[#111726] rounded-2xl border border-slate-200/80 dark:border-slate-800 p-4 mb-4 shadow-sm transition-colors">
-        <div className="flex items-center justify-between p-3 rounded-xl bg-gradient-to-r from-blue-50/70 to-indigo-50/50 dark:from-blue-950/40 dark:to-indigo-950/20 border border-blue-500/20">
+      <div className="bg-white dark:bg-[#111726] rounded-2xl border border-slate-200/80 dark:border-slate-800 p-3.5 sm:p-4 mb-4 shadow-sm transition-colors">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3 rounded-xl bg-gradient-to-r from-blue-50/70 to-indigo-50/50 dark:from-blue-950/40 dark:to-indigo-950/20 border border-blue-500/20">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-[#2563EB] text-white flex items-center justify-center font-bold text-sm shadow-md shadow-blue-500/20">
+            <div className="w-9 h-9 rounded-xl bg-[#2563EB] text-white flex items-center justify-center font-bold text-sm shadow-md shadow-blue-500/20 flex-shrink-0">
               ✨
             </div>
             <div>
@@ -159,7 +167,7 @@ export const CreatePostBox: React.FC<CreatePostBoxProps> = ({
           </div>
           <button
             onClick={() => onRequireAuth?.('post')}
-            className="px-3.5 py-2 bg-[#2563EB] hover:bg-[#1D4ED8] text-white text-xs font-bold rounded-xl shadow-sm transition-all flex-shrink-0 active:scale-98"
+            className="px-3.5 py-2 bg-[#2563EB] hover:bg-[#1D4ED8] text-white text-xs font-bold rounded-xl shadow-sm transition-all flex-shrink-0 active:scale-[0.98] w-full sm:w-auto text-center"
           >
             Masuk Akun
           </button>
@@ -169,19 +177,19 @@ export const CreatePostBox: React.FC<CreatePostBoxProps> = ({
   }
 
   return (
-    <div className="bg-white dark:bg-[#111726] rounded-2xl border border-slate-200/80 dark:border-slate-800 p-4 mb-4 shadow-sm transition-colors">
-      <div className="flex gap-3">
+    <div className="bg-white dark:bg-[#111726] rounded-2xl border border-slate-200/80 dark:border-slate-800 p-3.5 sm:p-4 mb-4 shadow-sm transition-colors">
+      <div className="flex gap-2.5 sm:gap-3">
         {/* User Avatar */}
-        <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 text-white font-black text-xs flex items-center justify-center flex-shrink-0 shadow-sm">
+        <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 text-white font-black text-xs flex items-center justify-center flex-shrink-0 shadow-sm">
           {userProfile.avatarInitial}
         </div>
 
         {/* Input Form */}
-        <form onSubmit={handleSubmit} className="flex-1 space-y-2.5">
+        <form onSubmit={handleSubmit} className="flex-1 min-w-0 space-y-2.5">
           <textarea
             value={content}
             onChange={(e) => setContent(e.target.value)}
-            placeholder={`Apa materi atau soal ${selectedCashtag} yang lagi lo pelajari hari ini?`}
+            placeholder={`Apa materi atau soal ${selectedCashtag} yang lagi kamu pelajari hari ini?`}
             className="w-full text-xs sm:text-sm font-medium text-[#0F1419] dark:text-white placeholder:text-[#536471] dark:placeholder:text-slate-500 bg-transparent resize-none focus:outline-none min-h-[48px] leading-relaxed pt-1"
             rows={2}
           />
@@ -215,7 +223,7 @@ export const CreatePostBox: React.FC<CreatePostBoxProps> = ({
           {/* Micro-Quiz Drawer */}
           {isMicroQuizMode && (
             <div className="bg-[#F8FAFC] dark:bg-[#090D16] p-3 rounded-2xl border border-[#EFF3F4] dark:border-[#1E293B] space-y-2">
-              <div className="flex items-center justify-between text-xs">
+              <div className="flex items-center justify-between text-xs gap-2 flex-wrap">
                 <span className="font-extrabold text-[#0F1419] dark:text-white flex items-center gap-1.5">
                   <HelpCircle className="w-3.5 h-3.5 text-[#2563EB] dark:text-[#38BDF8]" />
                   Buat Kuis Mikro di Feed
@@ -239,10 +247,11 @@ export const CreatePostBox: React.FC<CreatePostBoxProps> = ({
                     <button
                       type="button"
                       onClick={() => setCorrectOptionIdx(idx)}
-                      className={`w-6 h-6 rounded-lg flex items-center justify-center text-xs font-black transition-all ${correctOptionIdx === idx
-                        ? 'bg-emerald-600 text-white'
-                        : 'bg-white dark:bg-[#0F172A] text-[#536471] dark:text-slate-300 border border-[#EFF3F4] dark:border-[#1E293B] hover:border-slate-300 dark:hover:border-slate-600'
-                        }`}
+                      className={`w-6 h-6 rounded-lg flex items-center justify-center text-xs font-black transition-all flex-shrink-0 ${
+                        correctOptionIdx === idx
+                          ? 'bg-emerald-600 text-white'
+                          : 'bg-white dark:bg-[#0F172A] text-[#536471] dark:text-slate-300 border border-[#EFF3F4] dark:border-[#1E293B] hover:border-slate-300 dark:hover:border-slate-600'
+                      }`}
                       title="Klik untuk jadikan kunci jawaban benar"
                     >
                       {String.fromCharCode(65 + idx)}
@@ -256,7 +265,7 @@ export const CreatePostBox: React.FC<CreatePostBoxProps> = ({
                         setOptions(newOpts);
                       }}
                       placeholder={`Pilihan ${String.fromCharCode(65 + idx)}`}
-                      className="flex-1 text-xs px-3 py-1.5 bg-white dark:bg-[#0F172A] rounded-lg border border-[#EFF3F4] dark:border-[#1E293B] text-[#0F1419] dark:text-white focus:outline-none focus:border-[#2563EB]"
+                      className="flex-1 min-w-0 text-xs px-3 py-1.5 bg-white dark:bg-[#0F172A] rounded-lg border border-[#EFF3F4] dark:border-[#1E293B] text-[#0F1419] dark:text-white focus:outline-none focus:border-[#2563EB]"
                     />
                     {correctOptionIdx === idx && (
                       <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
@@ -275,9 +284,9 @@ export const CreatePostBox: React.FC<CreatePostBoxProps> = ({
             </div>
           )}
 
-          {/* Action Row */}
-          <div className="flex items-center justify-between pt-1.5 border-t border-[#EFF3F4] dark:border-[#1E293B]">
-            <div className="flex items-center gap-1.5">
+          {/* Action Row (wraps smoothly on small phones) */}
+          <div className="flex flex-wrap items-center justify-between gap-2 pt-1.5 border-t border-[#EFF3F4] dark:border-[#1E293B]">
+            <div className="flex flex-wrap items-center gap-1.5">
               {/* Cashtag Pill */}
               <div className="relative">
                 <select
@@ -294,7 +303,7 @@ export const CreatePostBox: React.FC<CreatePostBoxProps> = ({
                 <ChevronDown className="w-3 h-3 text-[#2563EB] dark:text-[#38BDF8] absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none" />
               </div>
 
-              {/* Photo Upload Button (Hidden File Input) */}
+              {/* Photo Upload Button */}
               <input
                 type="file"
                 ref={fileInputRef}
@@ -306,24 +315,26 @@ export const CreatePostBox: React.FC<CreatePostBoxProps> = ({
                 type="button"
                 onClick={() => fileInputRef.current?.click()}
                 disabled={isCompressing}
-                className={`text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1 transition-all ${selectedImage
-                  ? 'bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800'
-                  : 'text-[#536471] dark:text-slate-300 bg-[#F8FAFC] dark:bg-[#0F172A] hover:bg-slate-200/60 dark:hover:bg-slate-800 border border-[#EFF3F4] dark:border-[#1E293B]'
-                  }`}
+                className={`text-xs font-bold px-2.5 sm:px-3 py-1 rounded-full flex items-center gap-1 transition-all ${
+                  selectedImage
+                    ? 'bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800'
+                    : 'text-[#536471] dark:text-slate-300 bg-[#F8FAFC] dark:bg-[#0F172A] hover:bg-slate-200/60 dark:hover:bg-slate-800 border border-[#EFF3F4] dark:border-[#1E293B]'
+                }`}
                 title="Lampirkan foto soal (Auto-compress WebP)"
               >
                 <ImageIcon className="w-3.5 h-3.5" />
-                <span>{isCompressing ? 'Mengompres...' : selectedImage ? 'Foto Siap' : '+ Foto Soal'}</span>
+                <span>{isCompressing ? 'Mengompres...' : selectedImage ? 'Foto Siap' : 'Foto'}</span>
               </button>
 
               {/* Micro-Quiz Toggle */}
               <button
                 type="button"
                 onClick={() => setIsMicroQuizMode(!isMicroQuizMode)}
-                className={`text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1 transition-all ${isMicroQuizMode
-                  ? 'bg-[#0F1419] dark:bg-white text-white dark:text-[#0F1419]'
-                  : 'text-[#536471] dark:text-slate-300 bg-[#F8FAFC] dark:bg-[#0F172A] hover:bg-slate-200/60 dark:hover:bg-slate-800 border border-[#EFF3F4] dark:border-[#1E293B]'
-                  }`}
+                className={`text-xs font-bold px-2.5 sm:px-3 py-1 rounded-full flex items-center gap-1 transition-all ${
+                  isMicroQuizMode
+                    ? 'bg-[#0F1419] dark:bg-white text-white dark:text-[#0F1419]'
+                    : 'text-[#536471] dark:text-slate-300 bg-[#F8FAFC] dark:bg-[#0F172A] hover:bg-slate-200/60 dark:hover:bg-slate-800 border border-[#EFF3F4] dark:border-[#1E293B]'
+                }`}
               >
                 <HelpCircle className="w-3 h-3" />
                 <span>+ Kuis</span>
@@ -333,7 +344,7 @@ export const CreatePostBox: React.FC<CreatePostBoxProps> = ({
             <button
               type="submit"
               disabled={(!content.trim() && !quizQuestion.trim() && !selectedImage) || isCompressing}
-              className="px-4 py-1.5 bg-[#2563EB] hover:bg-[#1D4ED8] disabled:opacity-40 text-white font-extrabold text-xs rounded-full shadow-sm transition-all"
+              className="px-4 py-1.5 bg-[#2563EB] hover:bg-[#1D4ED8] disabled:opacity-40 text-white font-extrabold text-xs rounded-full shadow-sm transition-all ml-auto"
             >
               Posting
             </button>

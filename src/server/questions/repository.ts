@@ -160,19 +160,28 @@ export class QuestionRepository {
     }
 
     // Suntikkan beberapa soal parametrik dinamis (angka selalu fresh setiap sesi)
+    // HANYA jika kategori soal parametrik (TIU / TPS_KUANTITATIF / TPA / PENALARAN_MATEMATIKA) diizinkan!
+    const hasCategoryFilter = targetedCategories && targetedCategories.length > 0;
+    const isAllowed = (cat: Category) => !hasCategoryFilter || targetedCategories!.includes(cat);
+
     const parametricItems: Question[] = [];
     try {
-      if (targetedCategories?.includes('TIU') || track === 'cpns') {
+      if (track === 'cpns' && isAllowed('TIU')) {
         parametricItems.push(ParametricQuestionGenerator.generateNumberSeries('cpns'));
         parametricItems.push(ParametricQuestionGenerator.generateWorkforceRate('cpns'));
         parametricItems.push(ParametricQuestionGenerator.generateAritmetikaSosial('cpns'));
         parametricItems.push(ParametricQuestionGenerator.generateSyllogism());
       }
-      if (targetedCategories?.includes('TPS_KUANTITATIF') || track === 'snbt') {
-        parametricItems.push(ParametricQuestionGenerator.generateNumberSeries('snbt'));
-        parametricItems.push(ParametricQuestionGenerator.generateAritmetikaSosial('snbt'));
+      if (track === 'snbt') {
+        if (isAllowed('TPS_KUANTITATIF')) {
+          parametricItems.push(ParametricQuestionGenerator.generateNumberSeries('snbt'));
+          parametricItems.push(ParametricQuestionGenerator.generateAritmetikaSosial('snbt'));
+        }
+        if (isAllowed('PENALARAN_MATEMATIKA')) {
+          parametricItems.push(ParametricQuestionGenerator.generateWorkforceRate('snbt'));
+        }
       }
-      if (targetedCategories?.includes('TPA') || track === 'kedinasan') {
+      if (track === 'kedinasan' && isAllowed('TPA')) {
         parametricItems.push(ParametricQuestionGenerator.generateNumberSeries('kedinasan'));
         parametricItems.push(ParametricQuestionGenerator.generateWorkforceRate('kedinasan'));
       }
@@ -279,11 +288,14 @@ export class QuestionRepository {
       let isCorrect = false;
 
       if (original.category === 'TKP') {
-        score = original.tkpOptionPoints ? original.tkpOptionPoints[selected ?? 0] ?? 0 : 0;
+        score =
+          selected !== null && original.tkpOptionPoints
+            ? original.tkpOptionPoints[selected] ?? 0
+            : 0;
         isCorrect = score === 5;
         tkpScore += score;
       } else {
-        isCorrect = selected === original.correctOptionIndex;
+        isCorrect = selected !== null && selected === original.correctOptionIndex;
         score = isCorrect ? 5 : 0;
         if (original.category === 'TWK') twkScore += score;
         else tiuScore += score;

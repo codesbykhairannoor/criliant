@@ -27,14 +27,23 @@ export class ParametricQuestionGenerator {
       const answer = s3 * multiplier + adder;
 
       const seriesText = `${s0}, ${s1}, ${s2}, ${s3}, ...`;
-      const distractors = [
+      const candidatePool = [
         answer - multiplier,
         answer + multiplier,
         answer + multiplier * 2,
         answer - (adder + 2),
-      ].filter((x) => x !== answer && x > 0);
+        answer + adder + 3,
+        answer + multiplier * 3,
+      ];
+      const uniqueDistractors: number[] = [];
+      for (const c of candidatePool) {
+        if (c > 0 && c !== answer && !uniqueDistractors.includes(c)) {
+          uniqueDistractors.push(c);
+        }
+        if (uniqueDistractors.length === 4) break;
+      }
 
-      const allOptions = [String(answer), ...distractors.slice(0, 4).map(String)];
+      const allOptions = [String(answer), ...uniqueDistractors.map(String)];
       const shuffledOptions = this.shuffleArray(allOptions);
       const correctIdx = shuffledOptions.indexOf(String(answer));
 
@@ -113,23 +122,37 @@ export class ParametricQuestionGenerator {
     const seedId = `PARAM-WORK-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
     const category: Category = track === 'cpns' ? 'TIU' : track === 'snbt' ? 'PENALARAN_MATEMATIKA' : 'TPA';
 
-    // Misal: Total man-days = N * Days1 = (N + Extra) * Days2
-    const baseWorkers = (Math.floor(Math.random() * 4) + 3) * 4; // 12, 16, 20, 24
-    const originalDays = (Math.floor(Math.random() * 4) + 3) * 10; // 30, 40, 50, 60
-    const targetDaysDivisor = [2, 3, 4][Math.floor(Math.random() * 3)];
-    const targetDays = Math.round((originalDays * 2) / 3);
+    // Gunakan pasangan bersih agar hasil pekerja tambahan SELALU bilangan bulat eksak
+    const cleanScenarios = [
+      { baseWorkers: 12, originalDays: 30, targetDays: 20 }, // 360 / 20 = 18 (+6)
+      { baseWorkers: 16, originalDays: 45, targetDays: 30 }, // 720 / 30 = 24 (+8)
+      { baseWorkers: 20, originalDays: 40, targetDays: 25 }, // 800 / 25 = 32 (+12)
+      { baseWorkers: 24, originalDays: 45, targetDays: 30 }, // 1080 / 30 = 36 (+12)
+      { baseWorkers: 18, originalDays: 50, targetDays: 30 }, // 900 / 30 = 30 (+12)
+      { baseWorkers: 15, originalDays: 40, targetDays: 24 }, // 600 / 24 = 25 (+10)
+    ];
+    const chosen = cleanScenarios[Math.floor(Math.random() * cleanScenarios.length)];
+    const { baseWorkers, originalDays, targetDays } = chosen;
 
     const totalManDays = baseWorkers * originalDays;
-    const requiredWorkers = Math.round(totalManDays / targetDays);
+    const requiredWorkers = totalManDays / targetDays;
     const extraWorkers = requiredWorkers - baseWorkers;
 
-    const options = [
-      `${extraWorkers} orang`,
-      `${extraWorkers + 4} orang`,
-      `${Math.max(1, extraWorkers - 4)} orang`,
-      `${requiredWorkers} orang`,
-      `${extraWorkers + 8} orang`,
-    ];
+    const distractorVals = new Set<number>([
+      extraWorkers + 4,
+      Math.max(1, extraWorkers - 4),
+      requiredWorkers,
+      extraWorkers + 8,
+    ]);
+    // Ensure exactly 4 unique distractors different from extraWorkers
+    let offset = 2;
+    while (distractorVals.size < 4 || distractorVals.has(extraWorkers)) {
+      distractorVals.delete(extraWorkers);
+      distractorVals.add(extraWorkers + offset);
+      offset += 2;
+    }
+
+    const options = [`${extraWorkers} orang`, ...Array.from(distractorVals).slice(0, 4).map((v) => `${v} orang`)];
     const shuffled = this.shuffleArray(options);
     const correctIdx = shuffled.indexOf(`${extraWorkers} orang`);
 

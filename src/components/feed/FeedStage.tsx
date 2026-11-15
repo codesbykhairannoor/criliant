@@ -28,6 +28,8 @@ interface FeedStageProps {
   onRequireAuth: (reason: AuthTriggerReason) => void;
   onToggleFollow: (authorId: string) => void;
   onOpenProfile: (authorId: string, authorName: string) => void;
+  searchQuery?: string;
+  onClearSearch?: () => void;
 }
 
 export const FeedStage: React.FC<FeedStageProps> = ({
@@ -50,6 +52,8 @@ export const FeedStage: React.FC<FeedStageProps> = ({
   onRequireAuth,
   onToggleFollow,
   onOpenProfile,
+  searchQuery = '',
+  onClearSearch,
 }) => {
   return (
     <>
@@ -61,6 +65,8 @@ export const FeedStage: React.FC<FeedStageProps> = ({
         setSelectedCashtag={setSelectedCashtag}
         activeTrack={activeTrack}
         setActiveTrack={setActiveTrack}
+        searchQuery={searchQuery}
+        onClearSearch={onClearSearch}
       />
 
       {/* 2. Daily Flash Bites (3 Kapsul Tantangan Cepat Hari Ini) */}

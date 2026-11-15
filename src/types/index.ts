@@ -61,6 +61,13 @@ export interface QuestionReviewItem {
 
 export interface ExamResultSummary {
   mode: ExamMode;
+  track?: StudyTrack;
+  examTitle?: string;
+  isFullCpnsSkd?: boolean;
+  maxPossibleScore?: number;
+  contestId?: string;
+  contestDeltaRating?: number;
+  contestNewRating?: number;
   totalScore: number;
   twkScore: number;
   tiuScore: number;
