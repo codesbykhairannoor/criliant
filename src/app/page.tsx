@@ -177,16 +177,16 @@ export default function HomePage() {
         <div
           className={`w-full ${
             currentNavTab === 'feed'
-              ? 'max-w-6xl xl:max-w-7xl'
-              : 'max-w-5xl xl:max-w-6xl'
+              ? 'max-w-[1140px]'
+              : 'max-w-5xl'
           } flex justify-center min-h-screen`}
         >
           <main
             className={`w-full ${
               currentNavTab === 'feed'
-                ? 'max-w-[660px] xl:max-w-[700px]'
+                ? 'max-w-[680px]'
                 : 'max-w-full'
-            } flex-shrink-0 min-h-screen px-3 sm:px-6 py-3 sm:py-5 pb-24 md:pb-8 transition-colors`}
+            } flex-shrink-0 min-h-screen px-4 sm:px-6 py-4 sm:py-6 pb-24 md:pb-10 transition-colors`}
           >
             {currentNavTab === 'latihan' ? (
               <LatihanView
@@ -289,15 +289,15 @@ export default function HomePage() {
       {exam.pendingResumeSession && !exam.isExamModalOpen && (
         <aside
           aria-label="Sesi simulasi tersimpan"
-          className="fixed bottom-16 sm:bottom-5 left-1/2 -translate-x-1/2 z-40 w-full max-w-md px-3 animate-in slide-in-from-bottom-3 duration-300 pointer-events-auto"
+          className="fixed bottom-20 md:bottom-6 left-1/2 -translate-x-1/2 z-40 w-full max-w-md px-4 animate-in slide-in-from-bottom-3 duration-300 pointer-events-auto"
         >
-          <div className="bg-[#0B0F19]/95 dark:bg-[#070D18]/95 text-white p-3.5 rounded-2xl shadow-2xl border border-blue-500/40 flex items-center justify-between gap-3 backdrop-blur-md">
-            <div className="min-w-0 flex items-center gap-2.5">
-              <span className="w-2.5 h-2.5 rounded-full bg-blue-500 animate-ping flex-shrink-0" />
-              <div className="truncate">
-                <p className="text-xs font-black truncate">{exam.pendingResumeSession.examTitle}</p>
-                <p className="text-[10px] text-slate-400">
-                  No. {exam.pendingResumeSession.currentIndex + 1} dari {exam.pendingResumeSession.questions.length} • Sisa ~{Math.round(exam.pendingResumeSession.remainingSeconds / 60)} mnt
+          <div className="bg-slate-900/95 text-white p-3.5 rounded-2xl shadow-xl border border-slate-700/80 flex items-center justify-between gap-3 backdrop-blur-md">
+            <div className="min-w-0 flex items-center gap-3">
+              <span className="w-2.5 h-2.5 rounded-full bg-blue-500 flex-shrink-0" />
+              <div className="min-w-0">
+                <p className="text-sm font-semibold truncate">{exam.pendingResumeSession.examTitle}</p>
+                <p className="text-xs text-slate-300 tabular-nums mt-0.5">
+                  No. {exam.pendingResumeSession.currentIndex + 1}/{exam.pendingResumeSession.questions.length} · Sisa ~{Math.round(exam.pendingResumeSession.remainingSeconds / 60)} mnt
                 </p>
               </div>
             </div>
@@ -305,18 +305,18 @@ export default function HomePage() {
               <button
                 type="button"
                 onClick={exam.handleResumeActiveSession}
-                className="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white font-black text-xs rounded-xl shadow-xs active:scale-95 transition-all flex items-center gap-1"
+                className="h-9 px-3.5 bg-[#2563EB] hover:bg-blue-500 text-white font-semibold text-sm rounded-xl active:scale-95 transition-all"
               >
-                <span>Lanjutkan</span>
+                Lanjutkan
               </button>
               <button
                 type="button"
                 onClick={exam.handleDismissResumeSession}
-                className="p-1.5 text-slate-400 hover:text-white rounded-lg transition-colors"
+                className="w-9 h-9 flex items-center justify-center text-slate-400 hover:text-white rounded-xl transition-colors"
                 title="Hapus Sesi"
                 aria-label="Hapus Sesi Tersimpan"
               >
-                <X className="w-3.5 h-3.5" />
+                <X className="w-4 h-4" />
               </button>
             </div>
           </div>

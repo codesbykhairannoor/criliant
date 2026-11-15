@@ -447,32 +447,32 @@ export const ExamModal: React.FC<ExamModalProps> = ({
         <main className="flex-1 overflow-y-auto p-4 sm:p-8 flex flex-col items-center">
           <div className="w-full max-w-3xl space-y-5 sm:space-y-6">
             {/* Top Breadcrumb & Question Number */}
-            <div className="flex items-center justify-between gap-2 pb-3 border-b border-[#EFF3F4] dark:border-[#1E293B]">
-              <div className="flex items-center gap-2 min-w-0">
-                <span className={`text-[11px] font-black px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-lg border flex-shrink-0 ${categoryBadgeClass}`}>
+            <div className="flex items-center justify-between gap-2 pb-3.5 border-b border-slate-200/80 dark:border-slate-800">
+              <div className="flex items-center gap-2.5 min-w-0">
+                <span className={`text-xs font-semibold px-2.5 py-1 rounded-lg border flex-shrink-0 ${categoryBadgeClass}`}>
                   {currentQ.category.replace(/_/g, ' ')}
                 </span>
-                <span className="text-xs font-semibold text-[#536471] dark:text-slate-400 truncate">
-                  Topik: <span className="text-[#0F1419] dark:text-white font-bold">{currentQ.subTopic}</span>
+                <span className="text-[13px] font-medium text-slate-500 dark:text-slate-400 truncate">
+                  Topik: <span className="text-slate-900 dark:text-white font-semibold">{currentQ.subTopic}</span>
                 </span>
               </div>
-              <div className="flex items-center gap-1.5 flex-shrink-0">
-                <span className="text-xs font-black text-[#536471] dark:text-slate-400">
+              <div className="flex items-center gap-1 flex-shrink-0 tabular-nums">
+                <span className="text-sm font-bold text-slate-900 dark:text-white">
                   No. {currentIndex + 1}
                 </span>
-                <span className="text-[10px] text-slate-400 dark:text-slate-500">/ {questions.length}</span>
+                <span className="text-xs text-slate-500 dark:text-slate-400">/ {questions.length}</span>
               </div>
             </div>
 
             {/* Question Prompt with Dynamic Font Scaling */}
             <div className="py-1 sm:py-2">
               <p
-                className={`font-semibold text-[#0F1419] dark:text-white whitespace-pre-line ${
+                className={`font-medium text-slate-900 dark:text-white whitespace-pre-line ${
                   fontSize === 'normal'
-                    ? 'text-[15px] sm:text-[17px] leading-relaxed'
+                    ? 'text-[15px] sm:text-[17px] leading-[1.65]'
                     : fontSize === 'large'
-                      ? 'text-[17px] sm:text-[19px] leading-relaxed'
-                      : 'text-[19px] sm:text-[22px] leading-loose'
+                      ? 'text-[17px] sm:text-[19px] leading-[1.65]'
+                      : 'text-[19px] sm:text-[22px] leading-[1.7]'
                 }`}
               >
                 {currentQ.text}
@@ -490,30 +490,30 @@ export const ExamModal: React.FC<ExamModalProps> = ({
                     key={idx}
                     onClick={() => handleSelectOption(idx)}
                     disabled={isEliminated}
-                    className={`w-full p-3 sm:p-4 rounded-2xl border-2 text-left font-semibold transition-all flex items-start gap-3 sm:gap-3.5 group relative ${
+                    className={`w-full p-3.5 sm:p-4 rounded-xl border text-left font-medium transition-all flex items-start gap-3 sm:gap-3.5 group relative ${
                       isEliminated
                         ? 'opacity-30 line-through bg-slate-100/70 dark:bg-slate-900/50 border-slate-200 dark:border-slate-800 text-slate-400 cursor-not-allowed'
                         : isSelected
-                          ? 'border-[#2563EB] dark:border-[#38BDF8] bg-blue-50/70 dark:bg-[#38BDF8]/10 text-[#0F1419] dark:text-white shadow-sm'
-                          : 'border-[#EFF3F4] dark:border-[#1E293B] bg-white dark:bg-[#0F172A] hover:border-slate-300 dark:hover:border-slate-700 hover:bg-slate-50 dark:hover:bg-[#131D31] text-[#0F1419] dark:text-slate-100'
+                          ? 'border-[#2563EB] dark:border-[#38BDF8] ring-1 ring-[#2563EB]/30 dark:ring-[#38BDF8]/30 bg-blue-50/70 dark:bg-[#38BDF8]/10 text-slate-900 dark:text-white shadow-xs'
+                          : 'border-slate-200/80 dark:border-slate-800 bg-white dark:bg-[#111726] hover:border-slate-300 dark:hover:border-slate-700 hover:bg-slate-50 dark:hover:bg-[#161F33] text-slate-800 dark:text-slate-100'
                     }`}
                   >
                     <div
-                      className={`w-7 h-7 rounded-xl flex items-center justify-center font-black text-xs flex-shrink-0 transition-colors ${
+                      className={`w-7 h-7 rounded-lg flex items-center justify-center font-bold text-xs flex-shrink-0 transition-colors ${
                         isSelected
-                          ? 'bg-[#2563EB] dark:bg-[#38BDF8] text-white dark:text-[#090D16] shadow-sm'
-                          : 'bg-[#F8FAFC] dark:bg-[#090D16] text-[#536471] dark:text-slate-400 group-hover:bg-slate-200/70 dark:group-hover:bg-slate-800 group-hover:text-[#0F1419] dark:group-hover:text-white'
+                          ? 'bg-[#2563EB] dark:bg-[#38BDF8] text-white dark:text-[#090D16] shadow-xs'
+                          : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 group-hover:bg-slate-200/70 dark:group-hover:bg-slate-700 group-hover:text-slate-900 dark:group-hover:text-white'
                       }`}
                     >
                       {String.fromCharCode(65 + idx)}
                     </div>
 
                     <span
-                      className={`pt-0.5 leading-relaxed flex-1 ${
+                      className={`pt-0.5 leading-[1.55] flex-1 ${
                         fontSize === 'normal'
-                          ? 'text-xs sm:text-sm'
+                          ? 'text-sm sm:text-[15px]'
                           : fontSize === 'large'
-                            ? 'text-sm sm:text-base'
+                            ? 'text-[15px] sm:text-base'
                             : 'text-base sm:text-lg'
                       }`}
                     >
@@ -521,7 +521,7 @@ export const ExamModal: React.FC<ExamModalProps> = ({
                     </span>
 
                     {isSelected && (
-                      <Check className="w-4 h-4 text-[#2563EB] dark:text-[#38BDF8] flex-shrink-0 mt-1" />
+                      <Check className="w-[18px] h-[18px] text-[#2563EB] dark:text-[#38BDF8] flex-shrink-0 mt-1" strokeWidth={2.2} />
                     )}
                   </button>
                 );
@@ -529,27 +529,27 @@ export const ExamModal: React.FC<ExamModalProps> = ({
             </div>
 
             {/* Keyboard Hint Strip (Official CAT Standard) */}
-            <div className="hidden sm:flex items-center justify-center gap-3 text-[11px] text-[#536471] dark:text-slate-400 pt-3 flex-wrap">
-              <span className="flex items-center gap-1 font-mono">
-                <kbd className="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded border border-slate-200 dark:border-slate-700 text-[10px]">
+            <div className="hidden sm:flex items-center justify-center gap-4 text-xs text-slate-500 dark:text-slate-400 pt-3 flex-wrap">
+              <span className="flex items-center gap-1.5 font-mono">
+                <kbd className="px-2 py-0.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-md border border-slate-200 dark:border-slate-700 text-xs">
                   1-5 / A-E
                 </kbd>{' '}
                 Opsi
               </span>
-              <span className="flex items-center gap-1 font-mono">
-                <kbd className="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded border border-slate-200 dark:border-slate-700 text-[10px]">
+              <span className="flex items-center gap-1.5 font-mono">
+                <kbd className="px-2 py-0.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-md border border-slate-200 dark:border-slate-700 text-xs">
                   R
                 </kbd>{' '}
                 Ragu-ragu
               </span>
-              <span className="flex items-center gap-1 font-mono">
-                <kbd className="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded border border-slate-200 dark:border-slate-700 text-[10px]">
+              <span className="flex items-center gap-1.5 font-mono">
+                <kbd className="px-2 py-0.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-md border border-slate-200 dark:border-slate-700 text-xs">
                   G
                 </kbd>{' '}
                 Kisi Soal
               </span>
-              <span className="flex items-center gap-1 font-mono">
-                <kbd className="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded border border-slate-200 dark:border-slate-700 text-[10px]">
+              <span className="flex items-center gap-1.5 font-mono">
+                <kbd className="px-2 py-0.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-md border border-slate-200 dark:border-slate-700 text-xs">
                   ← / → / Enter
                 </kbd>{' '}
                 Pindah
@@ -572,46 +572,46 @@ export const ExamModal: React.FC<ExamModalProps> = ({
       </div>
 
       {/* 3. BOTTOM NAVIGATION DOCK (Responsive for 360px mobile screens) */}
-      <footer className="bg-white dark:bg-[#0B0F19] border-t border-[#EFF3F4] dark:border-[#1E293B] px-3 sm:px-8 py-2.5 sm:py-3 flex items-center justify-between gap-2 shadow-sm z-20 transition-colors">
-        <div className="flex items-center gap-1.5 sm:gap-2">
+      <footer className="bg-white dark:bg-[#0B0F19] border-t border-slate-200/80 dark:border-slate-800 px-3 sm:px-8 py-3 flex items-center justify-between gap-2 shadow-xs z-20 transition-colors">
+        <div className="flex items-center gap-2">
           <button
             onClick={handleUseLifeline}
             disabled={lifelinesRemaining <= 0 || currentEliminated.size > 0}
-            className={`flex items-center gap-1 px-2.5 sm:px-3 py-2 rounded-xl text-xs font-bold border transition-all ${
+            className={`h-10 flex items-center gap-1.5 px-3 sm:px-3.5 rounded-xl text-[13px] font-semibold border transition-all tabular-nums ${
               lifelinesRemaining > 0 && currentEliminated.size === 0
                 ? 'bg-purple-50 dark:bg-purple-950/40 text-purple-700 dark:text-purple-300 border-purple-200 dark:border-purple-800/50 hover:bg-purple-100 dark:hover:bg-purple-950/70'
                 : 'bg-slate-100 dark:bg-slate-900 text-slate-400 dark:text-slate-600 border-slate-200 dark:border-slate-800 cursor-not-allowed opacity-60'
             }`}
             title="Hapus 2 Opsi Salah (Max 3 kali)"
           >
-            <Sparkles className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" />
+            <Sparkles className="w-4 h-4 text-purple-600 dark:text-purple-400" strokeWidth={1.85} />
             <span className="hidden sm:inline">50:50</span>
-            <span className="bg-purple-200/80 dark:bg-purple-800/80 text-purple-900 dark:text-purple-100 px-1.5 rounded-full text-[10px]">
+            <span className="bg-purple-200/80 dark:bg-purple-800/80 text-purple-900 dark:text-purple-100 px-1.5 py-0.5 rounded-md text-xs font-bold leading-none">
               {lifelinesRemaining}
             </span>
           </button>
 
           <button
             onClick={handleToggleDoubt}
-            className={`flex items-center gap-1 px-2.5 sm:px-3 py-2 rounded-xl text-xs font-bold border transition-all ${
+            className={`h-10 flex items-center gap-1.5 px-3 sm:px-3.5 rounded-xl text-[13px] font-semibold border transition-all ${
               currentAnswer?.isDoubtful
-                ? 'bg-amber-400 text-slate-900 border-amber-500 shadow-sm'
-                : 'bg-[#F8FAFC] dark:bg-[#0F172A] text-[#536471] dark:text-slate-300 border-[#EFF3F4] dark:border-[#1E293B] hover:bg-amber-50 dark:hover:bg-amber-950/30'
+                ? 'bg-amber-400 text-slate-900 border-amber-500 shadow-xs'
+                : 'bg-slate-50 dark:bg-[#111726] text-slate-600 dark:text-slate-300 border-slate-200/80 dark:border-slate-800 hover:bg-amber-50 dark:hover:bg-amber-950/30'
             }`}
           >
-            <Flag className={`w-3.5 h-3.5 ${currentAnswer?.isDoubtful ? 'fill-slate-900' : ''}`} />
+            <Flag className={`w-4 h-4 ${currentAnswer?.isDoubtful ? 'fill-slate-900' : ''}`} strokeWidth={1.85} />
             <span className="sm:hidden">Ragu</span>
             <span className="hidden sm:inline">Ragu-ragu</span>
           </button>
         </div>
 
-        <div className="flex items-center gap-1.5 sm:gap-2">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => setCurrentIndex((prev) => Math.max(0, prev - 1))}
             disabled={currentIndex === 0}
-            className="flex items-center gap-1 px-3 sm:px-4 py-2 bg-[#F8FAFC] dark:bg-[#0F172A] hover:bg-slate-200/60 dark:hover:bg-slate-800 disabled:opacity-40 text-[#0F1419] dark:text-white font-bold text-xs rounded-xl border border-[#EFF3F4] dark:border-[#1E293B] transition-all"
+            className="h-10 flex items-center gap-1.5 px-3.5 sm:px-4 bg-slate-100 dark:bg-slate-800/80 hover:bg-slate-200/80 dark:hover:bg-slate-800 disabled:opacity-40 text-slate-900 dark:text-white font-semibold text-sm rounded-xl border border-slate-200/80 dark:border-slate-800 transition-all"
           >
-            <ArrowLeft className="w-3.5 h-3.5" />
+            <ArrowLeft className="w-4 h-4" strokeWidth={1.85} />
             <span className="hidden sm:inline">Sebelumnya</span>
             <span className="sm:hidden">Prev</span>
           </button>
@@ -619,19 +619,19 @@ export const ExamModal: React.FC<ExamModalProps> = ({
           {currentIndex < questions.length - 1 ? (
             <button
               onClick={() => setCurrentIndex((prev) => Math.min(questions.length - 1, prev + 1))}
-              className="flex items-center gap-1 px-3.5 sm:px-5 py-2 bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-extrabold text-xs rounded-xl shadow-sm transition-all"
+              className="h-10 flex items-center gap-1.5 px-4 sm:px-5 bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-semibold text-sm rounded-xl shadow-xs transition-all"
             >
               <span className="hidden sm:inline">Selanjutnya</span>
               <span className="sm:hidden">Lanjut</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              <ArrowRight className="w-4 h-4" strokeWidth={2} />
             </button>
           ) : (
             <button
               onClick={() => setIsConfirmFinishOpen(true)}
-              className="flex items-center gap-1 px-3.5 sm:px-5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs rounded-xl shadow-sm transition-all"
+              className="h-10 flex items-center gap-1.5 px-4 sm:px-5 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm rounded-xl shadow-xs transition-all"
             >
               <span>Kumpulkan</span>
-              <Check className="w-3.5 h-3.5" />
+              <Check className="w-4 h-4" strokeWidth={2} />
             </button>
           )}
         </div>

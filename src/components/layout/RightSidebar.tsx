@@ -78,123 +78,127 @@ export const RightSidebar: React.FC<RightSidebarProps> = ({
   const topScorers = topScorersByTrack[activeTrack] || topScorersByTrack.cpns;
 
   return (
-    <aside className="hidden lg:flex flex-col gap-4 w-[290px] xl:w-[310px] flex-shrink-0 h-screen sticky top-0 p-4 overflow-y-auto border-l border-slate-200/80 dark:border-slate-800 bg-[#F8FAFC]/50 dark:bg-[#090D16]/50 transition-colors select-none">
+    <aside className="hidden lg:flex flex-col gap-4 w-[300px] xl:w-[320px] flex-shrink-0 h-screen sticky top-0 p-4 overflow-y-auto border-l border-slate-200/80 dark:border-slate-800/90 bg-slate-50/40 dark:bg-[#090D16] transition-colors select-none">
       {/* 1. SEARCH BAR */}
       <div className="relative">
-        <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+        <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" strokeWidth={1.85} />
         <input
           type="text"
           value={searchQuery}
           onChange={(e) => onSearchChange(e.target.value)}
-          placeholder={`Cari topik di Kamar ${activeTrack.toUpperCase()}...`}
-          className="w-full pl-9 pr-8 py-2 bg-white dark:bg-[#111726] hover:bg-slate-50 dark:hover:bg-slate-800/80 focus:bg-white dark:focus:bg-[#111726] text-xs font-semibold rounded-xl border border-slate-200/80 dark:border-slate-800 focus:border-blue-500 focus:outline-none transition-all text-slate-900 dark:text-white placeholder:text-slate-400 shadow-xs"
+          placeholder={`Cari di ${activeTrack.toUpperCase()}...`}
+          className="w-full h-10 pl-10 pr-9 bg-white dark:bg-[#111726] text-sm font-medium rounded-xl border border-slate-200/80 dark:border-slate-800 focus:border-blue-500 focus:outline-none transition-colors text-slate-900 dark:text-white placeholder:text-slate-400"
         />
         {searchQuery && (
           <button
+            type="button"
             onClick={() => onSearchChange('')}
-            className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+            className="w-7 h-7 flex items-center justify-center rounded-lg absolute right-1.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200"
             aria-label="Hapus pencarian"
           >
-            <X className="w-3.5 h-3.5" />
+            <X className="w-4 h-4" />
           </button>
         )}
       </div>
 
-      {/* 2. TRENDING TOPICS (100% Terisolasi per Kamar Ujian) */}
-      <div className="bg-white dark:bg-[#111726] rounded-2xl p-4 border border-slate-200/80 dark:border-slate-800 shadow-sm transition-colors">
-        <div className="flex items-center justify-between mb-3 pb-2 border-b border-slate-100 dark:border-slate-800">
-          <div className="flex items-center gap-1.5">
-            <TrendingUp className="w-4 h-4 text-blue-600 dark:text-blue-400" />
-            <h4 className="font-bold text-xs text-slate-900 dark:text-white tracking-tight">
-              Topik Hangat {activeTrack.toUpperCase()}
-            </h4>
-          </div>
-          <span className="text-[10px] text-slate-400 font-bold uppercase">Kamar Aktif</span>
+      {/* 2. TRENDING TOPICS */}
+      <div className="bg-white dark:bg-[#111726] rounded-2xl p-4 border border-slate-200/80 dark:border-slate-800/90 space-y-3">
+        <div className="flex items-center gap-2">
+          <TrendingUp className="w-4 h-4 text-[#2563EB] dark:text-blue-400" strokeWidth={2} />
+          <h4 className="font-semibold text-sm text-slate-900 dark:text-white tracking-tight">
+            Topik Hangat {activeTrack.toUpperCase()}
+          </h4>
         </div>
-        <div className="space-y-2">
-          {trendingTags.map((t, idx) => (
-            <div
+        <div className="space-y-1">
+          {trendingTags.map((t) => (
+            <button
               key={t.tag}
+              type="button"
               onClick={() => onSelectCashtag(t.tag)}
-              className="flex items-center justify-between group cursor-pointer py-1.5 px-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-all"
+              className="w-full text-left flex items-center justify-between gap-2 group py-2 px-2.5 -mx-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors"
             >
-              <div>
-                <div className="flex items-center gap-1.5">
-                  <span className="text-[10px] font-bold text-slate-400">#{idx + 1}</span>
-                  <span className="text-xs font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                    {t.tag}
-                  </span>
-                </div>
-                <span className="text-[10px] text-slate-400 block pl-4">{t.sub}</span>
+              <div className="min-w-0">
+                <span className="text-sm font-semibold text-slate-900 dark:text-white group-hover:text-[#2563EB] dark:group-hover:text-blue-400 transition-colors block truncate">
+                  {t.tag}
+                </span>
+                <span className="text-xs text-slate-500 dark:text-slate-400 block truncate mt-0.5">
+                  {t.sub}
+                </span>
               </div>
-              <span className="text-[9px] font-semibold text-slate-500 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded-lg">
+              <span className="text-xs font-medium text-slate-400 dark:text-slate-500 tabular-nums flex-shrink-0">
                 {t.posts}
               </span>
-            </div>
+            </button>
           ))}
         </div>
       </div>
 
-      {/* 3. RULE / REFERENCE CARD (100% Sesuai Kamar Ujian) */}
-      <div className="bg-white dark:bg-[#111726] rounded-2xl p-4 border border-slate-200/80 dark:border-slate-800 shadow-sm transition-colors">
+      {/* 3. RULE / REFERENCE CARD */}
+      <div className="bg-white dark:bg-[#111726] rounded-2xl p-4 border border-slate-200/80 dark:border-slate-800/90 space-y-3">
         {activeTrack === 'cpns' && (
           <>
-            <div className="flex items-center justify-between mb-2.5 pb-2 border-b border-slate-100 dark:border-slate-800">
-              <div className="flex items-center gap-1.5">
-                <ShieldCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-                <h4 className="font-bold text-xs text-slate-900 dark:text-white tracking-tight">
-                  Passing Grade SKD BKN
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <ShieldCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400" strokeWidth={2} />
+                <h4 className="font-semibold text-sm text-slate-900 dark:text-white tracking-tight">
+                  Passing Grade SKD
                 </h4>
               </div>
-              <span className="text-[9px] font-mono font-bold text-slate-400">100 Menit</span>
+              <span className="text-xs font-medium text-slate-400 tabular-nums">100 mnt</span>
             </div>
 
-            <div className="grid grid-cols-3 gap-1.5 text-center mb-2.5">
-              <div className="bg-slate-50 dark:bg-[#0E1524] border border-slate-200/60 dark:border-slate-800 p-2 rounded-xl">
-                <span className="block text-[9px] font-bold text-slate-500">TWK</span>
-                <span className="text-xs font-black text-slate-900 dark:text-white">≥ {PASSING_GRADE_TWK}</span>
-                <span className="block text-[8px] text-slate-400">30 Soal</span>
+            <div className="grid grid-cols-3 gap-2 text-center">
+              <div className="bg-slate-50 dark:bg-[#0D1322] border border-slate-200/70 dark:border-slate-800 py-2.5 px-2 rounded-xl">
+                <span className="block text-xs font-medium text-slate-500 dark:text-slate-400">TWK</span>
+                <span className="text-base font-bold text-slate-900 dark:text-white tabular-nums block mt-0.5">
+                  ≥ {PASSING_GRADE_TWK}
+                </span>
+                <span className="block text-xs text-slate-400 tabular-nums mt-0.5">30 soal</span>
               </div>
-              <div className="bg-slate-50 dark:bg-[#0E1524] border border-slate-200/60 dark:border-slate-800 p-2 rounded-xl">
-                <span className="block text-[9px] font-bold text-slate-500">TIU</span>
-                <span className="text-xs font-black text-slate-900 dark:text-white">≥ {PASSING_GRADE_TIU}</span>
-                <span className="block text-[8px] text-slate-400">35 Soal</span>
+              <div className="bg-slate-50 dark:bg-[#0D1322] border border-slate-200/70 dark:border-slate-800 py-2.5 px-2 rounded-xl">
+                <span className="block text-xs font-medium text-slate-500 dark:text-slate-400">TIU</span>
+                <span className="text-base font-bold text-slate-900 dark:text-white tabular-nums block mt-0.5">
+                  ≥ {PASSING_GRADE_TIU}
+                </span>
+                <span className="block text-xs text-slate-400 tabular-nums mt-0.5">35 soal</span>
               </div>
-              <div className="bg-slate-50 dark:bg-[#0E1524] border border-slate-200/60 dark:border-slate-800 p-2 rounded-xl">
-                <span className="block text-[9px] font-bold text-slate-500">TKP</span>
-                <span className="text-xs font-black text-slate-900 dark:text-white">≥ {PASSING_GRADE_TKP}</span>
-                <span className="block text-[8px] text-slate-400">45 Soal</span>
+              <div className="bg-slate-50 dark:bg-[#0D1322] border border-slate-200/70 dark:border-slate-800 py-2.5 px-2 rounded-xl">
+                <span className="block text-xs font-medium text-slate-500 dark:text-slate-400">TKP</span>
+                <span className="text-base font-bold text-slate-900 dark:text-white tabular-nums block mt-0.5">
+                  ≥ {PASSING_GRADE_TKP}
+                </span>
+                <span className="block text-xs text-slate-400 tabular-nums mt-0.5">45 soal</span>
               </div>
             </div>
-            <p className="text-[10px] text-slate-400 text-center leading-tight">
-              Standar KepmenPAN-RB • 110 Soal CAT Resmi
+            <p className="text-xs text-slate-500 dark:text-slate-400 text-center">
+              Standar KepmenPAN-RB · 110 Soal CAT
             </p>
           </>
         )}
 
         {activeTrack === 'snbt' && (
           <>
-            <div className="flex items-center justify-between mb-2.5 pb-2 border-b border-slate-100 dark:border-slate-800">
-              <div className="flex items-center gap-1.5">
-                <GraduationCap className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-                <h4 className="font-bold text-xs text-slate-900 dark:text-white tracking-tight">
-                  Standar Ujian SNBT UTBK
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <GraduationCap className="w-4 h-4 text-emerald-600 dark:text-emerald-400" strokeWidth={2} />
+                <h4 className="font-semibold text-sm text-slate-900 dark:text-white tracking-tight">
+                  Struktur UTBK SNBT
                 </h4>
               </div>
-              <span className="text-[9px] font-mono font-bold text-slate-400">Kemendikbud</span>
+              <span className="text-xs font-medium text-slate-400">BPPP</span>
             </div>
-            <div className="space-y-1.5 text-xs">
-              <div className="flex justify-between p-2 rounded-lg bg-slate-50 dark:bg-[#0E1524] border border-slate-200/60 dark:border-slate-800">
-                <span className="font-medium text-slate-600 dark:text-slate-300">TPS (Penalaran Umum & Kuantitatif)</span>
-                <span className="font-bold text-slate-900 dark:text-white">40 Soal</span>
+            <div className="space-y-2 text-xs">
+              <div className="flex justify-between items-center px-3 py-2 rounded-xl bg-slate-50 dark:bg-[#0D1322] border border-slate-200/70 dark:border-slate-800">
+                <span className="font-medium text-slate-600 dark:text-slate-300">TPS (Umum &amp; Kuantitatif)</span>
+                <span className="font-semibold text-slate-900 dark:text-white tabular-nums">40 soal</span>
               </div>
-              <div className="flex justify-between p-2 rounded-lg bg-slate-50 dark:bg-[#0E1524] border border-slate-200/60 dark:border-slate-800">
-                <span className="font-medium text-slate-600 dark:text-slate-300">Literasi B.Indo & B.Inggris</span>
-                <span className="font-bold text-slate-900 dark:text-white">50 Soal</span>
+              <div className="flex justify-between items-center px-3 py-2 rounded-xl bg-slate-50 dark:bg-[#0D1322] border border-slate-200/70 dark:border-slate-800">
+                <span className="font-medium text-slate-600 dark:text-slate-300">Literasi B.Indo &amp; B.Inggris</span>
+                <span className="font-semibold text-slate-900 dark:text-white tabular-nums">50 soal</span>
               </div>
-              <div className="flex justify-between p-2 rounded-lg bg-slate-50 dark:bg-[#0E1524] border border-slate-200/60 dark:border-slate-800">
+              <div className="flex justify-between items-center px-3 py-2 rounded-xl bg-slate-50 dark:bg-[#0D1322] border border-slate-200/70 dark:border-slate-800">
                 <span className="font-medium text-slate-600 dark:text-slate-300">Penalaran Matematika</span>
-                <span className="font-bold text-slate-900 dark:text-white">20 Soal</span>
+                <span className="font-semibold text-slate-900 dark:text-white tabular-nums">20 soal</span>
               </div>
             </div>
           </>
@@ -202,59 +206,63 @@ export const RightSidebar: React.FC<RightSidebarProps> = ({
 
         {activeTrack === 'kedinasan' && (
           <>
-            <div className="flex items-center justify-between mb-2.5 pb-2 border-b border-slate-100 dark:border-slate-800">
-              <div className="flex items-center gap-1.5">
-                <Shield className="w-4 h-4 text-amber-500" />
-                <h4 className="font-bold text-xs text-slate-900 dark:text-white tracking-tight">
-                  Nilai Ambang Batas SPMB
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Shield className="w-4 h-4 text-amber-500" strokeWidth={2} />
+                <h4 className="font-semibold text-sm text-slate-900 dark:text-white tracking-tight">
+                  Ambang Batas SPMB
                 </h4>
               </div>
-              <span className="text-[9px] font-mono font-bold text-slate-400">STAN & STIS</span>
+              <span className="text-xs font-medium text-slate-400">STAN &amp; STIS</span>
             </div>
-            <div className="space-y-1.5 text-xs">
-              <div className="flex justify-between p-2 rounded-lg bg-slate-50 dark:bg-[#0E1524] border border-slate-200/60 dark:border-slate-800">
-                <span className="font-medium text-slate-600 dark:text-slate-300">Nilai Mati TBI (B.Inggris)</span>
-                <span className="font-bold text-rose-600 dark:text-rose-400">Wajib ≥ 60.00</span>
+            <div className="space-y-2 text-xs">
+              <div className="flex justify-between items-center px-3 py-2 rounded-xl bg-slate-50 dark:bg-[#0D1322] border border-slate-200/70 dark:border-slate-800">
+                <span className="font-medium text-slate-600 dark:text-slate-300">Nilai Mati TBI</span>
+                <span className="font-semibold text-rose-600 dark:text-rose-400 tabular-nums">≥ 60.00</span>
               </div>
-              <div className="flex justify-between p-2 rounded-lg bg-slate-50 dark:bg-[#0E1524] border border-slate-200/60 dark:border-slate-800">
-                <span className="font-medium text-slate-600 dark:text-slate-300">TPA & Logika Matematika</span>
-                <span className="font-bold text-slate-900 dark:text-white">Minimal 67.00</span>
+              <div className="flex justify-between items-center px-3 py-2 rounded-xl bg-slate-50 dark:bg-[#0D1322] border border-slate-200/70 dark:border-slate-800">
+                <span className="font-medium text-slate-600 dark:text-slate-300">TPA &amp; Matematika</span>
+                <span className="font-semibold text-slate-900 dark:text-white tabular-nums">≥ 67.00</span>
               </div>
-              <div className="flex justify-between p-2 rounded-lg bg-slate-50 dark:bg-[#0E1524] border border-slate-200/60 dark:border-slate-800">
-                <span className="font-medium text-slate-600 dark:text-slate-300">Tes Kesehatan & Psikotes</span>
-                <span className="font-bold text-emerald-600 dark:text-emerald-400">Lulus Fisik</span>
+              <div className="flex justify-between items-center px-3 py-2 rounded-xl bg-slate-50 dark:bg-[#0D1322] border border-slate-200/70 dark:border-slate-800">
+                <span className="font-medium text-slate-600 dark:text-slate-300">Kesehatan &amp; Psikotes</span>
+                <span className="font-semibold text-emerald-600 dark:text-emerald-400">Lulus Fisik</span>
               </div>
             </div>
           </>
         )}
       </div>
 
-      {/* 4. LEADERBOARD TOP SKOR (100% Sesuai Kamar Ujian) */}
-      <div className="bg-white dark:bg-[#111726] rounded-2xl p-4 border border-slate-200/80 dark:border-slate-800 shadow-sm transition-colors">
-        <div className="flex items-center justify-between mb-2.5 pb-2 border-b border-slate-100 dark:border-slate-800">
-          <div className="flex items-center gap-1.5">
-            <Award className="w-4 h-4 text-amber-500" />
-            <h4 className="font-bold text-xs text-slate-900 dark:text-white tracking-tight">
+      {/* 4. LEADERBOARD TOP SKOR */}
+      <div className="bg-white dark:bg-[#111726] rounded-2xl p-4 border border-slate-200/80 dark:border-slate-800/90 space-y-3">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Award className="w-4 h-4 text-amber-500" strokeWidth={2} />
+            <h4 className="font-semibold text-sm text-slate-900 dark:text-white tracking-tight">
               Top Skor {activeTrack.toUpperCase()}
             </h4>
           </div>
-          <span className="text-[10px] text-slate-400">Minggu Ini</span>
+          <span className="text-xs text-slate-400">Minggu ini</span>
         </div>
-        <div className="space-y-2">
+        <div className="space-y-2.5">
           {topScorers.map((s) => (
-            <div key={s.name} className="flex items-center justify-between text-xs py-1">
-              <div className="flex items-center gap-2 min-w-0">
-                <span className={`w-5 h-5 rounded-full flex items-center justify-center font-bold text-[10px] flex-shrink-0 ${
-                  s.rank === 1 ? 'bg-amber-400 text-slate-900' : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300'
-                }`}>
+            <div key={s.name} className="flex items-center justify-between gap-2">
+              <div className="flex items-center gap-2.5 min-w-0">
+                <span
+                  className={`w-6 h-6 rounded-full flex items-center justify-center font-semibold text-xs tabular-nums flex-shrink-0 ${
+                    s.rank === 1
+                      ? 'bg-amber-400 text-slate-900'
+                      : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300'
+                  }`}
+                >
                   {s.rank}
                 </span>
                 <div className="min-w-0">
-                  <p className="font-bold text-slate-900 dark:text-white truncate">{s.name}</p>
-                  <p className="text-[10px] text-slate-400 truncate">{s.target}</p>
+                  <p className="font-semibold text-sm text-slate-900 dark:text-white truncate">{s.name}</p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 truncate">{s.target}</p>
                 </div>
               </div>
-              <span className="font-mono font-bold text-blue-600 dark:text-blue-400 text-xs flex-shrink-0">
+              <span className="font-semibold text-xs text-[#2563EB] dark:text-blue-400 tabular-nums flex-shrink-0">
                 {s.score}
               </span>
             </div>

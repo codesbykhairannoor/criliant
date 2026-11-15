@@ -37,7 +37,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="id" className={plusJakartaSans.variable} suppressHydrationWarning>
-      <body className={`${plusJakartaSans.className} font-sans min-h-screen bg-[#F8FAFC] dark:bg-[#090D16] text-[#0F1419] dark:text-[#F8FAFC] antialiased selection:bg-blue-600 selection:text-white transition-colors duration-200`}>
+      <body className={`${plusJakartaSans.className} font-sans min-h-screen bg-[#F8FAFC] dark:bg-[#090D16] text-slate-900 dark:text-slate-50 antialiased selection:bg-blue-600 selection:text-white transition-colors duration-200`}>
         <ThemeProvider>
           <NetworkStatusPill />
           {children}

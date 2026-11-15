@@ -154,37 +154,31 @@ export const CreatePostBox: React.FC<CreatePostBoxProps> = ({
 
   if (!userProfile) {
     return (
-      <div className="bg-white dark:bg-[#111726] rounded-2xl border border-slate-200/80 dark:border-slate-800 p-3.5 sm:p-4 mb-4 shadow-sm transition-colors">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3 rounded-xl bg-gradient-to-r from-blue-50/70 to-indigo-50/50 dark:from-blue-950/40 dark:to-indigo-950/20 border border-blue-500/20">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-[#2563EB] text-white flex items-center justify-center font-bold text-sm shadow-md shadow-blue-500/20 flex-shrink-0">
-              ✨
-            </div>
-            <div>
-              <span className="font-extrabold text-xs text-[#0F1419] dark:text-white block">
-                Punya Trik Soal atau Kuis Mikro?
-              </span>
-              <span className="text-[11px] text-[#536471] dark:text-slate-400">
-                Masuk ke akunmu untuk membagikan materi dan berdiskusi dengan mentor.
-              </span>
-            </div>
-          </div>
-          <button
-            onClick={() => onRequireAuth?.('post')}
-            className="px-3.5 py-2 bg-[#2563EB] hover:bg-[#1D4ED8] text-white text-xs font-bold rounded-xl shadow-sm transition-all flex-shrink-0 active:scale-[0.98] w-full sm:w-auto text-center"
-          >
-            Masuk Akun
-          </button>
+      <div className="bg-white dark:bg-[#111726] rounded-2xl border border-slate-200/80 dark:border-slate-800/90 p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 transition-colors">
+        <div className="min-w-0">
+          <h3 className="font-semibold text-base text-slate-900 dark:text-white">
+            Bagikan trik soal atau buat kuis mikro
+          </h3>
+          <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">
+            Masuk ke akunmu untuk ikut berdiskusi di Kamar {activeTrack.toUpperCase()}.
+          </p>
         </div>
+        <button
+          type="button"
+          onClick={() => onRequireAuth?.('post')}
+          className="h-10 px-5 bg-[#2563EB] hover:bg-[#1D4ED8] text-white text-sm font-semibold rounded-xl transition-colors flex-shrink-0 w-full sm:w-auto"
+        >
+          Masuk Akun
+        </button>
       </div>
     );
   }
 
   return (
-    <div className="bg-white dark:bg-[#111726] rounded-2xl border border-slate-200/80 dark:border-slate-800 p-3.5 sm:p-4 mb-4 shadow-sm transition-colors">
-      <div className="flex gap-2.5 sm:gap-3">
+    <div className="bg-white dark:bg-[#111726] rounded-2xl border border-slate-200/80 dark:border-slate-800/90 p-4 sm:p-5 transition-colors">
+      <div className="flex gap-3">
         {/* User Avatar */}
-        <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 text-white font-black text-xs flex items-center justify-center flex-shrink-0 shadow-sm overflow-hidden">
+        <div className="w-10 h-10 rounded-full bg-[#2563EB] text-white font-semibold text-sm flex items-center justify-center flex-shrink-0 overflow-hidden">
           {userProfile.avatarPhotoUrl ? (
             <img
               src={userProfile.avatarPhotoUrl}
@@ -197,51 +191,51 @@ export const CreatePostBox: React.FC<CreatePostBoxProps> = ({
         </div>
 
         {/* Input Form */}
-        <form onSubmit={handleSubmit} className="flex-1 min-w-0 space-y-2.5">
+        <form onSubmit={handleSubmit} className="flex-1 min-w-0 space-y-3">
           <textarea
             value={content}
             onChange={(e) => setContent(e.target.value)}
-            placeholder={`Apa materi atau soal ${selectedCashtag} yang lagi kamu pelajari hari ini?`}
-            className="w-full text-xs sm:text-sm font-medium text-[#0F1419] dark:text-white placeholder:text-[#536471] dark:placeholder:text-slate-500 bg-transparent resize-none focus:outline-none min-h-[48px] leading-relaxed pt-1"
+            placeholder={`Apa materi atau soal ${selectedCashtag} yang lagi kamu pelajari?`}
+            className="w-full text-[15px] sm:text-base font-normal text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 bg-transparent resize-none focus:outline-none min-h-[56px] leading-relaxed pt-1"
             rows={2}
           />
 
           {/* Compressed Image Preview */}
           {selectedImage && (
-            <div className="relative rounded-2xl overflow-hidden border border-[#EFF3F4] dark:border-[#1E293B] bg-slate-50 dark:bg-[#090D16] p-1 max-w-sm">
+            <div className="relative rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#0D1322] p-1.5 max-w-sm">
               <img
                 src={selectedImage}
                 alt="Upload Soal Preview"
-                className="w-full h-44 object-cover rounded-xl"
+                className="w-full h-44 object-cover rounded-lg"
               />
               <button
                 type="button"
                 onClick={handleRemoveImage}
-                className="w-7 h-7 rounded-full bg-black/70 hover:bg-black text-white absolute top-2.5 right-2.5 flex items-center justify-center transition-all shadow"
+                className="w-8 h-8 rounded-full bg-black/70 hover:bg-black text-white absolute top-3 right-3 flex items-center justify-center transition-colors"
                 title="Hapus foto"
               >
-                <X className="w-3.5 h-3.5" />
+                <X className="w-4 h-4" />
               </button>
-              <div className="p-1.5 flex items-center justify-between text-[10px] text-[#536471] dark:text-slate-400">
-                <span className="flex items-center gap-1 font-semibold text-emerald-600 dark:text-emerald-400">
-                  <Sparkles className="w-3 h-3" />
-                  Auto-Compressed WebP
+              <div className="px-2 py-1.5 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+                <span className="flex items-center gap-1 font-medium text-emerald-600 dark:text-emerald-400">
+                  <Sparkles className="w-3.5 h-3.5" />
+                  WebP Terkompresi
                 </span>
-                <span className="font-mono">{imageSizeText}</span>
+                <span className="font-mono tabular-nums">{imageSizeText}</span>
               </div>
             </div>
           )}
 
           {/* Micro-Quiz Drawer */}
           {isMicroQuizMode && (
-            <div className="bg-[#F8FAFC] dark:bg-[#090D16] p-3 rounded-2xl border border-[#EFF3F4] dark:border-[#1E293B] space-y-2">
-              <div className="flex items-center justify-between text-xs gap-2 flex-wrap">
-                <span className="font-extrabold text-[#0F1419] dark:text-white flex items-center gap-1.5">
-                  <HelpCircle className="w-3.5 h-3.5 text-[#2563EB] dark:text-[#38BDF8]" />
-                  Buat Kuis Mikro di Feed
+            <div className="bg-slate-50 dark:bg-[#0D1322] p-4 rounded-xl border border-slate-200/80 dark:border-slate-800 space-y-3">
+              <div className="flex items-center justify-between text-sm gap-2 flex-wrap">
+                <span className="font-semibold text-slate-900 dark:text-white flex items-center gap-1.5">
+                  <HelpCircle className="w-4 h-4 text-[#2563EB] dark:text-blue-400" />
+                  Buat Kuis Mikro
                 </span>
-                <span className="text-[10px] text-[#536471] dark:text-slate-400 font-semibold">
-                  Klik huruf opsi untuk kunci benar
+                <span className="text-xs text-slate-500 dark:text-slate-400">
+                  Klik huruf untuk kunci jawaban
                 </span>
               </div>
 
@@ -250,21 +244,21 @@ export const CreatePostBox: React.FC<CreatePostBoxProps> = ({
                 value={quizQuestion}
                 onChange={(e) => setQuizQuestion(e.target.value)}
                 placeholder="Tulis pertanyaan soal di sini..."
-                className="w-full text-xs font-semibold px-3 py-2 bg-white dark:bg-[#0F172A] rounded-xl border border-[#EFF3F4] dark:border-[#1E293B] text-[#0F1419] dark:text-white focus:outline-none focus:border-[#2563EB]"
+                className="w-full h-10 text-[15px] sm:text-sm font-medium px-3.5 bg-white dark:bg-[#111726] rounded-xl border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white focus:outline-none focus:border-blue-500"
               />
 
-              <div className="space-y-1.5">
+              <div className="space-y-2">
                 {options.map((opt, idx) => (
                   <div key={idx} className="flex items-center gap-2">
                     <button
                       type="button"
                       onClick={() => setCorrectOptionIdx(idx)}
-                      className={`w-6 h-6 rounded-lg flex items-center justify-center text-xs font-black transition-all flex-shrink-0 ${
+                      className={`w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold transition-colors flex-shrink-0 ${
                         correctOptionIdx === idx
                           ? 'bg-emerald-600 text-white'
-                          : 'bg-white dark:bg-[#0F172A] text-[#536471] dark:text-slate-300 border border-[#EFF3F4] dark:border-[#1E293B] hover:border-slate-300 dark:hover:border-slate-600'
+                          : 'bg-white dark:bg-[#111726] text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:border-slate-300'
                       }`}
-                      title="Klik untuk jadikan kunci jawaban benar"
+                      title="Jadikan kunci jawaban benar"
                     >
                       {String.fromCharCode(65 + idx)}
                     </button>
@@ -277,7 +271,7 @@ export const CreatePostBox: React.FC<CreatePostBoxProps> = ({
                         setOptions(newOpts);
                       }}
                       placeholder={`Pilihan ${String.fromCharCode(65 + idx)}`}
-                      className="flex-1 min-w-0 text-xs px-3 py-1.5 bg-white dark:bg-[#0F172A] rounded-lg border border-[#EFF3F4] dark:border-[#1E293B] text-[#0F1419] dark:text-white focus:outline-none focus:border-[#2563EB]"
+                      className="flex-1 min-w-0 h-10 text-[15px] sm:text-sm px-3.5 bg-white dark:bg-[#111726] rounded-xl border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white focus:outline-none focus:border-blue-500"
                     />
                     {correctOptionIdx === idx && (
                       <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
@@ -291,28 +285,28 @@ export const CreatePostBox: React.FC<CreatePostBoxProps> = ({
                 value={explanation}
                 onChange={(e) => setExplanation(e.target.value)}
                 placeholder="Pembahasan singkat atau rumus cepat..."
-                className="w-full text-xs px-3 py-1.5 bg-white dark:bg-[#0F172A] rounded-lg border border-[#EFF3F4] dark:border-[#1E293B] text-[#0F1419] dark:text-white focus:outline-none focus:border-[#2563EB] placeholder:text-[#536471] dark:placeholder:text-slate-500"
+                className="w-full h-10 text-[15px] sm:text-sm px-3.5 bg-white dark:bg-[#111726] rounded-xl border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white focus:outline-none focus:border-blue-500 placeholder:text-slate-400"
               />
             </div>
           )}
 
-          {/* Action Row (wraps smoothly on small phones) */}
-          <div className="flex flex-wrap items-center justify-between gap-2 pt-1.5 border-t border-[#EFF3F4] dark:border-[#1E293B]">
-            <div className="flex flex-wrap items-center gap-1.5">
-              {/* Cashtag Pill */}
+          {/* Action Row */}
+          <div className="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-slate-100 dark:border-slate-800/90">
+            <div className="flex flex-wrap items-center gap-2">
+              {/* Cashtag Select */}
               <div className="relative">
                 <select
                   value={selectedCashtag}
                   onChange={(e) => setSelectedCashtag(e.target.value)}
-                  className="text-xs font-bold text-[#2563EB] dark:text-[#38BDF8] bg-[#F8FAFC] dark:bg-[#0F172A] hover:bg-slate-200/60 dark:hover:bg-slate-800 border border-[#EFF3F4] dark:border-[#1E293B] rounded-full py-1 pl-2.5 pr-6 appearance-none focus:outline-none cursor-pointer"
+                  className="h-9 text-[13px] font-semibold text-[#2563EB] dark:text-blue-400 bg-slate-50 dark:bg-[#0D1322] hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200/80 dark:border-slate-800 rounded-lg pl-3 pr-7 appearance-none focus:outline-none cursor-pointer"
                 >
                   {cashtags.map((tag) => (
-                    <option key={tag} value={tag} className="bg-white dark:bg-[#0F172A] text-[#0F1419] dark:text-white">
+                    <option key={tag} value={tag} className="bg-white dark:bg-[#111726] text-slate-900 dark:text-white">
                       {tag}
                     </option>
                   ))}
                 </select>
-                <ChevronDown className="w-3 h-3 text-[#2563EB] dark:text-[#38BDF8] absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none" />
+                <ChevronDown className="w-3.5 h-3.5 text-[#2563EB] dark:text-blue-400 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
               </div>
 
               {/* Photo Upload Button */}
@@ -327,14 +321,14 @@ export const CreatePostBox: React.FC<CreatePostBoxProps> = ({
                 type="button"
                 onClick={() => fileInputRef.current?.click()}
                 disabled={isCompressing}
-                className={`text-xs font-bold px-2.5 sm:px-3 py-1 rounded-full flex items-center gap-1 transition-all ${
+                className={`h-9 text-[13px] font-medium px-3 rounded-lg flex items-center gap-1.5 transition-colors border ${
                   selectedImage
-                    ? 'bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800'
-                    : 'text-[#536471] dark:text-slate-300 bg-[#F8FAFC] dark:bg-[#0F172A] hover:bg-slate-200/60 dark:hover:bg-slate-800 border border-[#EFF3F4] dark:border-[#1E293B]'
+                    ? 'bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800'
+                    : 'text-slate-600 dark:text-slate-300 bg-slate-50 dark:bg-[#0D1322] hover:bg-slate-100 dark:hover:bg-slate-800 border-slate-200/80 dark:border-slate-800'
                 }`}
                 title="Lampirkan foto soal (Auto-compress WebP)"
               >
-                <ImageIcon className="w-3.5 h-3.5" />
+                <ImageIcon className="w-4 h-4" strokeWidth={1.85} />
                 <span>{isCompressing ? 'Mengompres...' : selectedImage ? 'Foto Siap' : 'Foto'}</span>
               </button>
 
@@ -342,21 +336,21 @@ export const CreatePostBox: React.FC<CreatePostBoxProps> = ({
               <button
                 type="button"
                 onClick={() => setIsMicroQuizMode(!isMicroQuizMode)}
-                className={`text-xs font-bold px-2.5 sm:px-3 py-1 rounded-full flex items-center gap-1 transition-all ${
+                className={`h-9 text-[13px] font-medium px-3 rounded-lg flex items-center gap-1.5 transition-colors border ${
                   isMicroQuizMode
-                    ? 'bg-[#0F1419] dark:bg-white text-white dark:text-[#0F1419]'
-                    : 'text-[#536471] dark:text-slate-300 bg-[#F8FAFC] dark:bg-[#0F172A] hover:bg-slate-200/60 dark:hover:bg-slate-800 border border-[#EFF3F4] dark:border-[#1E293B]'
+                    ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 border-transparent'
+                    : 'text-slate-600 dark:text-slate-300 bg-slate-50 dark:bg-[#0D1322] hover:bg-slate-100 dark:hover:bg-slate-800 border-slate-200/80 dark:border-slate-800'
                 }`}
               >
-                <HelpCircle className="w-3 h-3" />
-                <span>+ Kuis</span>
+                <HelpCircle className="w-4 h-4" strokeWidth={1.85} />
+                <span>Kuis</span>
               </button>
             </div>
 
             <button
               type="submit"
               disabled={(!content.trim() && !quizQuestion.trim() && !selectedImage) || isCompressing}
-              className="px-4 py-1.5 bg-[#2563EB] hover:bg-[#1D4ED8] disabled:opacity-40 text-white font-extrabold text-xs rounded-full shadow-sm transition-all ml-auto"
+              className="h-9 px-5 bg-[#2563EB] hover:bg-[#1D4ED8] disabled:opacity-40 text-white font-semibold text-sm rounded-xl transition-colors ml-auto"
             >
               Posting
             </button>

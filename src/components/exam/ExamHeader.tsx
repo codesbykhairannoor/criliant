@@ -47,26 +47,27 @@ export const ExamHeader: React.FC<ExamHeaderProps> = ({
   };
 
   return (
-    <header className="bg-white dark:bg-[#0B0F19] border-b border-[#EFF3F4] dark:border-[#1E293B] px-3 sm:px-6 py-2.5 flex items-center justify-between gap-2 shadow-sm z-20 transition-colors">
+    <header className="bg-white dark:bg-[#0B0F19] border-b border-slate-200/80 dark:border-slate-800 px-3 sm:px-6 py-2.5 flex items-center justify-between gap-2 shadow-xs z-20 transition-colors">
       {/* Left: Exit + Exam Info */}
-      <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+      <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
         <button
           onClick={onRequestExit}
-          className="w-8 h-8 rounded-xl bg-[#F8FAFC] dark:bg-[#0F172A] hover:bg-slate-200/60 dark:hover:bg-slate-800 flex items-center justify-center text-[#536471] dark:text-slate-300 hover:text-[#0F1419] dark:hover:text-white transition-colors border border-[#EFF3F4] dark:border-[#1E293B] flex-shrink-0"
+          className="w-9 h-9 rounded-xl bg-slate-100 dark:bg-slate-800/80 hover:bg-slate-200/80 dark:hover:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors border border-slate-200/80 dark:border-slate-800 flex-shrink-0"
           title="Keluar / Batalkan Ujian"
+          aria-label="Keluar / Batalkan Ujian"
         >
-          <X className="w-4 h-4" />
+          <X className="w-[18px] h-[18px]" strokeWidth={1.85} />
         </button>
         <div className="min-w-0 hidden sm:block">
           <div className="flex items-center gap-2">
-            <span className="font-extrabold text-sm sm:text-base tracking-tight text-[#0F1419] dark:text-white truncate max-w-[200px] md:max-w-xs">
+            <span className="font-semibold text-sm sm:text-base tracking-tight text-slate-900 dark:text-white truncate max-w-[200px] md:max-w-xs">
               {title}
             </span>
-            <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-50 dark:bg-blue-950/60 text-[#2563EB] dark:text-[#38BDF8] border border-blue-200/60 dark:border-blue-800/40 uppercase flex-shrink-0">
-              {track} • {mode === 'DAILY' ? 'KILAT' : 'UJIAN'}
+            <span className="text-xs font-semibold px-2 py-0.5 rounded-lg bg-blue-50 dark:bg-blue-950/60 text-[#2563EB] dark:text-[#38BDF8] border border-blue-200/60 dark:border-blue-800/40 uppercase flex-shrink-0">
+              {track} · {mode === 'DAILY' ? 'KILAT' : 'UJIAN'}
             </span>
           </div>
-          <p className="text-[11px] text-[#536471] dark:text-slate-400 font-medium truncate">
+          <p className="text-xs text-slate-500 dark:text-slate-400 font-medium truncate">
             {subtitleByTrack[track]}
           </p>
         </div>
@@ -74,37 +75,37 @@ export const ExamHeader: React.FC<ExamHeaderProps> = ({
 
       {/* Center: Live Prominent Countdown Timer */}
       <div
-        className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 rounded-2xl font-mono text-sm sm:text-lg font-black border transition-all flex-shrink-0 ${
+        className={`flex items-center gap-2 px-3.5 sm:px-4 h-9 sm:h-10 rounded-xl font-mono tabular-nums text-sm sm:text-base font-bold border transition-all flex-shrink-0 ${
           remainingSeconds < 120
-            ? 'bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900/50 animate-pulse shadow-sm'
-            : 'bg-[#F8FAFC] dark:bg-[#0F172A] text-[#0F1419] dark:text-white border-[#EFF3F4] dark:border-[#1E293B]'
+            ? 'bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400 border-rose-200 dark:border-rose-900/50 animate-pulse shadow-xs'
+            : 'bg-slate-50 dark:bg-[#111726] text-slate-900 dark:text-white border-slate-200/80 dark:border-slate-800'
         }`}
       >
-        <Timer className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#2563EB] dark:text-[#38BDF8]" />
+        <Timer className="w-4 h-4 text-[#2563EB] dark:text-[#38BDF8]" strokeWidth={1.85} />
         <span>{formatTime(remainingSeconds)}</span>
       </div>
 
       {/* Right: Theme Switcher, Question Counter & Submit Button */}
-      <div className="flex items-center gap-1.5 sm:gap-2.5 flex-shrink-0">
+      <div className="flex items-center gap-2 sm:gap-2.5 flex-shrink-0">
         <button
           onClick={toggleTheme}
-          className="w-8 h-8 rounded-xl bg-[#F8FAFC] dark:bg-[#0F172A] hover:bg-slate-200/60 dark:hover:bg-slate-800 text-[#536471] dark:text-slate-300 border border-[#EFF3F4] dark:border-[#1E293B] flex items-center justify-center transition-all"
+          className="w-9 h-9 rounded-xl bg-slate-100 dark:bg-slate-800/80 hover:bg-slate-200/80 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200/80 dark:border-slate-800 flex items-center justify-center transition-all"
           title={isDark ? 'Beralih ke Light Mode' : 'Beralih ke Dark Mode'}
           aria-label="Toggle Theme"
         >
-          {isDark ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-slate-600" />}
+          {isDark ? <Sun className="w-[18px] h-[18px] text-amber-400" strokeWidth={1.85} /> : <Moon className="w-[18px] h-[18px] text-slate-600" strokeWidth={1.85} />}
         </button>
 
-        {/* Font Size Scaler (A- / A / A+) */}
+        {/* Font Size Scaler (A / A+ / A++) */}
         {onFontSizeChange && (
-          <div className="flex items-center rounded-xl bg-[#F8FAFC] dark:bg-[#0F172A] p-0.5 border border-[#EFF3F4] dark:border-[#1E293B]">
+          <div className="flex items-center rounded-xl bg-slate-100 dark:bg-slate-800/80 p-0.5 border border-slate-200/80 dark:border-slate-800">
             <button
               type="button"
               onClick={() => onFontSizeChange('normal')}
-              className={`px-1.5 sm:px-2 py-1 text-[10px] font-extrabold rounded-lg transition-all ${
+              className={`h-8 px-2.5 text-xs font-bold rounded-lg transition-all ${
                 fontSize === 'normal'
-                  ? 'bg-white dark:bg-slate-800 text-[#2563EB] dark:text-[#38BDF8] shadow-xs'
-                  : 'text-[#536471] dark:text-slate-400 hover:text-black dark:hover:text-white'
+                  ? 'bg-white dark:bg-slate-700 text-[#2563EB] dark:text-[#38BDF8] shadow-xs'
+                  : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
               }`}
               title="Ukuran Huruf Standar"
               aria-label="Ukuran Huruf Standar"
@@ -114,10 +115,10 @@ export const ExamHeader: React.FC<ExamHeaderProps> = ({
             <button
               type="button"
               onClick={() => onFontSizeChange('large')}
-              className={`px-1.5 sm:px-2 py-1 text-[11px] font-extrabold rounded-lg transition-all ${
+              className={`h-8 px-2.5 text-xs font-bold rounded-lg transition-all ${
                 fontSize === 'large'
-                  ? 'bg-white dark:bg-slate-800 text-[#2563EB] dark:text-[#38BDF8] shadow-xs'
-                  : 'text-[#536471] dark:text-slate-400 hover:text-black dark:hover:text-white'
+                  ? 'bg-white dark:bg-slate-700 text-[#2563EB] dark:text-[#38BDF8] shadow-xs'
+                  : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
               }`}
               title="Ukuran Huruf Besar (+15%)"
               aria-label="Ukuran Huruf Besar"
@@ -127,10 +128,10 @@ export const ExamHeader: React.FC<ExamHeaderProps> = ({
             <button
               type="button"
               onClick={() => onFontSizeChange('xlarge')}
-              className={`px-1.5 sm:px-2 py-1 text-[12px] font-black rounded-lg transition-all hidden md:block ${
+              className={`h-8 px-2.5 text-[13px] font-bold rounded-lg transition-all hidden md:block ${
                 fontSize === 'xlarge'
-                  ? 'bg-white dark:bg-slate-800 text-[#2563EB] dark:text-[#38BDF8] shadow-xs'
-                  : 'text-[#536471] dark:text-slate-400 hover:text-black dark:hover:text-white'
+                  ? 'bg-white dark:bg-slate-700 text-[#2563EB] dark:text-[#38BDF8] shadow-xs'
+                  : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
               }`}
               title="Ukuran Huruf Ekstra Besar (+30%)"
               aria-label="Ukuran Huruf Ekstra Besar"
@@ -140,20 +141,20 @@ export const ExamHeader: React.FC<ExamHeaderProps> = ({
           </div>
         )}
 
-        <div className="text-right hidden sm:block">
-          <span className="text-xs font-bold text-[#0F1419] dark:text-white">
+        <div className="text-right hidden sm:block tabular-nums">
+          <span className="text-sm font-semibold text-slate-900 dark:text-white block leading-tight">
             {answeredCount} / {totalQuestions}
           </span>
-          <span className="block text-[10px] text-[#536471] dark:text-slate-400">Terjawab</span>
+          <span className="block text-xs text-slate-500 dark:text-slate-400">Terjawab</span>
         </div>
 
         <button
           onClick={onOpenGrid}
-          className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 bg-[#F8FAFC] dark:bg-[#0F172A] hover:bg-slate-200/60 dark:hover:bg-slate-800 text-[#0F1419] dark:text-white text-xs font-bold rounded-xl border border-[#EFF3F4] dark:border-[#1E293B] transition-colors xl:hidden"
+          className="h-9 flex items-center gap-1.5 px-3 bg-slate-100 dark:bg-slate-800/80 hover:bg-slate-200/80 dark:hover:bg-slate-800 text-slate-900 dark:text-white text-[13px] font-semibold rounded-xl border border-slate-200/80 dark:border-slate-800 transition-colors xl:hidden tabular-nums"
           aria-label="Buka Matriks Soal"
         >
-          <Grid className="w-3.5 h-3.5" />
-          <span className="text-[11px] sm:hidden">
+          <Grid className="w-4 h-4" strokeWidth={1.85} />
+          <span className="text-xs sm:hidden">
             {answeredCount}/{totalQuestions}
           </span>
           <span className="hidden sm:inline">Matriks</span>
@@ -161,7 +162,7 @@ export const ExamHeader: React.FC<ExamHeaderProps> = ({
 
         <button
           onClick={onRequestFinish}
-          className="px-3 sm:px-4 py-1.5 bg-red-600 hover:bg-red-700 text-white text-xs font-extrabold rounded-xl shadow-sm transition-all"
+          className="h-9 px-3.5 sm:px-4 bg-rose-600 hover:bg-rose-700 text-white text-[13px] font-semibold rounded-xl shadow-xs transition-all"
         >
           Selesai
         </button>

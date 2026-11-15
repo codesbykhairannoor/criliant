@@ -47,9 +47,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
   activeTrack,
   setActiveTrack,
   userProfile,
-  totalQuestionsCount = 60,
   onOpenCreatePost,
-  onOpenEditProfile,
   onOpenAuthModal,
   onLogout,
 }) => {
@@ -62,113 +60,118 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
         : 'Arena CAT';
 
   const navItems = [
-    { id: 'feed', label: 'Feed Utama', icon: Home, badge: 'Live' },
-    { id: 'latihan', label: 'Latihan & Daily', icon: Flame, badge: 'Streak' },
-    { id: 'arena', label: arenaLabel, icon: Swords, badge: 'ELO' },
-    { id: 'bank', label: 'Bank Soal', icon: BookOpen, badge: `${totalQuestionsCount}+` },
+    { id: 'feed', label: 'Feed Utama', icon: Home },
+    { id: 'latihan', label: 'Latihan & Daily', icon: Flame },
+    { id: 'arena', label: arenaLabel, icon: Swords },
+    { id: 'bank', label: 'Bank Soal', icon: BookOpen },
     { id: 'bookmarks', label: 'Soal Tersimpan', icon: Bookmark },
   ];
 
   const tracks: StudyTrack[] = ['cpns', 'snbt', 'kedinasan'];
 
   return (
-    <aside className="hidden md:flex flex-col justify-between w-52 xl:w-56 flex-shrink-0 h-screen sticky top-0 left-0 border-r border-[#EFF3F4] dark:border-[#1E293B] bg-white dark:bg-[#0B0F19] p-3 overflow-y-auto transition-colors z-30 select-none">
-      {/* 1. TOP SECTION: BRAND & MINIMALIST NAVIGATION */}
-      <div className="space-y-5">
-        {/* Brand Header */}
+    <aside className="hidden md:flex flex-col justify-between w-60 xl:w-[252px] flex-shrink-0 h-screen sticky top-0 left-0 border-r border-slate-200/80 dark:border-slate-800/90 bg-white dark:bg-[#0B0F19] p-4 overflow-y-auto transition-colors z-30 select-none">
+      {/* 1. TOP SECTION: BRAND & NAVIGATION */}
+      <div className="space-y-6">
+        {/* Clean Brand Header */}
         <div className="flex items-center justify-between px-1">
-          <div
+          <button
+            type="button"
             onClick={() => setCurrentTab('feed')}
-            className="flex items-center gap-3 cursor-pointer group"
+            className="flex items-center gap-2.5 text-left group focus:outline-none"
           >
-            <div className="w-9 h-9 rounded-xl bg-[#2563EB] flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-105 shadow-md shadow-blue-500/20">
+            <div className="w-9 h-9 rounded-xl bg-[#2563EB] flex items-center justify-center flex-shrink-0 shadow-xs transition-transform group-hover:scale-[1.03]">
               <Image
                 src="/logo.svg"
                 alt="Criliant"
-                width={22}
-                height={22}
-                className="drop-shadow-sm"
+                width={20}
+                height={20}
               />
             </div>
-            <div>
-              <div className="flex items-center gap-1.5 leading-none">
-                <span className="font-extrabold text-base tracking-tight text-[#0F1419] dark:text-white">CRILIANT</span>
-                <span className="text-[9px] font-black uppercase px-1 py-0.5 rounded bg-blue-50 dark:bg-blue-950/60 text-[#2563EB] dark:text-[#38BDF8]">
-                  2026
-                </span>
-              </div>
-              <p className="text-[10px] font-medium text-[#536471] dark:text-slate-400 mt-0.5">Social Education Hub</p>
-            </div>
-          </div>
+            <span className="font-bold text-lg tracking-tight text-slate-900 dark:text-white">
+              Criliant
+            </span>
+          </button>
 
-          {/* Quick Theme Toggle */}
+          {/* Theme Toggle */}
           <button
+            type="button"
             onClick={toggleTheme}
-            className="w-8 h-8 rounded-xl bg-[#F8FAFC] dark:bg-[#0F172A] hover:bg-slate-200/60 dark:hover:bg-slate-800 text-[#536471] dark:text-slate-300 border border-[#EFF3F4] dark:border-[#1E293B] flex items-center justify-center transition-all"
+            className="w-9 h-9 rounded-xl bg-slate-50 dark:bg-[#111726] hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200/80 dark:border-slate-800 flex items-center justify-center transition-colors"
             title={isDark ? 'Beralih ke Light Mode' : 'Beralih ke Dark Mode'}
             aria-label="Toggle Theme"
           >
-            {isDark ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-slate-600" />}
+            {isDark ? (
+              <Sun className="w-[18px] h-[18px] text-amber-400" strokeWidth={1.85} />
+            ) : (
+              <Moon className="w-[18px] h-[18px]" strokeWidth={1.85} />
+            )}
           </button>
         </div>
 
-        {/* Sleek Segmented Track Switcher (CPNS / SNBT / Kedinasan) */}
-        <div className="bg-[#F8FAFC] dark:bg-[#090D16] p-1 rounded-xl border border-[#EFF3F4] dark:border-[#1E293B]">
-          <div className="grid grid-cols-3 gap-1">
-            {tracks.map((t) => {
-              const info = STUDY_TRACKS[t];
-              const isActive = activeTrack === t;
-              return (
-                <button
-                  key={t}
-                  onClick={() => setActiveTrack(t)}
-                  className={`text-[10px] font-extrabold py-1.5 px-1 rounded-lg transition-all text-center flex flex-col items-center gap-0.5 ${isActive
-                    ? 'bg-white dark:bg-[#0F172A] text-[#0F1419] dark:text-white shadow-sm border border-slate-200/60 dark:border-slate-700'
-                    : 'text-[#536471] dark:text-slate-400 hover:text-[#0F1419] dark:hover:text-white hover:bg-slate-200/50 dark:hover:bg-slate-800/40'
+        {/* Segmented Room / Track Switcher */}
+        <div className="space-y-2">
+          <span className="text-xs font-semibold text-slate-400 dark:text-slate-500 px-1 block">
+            Kamar Ujian
+          </span>
+          <div className="bg-slate-100/80 dark:bg-[#090D16] p-1 rounded-xl border border-slate-200/80 dark:border-slate-800">
+            <div className="grid grid-cols-3 gap-1">
+              {tracks.map((t) => {
+                const info = STUDY_TRACKS[t];
+                const isActive = activeTrack === t;
+                return (
+                  <button
+                    key={t}
+                    type="button"
+                    onClick={() => setActiveTrack(t)}
+                    className={`h-9 px-1.5 rounded-lg text-xs font-semibold transition-all flex items-center justify-center gap-1 ${
+                      isActive
+                        ? 'bg-white dark:bg-[#162137] text-slate-900 dark:text-white shadow-xs border border-slate-200/70 dark:border-slate-700'
+                        : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                     }`}
-                >
-                  <span className="text-sm leading-none">{info.iconEmoji}</span>
-                  <span className="truncate w-full">{info.shortLabel}</span>
-                </button>
-              );
-            })}
+                  >
+                    <span className="truncate">{info.shortLabel}</span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
 
-        {/* Primary Clean Menu (Zero Duplicate Items) */}
-        <nav className="space-y-1">
+        {/* Primary Menu (Crisp Icon + Label, Zero Badge Soup) */}
+        <nav className="space-y-1" aria-label="Navigasi Utama">
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = currentTab === item.id;
             return (
               <button
                 key={item.id}
+                type="button"
                 onClick={() => setCurrentTab(item.id)}
-                className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-bold transition-all group ${isActive
-                  ? 'bg-[#0F1419] dark:bg-white text-white dark:text-[#0F1419] shadow-sm'
-                  : 'text-[#0F1419] dark:text-slate-200 hover:bg-[#F8FAFC] dark:hover:bg-[#0F172A]'
-                  }`}
+                className={`w-full h-11 flex items-center gap-3 px-3.5 rounded-xl text-[15px] transition-colors group ${
+                  isActive
+                    ? 'bg-blue-50 dark:bg-blue-500/15 text-[#2563EB] dark:text-blue-400 font-semibold'
+                    : 'text-slate-700 dark:text-slate-300 font-medium hover:bg-slate-100/80 dark:hover:bg-[#111726] hover:text-slate-900 dark:hover:text-white'
+                }`}
               >
-                <div className="flex items-center gap-3">
-                  <Icon className={`w-4 h-4 transition-transform group-hover:scale-110 ${isActive ? 'text-white dark:text-[#0F1419]' : 'text-[#536471] dark:text-slate-400'}`} />
-                  <span className="tracking-tight">{item.label}</span>
-                </div>
-                {item.badge && (
-                  <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded-full ${isActive
-                    ? 'bg-white/20 dark:bg-black/20 text-white dark:text-[#0F1419]'
-                    : 'bg-blue-50 dark:bg-blue-950/60 text-[#2563EB] dark:text-[#38BDF8]'
-                    }`}>
-                    {item.badge}
-                  </span>
-                )}
+                <Icon
+                  className={`w-[18px] h-[18px] flex-shrink-0 transition-colors ${
+                    isActive
+                      ? 'text-[#2563EB] dark:text-blue-400'
+                      : 'text-slate-400 dark:text-slate-500 group-hover:text-slate-700 dark:group-hover:text-slate-200'
+                  }`}
+                  strokeWidth={isActive ? 2.1 : 1.85}
+                />
+                <span className="truncate">{item.label}</span>
               </button>
             );
           })}
         </nav>
 
-        {/* Single Primary Action Button (Twitter-Style Clean Compose) */}
-        <div className="pt-2">
+        {/* Primary CTA Button */}
+        <div>
           <button
+            type="button"
             onClick={() => {
               if (!userProfile) {
                 onOpenAuthModal('post');
@@ -176,25 +179,32 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
               }
               onOpenCreatePost();
             }}
-            className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-extrabold text-xs shadow-md shadow-blue-500/20 active:scale-98 transition-all tracking-tight"
+            className="w-full h-11 px-4 rounded-xl bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-semibold text-sm shadow-xs active:scale-[0.98] transition-all flex items-center justify-center gap-2"
           >
-            <PlusCircle className="w-4 h-4" />
-            <span>Tulis Postingan / Kuis</span>
+            <PlusCircle className="w-[18px] h-[18px]" strokeWidth={2} />
+            <span>Buat Postingan</span>
           </button>
         </div>
       </div>
 
-      {/* 2. BOTTOM SECTION: USER IDENTITY OR GUEST MODE */}
-      <div className="pt-3 border-t border-[#EFF3F4] dark:border-[#1E293B]">
+      {/* 2. BOTTOM SECTION: USER IDENTITY OR CLEAN SIGN-IN */}
+      <div className="pt-4 border-t border-slate-200/80 dark:border-slate-800/90">
         {userProfile ? (
           <div
             onClick={() => setCurrentTab('profile')}
-            className={`p-2.5 rounded-2xl hover:bg-[#F8FAFC] dark:hover:bg-[#0F172A] cursor-pointer transition-all border border-transparent hover:border-[#EFF3F4] dark:hover:border-[#1E293B] group relative ${
-              currentTab === 'profile' ? 'bg-[#F8FAFC] dark:bg-[#0F172A] border-slate-200 dark:border-slate-800' : ''
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') setCurrentTab('profile');
+            }}
+            className={`p-2.5 rounded-xl cursor-pointer transition-colors border flex items-center justify-between gap-2 group ${
+              currentTab === 'profile'
+                ? 'bg-slate-100/80 dark:bg-[#111726] border-slate-200 dark:border-slate-700'
+                : 'border-transparent hover:bg-slate-100/70 dark:hover:bg-[#111726]'
             }`}
           >
-            <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-full bg-[#0F1419] dark:bg-blue-600 text-white font-black text-xs flex items-center justify-center flex-shrink-0 shadow-sm overflow-hidden">
+            <div className="flex items-center gap-2.5 min-w-0">
+              <div className="w-9 h-9 rounded-full bg-[#2563EB] text-white font-semibold text-sm flex items-center justify-center flex-shrink-0 overflow-hidden">
                 {userProfile.avatarPhotoUrl ? (
                   <img
                     src={userProfile.avatarPhotoUrl}
@@ -205,56 +215,45 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
                   userProfile.avatarInitial
                 )}
               </div>
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center justify-between gap-1">
-                  <div className="min-w-0">
-                    <span
-                      className="font-extrabold text-xs text-[#0F1419] dark:text-white truncate block group-hover:underline"
-                      title={userProfile.name}
-                    >
-                      {userProfile.name}
-                    </span>
-                    <span className="text-[10px] text-blue-600 dark:text-blue-400 font-mono block truncate">
-                      @{formatUsername(userProfile.username, userProfile.name)}
-                    </span>
-                  </div>
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      onLogout();
-                    }}
-                    className="p-1 rounded-md text-slate-400 hover:text-red-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors flex-shrink-0"
-                    title="Keluar dari Akun"
-                    aria-label="Logout"
-                  >
-                    <LogOut className="w-3.5 h-3.5" />
-                  </button>
-                </div>
+              <div className="min-w-0">
+                <span
+                  className="font-semibold text-sm text-slate-900 dark:text-white truncate block group-hover:underline"
+                  title={userProfile.name}
+                >
+                  {userProfile.name}
+                </span>
+                <span className="text-xs text-slate-500 dark:text-slate-400 block truncate">
+                  @{formatUsername(userProfile.username, userProfile.name)}
+                </span>
               </div>
             </div>
+
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                onLogout();
+              }}
+              className="w-9 h-9 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-slate-200/60 dark:hover:bg-slate-800 flex items-center justify-center transition-colors flex-shrink-0"
+              title="Keluar dari Akun"
+              aria-label="Logout"
+            >
+              <LogOut className="w-4 h-4" strokeWidth={1.85} />
+            </button>
           </div>
         ) : (
-          <div className="p-3 rounded-2xl bg-[#F8FAFC] dark:bg-[#090D16] border border-[#EFF3F4] dark:border-[#1E293B] space-y-2.5">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-950/60 text-[#2563EB] dark:text-[#38BDF8] flex items-center justify-center font-bold text-xs flex-shrink-0">
-                👤
-              </div>
-              <div className="min-w-0 flex-1">
-                <span className="font-extrabold text-xs text-[#0F1419] dark:text-white block leading-tight">
-                  Mode Tamu (Guest)
-                </span>
-                <span className="text-[10px] text-[#536471] dark:text-slate-400 block truncate">
-                  Bebas baca stream & materi
-                </span>
-              </div>
-            </div>
+          <div className="space-y-2">
             <button
+              type="button"
               onClick={() => onOpenAuthModal('general')}
-              className="w-full py-2 px-3 rounded-xl bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-extrabold text-xs shadow-sm transition-all text-center flex items-center justify-center gap-1.5 active:scale-98"
+              className="w-full h-11 px-4 rounded-xl bg-slate-900 dark:bg-white hover:bg-slate-800 dark:hover:bg-slate-100 text-white dark:text-slate-900 font-semibold text-sm transition-all flex items-center justify-center gap-2 active:scale-[0.98]"
             >
-              <LogIn className="w-3.5 h-3.5" />
-              <span>Masuk / Daftar Akun</span>
+              <LogIn className="w-4 h-4" strokeWidth={2} />
+              <span>Masuk / Daftar</span>
             </button>
+            <p className="text-xs text-slate-500 dark:text-slate-400 text-center">
+              Simpan progres &amp; rapor simulasi
+            </p>
           </div>
         )}
       </div>

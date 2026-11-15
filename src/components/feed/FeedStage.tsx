@@ -3,7 +3,6 @@
 import React from 'react';
 import { StudyTrack, UserProfile, StreamPost } from '@/types';
 import { FeedHeader } from '@/components/feed/FeedHeader';
-import { DailyFlashBites } from '@/components/feed/DailyFlashBites';
 import { CreatePostBox } from '@/components/feed/CreatePostBox';
 import { PostCard } from '@/components/feed/PostCard';
 import { AuthTriggerReason } from '@/components/auth/AuthModal';
@@ -56,8 +55,8 @@ export const FeedStage: React.FC<FeedStageProps> = ({
   onClearSearch,
 }) => {
   return (
-    <>
-      {/* 1. Course Switcher & Category Tabs */}
+    <div className="space-y-4">
+      {/* 1. Category Tabs & Mobile Room Switcher */}
       <FeedHeader
         activeTab={feedCategoryTab}
         setActiveTab={setFeedCategoryTab}
@@ -69,13 +68,7 @@ export const FeedStage: React.FC<FeedStageProps> = ({
         onClearSearch={onClearSearch}
       />
 
-      {/* 2. Daily Flash Bites (3 Kapsul Tantangan Cepat Hari Ini) */}
-      <DailyFlashBites
-        activeTrack={activeTrack}
-        onStartExam={onStartExam}
-      />
-
-      {/* 3. Create Post / Compose Box */}
+      {/* 2. Create Post / Compose Box */}
       <CreatePostBox
         userProfile={userProfile}
         activeTrack={activeTrack}
@@ -83,7 +76,7 @@ export const FeedStage: React.FC<FeedStageProps> = ({
         onRequireAuth={onRequireAuth}
       />
 
-      {/* 4. Feed Stream Cards */}
+      {/* 3. Feed Stream Cards */}
       <div className="space-y-4">
         {filteredPosts.length > 0 ? (
           filteredPosts.map((post) => {
@@ -110,25 +103,28 @@ export const FeedStage: React.FC<FeedStageProps> = ({
             );
           })
         ) : (
-          <div className="text-center py-16 px-4 space-y-3 bg-white dark:bg-[#111726] rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm">
-            <div className="w-12 h-12 rounded-2xl bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center mx-auto font-black text-xl">
+          <div className="text-center py-16 px-6 space-y-3 bg-white dark:bg-[#111726] rounded-2xl border border-slate-200/80 dark:border-slate-800/90">
+            <div className="w-12 h-12 rounded-2xl bg-blue-50 dark:bg-blue-500/15 text-[#2563EB] dark:text-blue-400 flex items-center justify-center mx-auto font-bold text-xl">
               #
             </div>
-            <h4 className="font-extrabold text-slate-900 dark:text-white text-sm">
-              Belum ada materi untuk kamar {activeTrack.toUpperCase()} ({selectedCashtag})
+            <h4 className="font-semibold text-slate-900 dark:text-white text-base">
+              Belum ada postingan di {activeTrack.toUpperCase()} ({selectedCashtag})
             </h4>
-            <p className="text-xs text-slate-500 dark:text-slate-400 max-w-sm mx-auto leading-relaxed">
-              Jadilah pejuang pertama yang memulai diskusi atau membagikan kuis mikro untuk topik ini!
+            <p className="text-sm text-slate-500 dark:text-slate-400 max-w-sm mx-auto leading-relaxed">
+              Jadilah pejuang pertama yang memulai diskusi atau membagikan kuis mikro untuk topik ini.
             </p>
-            <button
-              onClick={() => setSelectedCashtag('#Semua')}
-              className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold shadow-sm transition-all"
-            >
-              Kembali ke Semua Postingan
-            </button>
+            <div className="pt-1">
+              <button
+                type="button"
+                onClick={() => setSelectedCashtag('#Semua')}
+                className="h-10 px-5 bg-[#2563EB] hover:bg-[#1D4ED8] text-white rounded-xl text-sm font-semibold transition-colors"
+              >
+                Kembali ke Semua Postingan
+              </button>
+            </div>
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 };

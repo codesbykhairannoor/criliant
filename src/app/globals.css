@@ -5,20 +5,36 @@
 :root {
   --background: #F8FAFC;
   --foreground: #0F172A;
+  --surface: #FFFFFF;
+  --surface-subtle: #F1F5F9;
+  --border-hairline: rgba(226, 232, 240, 0.85);
 }
 
 .dark {
   --background: #090D16;
   --foreground: #F8FAFC;
+  --surface: #111726;
+  --surface-subtle: #0D1322;
+  --border-hairline: rgba(30, 41, 59, 0.9);
+}
+
+html {
+  font-size: 16px;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  letter-spacing: -0.012em;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  letter-spacing: -0.011em;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
 }
 
 /* Custom Sleek Scrollbar */

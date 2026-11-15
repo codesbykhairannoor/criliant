@@ -137,70 +137,59 @@ export const LatihanView: React.FC<LatihanViewProps> = ({
   };
 
   return (
-    <div className="space-y-6 max-w-4xl xl:max-w-5xl w-full mx-auto pb-12 select-none">
-      {/* 1. HEADER BANNER */}
-      <div className="bg-white dark:bg-[#111726] rounded-3xl p-5 sm:p-7 border border-slate-200/80 dark:border-slate-800 shadow-xs relative overflow-hidden transition-colors">
-        <div className="flex items-center justify-between gap-3 mb-2 flex-wrap">
-          <div className="flex items-center gap-2">
-            <span className="text-[10px] font-black uppercase tracking-wider bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 px-2.5 py-0.5 rounded-full border border-amber-200/50 dark:border-amber-800/40 flex items-center gap-1.5">
-              <Flame className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
-              Pusat Latihan Mandiri &amp; Habit
-            </span>
-            <span className="text-[11px] font-bold text-slate-400">
-              Kamar: {trackLabels[activeTrack]}
-            </span>
-          </div>
-
-          <div className="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800 px-3 py-1 rounded-full text-xs font-bold text-slate-700 dark:text-slate-300">
-            <Flame className="w-4 h-4 text-orange-500 fill-orange-500" />
-            <span>Streak Pejuang: {userProfile?.streakDays ?? 0} Hari</span>
-          </div>
+    <div className="space-y-8 max-w-4xl xl:max-w-5xl w-full mx-auto pb-12 select-none">
+      {/* 1. CLEAN BORDERLESS PAGE HEADER */}
+      <header className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-2">
+        <div className="space-y-1.5">
+          <h1 className="text-2xl sm:text-[28px] font-bold tracking-[-0.025em] leading-[1.2] text-slate-900 dark:text-white">
+            Latihan &amp; Studio Kustom
+          </h1>
+          <p className="text-sm sm:text-[15px] text-slate-500 dark:text-slate-400 max-w-2xl leading-relaxed">
+            Atur sesi latihan {trackLabels[activeTrack]} sesuai targetmu hari ini: pilih sub-materi, tingkat kesulitan, dan durasi.
+          </p>
         </div>
 
-        <h2 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight">
-          Latihan Harian &amp; Studio Kustom
-        </h2>
-        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-1 leading-relaxed max-w-2xl">
-          Atur sesi latihan sesuai targetmu hari ini: pilih materi yang ingin dipoles, tentukan tingkat kesulitan (Easy, Medium, Hard, HOTS), dan mulai drill tanpa gangguan materi lain.
-        </p>
-      </div>
+        <div className="inline-flex items-center gap-2 bg-white dark:bg-[#111726] border border-slate-200/80 dark:border-slate-800 px-3.5 h-10 rounded-xl text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200 tabular-nums self-start sm:self-auto flex-shrink-0">
+          <Flame className="w-4 h-4 text-amber-500 fill-amber-500" />
+          <span>Streak: {userProfile?.streakDays ?? 0} Hari</span>
+        </div>
+      </header>
 
       {/* 2. STUDIO LATIHAN MANDIRI (CUSTOM WORKOUT CONFIGURATOR) */}
-      <div className="bg-white dark:bg-[#111726] rounded-3xl p-6 sm:p-8 border-2 border-blue-600/30 dark:border-blue-500/40 shadow-xs space-y-6 transition-colors">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800 pb-4">
+      <section className="bg-white dark:bg-[#111726] rounded-2xl p-5 sm:p-7 border border-slate-200/80 dark:border-slate-800/90 space-y-6 transition-colors">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 dark:border-slate-800 pb-4">
           <div>
-            <h3 className="text-lg font-black text-slate-900 dark:text-white flex items-center gap-2">
-              <SlidersHorizontal className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-              <span>Studio Latihan Kustom ({trackLabels[activeTrack]})</span>
-            </h3>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-              Sesuaikan materi, kesulitan, dan timer sesuai gaya belajarmu hari ini.
+            <h2 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2 tracking-[-0.02em]">
+              <SlidersHorizontal className="w-5 h-5 text-[#2563EB] dark:text-blue-400" strokeWidth={1.85} />
+              <span>Studio Latihan Kustom</span>
+            </h2>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">
+              Materi tersaring otomatis untuk Kamar {trackLabels[activeTrack]}.
             </p>
           </div>
 
-          <div className="text-xs font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 px-3 py-1.5 rounded-xl border border-blue-200/50 flex items-center gap-1.5 self-start sm:self-auto">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Tersedia {matchingQuestionsCount} Soal Siap Uji</span>
+          <div className="text-xs font-semibold text-[#2563EB] dark:text-blue-400 bg-blue-50 dark:bg-blue-500/15 px-3 py-1.5 rounded-lg tabular-nums self-start sm:self-auto">
+            {matchingQuestionsCount} soal tersedia
           </div>
         </div>
 
         {/* STEP 1: PILIH SUB-MATERI */}
-        <div className="space-y-2.5">
-          <label className="text-xs font-black uppercase tracking-wider text-slate-700 dark:text-slate-300 block">
-            1. Pilih Sub-Materi yang Ingin Diasah:
+        <div className="space-y-3">
+          <label className="text-sm font-semibold text-slate-800 dark:text-slate-200 block">
+            1. Sub-Materi
           </label>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
             <button
+              type="button"
               onClick={() => setSelectedCategory('ALL')}
-              className={`p-3 rounded-2xl text-left border transition-all ${
+              className={`p-3.5 rounded-xl text-left border transition-colors ${
                 selectedCategory === 'ALL'
-                  ? 'bg-blue-600 text-white border-blue-600 shadow-sm'
-                  : 'bg-slate-50 dark:bg-[#0D1322] border-slate-200/80 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
+                  ? 'bg-[#2563EB] text-white border-[#2563EB]'
+                  : 'bg-slate-50/80 dark:bg-[#0D1322] border-slate-200/80 dark:border-slate-800 text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/60'
               }`}
             >
-              <span className="text-base block mb-1">🎯</span>
-              <span className="font-black text-xs block leading-tight">Semua Materi</span>
-              <span className={`text-[10px] block mt-0.5 truncate ${selectedCategory === 'ALL' ? 'text-white/80' : 'text-slate-400'}`}>
+              <span className="font-semibold text-sm block leading-snug">Semua Materi</span>
+              <span className={`text-xs block mt-1 truncate ${selectedCategory === 'ALL' ? 'text-blue-100' : 'text-slate-500 dark:text-slate-400'}`}>
                 Campuran kurikulum
               </span>
             </button>
@@ -211,16 +200,16 @@ export const LatihanView: React.FC<LatihanViewProps> = ({
               return (
                 <button
                   key={cat}
+                  type="button"
                   onClick={() => setSelectedCategory(cat)}
-                  className={`p-3 rounded-2xl text-left border transition-all ${
+                  className={`p-3.5 rounded-xl text-left border transition-colors ${
                     isSelected
-                      ? 'bg-blue-600 text-white border-blue-600 shadow-sm'
-                      : 'bg-slate-50 dark:bg-[#0D1322] border-slate-200/80 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
+                      ? 'bg-[#2563EB] text-white border-[#2563EB]'
+                      : 'bg-slate-50/80 dark:bg-[#0D1322] border-slate-200/80 dark:border-slate-800 text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/60'
                   }`}
                 >
-                  <span className="text-base block mb-1">{info.icon}</span>
-                  <span className="font-black text-xs block leading-tight truncate">{info.label}</span>
-                  <span className={`text-[10px] block mt-0.5 truncate ${isSelected ? 'text-white/80' : 'text-slate-400'}`}>
+                  <span className="font-semibold text-sm block leading-snug truncate">{info.label}</span>
+                  <span className={`text-xs block mt-1 truncate ${isSelected ? 'text-blue-100' : 'text-slate-500 dark:text-slate-400'}`}>
                     {info.desc}
                   </span>
                 </button>
@@ -230,32 +219,32 @@ export const LatihanView: React.FC<LatihanViewProps> = ({
         </div>
 
         {/* STEP 2: PILIH TINGKAT KESULITAN */}
-        <div className="space-y-2.5">
-          <label className="text-xs font-black uppercase tracking-wider text-slate-700 dark:text-slate-300 block">
-            2. Pilih Tingkat Kesulitan:
+        <div className="space-y-3">
+          <label className="text-sm font-semibold text-slate-800 dark:text-slate-200 block">
+            2. Tingkat Kesulitan
           </label>
-          <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
+          <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
             {[
-              { id: 'ALL', label: 'Campuran', emoji: '🎲', desc: 'Semua Level' },
-              { id: 'easy', label: 'Mudah', emoji: '🟢', desc: 'Konsep Dasar' },
-              { id: 'medium', label: 'Sedang', emoji: '🟡', desc: 'Standar Resmi' },
-              { id: 'hard', label: 'Sulit', emoji: '🔴', desc: 'Pengecoh Tinggi' },
-              { id: 'hard_hots', label: 'HOTS', emoji: '🔥', desc: 'Penalaran Lanjut' },
+              { id: 'ALL', label: 'Campuran', desc: 'Semua level' },
+              { id: 'easy', label: 'Mudah', desc: 'Konsep dasar' },
+              { id: 'medium', label: 'Sedang', desc: 'Standar resmi' },
+              { id: 'hard', label: 'Sulit', desc: 'Pengecoh tinggi' },
+              { id: 'hard_hots', label: 'HOTS', desc: 'Penalaran lanjut' },
             ].map((diff) => {
               const isSelected = selectedDifficulty === diff.id;
               return (
                 <button
                   key={diff.id}
+                  type="button"
                   onClick={() => setSelectedDifficulty(diff.id)}
-                  className={`p-2.5 rounded-2xl text-center border transition-all ${
+                  className={`p-3 rounded-xl text-left border transition-colors ${
                     isSelected
-                      ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 border-transparent shadow-xs'
-                      : 'bg-slate-50 dark:bg-[#0D1322] border-slate-200/80 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
+                      ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 border-transparent'
+                      : 'bg-slate-50/80 dark:bg-[#0D1322] border-slate-200/80 dark:border-slate-800 text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/60'
                   }`}
                 >
-                  <span className="text-sm block">{diff.emoji}</span>
-                  <span className="font-black text-xs block mt-0.5">{diff.label}</span>
-                  <span className={`text-[9px] block ${isSelected ? 'text-white/70 dark:text-slate-600' : 'text-slate-400'}`}>
+                  <span className="font-semibold text-sm block">{diff.label}</span>
+                  <span className={`text-xs block mt-0.5 ${isSelected ? 'text-slate-300 dark:text-slate-600' : 'text-slate-500 dark:text-slate-400'}`}>
                     {diff.desc}
                   </span>
                 </button>
@@ -265,57 +254,60 @@ export const LatihanView: React.FC<LatihanViewProps> = ({
         </div>
 
         {/* STEP 3 & 4: JUMLAH SOAL & MODE TIMER */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 pt-1">
           {/* Jumlah Soal */}
-          <div className="space-y-2">
-            <label className="text-xs font-black uppercase tracking-wider text-slate-700 dark:text-slate-300 block">
-              3. Jumlah Soal:
+          <div className="space-y-2.5">
+            <label className="text-sm font-semibold text-slate-800 dark:text-slate-200 block">
+              3. Jumlah Soal
             </label>
-            <div className="grid grid-cols-4 gap-1.5">
+            <div className="grid grid-cols-4 gap-2">
               {[5, 10, 15, 20].map((cnt) => (
                 <button
                   key={cnt}
+                  type="button"
                   onClick={() => setSelectedCount(cnt)}
-                  className={`py-2 px-1 text-xs font-extrabold rounded-xl border transition-all text-center ${
+                  className={`h-10 px-2 text-sm font-semibold rounded-xl border transition-colors tabular-nums ${
                     selectedCount === cnt
-                      ? 'bg-blue-600 text-white border-blue-600'
-                      : 'bg-slate-50 dark:bg-[#0D1322] border-slate-200/80 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
+                      ? 'bg-[#2563EB] text-white border-[#2563EB]'
+                      : 'bg-slate-50/80 dark:bg-[#0D1322] border-slate-200/80 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
                   }`}
                 >
-                  <span>{cnt} Butir</span>
+                  {cnt} soal
                 </button>
               ))}
             </div>
           </div>
 
           {/* Mode Waktu */}
-          <div className="space-y-2">
-            <label className="text-xs font-black uppercase tracking-wider text-slate-700 dark:text-slate-300 block">
-              4. Mode Waktu Pengerjaan:
+          <div className="space-y-2.5">
+            <label className="text-sm font-semibold text-slate-800 dark:text-slate-200 block">
+              4. Mode Waktu
             </label>
             <div className="grid grid-cols-2 gap-2">
               <button
+                type="button"
                 onClick={() => setIsTimed(true)}
-                className={`p-2 rounded-xl text-center border transition-all flex items-center justify-center gap-1.5 ${
+                className={`h-10 px-3 rounded-xl border transition-colors flex items-center justify-center gap-2 text-sm ${
                   isTimed
-                    ? 'bg-blue-50 dark:bg-blue-950/60 border-blue-400 text-blue-700 dark:text-blue-300 font-bold'
-                    : 'bg-slate-50 dark:bg-[#0D1322] border-slate-200/80 dark:border-slate-800 text-slate-500 font-medium'
+                    ? 'bg-blue-50 dark:bg-blue-500/15 border-blue-400 text-[#2563EB] dark:text-blue-400 font-semibold'
+                    : 'bg-slate-50/80 dark:bg-[#0D1322] border-slate-200/80 dark:border-slate-800 text-slate-600 dark:text-slate-400 font-medium'
                 }`}
               >
-                <Clock className="w-3.5 h-3.5" />
-                <span className="text-xs">Berwaktu ({selectedCount} Mnt)</span>
+                <Clock className="w-4 h-4" />
+                <span className="tabular-nums">Berwaktu ({selectedCount} mnt)</span>
               </button>
 
               <button
+                type="button"
                 onClick={() => setIsTimed(false)}
-                className={`p-2 rounded-xl text-center border transition-all flex items-center justify-center gap-1.5 ${
+                className={`h-10 px-3 rounded-xl border transition-colors flex items-center justify-center gap-2 text-sm ${
                   !isTimed
-                    ? 'bg-blue-50 dark:bg-blue-950/60 border-blue-400 text-blue-700 dark:text-blue-300 font-bold'
-                    : 'bg-slate-50 dark:bg-[#0D1322] border-slate-200/80 dark:border-slate-800 text-slate-500 font-medium'
+                    ? 'bg-blue-50 dark:bg-blue-500/15 border-blue-400 text-[#2563EB] dark:text-blue-400 font-semibold'
+                    : 'bg-slate-50/80 dark:bg-[#0D1322] border-slate-200/80 dark:border-slate-800 text-slate-600 dark:text-slate-400 font-medium'
                 }`}
               >
-                <Sparkles className="w-3.5 h-3.5" />
-                <span className="text-xs">Mode Santai</span>
+                <Sparkles className="w-4 h-4" />
+                <span>Mode Santai</span>
               </button>
             </div>
           </div>
@@ -323,168 +315,161 @@ export const LatihanView: React.FC<LatihanViewProps> = ({
 
         {/* LAUNCH BUTTON */}
         <button
+          type="button"
           onClick={handleLaunchCustomWorkout}
-          className="w-full py-4 px-6 bg-blue-600 hover:bg-blue-700 text-white font-black text-sm rounded-2xl shadow-lg shadow-blue-600/25 active:scale-98 transition-all flex items-center justify-center gap-2"
+          className="w-full h-11 px-6 bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-semibold text-sm rounded-xl active:scale-[0.99] transition-all flex items-center justify-center gap-2"
         >
           <Play className="w-4 h-4 fill-white" />
           <span>Mulai Latihan Mandiri ({selectedCount} Soal)</span>
           <ArrowRight className="w-4 h-4" />
         </button>
-      </div>
+      </section>
 
-      {/* 3. DAILY CHALLENGE HERO SPRINT (10 SOAL) */}
-      <div className="bg-gradient-to-br from-amber-500 via-orange-500 to-rose-600 text-white rounded-3xl p-6 sm:p-8 shadow-lg shadow-orange-500/15 relative overflow-hidden space-y-4">
+      {/* 3. DAILY CHALLENGE SPRINT */}
+      <section className="bg-slate-900 dark:bg-[#111726] text-white rounded-2xl p-5 sm:p-7 border border-slate-800 space-y-5">
         <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
           <div className="space-y-2 max-w-xl">
-            <div className="inline-flex items-center gap-1.5 bg-black/25 text-white text-[11px] font-black uppercase px-3 py-1 rounded-full">
-              <Zap className="w-3.5 h-3.5 fill-amber-200 text-amber-200" />
-              <span>Tantangan Resmi Hari Ini • Reset Pukul 00:00 WIB</span>
+            <div className="inline-flex items-center gap-1.5 bg-amber-500/15 text-amber-300 text-xs font-semibold px-3 py-1 rounded-lg border border-amber-500/30">
+              <Zap className="w-3.5 h-3.5 fill-amber-300" />
+              <span>Daily Challenge · Reset 00:00 WIB</span>
             </div>
-            <h3 className="text-2xl sm:text-3xl font-black tracking-tight">
-              Daily Challenge {trackLabels[activeTrack]}
-            </h3>
-            <p className="text-xs sm:text-sm text-white/90 leading-relaxed">
-              10 butir soal kurasi acak harian sesuai standar ujian 2026. Selesaikan dalam 10 menit untuk mempertahankan rantai streak dan menajamkan intuisi pengerjaan.
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight">
+              Tantangan Harian {trackLabels[activeTrack]}
+            </h2>
+            <p className="text-sm text-slate-300 leading-relaxed">
+              10 soal kurasi acak harian untuk mempertahankan streak belajar dan mengasah kecepatan analisis tanpa penalti waktu.
             </p>
           </div>
 
-          <div className="flex sm:flex-col items-center sm:items-end justify-between sm:justify-center gap-2 bg-black/20 p-3 sm:px-5 sm:py-3.5 rounded-2xl backdrop-blur-xs flex-shrink-0">
-            <div className="text-left sm:text-right">
-              <span className="text-3xl sm:text-4xl font-black block leading-none">10</span>
-              <span className="text-[11px] text-white/80 font-bold block mt-0.5">Menit • 10 Soal</span>
-            </div>
-            <span className="text-[10px] font-black uppercase px-2 py-0.5 bg-white/20 rounded-md">
-              +1 Streak Day
-            </span>
+          <div className="bg-white/5 px-4 py-3 rounded-xl border border-white/10 flex-shrink-0 text-left sm:text-right">
+            <span className="text-2xl sm:text-3xl font-bold block leading-none tabular-nums">10 Soal</span>
+            <span className="text-xs text-slate-300 font-medium block mt-1 tabular-nums">10 Menit · +1 Streak</span>
           </div>
         </div>
 
-        <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-white/20">
-          <div className="flex items-center gap-2 text-xs text-white/90">
-            <Clock className="w-4 h-4 text-amber-200" />
-            <span>Format santai tanpa penalti waktu untuk memaksimalkan retensi materi.</span>
+        <div className="pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-t border-white/10">
+          <div className="flex items-center gap-2 text-xs sm:text-sm text-slate-300">
+            <Clock className="w-4 h-4 text-amber-400 flex-shrink-0" />
+            <span>Format santai untuk retensi materi maksimal setiap hari.</span>
           </div>
 
           <button
+            type="button"
             onClick={() => onStartExam('DAILY')}
-            className="w-full sm:w-auto py-3 px-6 bg-white hover:bg-slate-50 text-orange-700 font-black text-xs sm:text-sm rounded-2xl shadow-md transition-all flex items-center justify-center gap-2 active:scale-98 flex-shrink-0"
+            className="w-full sm:w-auto h-11 px-5 bg-white hover:bg-slate-100 text-slate-900 font-semibold text-sm rounded-xl transition-colors flex items-center justify-center gap-2 flex-shrink-0"
           >
-            <Zap className="w-4 h-4 fill-orange-600 text-orange-600" />
-            <span>Ambil Tantangan Hari Ini</span>
+            <Zap className="w-4 h-4 text-amber-600 fill-amber-500" />
+            <span>Mulai Tantangan Hari Ini</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>
-      </div>
+      </section>
 
-      {/* 4. FLASH BITES PEMANASAN KILAT (3-5 MENIT) */}
-      <div className="space-y-3">
-        <div className="flex items-center justify-between px-1">
+      {/* 4. FLASH BITES PEMANASAN KILAT */}
+      <section className="space-y-4">
+        <div className="flex items-end justify-between gap-2">
           <div>
-            <h4 className="text-sm font-black uppercase tracking-wider text-slate-900 dark:text-white flex items-center gap-2">
-              <Zap className="w-4 h-4 text-amber-500" />
-              <span>Flash Bites Pemanasan Kilat (3–5 Menit)</span>
-            </h4>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-              5 butir soal pemanasan instan saat jeda istirahat atau sebelum mulai sesi panjang.
+            <h2 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white tracking-[-0.02em]">
+              Flash Bites Pemanasan
+            </h2>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">
+              5 soal pemanasan cepat 3–5 menit sebelum sesi panjang.
             </p>
           </div>
-          <span className="text-[10px] font-bold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/60 px-2.5 py-1 rounded-lg border border-amber-200/50 flex-shrink-0">
-            5 Butir Soal
+          <span className="text-xs font-semibold text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/40 px-2.5 py-1 rounded-lg border border-amber-200/60 dark:border-amber-900/50 flex-shrink-0 tabular-nums">
+            5 soal
           </span>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {flashBites.map((bite) => (
             <div
               key={bite.id}
-              className="bg-white dark:bg-[#111726] p-4 sm:p-5 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-xs hover:border-amber-400 dark:hover:border-amber-500 transition-all flex flex-col justify-between space-y-3"
+              className="bg-white dark:bg-[#111726] p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800/90 hover:border-slate-300 dark:hover:border-slate-700 transition-colors flex flex-col justify-between space-y-4"
             >
               <div>
-                <div className="flex items-center justify-between text-xs mb-1.5">
+                <div className="flex items-center justify-between text-xs mb-2">
                   <span className="text-xl">{bite.iconEmoji}</span>
-                  <span className="text-[10px] font-black text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded-md">
+                  <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-2.5 py-0.5 rounded-lg">
                     {bite.badge}
                   </span>
                 </div>
-                <h5 className="font-black text-sm text-slate-900 dark:text-white leading-snug">
+                <h3 className="font-semibold text-base text-slate-900 dark:text-white leading-snug">
                   {bite.title}
-                </h5>
-                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2 leading-relaxed">
+                </h3>
+                <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 line-clamp-2 leading-relaxed">
                   {bite.description}
                 </p>
               </div>
 
               <button
+                type="button"
                 onClick={() => onStartExam(bite.id)}
-                className="w-full py-2.5 px-3 bg-amber-50 dark:bg-amber-950/40 hover:bg-amber-100 dark:hover:bg-amber-900/50 text-amber-700 dark:text-amber-300 font-bold text-xs rounded-xl border border-amber-200/60 dark:border-amber-900/50 transition-colors flex items-center justify-center gap-1.5 active:scale-98"
+                className="w-full h-10 px-4 bg-slate-50 dark:bg-[#0D1322] hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 font-semibold text-sm rounded-xl border border-slate-200/80 dark:border-slate-800 transition-colors flex items-center justify-center gap-1.5"
               >
                 <span>Mulai Flash Bite</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+                <ArrowRight className="w-4 h-4" />
               </button>
             </div>
           ))}
         </div>
-      </div>
+      </section>
 
-      {/* 5. PRESET PAKET DRILLING SUB-TES (20-30 SOAL) */}
-      <div className="space-y-3">
-        <div className="flex items-center justify-between px-1">
+      {/* 5. PRESET PAKET DRILLING SUB-TES */}
+      <section className="space-y-4">
+        <div className="flex items-end justify-between gap-2">
           <div>
-            <h4 className="text-sm font-black uppercase tracking-wider text-slate-900 dark:text-white flex items-center gap-2">
-              <Target className="w-4 h-4 text-indigo-500" />
-              <span>Paket Drilling Sub-Tes Siap Pakai ({trackLabels[activeTrack]})</span>
-            </h4>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-              Paket latihan terfokus 20–30 butir soal untuk penguasaan mendalam 1 topik.
+            <h2 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white tracking-[-0.02em]">
+              Paket Drilling Sub-Tes
+            </h2>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">
+              Latihan terfokus 20–30 soal untuk penguasaan mendalam per sub-tes.
             </p>
           </div>
-          <span className="text-[10px] font-bold text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/60 px-2.5 py-1 rounded-lg border border-indigo-200/50 flex-shrink-0">
-            Fokus 1 Sub-Materi
-          </span>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {drillPackages.map((pkg) => (
             <div
               key={pkg.id}
-              className="bg-white dark:bg-[#111726] p-5 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-xs hover:border-indigo-400 dark:hover:border-indigo-500 transition-all flex flex-col justify-between space-y-4"
+              className="bg-white dark:bg-[#111726] p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800/90 hover:border-slate-300 dark:hover:border-slate-700 transition-colors flex flex-col justify-between space-y-4"
             >
               <div>
                 <div className="flex items-center justify-between text-xs mb-2">
                   <span className="text-2xl">{pkg.iconEmoji}</span>
-                  <span className="text-[10px] font-black text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/60 px-2.5 py-0.5 rounded-md border border-indigo-200/40">
+                  <span className="text-xs font-semibold text-[#2563EB] dark:text-blue-400 bg-blue-50 dark:bg-blue-500/15 px-2.5 py-0.5 rounded-lg">
                     {pkg.badge}
                   </span>
                 </div>
-                <h5 className="font-black text-base text-slate-900 dark:text-white leading-snug">
+                <h3 className="font-semibold text-base text-slate-900 dark:text-white leading-snug">
                   {pkg.title}
-                </h5>
-                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1.5 line-clamp-2 leading-relaxed">
+                </h3>
+                <p className="text-sm text-slate-500 dark:text-slate-400 mt-1.5 line-clamp-2 leading-relaxed">
                   {pkg.description}
                 </p>
 
-                {/* Sub-test points */}
-                <div className="mt-3 pt-3 border-t border-slate-100 dark:border-slate-800/80 space-y-1">
+                <div className="mt-3.5 pt-3 border-t border-slate-100 dark:border-slate-800 space-y-1.5">
                   {pkg.subTests.slice(0, 2).map((sub, i) => (
-                    <div key={i} className="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400">
+                    <div key={i} className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
                       <span>{sub.name}</span>
-                      <span className="font-semibold text-slate-700 dark:text-slate-300">{sub.note}</span>
+                      <span className="font-semibold text-slate-700 dark:text-slate-300 tabular-nums">{sub.note}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
               <button
+                type="button"
                 onClick={() => onStartExam(pkg.id)}
-                className="w-full py-2.5 px-3 bg-slate-50 dark:bg-[#0D1322] hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 font-bold text-xs rounded-xl border border-slate-200 dark:border-slate-800 transition-colors flex items-center justify-center gap-1.5 active:scale-98"
+                className="w-full h-10 px-4 bg-slate-50 dark:bg-[#0D1322] hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 font-semibold text-sm rounded-xl border border-slate-200/80 dark:border-slate-800 transition-colors flex items-center justify-center gap-1.5"
               >
-                <span>Mulai Drilling ({pkg.questionCount} Soal)</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+                <span className="tabular-nums">Mulai ({pkg.questionCount} Soal)</span>
+                <ArrowRight className="w-4 h-4" />
               </button>
             </div>
           ))}
         </div>
-      </div>
+      </section>
     </div>
   );
 };

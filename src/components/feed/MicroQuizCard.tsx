@@ -42,23 +42,23 @@ export const MicroQuizCard: React.FC<MicroQuizCardProps> = ({
   };
 
   return (
-    <div className="bg-slate-50/90 dark:bg-[#0D1322] rounded-xl p-3.5 border border-slate-200/80 dark:border-slate-800/90 mb-3 space-y-2.5">
+    <div className="bg-slate-50/90 dark:bg-[#0D1322] rounded-xl p-4 border border-slate-200/80 dark:border-slate-800/90 mb-3.5 space-y-3">
       <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
         <div className="flex items-center gap-1.5">
-          <Sparkles className="w-3.5 h-3.5 text-blue-500" />
-          <span className="font-bold text-slate-800 dark:text-slate-200">Kuis Mikro</span>
+          <Sparkles className="w-4 h-4 text-[#2563EB] dark:text-blue-400" />
+          <span className="font-semibold text-slate-800 dark:text-slate-200">Kuis Mikro</span>
         </div>
-        <span className="text-[11px] font-medium">
+        <span className="font-medium tabular-nums">
           {quiz.totalVotes} peserta
         </span>
       </div>
 
-      <p className="text-xs sm:text-sm font-semibold text-slate-900 dark:text-slate-100 leading-snug">
+      <p className="text-[15px] font-semibold text-slate-900 dark:text-slate-100 leading-snug">
         {quiz.questionText}
       </p>
 
       {/* Options */}
-      <div className="space-y-1.5 pt-1">
+      <div className="space-y-2 pt-0.5">
         {quiz.options.map((opt) => {
           const isSelected = selectedQuizOption === opt.index;
           const hasAnswered = selectedQuizOption !== null;
@@ -67,16 +67,17 @@ export const MicroQuizCard: React.FC<MicroQuizCardProps> = ({
           return (
             <button
               key={opt.index}
+              type="button"
               onClick={() => handleSelectQuiz(opt.index)}
               disabled={hasAnswered}
-              className={`w-full relative overflow-hidden rounded-xl border p-2.5 text-left text-xs font-semibold transition-all flex items-center justify-between gap-2 ${
+              className={`w-full min-h-[44px] relative overflow-hidden rounded-xl border py-2.5 px-3.5 text-left text-sm font-medium transition-colors flex items-center justify-between gap-3 ${
                 hasAnswered
                   ? isCorrect
-                    ? 'border-emerald-500 bg-emerald-50/70 dark:bg-emerald-950/40 text-emerald-950 dark:text-emerald-200 font-bold'
+                    ? 'border-emerald-500 bg-emerald-50/70 dark:bg-emerald-950/40 text-emerald-950 dark:text-emerald-200 font-semibold'
                     : isSelected
-                      ? 'border-rose-400 bg-rose-50/70 dark:bg-rose-950/40 text-rose-950 dark:text-rose-200 font-bold'
-                      : 'border-slate-200 dark:border-slate-800 bg-white dark:bg-[#162137] text-slate-400 dark:text-slate-500 opacity-70'
-                  : 'border-slate-200 dark:border-slate-800 bg-white dark:bg-[#162137] text-slate-700 dark:text-slate-200 hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400'
+                      ? 'border-rose-400 bg-rose-50/70 dark:bg-rose-950/40 text-rose-950 dark:text-rose-200 font-semibold'
+                      : 'border-slate-200 dark:border-slate-800 bg-white dark:bg-[#111726] text-slate-400 dark:text-slate-500 opacity-75'
+                  : 'border-slate-200 dark:border-slate-800 bg-white dark:bg-[#111726] text-slate-800 dark:text-slate-200 hover:border-blue-400 hover:text-[#2563EB] dark:hover:text-blue-400'
               }`}
             >
               {hasAnswered && (
@@ -88,9 +89,9 @@ export const MicroQuizCard: React.FC<MicroQuizCardProps> = ({
                 />
               )}
 
-              <div className="relative z-10 flex items-center gap-2 min-w-0">
+              <div className="relative z-10 flex items-center gap-2.5 min-w-0">
                 <span
-                  className={`w-5 h-5 rounded-md flex items-center justify-center text-[10px] font-black flex-shrink-0 ${
+                  className={`w-6 h-6 rounded-md flex items-center justify-center text-xs font-bold flex-shrink-0 ${
                     hasAnswered && isCorrect
                       ? 'bg-emerald-600 text-white'
                       : hasAnswered && isSelected
@@ -104,7 +105,7 @@ export const MicroQuizCard: React.FC<MicroQuizCardProps> = ({
               </div>
 
               {hasAnswered && (
-                <span className="relative z-10 text-[11px] font-mono font-bold flex-shrink-0">
+                <span className="relative z-10 text-xs font-semibold tabular-nums flex-shrink-0">
                   {opt.votePercentage}%
                 </span>
               )}
@@ -115,17 +116,18 @@ export const MicroQuizCard: React.FC<MicroQuizCardProps> = ({
 
       {/* Explanation Accordion */}
       {selectedQuizOption !== null && (
-        <div className="pt-2 border-t border-slate-200/60 dark:border-slate-800/60 text-xs">
+        <div className="pt-2.5 border-t border-slate-200/70 dark:border-slate-800/80 text-sm">
           <button
+            type="button"
             onClick={() => setIsExplanationOpen(!isExplanationOpen)}
-            className="flex items-center justify-between w-full font-bold text-blue-600 dark:text-blue-400"
+            className="flex items-center justify-between w-full h-9 font-semibold text-[#2563EB] dark:text-blue-400"
           >
-            <span>{isExplanationOpen ? 'Tutup Pembahasan' : '💡 Buka Kunci Jawaban & Pembahasan'}</span>
-            {isExplanationOpen ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+            <span>{isExplanationOpen ? 'Tutup Pembahasan' : 'Lihat Kunci & Pembahasan'}</span>
+            {isExplanationOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
           </button>
 
           {isExplanationOpen && (
-            <div className="mt-2 p-2.5 rounded-lg bg-blue-50/60 dark:bg-blue-950/30 text-slate-700 dark:text-slate-200 border border-blue-200/50 dark:border-blue-900/50 leading-relaxed animate-in fade-in duration-200">
+            <div className="mt-2 p-3 rounded-xl bg-blue-50/60 dark:bg-blue-950/30 text-sm text-slate-700 dark:text-slate-200 border border-blue-200/50 dark:border-blue-900/50 leading-relaxed animate-in fade-in duration-200">
               <p>{quiz.explanation}</p>
             </div>
           )}

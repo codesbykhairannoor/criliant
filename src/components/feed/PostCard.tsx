@@ -77,13 +77,14 @@ export const PostCard: React.FC<PostCardProps> = ({
   };
 
   return (
-    <article className="bg-white dark:bg-[#111726] rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm p-3.5 sm:p-5 mb-3.5 hover:shadow-md transition-shadow">
+    <article className="bg-white dark:bg-[#111726] rounded-2xl border border-slate-200/80 dark:border-slate-800/90 p-4 sm:p-5 transition-colors">
       {/* 1. Header Row */}
-      <div className="flex items-start justify-between gap-2 mb-3">
-        <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
-          <div
+      <div className="flex items-start justify-between gap-3 mb-3">
+        <div className="flex items-center gap-3 min-w-0">
+          <button
+            type="button"
             onClick={() => onOpenProfile?.(post.authorId || post.authorName, post.authorName)}
-            className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 text-white font-black text-xs sm:text-sm flex items-center justify-center flex-shrink-0 shadow-sm cursor-pointer hover:opacity-90 transition-opacity overflow-hidden"
+            className="w-10 h-10 rounded-full bg-[#2563EB] text-white font-semibold text-sm flex items-center justify-center flex-shrink-0 hover:opacity-90 transition-opacity overflow-hidden"
           >
             {post.authorPhotoUrl ? (
               <img
@@ -94,42 +95,40 @@ export const PostCard: React.FC<PostCardProps> = ({
             ) : (
               post.avatarInitial
             )}
-          </div>
+          </button>
+
           <div className="min-w-0 flex-1">
             <div className="flex items-center gap-1.5 flex-wrap min-w-0">
-              <span
+              <button
+                type="button"
                 onClick={() => onOpenProfile?.(post.authorId || post.authorName, post.authorName)}
-                className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white truncate max-w-[125px] sm:max-w-[200px] cursor-pointer hover:underline"
+                className="font-bold text-[15px] text-slate-900 dark:text-white truncate max-w-[160px] sm:max-w-[220px] hover:underline text-left"
                 title={post.authorName}
               >
                 {post.authorName}
-              </span>
+              </button>
               <span
                 onClick={() => onOpenProfile?.(post.authorId || post.authorName, post.authorName)}
-                className="text-[11px] text-slate-400 dark:text-slate-500 font-normal truncate max-w-[90px] sm:max-w-[130px] cursor-pointer hover:underline"
+                className="text-sm text-slate-500 dark:text-slate-400 font-normal truncate max-w-[110px] sm:max-w-[150px] cursor-pointer hover:underline"
                 title={`@${formatUsername(post.authorUsername, post.authorName)}`}
               >
                 @{formatUsername(post.authorUsername, post.authorName)}
               </span>
-              <span className="text-slate-300 dark:text-slate-600 text-[10px] flex-shrink-0">•</span>
-              <span className="text-[10px] sm:text-[11px] text-slate-400 dark:text-slate-500 font-medium flex-shrink-0">
+              <span className="text-slate-300 dark:text-slate-600 text-xs flex-shrink-0">·</span>
+              <span className="text-sm text-slate-500 dark:text-slate-400 font-normal flex-shrink-0 tabular-nums">
                 {formatCompactTime(post.createdAt || post.timeAgo)}
               </span>
-              {post.authorBadge && (
-                <span className="text-[9px] sm:text-[10px] font-bold px-1.5 sm:px-2 py-0.5 rounded-full bg-blue-50 dark:bg-blue-950/70 text-blue-700 dark:text-blue-300 border border-blue-200/60 dark:border-blue-800/60 truncate max-w-[110px] sm:max-w-none flex-shrink-0">
-                  {post.authorBadge}
-                </span>
-              )}
               {userProfile?.name.toLowerCase() !== post.authorName.toLowerCase() && onToggleFollow && (
                 <button
+                  type="button"
                   onClick={() => onToggleFollow(post.authorId || post.authorName)}
-                  className={`text-[10px] font-bold px-1.5 py-0.5 rounded-lg transition-all flex-shrink-0 ${
+                  className={`text-[13px] font-semibold px-2 py-0.5 rounded-lg transition-colors flex-shrink-0 ${
                     isFollowingAuthor
-                      ? 'text-slate-400 bg-slate-100 dark:bg-slate-800 hover:text-rose-500'
-                      : 'text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/50'
+                      ? 'text-slate-500 bg-slate-100 dark:bg-slate-800 hover:text-rose-500'
+                      : 'text-[#2563EB] dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-500/15'
                   }`}
                 >
-                  {isFollowingAuthor ? '✓' : '+ Ikuti'}
+                  {isFollowingAuthor ? 'Mengikuti' : 'Ikuti'}
                 </button>
               )}
             </div>
@@ -137,39 +136,43 @@ export const PostCard: React.FC<PostCardProps> = ({
         </div>
 
         {/* Top-Right: Cashtag Chip & Options */}
-        <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
-          <span className="text-[10px] sm:text-xs font-semibold px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-blue-600 dark:text-blue-400 font-mono max-w-[110px] sm:max-w-none truncate">
+        <div className="flex items-center gap-1.5 flex-shrink-0">
+          <span className="text-xs font-semibold px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800/90 text-[#2563EB] dark:text-blue-400 max-w-[130px] sm:max-w-none truncate">
             {post.cashtag}
           </span>
 
           <div className="relative">
             <button
+              type="button"
               onClick={(e) => {
                 e.stopPropagation();
                 setIsMenuOpen(!isMenuOpen);
               }}
-              className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+              className="w-9 h-9 rounded-xl text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center justify-center transition-colors"
               title="Opsi Postingan"
+              aria-label="Opsi Postingan"
             >
-              <MoreHorizontal className="w-4 h-4" />
+              <MoreHorizontal className="w-[18px] h-[18px]" strokeWidth={1.85} />
             </button>
 
             {isMenuOpen && (
               <>
                 <div className="fixed inset-0 z-40" onClick={() => setIsMenuOpen(false)} />
-                <div className="absolute right-0 top-8 z-50 w-48 bg-white dark:bg-[#162137] rounded-xl shadow-xl border border-slate-200 dark:border-slate-800 py-1 text-xs text-slate-700 dark:text-slate-200">
+                <div className="absolute right-0 top-10 z-50 w-52 bg-white dark:bg-[#162137] rounded-xl shadow-xl border border-slate-200 dark:border-slate-800 py-1.5 text-sm text-slate-700 dark:text-slate-200">
                   <button
+                    type="button"
                     onClick={() => {
                       setIsMenuOpen(false);
                       setIsShareModalOpen(true);
                     }}
-                    className="w-full px-3 py-2 text-left hover:bg-slate-50 dark:hover:bg-slate-800 flex items-center gap-2"
+                    className="w-full h-10 px-3.5 text-left hover:bg-slate-50 dark:hover:bg-slate-800 flex items-center gap-2.5 font-medium"
                   >
-                    <Share2 className="w-3.5 h-3.5 text-blue-500" />
+                    <Share2 className="w-4 h-4 text-blue-500" />
                     <span>Bagikan Postingan</span>
                   </button>
 
                   <button
+                    type="button"
                     onClick={() => {
                       setIsMenuOpen(false);
                       if (typeof navigator !== 'undefined' && navigator.clipboard) {
@@ -179,13 +182,14 @@ export const PostCard: React.FC<PostCardProps> = ({
                         setTimeout(() => setCopiedToast(false), 2000);
                       }
                     }}
-                    className="w-full px-3 py-2 text-left hover:bg-slate-50 dark:hover:bg-slate-800 flex items-center gap-2"
+                    className="w-full h-10 px-3.5 text-left hover:bg-slate-50 dark:hover:bg-slate-800 flex items-center gap-2.5 font-medium"
                   >
-                    <Link2 className="w-3.5 h-3.5 text-slate-400" />
-                    <span>Salin Tautan Langsung</span>
+                    <Link2 className="w-4 h-4 text-slate-400" />
+                    <span>Salin Tautan</span>
                   </button>
 
                   <button
+                    type="button"
                     onClick={() => {
                       setIsMenuOpen(false);
                       if (!userProfile) {
@@ -194,10 +198,10 @@ export const PostCard: React.FC<PostCardProps> = ({
                       }
                       onReportPost?.(post.id, 'soal_keliru');
                     }}
-                    className="w-full px-3 py-2 text-left hover:bg-rose-50 dark:hover:bg-rose-950/30 text-rose-600 dark:text-rose-400 flex items-center gap-2"
+                    className="w-full h-10 px-3.5 text-left hover:bg-rose-50 dark:hover:bg-rose-950/30 text-rose-600 dark:text-rose-400 flex items-center gap-2.5 font-medium"
                   >
-                    <Flag className="w-3.5 h-3.5" />
-                    <span>Laporkan Soal / Hoaks</span>
+                    <Flag className="w-4 h-4" />
+                    <span>Laporkan Soal</span>
                   </button>
                 </div>
               </>
@@ -206,15 +210,15 @@ export const PostCard: React.FC<PostCardProps> = ({
         </div>
       </div>
 
-      {/* 2. Main Text Content */}
-      <p className="text-[13px] sm:text-[14px] text-slate-800 dark:text-slate-200 leading-relaxed mb-3 whitespace-pre-line font-normal">
+      {/* 2. Main Text Content (Crisp 15px-16px Readable Copy) */}
+      <p className="text-[15px] sm:text-base text-slate-800 dark:text-slate-100 leading-[1.6] mb-3.5 whitespace-pre-line font-normal">
         {post.content}
       </p>
 
       {/* 3. Image (if attached) */}
       {post.imageUrl && (
         <div
-          className="mb-3 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#0E1524] relative group cursor-pointer"
+          className="mb-3.5 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#0D1322] relative group cursor-pointer"
           onClick={() => setIsImageZoomed(true)}
         >
           <img
@@ -222,8 +226,8 @@ export const PostCard: React.FC<PostCardProps> = ({
             alt="Foto Soal Terlampir"
             className="w-full max-h-80 object-cover object-top hover:scale-[1.01] transition-transform"
           />
-          <div className="absolute bottom-2 right-2 px-2 py-1 bg-black/60 backdrop-blur-md rounded-lg text-white text-[10px] font-bold flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-            <Maximize2 className="w-3 h-3" />
+          <div className="absolute bottom-2.5 right-2.5 px-2.5 py-1 bg-black/70 backdrop-blur-md rounded-lg text-white text-xs font-semibold flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
+            <Maximize2 className="w-3.5 h-3.5" />
             <span>Perbesar</span>
           </div>
         </div>
@@ -240,79 +244,84 @@ export const PostCard: React.FC<PostCardProps> = ({
 
       {/* 5. Verified Score Flex Card */}
       {post.verifiedScore && (
-        <div className="bg-[#0B0F19] rounded-xl p-3.5 sm:p-4 text-white shadow-sm border border-slate-800 mb-3 space-y-2.5">
+        <div className="bg-slate-900 dark:bg-[#0D1322] rounded-2xl p-4 sm:p-5 text-white border border-slate-800 mb-3.5 space-y-3">
           <div className="flex items-center justify-between gap-2 flex-wrap">
-            <span className="text-[9px] font-black uppercase tracking-wider bg-white/10 text-slate-300 px-2 py-0.5 rounded flex items-center gap-1">
-              <Award className="w-3 h-3 text-amber-400" />
-              Rapor Terverifikasi Criliant
+            <span className="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
+              <Award className="w-4 h-4 text-amber-400" />
+              Rapor Terverifikasi
             </span>
             <span
-              className={`text-[10px] font-black px-2 py-0.5 rounded border ${
+              className={`text-xs font-semibold px-2.5 py-0.5 rounded-lg border ${
                 post.verifiedScore.isPassed
-                  ? 'text-emerald-400 bg-emerald-950/80 border-emerald-500/30'
-                  : 'text-amber-300 bg-amber-950/80 border-amber-500/30'
+                  ? 'text-emerald-400 bg-emerald-950/60 border-emerald-500/30'
+                  : 'text-amber-300 bg-amber-950/60 border-amber-500/30'
               }`}
             >
-              {post.verifiedScore.isPassed ? 'LULUS TARGET' : 'PROGRES LATIHAN'}
+              {post.verifiedScore.isPassed ? 'Lulus Target' : 'Progres Latihan'}
             </span>
           </div>
 
-          <div className="flex items-baseline gap-2 flex-wrap">
-            <span className="text-2xl sm:text-3xl font-black tracking-tight text-white">
+          <div className="flex items-baseline gap-2.5 flex-wrap">
+            <span className="text-3xl font-bold tracking-tight text-white tabular-nums">
               {post.verifiedScore.totalScore}
             </span>
-            <span className="text-xs font-bold text-slate-400">Skor Evaluasi</span>
-            <span className="text-[10px] font-bold text-amber-300 ml-auto">
-              🏆 {post.verifiedScore.percentileText}
+            <span className="text-sm font-medium text-slate-400">Skor Evaluasi</span>
+            <span className="text-xs font-semibold text-amber-300 ml-auto">
+              {post.verifiedScore.percentileText}
             </span>
           </div>
 
-          <div className="bg-white/5 rounded-lg p-2.5 text-[11px] sm:text-xs font-mono font-medium text-slate-300 border border-white/5 break-words">
+          <div className="bg-white/5 rounded-xl px-3.5 py-2.5 text-xs font-mono text-slate-300 border border-white/10 break-words tabular-nums">
             <span>{post.verifiedScore.breakdownText}</span>
           </div>
 
           <button
+            type="button"
             onClick={() => onStartExam('TRYOUT_FULL')}
-            className="w-full flex items-center justify-center gap-1.5 py-2 px-3 bg-white hover:bg-slate-100 text-slate-900 font-extrabold text-xs rounded-xl transition-all shadow-sm active:scale-[0.98]"
+            className="w-full h-10 px-4 bg-white hover:bg-slate-100 text-slate-900 font-semibold text-sm rounded-xl transition-colors flex items-center justify-center gap-2"
           >
-            <Swords className="w-3.5 h-3.5 text-blue-600" />
+            <Swords className="w-4 h-4 text-[#2563EB]" />
             <span>Tantang Skor Ini (Coba Tryout)</span>
           </button>
         </div>
       )}
 
-      {/* 6. Action Bar */}
-      <div className="flex items-center justify-between pt-2.5 border-t border-slate-100 dark:border-slate-800 text-slate-500 dark:text-slate-400 text-xs">
+      {/* 6. Action Bar (Standard Touch Targets & Readable Counts) */}
+      <div className="flex items-center justify-between pt-3 border-t border-slate-100 dark:border-slate-800/90 text-slate-500 dark:text-slate-400">
         <div className="flex items-center gap-5">
           <button
+            type="button"
             onClick={handleLikeClick}
-            className={`flex items-center gap-1.5 transition-all group ${
-              isLiked ? 'text-rose-500 font-bold' : 'hover:text-rose-500'
+            className={`h-9 px-2 -ml-2 rounded-xl flex items-center gap-2 text-[13px] font-medium tabular-nums transition-colors group ${
+              isLiked ? 'text-rose-500 font-semibold' : 'hover:text-rose-500 hover:bg-rose-50/60 dark:hover:bg-rose-950/30'
             }`}
             title={isLiked ? 'Batal Suka' : 'Suka'}
           >
             <div className={`transition-transform duration-200 ${isHeartAnimating ? 'scale-125' : ''}`}>
               <Heart
-                className={`w-4 h-4 transition-colors ${
+                className={`w-[18px] h-[18px] transition-colors ${
                   isLiked ? 'fill-rose-500 text-rose-500' : 'group-hover:text-rose-500'
                 }`}
+                strokeWidth={1.85}
               />
             </div>
             <span>{likeCount}</span>
           </button>
 
           <button
+            type="button"
             onClick={() => setIsCommentsOpen(!isCommentsOpen)}
-            className="flex items-center gap-1.5 hover:text-blue-600 dark:hover:text-blue-400 transition-colors group"
+            className="h-9 px-2 rounded-xl flex items-center gap-2 text-[13px] font-medium tabular-nums hover:text-[#2563EB] dark:hover:text-blue-400 hover:bg-blue-50/60 dark:hover:bg-blue-950/30 transition-colors group"
             title="Diskusi"
           >
-            <MessageCircle className="w-4 h-4 text-slate-400 group-hover:text-blue-500 transition-colors" />
+            <MessageCircle className="w-[18px] h-[18px] text-slate-400 group-hover:text-[#2563EB] dark:group-hover:text-blue-400 transition-colors" strokeWidth={1.85} />
             <span>{post.comments.length || post.commentCount}</span>
           </button>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-1">
           <button
+            type="button"
             onClick={() => {
               if (!userProfile) {
                 onRequireAuth?.('bookmark');
@@ -320,22 +329,27 @@ export const PostCard: React.FC<PostCardProps> = ({
               }
               onToggleBookmark?.(post.id);
             }}
-            className={`p-1.5 rounded-lg transition-colors ${
-              isBookmarked ? 'text-blue-600 dark:text-blue-400' : 'hover:text-blue-600 dark:hover:text-blue-400'
+            className={`w-9 h-9 rounded-xl flex items-center justify-center transition-colors ${
+              isBookmarked
+                ? 'text-[#2563EB] dark:text-blue-400 bg-blue-50 dark:bg-blue-500/15'
+                : 'hover:text-[#2563EB] dark:hover:text-blue-400 hover:bg-slate-100 dark:hover:bg-slate-800'
             }`}
             title={isBookmarked ? 'Hapus Simpanan' : 'Simpan Soal'}
+            aria-label={isBookmarked ? 'Hapus Simpanan' : 'Simpan Soal'}
           >
-            <Bookmark className={`w-4 h-4 ${isBookmarked ? 'fill-current' : ''}`} />
+            <Bookmark className={`w-[18px] h-[18px] ${isBookmarked ? 'fill-current' : ''}`} strokeWidth={1.85} />
           </button>
 
           <button
+            type="button"
             onClick={handleShare}
-            className="p-1.5 rounded-lg hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors relative"
-            title="Salin Tautan"
+            className="w-9 h-9 rounded-xl flex items-center justify-center hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors relative"
+            title="Bagikan Postingan"
+            aria-label="Bagikan Postingan"
           >
-            <Share2 className="w-4 h-4" />
+            <Share2 className="w-[18px] h-[18px]" strokeWidth={1.85} />
             {copiedToast && (
-              <span className="absolute -top-7 left-1/2 -translate-x-1/2 text-[9px] bg-slate-900 text-white font-bold px-2 py-0.5 rounded shadow whitespace-nowrap">
+              <span className="absolute -top-8 left-1/2 -translate-x-1/2 text-xs bg-slate-900 text-white font-semibold px-2.5 py-1 rounded-lg shadow whitespace-nowrap">
                 Tersalin!
               </span>
             )}

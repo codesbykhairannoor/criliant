@@ -54,7 +54,7 @@ export const NetworkStatusPill: React.FC = () => {
   return (
     <aside
       aria-label="Status koneksi jaringan"
-      className={`fixed top-2 sm:top-3 left-1/2 -translate-x-1/2 z-[100] px-3.5 py-1.5 rounded-full shadow-xl backdrop-blur-md text-[11px] font-black flex items-center gap-2 border transition-all animate-in slide-in-from-top-2 duration-300 pointer-events-none select-none max-w-[92vw] truncate text-white ${
+      className={`fixed top-2 sm:top-3 left-1/2 -translate-x-1/2 z-[100] px-4 py-1.5 rounded-full shadow-lg backdrop-blur-md text-xs font-semibold flex items-center gap-2 border transition-all animate-in slide-in-from-top-2 duration-300 pointer-events-none select-none max-w-[92vw] truncate text-white ${
         !isOnline
           ? 'bg-amber-500/95 dark:bg-amber-600/95 border-amber-300 dark:border-amber-400 shadow-amber-500/20'
           : 'bg-emerald-600/95 dark:bg-emerald-700/95 border-emerald-400 dark:border-emerald-500 shadow-emerald-500/20'

@@ -230,38 +230,38 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({
   const currentBannerClass = BANNER_THEMES[bannerTheme || 'default']?.class || BANNER_THEMES.default.class;
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 select-none">
-      <div className="bg-white dark:bg-[#0B0F19] rounded-3xl max-w-lg w-full p-5 sm:p-6 shadow-2xl border border-slate-200 dark:border-[#1E293B] space-y-4 sm:space-y-5 animate-in zoom-in-95 duration-200 transition-colors max-h-[92vh] overflow-y-auto">
+    <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4 select-none">
+      <div className="bg-white dark:bg-[#111726] rounded-2xl max-w-lg w-full p-5 sm:p-6 shadow-2xl border border-slate-200/80 dark:border-slate-800 space-y-5 animate-in zoom-in-95 duration-200 transition-colors max-h-[92vh] overflow-y-auto">
         {/* Header */}
-        <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-[#1E293B]">
-          <div className="flex items-center gap-2">
-            <User className="w-5 h-5 text-[#2563EB] dark:text-[#38BDF8]" />
+        <div className="flex items-center justify-between pb-3.5 border-b border-slate-200/80 dark:border-slate-800">
+          <div className="flex items-center gap-2.5">
+            <User className="w-5 h-5 text-[#2563EB] dark:text-[#38BDF8]" strokeWidth={1.85} />
             <div>
-              <h3 className="font-black text-[#0F1419] dark:text-white text-base">Pengaturan Profil Pejuang</h3>
-              <p className="text-[11px] text-[#536471] dark:text-slate-400">Tersimpan otomatis di penyimpanan lokal akunmu</p>
+              <h3 className="font-semibold text-slate-900 dark:text-white text-base">Pengaturan Profil Pejuang</h3>
+              <p className="text-xs text-slate-500 dark:text-slate-400">Tersimpan otomatis di penyimpanan lokal akunmu</p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="w-8 h-8 rounded-full bg-slate-100 dark:bg-[#0F172A] hover:bg-slate-200 dark:hover:bg-slate-800 flex items-center justify-center text-slate-500 dark:text-slate-400"
+            className="w-9 h-9 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center text-slate-500 dark:text-slate-400 transition-colors"
             aria-label="Tutup"
           >
-            <X className="w-4 h-4" />
+            <X className="w-[18px] h-[18px]" strokeWidth={1.85} />
           </button>
         </div>
 
         {/* Dynamic Banner & Avatar Preview Box */}
-        <div className="rounded-2xl border border-slate-200/80 dark:border-[#1E293B] overflow-hidden bg-slate-50 dark:bg-[#0F172A]">
-          <div className={`h-16 bg-gradient-to-r ${currentBannerClass} relative p-2.5 flex justify-between items-start`}>
-            <span className="text-[9px] font-black uppercase tracking-wider text-white bg-black/20 px-2 py-0.5 rounded-md">
+        <div className="rounded-2xl border border-slate-200/80 dark:border-slate-800 overflow-hidden bg-slate-50 dark:bg-[#0B0F19]">
+          <div className={`h-16 bg-gradient-to-r ${currentBannerClass} relative p-3 flex justify-between items-start`}>
+            <span className="text-xs font-semibold text-white bg-black/25 backdrop-blur-xs px-2.5 py-0.5 rounded-lg">
               Tema Banner: {BANNER_THEMES[bannerTheme || 'default']?.label}
             </span>
           </div>
 
-          <div className="px-4 pb-3.5 pt-0 flex items-end justify-between -mt-8 gap-3">
+          <div className="px-4 pb-4 pt-0 flex items-end justify-between -mt-8 gap-3">
             {/* Avatar with Camera Overlay */}
             <div className="relative group">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-blue-700 to-indigo-800 border-4 border-white dark:border-[#0F172A] text-white font-black text-xl flex items-center justify-center shadow-md overflow-hidden bg-slate-900">
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-blue-700 to-indigo-800 border-4 border-white dark:border-[#0B0F19] text-white font-bold text-xl flex items-center justify-center shadow-md overflow-hidden">
                 {avatarPhotoUrl ? (
                   <img src={avatarPhotoUrl} alt="Preview Foto Profil" className="w-full h-full object-cover" />
                 ) : (
@@ -281,21 +281,21 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({
                 type="button"
                 onClick={() => fileInputRef.current?.click()}
                 disabled={isCompressing}
-                className="absolute -bottom-1 -right-1 w-7 h-7 rounded-xl bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center shadow-md border-2 border-white dark:border-[#0F172A] transition-all"
+                className="absolute -bottom-1 -right-1 w-8 h-8 rounded-xl bg-[#2563EB] hover:bg-[#1D4ED8] text-white flex items-center justify-center shadow-md border-2 border-white dark:border-[#0B0F19] transition-all"
                 title="Ganti Foto Profil"
               >
-                <Camera className="w-3.5 h-3.5" />
+                <Camera className="w-4 h-4" strokeWidth={1.85} />
               </button>
             </div>
 
-            <div className="flex-1 min-w-0 pb-1">
-              <span className="font-extrabold text-sm text-[#0F1419] dark:text-white block truncate" title={name}>
+            <div className="flex-1 min-w-0 pb-0.5">
+              <span className="font-semibold text-sm text-slate-900 dark:text-white block truncate" title={name}>
                 {name || 'Nama Pejuang'}
               </span>
-              <span className="text-[11px] text-[#2563EB] dark:text-[#38BDF8] font-mono block truncate">
+              <span className="text-xs text-[#2563EB] dark:text-[#38BDF8] font-mono block truncate">
                 @{username || formatUsername(null, name)}
               </span>
-              <span className="text-[10px] text-[#536471] dark:text-slate-400 block truncate">
+              <span className="text-xs text-slate-500 dark:text-slate-400 block truncate">
                 Target: {targetAgency || 'Kementerian Keuangan'}
               </span>
             </div>
@@ -304,11 +304,11 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({
               <button
                 type="button"
                 onClick={handleRemovePhoto}
-                className="p-1.5 rounded-xl bg-rose-50 dark:bg-rose-950/50 text-rose-600 dark:text-rose-400 border border-rose-200 dark:border-rose-900/40 text-[10px] font-bold flex items-center gap-1 hover:bg-rose-100"
+                className="h-9 px-3 rounded-lg bg-rose-50 dark:bg-rose-950/50 text-rose-600 dark:text-rose-400 border border-rose-200 dark:border-rose-900/40 text-xs font-semibold flex items-center gap-1.5 hover:bg-rose-100 transition-colors"
                 title="Hapus foto dan kembali ke inisial"
               >
-                <Trash2 className="w-3 h-3" />
-                <span className="hidden sm:inline">Hapus Foto</span>
+                <Trash2 className="w-3.5 h-3.5" strokeWidth={1.85} />
+                <span className="hidden sm:inline">Hapus</span>
               </button>
             )}
           </div>
@@ -316,30 +316,30 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({
 
         {/* Anti-Bot Status Banner */}
         <div
-          className={`p-3 rounded-2xl border text-xs space-y-1 transition-colors ${
+          className={`p-3.5 rounded-xl border text-xs space-y-1 transition-colors ${
             userProfile.isCompetenceVerified
               ? 'bg-emerald-50/70 dark:bg-emerald-950/30 border-emerald-500/20 text-emerald-900 dark:text-emerald-200'
               : 'bg-amber-50/70 dark:bg-amber-950/30 border-amber-500/20 text-amber-900 dark:text-amber-200'
           }`}
         >
-          <div className="flex items-center justify-between">
-            <span className="font-extrabold flex items-center gap-1.5">
+          <div className="flex items-center justify-between gap-2">
+            <span className="font-semibold flex items-center gap-1.5 text-sm">
               {userProfile.isCompetenceVerified ? (
-                <ShieldCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                <ShieldCheck className="w-[18px] h-[18px] text-emerald-600 dark:text-emerald-400" strokeWidth={1.85} />
               ) : (
-                <ShieldAlert className="w-4 h-4 text-amber-600 dark:text-amber-400" />
+                <ShieldAlert className="w-[18px] h-[18px] text-amber-600 dark:text-amber-400" strokeWidth={1.85} />
               )}
               <span>Status Akun &amp; Verifikasi</span>
             </span>
             <span
-              className={`text-[10px] font-black px-2 py-0.5 rounded-full ${
+              className={`text-xs font-semibold px-2.5 py-0.5 rounded-full ${
                 userProfile.isCompetenceVerified ? 'bg-emerald-600 text-white' : 'bg-amber-500 text-white'
               }`}
             >
-              {userProfile.isCompetenceVerified ? 'Verified Human 🛡️' : 'Perlu 1 Kuis'}
+              {userProfile.isCompetenceVerified ? 'Verified Human' : 'Perlu 1 Kuis'}
             </span>
           </div>
-          <p className="text-[10px] opacity-80 leading-relaxed pt-0.5">
+          <p className="text-xs opacity-85 leading-relaxed pt-0.5">
             {userProfile.isCompetenceVerified
               ? 'Akunmu terverifikasi bebas bot dengan hak penuh interaksi Love (❤️), komentar, dan pelaporan.'
               : 'Selesaikan minimal 1 kuis mikro di feed untuk mengaktifkan lencana keaslian.'}
@@ -347,36 +347,36 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({
         </div>
 
         {/* Edit Form */}
-        <form onSubmit={handleSubmit} className="space-y-3.5">
+        <form onSubmit={handleSubmit} className="space-y-4">
           {/* 1. Nama Tampilan & Username Handle */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
-                Nama Lengkap / Tampilan:
+              <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
+                Nama Lengkap / Tampilan
               </label>
               <input
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full text-xs font-semibold px-3.5 py-2.5 bg-slate-50 dark:bg-[#0F172A] rounded-xl border border-slate-200 dark:border-[#1E293B] focus:border-[#2563EB] focus:outline-none text-[#0F1419] dark:text-white"
+                className="w-full h-10 text-[15px] sm:text-sm font-medium px-3.5 bg-slate-50 dark:bg-[#0B0F19] rounded-xl border border-slate-200 dark:border-slate-800 focus:border-[#2563EB] focus:outline-none text-slate-900 dark:text-white"
                 placeholder="Contoh: Rian Pratama"
                 required
               />
             </div>
             <div>
-              <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1 flex items-center justify-between">
-                <span>Username (@):</span>
-                <span className="text-[10px] text-slate-400 font-mono font-normal">@{username || 'pejuang'}</span>
+              <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5 flex items-center justify-between gap-2">
+                <span>Username (@)</span>
+                <span className="text-xs text-slate-400 font-mono font-normal truncate">@{username || 'pejuang'}</span>
               </label>
               <div className="relative">
-                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs font-bold">@</span>
+                <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm font-semibold">@</span>
                 <input
                   type="text"
                   value={username}
                   onChange={(e) =>
                     setUsername(e.target.value.toLowerCase().replace(/[^a-z0-9_]/g, '').slice(0, 20))
                   }
-                  className="w-full text-xs font-mono font-bold pl-7 pr-3 py-2.5 bg-slate-50 dark:bg-[#0F172A] rounded-xl border border-slate-200 dark:border-[#1E293B] focus:border-[#2563EB] focus:outline-none text-[#0F1419] dark:text-white"
+                  className="w-full h-10 text-[15px] sm:text-sm font-mono font-semibold pl-8 pr-3 bg-slate-50 dark:bg-[#0B0F19] rounded-xl border border-slate-200 dark:border-slate-800 focus:border-[#2563EB] focus:outline-none text-slate-900 dark:text-white"
                   placeholder="rian_pratama"
                 />
               </div>
@@ -385,60 +385,60 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({
 
           {/* 2. Fokus Jalur */}
           <div>
-            <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
-              Fokus Jalur Seleksi:
+            <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
+              Fokus Jalur Seleksi
             </label>
-            <div className="grid grid-cols-3 gap-1.5">
+            <div className="grid grid-cols-3 gap-2">
               <button
                 type="button"
                 onClick={() => setTrack('cpns')}
-                className={`py-2 px-1 text-xs font-bold rounded-xl border transition-all text-center ${
+                className={`h-10 px-2 text-xs sm:text-[13px] font-semibold rounded-xl border transition-all text-center ${
                   track === 'cpns'
                     ? 'border-[#2563EB] bg-blue-50 dark:bg-blue-950/60 text-[#2563EB] dark:text-[#38BDF8] shadow-xs'
-                    : 'border-slate-200 dark:border-[#1E293B] text-slate-600 dark:text-slate-400 bg-white dark:bg-[#0F172A]'
+                    : 'border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 bg-white dark:bg-[#0B0F19]'
                 }`}
               >
-                🏛️ CPNS 2026
+                CPNS 2026
               </button>
               <button
                 type="button"
                 onClick={() => setTrack('snbt')}
-                className={`py-2 px-1 text-xs font-bold rounded-xl border transition-all text-center ${
+                className={`h-10 px-2 text-xs sm:text-[13px] font-semibold rounded-xl border transition-all text-center ${
                   track === 'snbt'
                     ? 'border-[#2563EB] bg-blue-50 dark:bg-blue-950/60 text-[#2563EB] dark:text-[#38BDF8] shadow-xs'
-                    : 'border-slate-200 dark:border-[#1E293B] text-slate-600 dark:text-slate-400 bg-white dark:bg-[#0F172A]'
+                    : 'border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 bg-white dark:bg-[#0B0F19]'
                 }`}
               >
-                🎓 SNBT UTBK
+                SNBT UTBK
               </button>
               <button
                 type="button"
                 onClick={() => setTrack('kedinasan')}
-                className={`py-2 px-1 text-xs font-bold rounded-xl border transition-all text-center ${
+                className={`h-10 px-2 text-xs sm:text-[13px] font-semibold rounded-xl border transition-all text-center ${
                   track === 'kedinasan'
                     ? 'border-[#2563EB] bg-blue-50 dark:bg-blue-950/60 text-[#2563EB] dark:text-[#38BDF8] shadow-xs'
-                    : 'border-slate-200 dark:border-[#1E293B] text-slate-600 dark:text-slate-400 bg-white dark:bg-[#0F172A]'
+                    : 'border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 bg-white dark:bg-[#0B0F19]'
                 }`}
               >
-                🛡️ Kedinasan
+                Kedinasan
               </button>
             </div>
           </div>
 
           {/* 3. Instansi / Kampus Impian with Quick Chips */}
           <div>
-            <div className="flex items-center justify-between mb-1">
-              <label className="text-xs font-bold text-slate-700 dark:text-slate-300">
-                Instansi / Kampus Impian:
+            <div className="flex items-center justify-between mb-1.5">
+              <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+                Instansi / Kampus Impian
               </label>
-              <span className="text-[10px] text-slate-400">Klik rekomendasi di bawah</span>
+              <span className="text-xs text-slate-400">Klik rekomendasi di bawah</span>
             </div>
 
             <input
               type="text"
               value={targetAgency}
               onChange={(e) => setTargetAgency(e.target.value)}
-              className="w-full text-xs font-semibold px-3.5 py-2.5 bg-slate-50 dark:bg-[#0F172A] rounded-xl border border-slate-200 dark:border-[#1E293B] focus:border-[#2563EB] focus:outline-none text-[#0F1419] dark:text-white mb-1.5"
+              className="w-full h-10 text-[15px] sm:text-sm font-medium px-3.5 bg-slate-50 dark:bg-[#0B0F19] rounded-xl border border-slate-200 dark:border-slate-800 focus:border-[#2563EB] focus:outline-none text-slate-900 dark:text-white mb-2"
               placeholder="Contoh: Kementerian Keuangan, PKN STAN, FK UI"
             />
 
@@ -448,10 +448,10 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({
                   key={agency}
                   type="button"
                   onClick={() => setTargetAgency(agency)}
-                  className={`text-[10px] font-bold px-2 py-0.5 rounded-lg border whitespace-nowrap transition-all ${
+                  className={`h-8 text-xs font-medium px-2.5 rounded-lg border whitespace-nowrap transition-all ${
                     targetAgency === agency
-                      ? 'bg-blue-600 text-white border-blue-600 shadow-xs'
-                      : 'bg-white dark:bg-[#0F172A] text-slate-600 dark:text-slate-300 border-slate-200 dark:border-[#1E293B] hover:border-blue-400'
+                      ? 'bg-[#2563EB] text-white border-[#2563EB] shadow-xs font-semibold'
+                      : 'bg-white dark:bg-[#0B0F19] text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:border-blue-400'
                   }`}
                 >
                   {agency}
@@ -462,10 +462,10 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({
 
           {/* 4. Banner Theme Pills */}
           <div>
-            <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
-              Warna Tema Banner Profil:
+            <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
+              Warna Tema Banner Profil
             </label>
-            <div className="grid grid-cols-5 gap-1.5">
+            <div className="grid grid-cols-5 gap-2">
               {(Object.keys(BANNER_THEMES) as Array<keyof typeof BANNER_THEMES>).map((tKey) => {
                 const bTheme = BANNER_THEMES[tKey];
                 const isSelected = (bannerTheme || 'default') === tKey;
@@ -474,12 +474,12 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({
                     key={tKey}
                     type="button"
                     onClick={() => setBannerTheme(tKey)}
-                    className={`h-8 rounded-xl bg-gradient-to-r ${bTheme.class} relative flex items-center justify-center transition-all ${
-                      isSelected ? 'ring-2 ring-[#0F1419] dark:ring-white scale-105 shadow-md' : 'opacity-80 hover:opacity-100'
+                    className={`h-9 rounded-xl bg-gradient-to-r ${bTheme.class} relative flex items-center justify-center transition-all ${
+                      isSelected ? 'ring-2 ring-slate-900 dark:ring-white scale-[1.03] shadow-sm' : 'opacity-80 hover:opacity-100'
                     }`}
                     title={bTheme.label}
                   >
-                    {isSelected && <Check className="w-3.5 h-3.5 text-white" />}
+                    {isSelected && <Check className="w-4 h-4 text-white" strokeWidth={2.2} />}
                   </button>
                 );
               })}
@@ -488,8 +488,8 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({
 
           {/* 5. Target Soal Harian */}
           <div>
-            <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
-              Target Latihan Harian:
+            <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
+              Target Latihan Harian
             </label>
             <div className="grid grid-cols-3 gap-2">
               {[
@@ -501,14 +501,14 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({
                   key={tier.count}
                   type="button"
                   onClick={() => setDailyGoal(tier.count)}
-                  className={`p-2 rounded-xl border text-center transition-all ${
+                  className={`p-2.5 rounded-xl border text-center transition-all ${
                     dailyGoal === tier.count
-                      ? 'border-[#2563EB] bg-blue-50 dark:bg-blue-950/60 text-[#2563EB] dark:text-[#38BDF8] font-bold shadow-xs'
-                      : 'border-slate-200 dark:border-[#1E293B] text-slate-600 dark:text-slate-400 bg-white dark:bg-[#0F172A]'
+                      ? 'border-[#2563EB] bg-blue-50 dark:bg-blue-950/60 text-[#2563EB] dark:text-[#38BDF8] shadow-xs'
+                      : 'border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 bg-white dark:bg-[#0B0F19]'
                   }`}
                 >
-                  <span className="block text-xs font-extrabold">{tier.label}</span>
-                  <span className="block text-[9px] text-slate-400">{tier.sub}</span>
+                  <span className="block text-xs font-semibold tabular-nums">{tier.label}</span>
+                  <span className="block text-xs text-slate-500 dark:text-slate-400 mt-0.5">{tier.sub}</span>
                 </button>
               ))}
             </div>
@@ -516,50 +516,50 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({
 
           {/* 6. Bio / Motto */}
           <div>
-            <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
-              Bio / Motto Perjuangan:
+            <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
+              Bio / Motto Perjuangan
             </label>
             <textarea
               value={bio}
               onChange={(e) => setBio(e.target.value)}
-              className="w-full text-xs font-semibold px-3.5 py-2.5 bg-slate-50 dark:bg-[#0F172A] rounded-xl border border-slate-200 dark:border-[#1E293B] focus:border-[#2563EB] focus:outline-none text-[#0F1419] dark:text-white"
+              className="w-full text-[15px] sm:text-sm font-normal px-3.5 py-2.5 bg-slate-50 dark:bg-[#0B0F19] rounded-xl border border-slate-200 dark:border-slate-800 focus:border-[#2563EB] focus:outline-none text-slate-900 dark:text-white leading-relaxed"
               rows={2}
               placeholder="Tuliskan komitmen atau motto belajarmu..."
             />
           </div>
 
           {/* 7. Kontak Belajar / Media Sosial (Opsional) */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
             <div>
-              <label className="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1 flex items-center gap-1">
-                <Send className="w-3 h-3 text-sky-500" />
-                <span>Username Telegram (Opsional):</span>
+              <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5 flex items-center gap-1.5">
+                <Send className="w-3.5 h-3.5 text-sky-500" />
+                <span>Telegram (Opsional)</span>
               </label>
               <div className="relative">
-                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs">@</span>
+                <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm">@</span>
                 <input
                   type="text"
                   value={telegramUsername}
                   onChange={(e) => setTelegramUsername(e.target.value)}
                   placeholder="pejuang_2026"
-                  className="w-full text-xs pl-7 pr-3 py-2 bg-slate-50 dark:bg-[#0F172A] rounded-xl border border-slate-200 dark:border-[#1E293B] text-slate-900 dark:text-white focus:outline-none focus:border-blue-500"
+                  className="w-full h-10 text-[15px] sm:text-sm pl-8 pr-3 bg-slate-50 dark:bg-[#0B0F19] rounded-xl border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white focus:outline-none focus:border-[#2563EB]"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1 flex items-center gap-1">
-                <InstagramIcon className="w-3 h-3 text-pink-500" />
-                <span>Username Instagram (Opsional):</span>
+              <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1.5 flex items-center gap-1.5">
+                <InstagramIcon className="w-3.5 h-3.5 text-pink-500" />
+                <span>Instagram (Opsional)</span>
               </label>
               <div className="relative">
-                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs">@</span>
+                <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm">@</span>
                 <input
                   type="text"
                   value={instagramUsername}
                   onChange={(e) => setInstagramUsername(e.target.value)}
                   placeholder="pejuang_nip"
-                  className="w-full text-xs pl-7 pr-3 py-2 bg-slate-50 dark:bg-[#0F172A] rounded-xl border border-slate-200 dark:border-[#1E293B] text-slate-900 dark:text-white focus:outline-none focus:border-blue-500"
+                  className="w-full h-10 text-[15px] sm:text-sm pl-8 pr-3 bg-slate-50 dark:bg-[#0B0F19] rounded-xl border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white focus:outline-none focus:border-[#2563EB]"
                 />
               </div>
             </div>
@@ -567,14 +567,14 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({
 
           {/* 8. Reset Riwayat Soal (Anti-Repetition Utility) */}
           {seenQuestionsCount > 0 && onResetQuestionHistory && (
-            <div className="pt-2 border-t border-slate-100 dark:border-[#1E293B]">
-              <div className="p-3 rounded-2xl bg-slate-50 dark:bg-[#0F172A] border border-slate-200/80 dark:border-[#1E293B] space-y-2">
-                <div className="flex items-center justify-between text-xs">
+            <div className="pt-2 border-t border-slate-200/80 dark:border-slate-800">
+              <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-[#0B0F19] border border-slate-200/80 dark:border-slate-800">
+                <div className="flex items-center justify-between gap-3">
                   <div>
-                    <span className="font-extrabold text-slate-900 dark:text-white block">
+                    <span className="text-sm font-semibold text-slate-900 dark:text-white block">
                       Riwayat Soal Pernah Dikerjakan
                     </span>
-                    <span className="text-[10px] text-slate-400">
+                    <span className="text-xs text-slate-500 dark:text-slate-400 tabular-nums">
                       Kamu sudah menyelesaikan {seenQuestionsCount} soal unik
                     </span>
                   </div>
@@ -582,27 +582,27 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({
                     <button
                       type="button"
                       onClick={() => setShowResetConfirm(true)}
-                      className="px-2.5 py-1.5 rounded-xl border border-amber-300 dark:border-amber-800 text-amber-700 dark:text-amber-400 hover:bg-amber-50 dark:hover:bg-amber-950/40 text-[10px] font-bold flex items-center gap-1 transition-colors"
+                      className="h-9 px-3 rounded-lg border border-amber-300 dark:border-amber-800 text-amber-700 dark:text-amber-400 hover:bg-amber-50 dark:hover:bg-amber-950/40 text-xs font-semibold flex items-center gap-1.5 transition-colors flex-shrink-0"
                     >
-                      <RefreshCw className="w-3 h-3" />
+                      <RefreshCw className="w-3.5 h-3.5" strokeWidth={1.85} />
                       <span>Reset Riwayat</span>
                     </button>
                   ) : (
-                    <div className="flex items-center gap-1.5">
+                    <div className="flex items-center gap-2 flex-shrink-0">
                       <button
                         type="button"
                         onClick={() => {
                           onResetQuestionHistory();
                           setShowResetConfirm(false);
                         }}
-                        className="px-2.5 py-1 rounded-lg bg-amber-600 hover:bg-amber-700 text-white text-[10px] font-extrabold"
+                        className="h-9 px-3 rounded-lg bg-amber-600 hover:bg-amber-700 text-white text-xs font-semibold"
                       >
                         Ya, Reset
                       </button>
                       <button
                         type="button"
                         onClick={() => setShowResetConfirm(false)}
-                        className="px-2 py-1 rounded-lg text-slate-400 hover:text-slate-600 text-[10px]"
+                        className="h-9 px-2.5 rounded-lg text-slate-500 hover:text-slate-700 dark:hover:text-slate-200 text-xs font-medium"
                       >
                         Batal
                       </button>
@@ -613,78 +613,78 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({
             </div>
           )}
 
-          {/* 9. Pusat Penyimpanan & Manajemen Memori (Storage Engine X / Instagram Standard) */}
-          <div className="pt-2 border-t border-slate-100 dark:border-[#1E293B]">
-            <div className="p-3.5 rounded-2xl bg-gradient-to-br from-slate-50 to-blue-50/30 dark:from-[#0F172A] dark:to-[#0B1528] border border-slate-200/90 dark:border-[#1E293B] space-y-3">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-lg bg-blue-100 dark:bg-blue-950/80 text-[#2563EB] dark:text-[#38BDF8] flex items-center justify-center">
-                    <Database className="w-4 h-4" />
+          {/* 9. Pusat Penyimpanan & Manajemen Memori */}
+          <div className="pt-2 border-t border-slate-200/80 dark:border-slate-800">
+            <div className="p-4 rounded-xl bg-slate-50 dark:bg-[#0B0F19] border border-slate-200/80 dark:border-slate-800 space-y-3">
+              <div className="flex items-center justify-between gap-2">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-lg bg-blue-50 dark:bg-blue-950/80 text-[#2563EB] dark:text-[#38BDF8] flex items-center justify-center flex-shrink-0">
+                    <Database className="w-4 h-4" strokeWidth={1.85} />
                   </div>
                   <div>
-                    <h4 className="text-xs font-black text-slate-900 dark:text-white flex items-center gap-1.5">
+                    <h4 className="text-sm font-semibold text-slate-900 dark:text-white flex items-center gap-2 flex-wrap">
                       <span>Pusat Penyimpanan & Memori</span>
-                      <span className="inline-flex items-center px-1.5 py-0.5 rounded-full text-[9px] font-bold bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1 animate-pulse" />
+                      <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1.5" />
                         {storageStats?.isIndexedDBActive ? 'IndexedDB Aktif' : 'Local Engine'}
                       </span>
                     </h4>
-                    <p className="text-[10px] text-slate-500 dark:text-slate-400">
-                      Standar arsitektur Twitter/X & IG (Bebas limit 5MB crash)
+                    <p className="text-xs text-slate-500 dark:text-slate-400">
+                      Penyimpanan lokal berkapasitas besar bebas limit 5MB
                     </p>
                   </div>
                 </div>
               </div>
 
               {/* Progress & Stats Details */}
-              <div className="space-y-1.5 bg-white/70 dark:bg-[#070D18]/70 p-2.5 rounded-xl border border-slate-200/60 dark:border-slate-800">
-                <div className="flex items-center justify-between text-[11px] font-bold">
+              <div className="space-y-2 bg-white dark:bg-[#111726] p-3 rounded-xl border border-slate-200/80 dark:border-slate-800">
+                <div className="flex items-center justify-between text-xs font-semibold tabular-nums">
                   <span className="text-slate-600 dark:text-slate-300">
-                    Terpakai: <span className="text-[#2563EB] dark:text-[#38BDF8] font-black">{storageStats?.formattedUsed || '0 KB'}</span>
+                    Terpakai: <span className="text-[#2563EB] dark:text-[#38BDF8] font-bold">{storageStats?.formattedUsed || '0 KB'}</span>
                   </span>
-                  <span className="text-[10px] text-slate-400 font-normal">
-                    {storageStats?.quotaEstimateText || 'Kapasitas Kuota Fleksibel'}
+                  <span className="text-xs text-slate-500 dark:text-slate-400 font-normal">
+                    {storageStats?.quotaEstimateText || 'Kuota Fleksibel'}
                   </span>
                 </div>
-                <div className="w-full bg-slate-200 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                <div className="w-full bg-slate-200 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
                   <div
-                    className="bg-gradient-to-r from-blue-500 to-cyan-400 h-full rounded-full transition-all duration-500"
+                    className="bg-[#2563EB] h-full rounded-full transition-all duration-500"
                     style={{
                       width: `${Math.min(100, Math.max(3, ((storageStats?.usedBytes || 0) / (10 * 1024 * 1024)) * 100))}%`,
                     }}
                   />
                 </div>
-                <div className="flex items-center gap-2 pt-0.5 text-[10px] text-slate-500 dark:text-slate-400 flex-wrap">
-                  <span className="bg-slate-100 dark:bg-slate-800/80 px-1.5 py-0.5 rounded text-slate-600 dark:text-slate-300">
-                    👤 Profil & Soal: ~{storageStats?.profileKb ?? 0} KB
+                <div className="flex items-center gap-2 pt-0.5 text-xs text-slate-500 dark:text-slate-400 flex-wrap tabular-nums">
+                  <span className="bg-slate-100 dark:bg-slate-800/80 px-2 py-0.5 rounded-md text-slate-600 dark:text-slate-300">
+                    Profil & Soal: ~{storageStats?.profileKb ?? 0} KB
                   </span>
-                  <span className="bg-slate-100 dark:bg-slate-800/80 px-1.5 py-0.5 rounded text-slate-600 dark:text-slate-300">
-                    💬 Stream Posts: ~{storageStats?.postsKb ?? 0} KB
+                  <span className="bg-slate-100 dark:bg-slate-800/80 px-2 py-0.5 rounded-md text-slate-600 dark:text-slate-300">
+                    Stream: ~{storageStats?.postsKb ?? 0} KB
                   </span>
-                  <span className="bg-slate-100 dark:bg-slate-800/80 px-1.5 py-0.5 rounded text-slate-600 dark:text-slate-300">
-                    🔖 Bookmark: ~{storageStats?.bookmarksKb ?? 0} KB
+                  <span className="bg-slate-100 dark:bg-slate-800/80 px-2 py-0.5 rounded-md text-slate-600 dark:text-slate-300">
+                    Bookmark: ~{storageStats?.bookmarksKb ?? 0} KB
                   </span>
                 </div>
               </div>
 
               {/* Action Buttons: Vacuum & Clear Media */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-0.5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-0.5">
                 <button
                   type="button"
                   onClick={handleRunVacuum}
                   disabled={isOptimizing}
-                  className="px-3 py-2 rounded-xl bg-blue-50 hover:bg-blue-100 dark:bg-blue-950/40 dark:hover:bg-blue-900/60 border border-blue-200 dark:border-blue-800 text-[#2563EB] dark:text-[#38BDF8] text-[11px] font-bold flex items-center justify-center gap-1.5 active:scale-[0.98] transition-all disabled:opacity-50"
+                  className="h-9 px-3 rounded-lg bg-blue-50 hover:bg-blue-100 dark:bg-blue-950/40 dark:hover:bg-blue-900/60 border border-blue-200 dark:border-blue-800 text-[#2563EB] dark:text-[#38BDF8] text-xs font-semibold flex items-center justify-center gap-1.5 active:scale-[0.98] transition-all disabled:opacity-50"
                 >
-                  <Sparkles className="w-3.5 h-3.5" />
-                  <span>{isOptimizing ? 'Merapikan...' : 'Optimalkan Memori (Vacuum)'}</span>
+                  <Sparkles className="w-3.5 h-3.5" strokeWidth={1.85} />
+                  <span>{isOptimizing ? 'Merapikan...' : 'Optimalkan Memori'}</span>
                 </button>
                 <button
                   type="button"
                   onClick={handleRunClearMedia}
                   disabled={isOptimizing}
-                  className="px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800/80 dark:hover:bg-slate-700/80 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-[11px] font-bold flex items-center justify-center gap-1.5 active:scale-[0.98] transition-all disabled:opacity-50"
+                  className="h-9 px-3 rounded-lg bg-white hover:bg-slate-100 dark:bg-slate-800/80 dark:hover:bg-slate-700/80 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs font-semibold flex items-center justify-center gap-1.5 active:scale-[0.98] transition-all disabled:opacity-50"
                 >
-                  <HardDrive className="w-3.5 h-3.5 text-slate-500" />
+                  <HardDrive className="w-3.5 h-3.5 text-slate-500" strokeWidth={1.85} />
                   <span>Bersihkan Cache Gambar</span>
                 </button>
               </div>
@@ -696,9 +696,9 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({
             <button
               type="submit"
               disabled={isCompressing}
-              className="w-full py-3 bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-black text-xs rounded-xl shadow-md shadow-blue-500/25 active:scale-[0.98] transition-all flex items-center justify-center gap-1.5"
+              className="w-full h-11 bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-semibold text-sm rounded-xl shadow-sm active:scale-[0.99] transition-all flex items-center justify-center gap-2"
             >
-              <Check className="w-4 h-4" />
+              <Check className="w-4 h-4" strokeWidth={2} />
               <span>Simpan Perubahan Profil</span>
             </button>
           </div>

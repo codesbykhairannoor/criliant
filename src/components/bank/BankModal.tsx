@@ -71,49 +71,50 @@ export const BankModal: React.FC<BankModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-2.5 sm:p-6 overflow-y-auto">
-      <div className="bg-white dark:bg-[#0B0F19] rounded-3xl max-w-3xl w-full max-h-[92vh] flex flex-col justify-between shadow-2xl border border-slate-200 dark:border-[#1E293B] overflow-hidden transition-colors">
+    <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-2.5 sm:p-6 overflow-y-auto">
+      <div className="bg-white dark:bg-[#111726] rounded-2xl max-w-3xl w-full max-h-[92vh] flex flex-col justify-between shadow-2xl border border-slate-200/80 dark:border-slate-800 overflow-hidden transition-colors">
         {/* Top Header */}
-        <div className="px-4 sm:px-6 py-3.5 sm:py-4 bg-slate-900 dark:bg-[#0F172A] text-white flex items-center justify-between border-b dark:border-[#1E293B]">
-          <div className="flex items-center gap-2 min-w-0">
-            <BookOpen className="w-5 h-5 text-[#38BDF8] flex-shrink-0" />
+        <div className="px-5 py-4 bg-slate-900 dark:bg-[#0B0F19] text-white flex items-center justify-between border-b border-slate-800">
+          <div className="flex items-center gap-3 min-w-0">
+            <BookOpen className="w-5 h-5 text-[#38BDF8] flex-shrink-0" strokeWidth={1.85} />
             <div className="min-w-0">
-              <h3 className="font-black text-xs sm:text-base truncate">BANK SOAL & DRILLING MATERI</h3>
-              <p className="text-[11px] text-slate-400 truncate">
-                Tersedia {questions.length}+ bank soal resmi & parametrik terkurasi
+              <h3 className="font-semibold text-base truncate">Bank Soal & Drilling Materi</h3>
+              <p className="text-xs text-slate-400 truncate tabular-nums">
+                Tersedia {questions.length}+ bank soal resmi terkurasi
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-slate-300 flex-shrink-0"
+            aria-label="Tutup"
+            className="w-9 h-9 rounded-xl bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-slate-300 flex-shrink-0 transition-colors"
           >
-            <X className="w-4 h-4" />
+            <X className="w-[18px] h-[18px]" strokeWidth={1.85} />
           </button>
         </div>
 
         {/* Filter & Search Bar */}
-        <div className="p-3.5 sm:p-4 bg-slate-50 dark:bg-[#090D16] border-b border-slate-200 dark:border-[#1E293B] space-y-2.5">
+        <div className="p-4 bg-slate-50 dark:bg-[#0B0F19] border-b border-slate-200/80 dark:border-slate-800 space-y-3">
           <div className="relative">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <Search className="w-[18px] h-[18px] text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" strokeWidth={1.85} />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Cari kata kunci soal, silogisme, UUD, TPA..."
-              className="w-full pl-9 pr-4 py-2 bg-white dark:bg-[#0F172A] text-xs font-semibold rounded-xl border border-slate-200 dark:border-[#1E293B] focus:outline-none focus:border-[#2563EB] text-[#0F1419] dark:text-white placeholder:text-[#536471] dark:placeholder:text-slate-500"
+              className="w-full h-11 pl-10 pr-4 bg-white dark:bg-[#111726] text-[15px] sm:text-sm font-medium rounded-xl border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-[#2563EB] text-slate-900 dark:text-white placeholder:text-slate-400"
             />
           </div>
 
-          <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar">
+          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar">
             {groups.map((g) => (
               <button
                 key={g.id}
                 onClick={() => setSelectedGroup(g.id)}
-                className={`text-xs font-bold px-3 py-1.5 rounded-xl whitespace-nowrap transition-all ${
+                className={`h-9 text-[13px] font-medium px-3.5 rounded-lg whitespace-nowrap transition-all ${
                   selectedGroup === g.id
-                    ? 'bg-[#2563EB] text-white shadow-sm'
-                    : 'bg-white dark:bg-[#0F172A] text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-[#1E293B] hover:bg-slate-100 dark:hover:bg-slate-800'
+                    ? 'bg-[#2563EB] text-white shadow-xs font-semibold'
+                    : 'bg-white dark:bg-[#111726] text-slate-600 dark:text-slate-300 border border-slate-200/80 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800'
                 }`}
               >
                 {g.label}
@@ -125,8 +126,8 @@ export const BankModal: React.FC<BankModalProps> = ({
         {/* Question List View */}
         <div className="p-4 sm:p-6 overflow-y-auto flex-1 space-y-3">
           <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 pb-1 gap-2">
-            <span>
-              Ditemukan <strong>{filteredQuestions.length}</strong> butir soal
+            <span className="tabular-nums">
+              Ditemukan <strong className="text-slate-900 dark:text-white">{filteredQuestions.length}</strong> butir soal
             </span>
             <span className="hidden sm:inline">Klik ikon simpan untuk bookmark soal</span>
           </div>
@@ -137,38 +138,38 @@ export const BankModal: React.FC<BankModalProps> = ({
               return (
                 <div
                   key={q.id}
-                  className="p-3.5 sm:p-4 rounded-2xl border border-slate-200 dark:border-[#1E293B] bg-slate-50/50 dark:bg-[#0F172A] hover:bg-white dark:hover:bg-[#131D31] hover:border-blue-300 dark:hover:border-blue-500 transition-all space-y-2"
+                  className="p-4 rounded-xl border border-slate-200/80 dark:border-slate-800 bg-slate-50/50 dark:bg-[#0B0F19] hover:bg-white dark:hover:bg-[#131D31] hover:border-blue-300 dark:hover:border-blue-500/60 transition-all space-y-2.5"
                 >
                   <div className="flex items-start justify-between gap-2">
                     <div className="flex items-center gap-2 min-w-0 flex-wrap">
-                      <span className="text-[10px] font-black uppercase px-2 py-0.5 rounded bg-blue-100 dark:bg-blue-950/60 text-[#2563EB] dark:text-[#38BDF8]">
+                      <span className="text-xs font-semibold px-2.5 py-0.5 rounded-lg bg-blue-50 dark:bg-blue-950/60 text-[#2563EB] dark:text-[#38BDF8]">
                         {q.category.replace(/_/g, ' ')}
                       </span>
-                      <span className="text-xs font-bold text-slate-700 dark:text-slate-300 truncate">
+                      <span className="text-xs font-medium text-slate-600 dark:text-slate-300 truncate">
                         {q.subTopic}
                       </span>
                     </div>
 
                     <button
                       onClick={() => onToggleBookmark(q.id)}
-                      className="text-slate-400 hover:text-amber-500 transition-colors flex-shrink-0"
+                      className="w-9 h-9 rounded-lg flex items-center justify-center text-slate-400 hover:text-amber-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors flex-shrink-0"
                       title={isSaved ? 'Hapus dari tersimpan' : 'Simpan soal ini'}
                     >
                       {isSaved ? (
-                        <BookmarkCheck className="w-4 h-4 text-amber-500 fill-amber-500" />
+                        <BookmarkCheck className="w-[18px] h-[18px] text-amber-500 fill-amber-500" />
                       ) : (
-                        <Bookmark className="w-4 h-4" />
+                        <Bookmark className="w-[18px] h-[18px]" strokeWidth={1.85} />
                       )}
                     </button>
                   </div>
 
-                  <p className="text-xs sm:text-sm font-semibold text-slate-800 dark:text-white leading-relaxed">
+                  <p className="text-[15px] font-normal text-slate-800 dark:text-slate-100 leading-[1.6]">
                     {q.text}
                   </p>
 
-                  <div className="pt-1 text-[11px] text-slate-500 dark:text-slate-400 flex items-center justify-between">
-                    <span>Opsi: {q.options.length} Pilihan</span>
-                    <span className="text-[#2563EB] dark:text-[#38BDF8] font-bold">
+                  <div className="pt-1 text-xs text-slate-500 dark:text-slate-400 flex items-center justify-between">
+                    <span className="tabular-nums">Opsi: {q.options.length} Pilihan</span>
+                    <span className="text-[#2563EB] dark:text-[#38BDF8] font-semibold">
                       {getScoringBadgeLabel(q.category)}
                     </span>
                   </div>
@@ -176,18 +177,18 @@ export const BankModal: React.FC<BankModalProps> = ({
               );
             })
           ) : (
-            <div className="text-center py-12 text-slate-400 space-y-2">
-              <BookOpen className="w-8 h-8 mx-auto text-slate-300 dark:text-slate-600" />
-              <p className="text-xs">Tidak ada soal yang cocok dengan filter kamu.</p>
+            <div className="text-center py-12 text-slate-500 dark:text-slate-400 space-y-2">
+              <BookOpen className="w-8 h-8 mx-auto text-slate-300 dark:text-slate-600" strokeWidth={1.6} />
+              <p className="text-sm">Tidak ada soal yang cocok dengan filter kamu.</p>
             </div>
           )}
         </div>
 
         {/* Footer Bar */}
-        <div className="px-4 sm:px-6 py-3.5 sm:py-4 bg-slate-50 dark:bg-[#090D16] border-t border-slate-200 dark:border-[#1E293B] flex items-center justify-between gap-2.5">
-          <div className="text-xs text-slate-500 dark:text-slate-400">
+        <div className="px-5 py-4 bg-slate-50 dark:bg-[#0B0F19] border-t border-slate-200/80 dark:border-slate-800 flex items-center justify-between gap-3">
+          <div className="text-sm text-slate-500 dark:text-slate-400 tabular-nums">
             <span>Siap drilling </span>
-            <strong className="text-slate-800 dark:text-white">{filteredQuestions.length} soal</strong>
+            <strong className="text-slate-900 dark:text-white">{filteredQuestions.length} soal</strong>
           </div>
 
           <button
@@ -196,10 +197,10 @@ export const BankModal: React.FC<BankModalProps> = ({
               onStartCustomDrill(filteredQuestions);
             }}
             disabled={filteredQuestions.length === 0}
-            className="flex items-center gap-2 py-2.5 px-4 sm:px-5 rounded-xl bg-[#2563EB] hover:bg-[#1D4ED8] disabled:opacity-40 text-white font-extrabold text-xs shadow-md shadow-blue-500/20 active:scale-95 transition-all"
+            className="h-10 flex items-center gap-2 px-5 rounded-xl bg-[#2563EB] hover:bg-[#1D4ED8] disabled:opacity-40 text-white font-semibold text-sm shadow-sm active:scale-[0.98] transition-all"
           >
-            <Swords className="w-3.5 h-3.5" />
-            <span>Mulai Drill ({filteredQuestions.length} Soal)</span>
+            <Swords className="w-4 h-4" strokeWidth={1.85} />
+            <span className="tabular-nums">Mulai Drill ({filteredQuestions.length} Soal)</span>
           </button>
         </div>
       </div>

@@ -167,77 +167,69 @@ export const BankView: React.FC<BankViewProps> = ({
   const optionLabels = ['A', 'B', 'C', 'D', 'E'];
 
   return (
-    <div className="space-y-4 max-w-5xl xl:max-w-6xl w-full mx-auto pb-12 select-none">
-      {/* 1. TOP HERO HEADER */}
-      <div className="bg-white dark:bg-[#111726] rounded-3xl p-5 sm:p-7 border border-slate-200/80 dark:border-slate-800 shadow-xs relative overflow-hidden transition-colors">
-        <div className="flex items-center justify-between gap-3 mb-2 flex-wrap">
-          <div className="flex items-center gap-2">
-            <span className="text-[10px] font-black uppercase tracking-wider bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 px-2.5 py-0.5 rounded-full border border-blue-200/50 dark:border-blue-800/40 flex items-center gap-1.5">
-              <BookOpen className="w-3.5 h-3.5" />
-              Bank Soal Resmi {trackLabels[activeTrack]}
-            </span>
-            <span className="text-[11px] font-bold text-slate-400">
-              {trackPool.length} Butir Soal Terstandarisasi
-            </span>
-          </div>
+    <div className="space-y-6 max-w-5xl w-full mx-auto pb-12 select-none">
+      {/* 1. CLEAN BORDERLESS PAGE HEADER */}
+      <header className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <div className="space-y-1.5">
+          <h1 className="text-2xl sm:text-[28px] font-bold tracking-[-0.025em] leading-[1.2] text-slate-900 dark:text-white">
+            Bank Soal {trackLabels[activeTrack]}
+          </h1>
+          <p className="text-sm sm:text-[15px] text-slate-500 dark:text-slate-400 max-w-2xl leading-relaxed">
+            Jelajahi {trackPool.length} butir soal resmi dan parametrik untuk Kamar {trackLabels[activeTrack]}, lengkap dengan kunci dan pembahasan.
+          </p>
+        </div>
 
+        <div className="flex items-center gap-2 flex-wrap flex-shrink-0">
           {bookmarksCountInTrack > 0 && (
             <button
+              type="button"
               onClick={() => {
                 setIsShowingBookmarksOnly(!isShowingBookmarksOnly);
                 setCurrentPage(1);
               }}
-              className={`text-xs font-bold px-3 py-1.5 rounded-xl flex items-center gap-1.5 transition-all ${
+              className={`h-10 px-4 rounded-xl text-sm font-semibold flex items-center gap-2 transition-colors border ${
                 isShowingBookmarksOnly
-                  ? 'bg-amber-500 text-white shadow-xs'
-                  : 'bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400 hover:bg-amber-100'
+                  ? 'bg-amber-500 text-white border-amber-500'
+                  : 'bg-white dark:bg-[#111726] border-slate-200/80 dark:border-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800'
               }`}
             >
-              <BookmarkCheck className="w-3.5 h-3.5" />
-              <span>{bookmarksCountInTrack} Soal Tersimpan</span>
+              <BookmarkCheck className="w-4 h-4" />
+              <span className="tabular-nums">Tersimpan ({bookmarksCountInTrack})</span>
             </button>
           )}
-        </div>
-
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          <div>
-            <h2 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight">
-              Repositori Soal {trackLabels[activeTrack]}
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-1 leading-relaxed max-w-2xl">
-              Jelajahi seluruh koleksi butir soal resmi dan parametrik sesuai kamar yang kamu pilih di sidebar. Buka pembahasan rasional atau mulai drilling langsung.
-            </p>
-          </div>
 
           {filteredQuestions.length > 0 && (
             <button
+              type="button"
               onClick={() => onStartCustomDrill(filteredQuestions)}
-              className="flex-shrink-0 py-3 px-5 bg-blue-600 hover:bg-blue-500 text-white font-black text-xs rounded-2xl shadow-md shadow-blue-500/20 active:scale-95 transition-all flex items-center justify-center gap-2"
+              className="h-10 px-4 bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-semibold text-sm rounded-xl transition-colors flex items-center gap-2"
             >
               <Swords className="w-4 h-4" />
-              <span>Drill Hasil Filter ({filteredQuestions.length})</span>
+              <span className="tabular-nums">Drill ({filteredQuestions.length})</span>
             </button>
           )}
         </div>
+      </header>
 
-        {/* 2. SUB-CATEGORY SELECTOR TABS (MURNI SESUAI ACTIVE TRACK) */}
-        <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pt-4 mt-3 border-t border-slate-100 dark:border-slate-800/80">
+      {/* 2. FILTER BAR & CATEGORY TABS */}
+      <div className="bg-white dark:bg-[#111726] rounded-2xl p-4 sm:p-5 border border-slate-200/80 dark:border-slate-800/90 space-y-4 transition-colors">
+        {/* Sub-category tabs */}
+        <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1">
           <button
+            type="button"
             onClick={() => {
               setSelectedCategory('ALL');
               setIsShowingBookmarksOnly(false);
               setCurrentPage(1);
             }}
-            className={`text-xs font-extrabold px-3 py-2 rounded-xl whitespace-nowrap transition-all flex items-center gap-1.5 ${
+            className={`h-9 px-3.5 rounded-lg text-[13px] font-semibold whitespace-nowrap transition-colors flex items-center gap-2 ${
               selectedCategory === 'ALL' && !isShowingBookmarksOnly
-                ? 'bg-blue-600 text-white shadow-xs'
-                : 'bg-slate-100 dark:bg-slate-900/60 text-slate-600 dark:text-slate-300 hover:bg-slate-200/80 dark:hover:bg-slate-800'
+                ? 'bg-[#2563EB] text-white'
+                : 'bg-slate-100 dark:bg-[#0D1322] text-slate-600 dark:text-slate-300 hover:bg-slate-200/70 dark:hover:bg-slate-800'
             }`}
           >
-            <span>Semua Materi {activeTrack.toUpperCase()}</span>
-            <span className="text-[10px] px-1.5 py-0.2 rounded-md bg-black/10 dark:bg-white/10">
-              {trackPool.length}
-            </span>
+            <span>Semua Materi</span>
+            <span className="text-xs opacity-80 tabular-nums">{trackPool.length}</span>
           </button>
 
           {trackCategories.map((cat) => {
@@ -247,49 +239,25 @@ export const BankView: React.FC<BankViewProps> = ({
             return (
               <button
                 key={cat}
+                type="button"
                 onClick={() => {
                   setSelectedCategory(cat);
                   setIsShowingBookmarksOnly(false);
                   setCurrentPage(1);
                 }}
-                className={`text-xs font-extrabold px-3 py-2 rounded-xl whitespace-nowrap transition-all flex items-center gap-1.5 ${
+                className={`h-9 px-3.5 rounded-lg text-[13px] font-semibold whitespace-nowrap transition-colors flex items-center gap-2 ${
                   isActive
-                    ? 'bg-blue-600 text-white shadow-xs'
-                    : 'bg-slate-100 dark:bg-slate-900/60 text-slate-600 dark:text-slate-300 hover:bg-slate-200/80 dark:hover:bg-slate-800'
+                    ? 'bg-[#2563EB] text-white'
+                    : 'bg-slate-100 dark:bg-[#0D1322] text-slate-600 dark:text-slate-300 hover:bg-slate-200/70 dark:hover:bg-slate-800'
                 }`}
               >
-                <span>{info.icon}</span>
                 <span>{info.label}</span>
-                <span className="text-[10px] px-1.5 py-0.2 rounded-md bg-black/10 dark:bg-white/10">
-                  {countInCat}
-                </span>
+                <span className="text-xs opacity-80 tabular-nums">{countInCat}</span>
               </button>
             );
           })}
-
-          {bookmarksCountInTrack > 0 && (
-            <button
-              onClick={() => {
-                setIsShowingBookmarksOnly(true);
-                setCurrentPage(1);
-              }}
-              className={`text-xs font-extrabold px-3 py-2 rounded-xl whitespace-nowrap transition-all flex items-center gap-1.5 ${
-                isShowingBookmarksOnly
-                  ? 'bg-amber-500 text-white shadow-xs'
-                  : 'bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300 hover:bg-amber-100'
-              }`}
-            >
-              <span>⭐ Tersimpan</span>
-              <span className="text-[10px] px-1.5 py-0.2 rounded-md bg-black/10 dark:bg-white/10">
-                {bookmarksCountInTrack}
-              </span>
-            </button>
-          )}
         </div>
-      </div>
 
-      {/* 3. SEARCH & ADVANCED FILTERS */}
-      <div className="bg-white dark:bg-[#111726] rounded-2xl p-4 sm:p-5 border border-slate-200/80 dark:border-slate-800 shadow-xs space-y-3 transition-colors">
         {/* Search Input */}
         <div className="relative">
           <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
@@ -301,30 +269,31 @@ export const BankView: React.FC<BankViewProps> = ({
               setCurrentPage(1);
             }}
             placeholder="Cari kata kunci soal, silogisme, UUD 1945, TPA, aritmetika..."
-            className="w-full pl-9 pr-8 py-2.5 bg-slate-50 dark:bg-[#0D1322] text-xs font-semibold rounded-xl border border-slate-200/80 dark:border-slate-800 focus:outline-none focus:border-blue-500 text-slate-900 dark:text-white placeholder:text-slate-400 transition-colors"
+            className="w-full h-11 pl-10 pr-10 bg-slate-50 dark:bg-[#0D1322] text-[15px] sm:text-sm font-medium rounded-xl border border-slate-200/80 dark:border-slate-800 focus:outline-none focus:border-blue-500 text-slate-900 dark:text-white placeholder:text-slate-400 transition-colors"
           />
           {searchQuery && (
             <button
+              type="button"
               onClick={() => {
                 setSearchQuery('');
                 setCurrentPage(1);
               }}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-white"
+              className="w-8 h-8 flex items-center justify-center absolute right-1.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 dark:hover:text-white"
+              aria-label="Reset pencarian"
             >
-              <RotateCcw className="w-3.5 h-3.5" />
+              <RotateCcw className="w-4 h-4" />
             </button>
           )}
         </div>
 
-        {/* Difficulty Selector & Toggle Key Answers */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pt-1">
-          {/* Difficulty Pills */}
-          <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5">
-            <span className="text-[11px] font-bold text-slate-400 mr-1 hidden sm:inline">
+        {/* Difficulty Selector & Toggle All Answers */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar">
+            <span className="text-xs font-semibold text-slate-500 mr-1 hidden sm:inline">
               Tingkat:
             </span>
             {[
-              { id: 'ALL', label: 'Semua Level' },
+              { id: 'ALL', label: 'Semua' },
               { id: 'easy', label: 'Mudah' },
               { id: 'medium', label: 'Sedang' },
               { id: 'hard', label: 'Sulit' },
@@ -332,14 +301,15 @@ export const BankView: React.FC<BankViewProps> = ({
             ].map((d) => (
               <button
                 key={d.id}
+                type="button"
                 onClick={() => {
                   setSelectedDifficulty(d.id);
                   setCurrentPage(1);
                 }}
-                className={`text-[11px] font-bold px-2.5 py-1 rounded-lg transition-all whitespace-nowrap ${
+                className={`h-9 px-3 rounded-lg text-[13px] font-medium transition-colors whitespace-nowrap ${
                   selectedDifficulty === d.id
-                    ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900'
-                    : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700'
+                    ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-semibold'
+                    : 'bg-slate-100 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
                 }`}
               >
                 {d.label}
@@ -347,20 +317,19 @@ export const BankView: React.FC<BankViewProps> = ({
             ))}
           </div>
 
-          {/* Toggle All Answers Action */}
           <button
+            type="button"
             onClick={handleToggleExpandAll}
-            className="text-[11px] font-bold text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1 px-2.5 py-1 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-950/40 transition-colors self-end sm:self-auto"
-            title={expandedIds.size > 0 ? 'Sembunyikan semua pembahasan' : 'Lihat semua pembahasan'}
+            className="h-9 px-3 rounded-lg text-[13px] font-semibold text-[#2563EB] dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-500/15 flex items-center gap-1.5 transition-colors self-end sm:self-auto"
           >
             {expandedIds.size > 0 ? (
               <>
-                <EyeOff className="w-3.5 h-3.5" />
+                <EyeOff className="w-4 h-4" />
                 <span>Tutup Semua Kunci</span>
               </>
             ) : (
               <>
-                <Eye className="w-3.5 h-3.5" />
+                <Eye className="w-4 h-4" />
                 <span>Buka Semua Kunci</span>
               </>
             )}
@@ -368,21 +337,21 @@ export const BankView: React.FC<BankViewProps> = ({
         </div>
       </div>
 
-      {/* 4. RESULTS COUNT & ACTIVE FILTER PILL */}
-      <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 px-1">
-        <span>
-          Menampilkan <strong>{filteredQuestions.length}</strong> butir soal
-          {isShowingBookmarksOnly && ' (Tersimpan)'}
+      {/* 3. RESULTS COUNT */}
+      <div className="flex items-center justify-between text-sm text-slate-500 dark:text-slate-400 px-1">
+        <span className="tabular-nums">
+          Menampilkan <strong className="text-slate-900 dark:text-white">{filteredQuestions.length}</strong> soal
+          {isShowingBookmarksOnly && ' tersimpan'}
         </span>
         {totalPages > 1 && (
-          <span>
+          <span className="tabular-nums text-xs sm:text-sm">
             Halaman {currentPage} dari {totalPages}
           </span>
         )}
       </div>
 
-      {/* 5. QUESTION LIST CARDS */}
-      <div className="space-y-3">
+      {/* 4. QUESTION LIST CARDS */}
+      <div className="space-y-4">
         {paginatedQuestions.length > 0 ? (
           paginatedQuestions.map((q, idx) => {
             const isSaved = bookmarkedIds.has(q.id);
@@ -393,69 +362,72 @@ export const BankView: React.FC<BankViewProps> = ({
             return (
               <div
                 key={q.id}
-                className="bg-white dark:bg-[#111726] rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-xs hover:border-slate-300 dark:hover:border-slate-700 transition-all overflow-hidden"
+                className="bg-white dark:bg-[#111726] rounded-2xl border border-slate-200/80 dark:border-slate-800/90 hover:border-slate-300 dark:hover:border-slate-700 transition-colors overflow-hidden"
               >
-                {/* Question Card Header */}
-                <div className="p-4 sm:p-5 space-y-3">
-                  <div className="flex items-start justify-between gap-2">
+                {/* Question Card Header & Stem */}
+                <div className="p-5 space-y-3.5">
+                  <div className="flex items-start justify-between gap-3">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <span className="text-[11px] font-black text-slate-400 w-6">
+                      <span className="text-xs font-semibold text-slate-400 tabular-nums">
                         #{questionNumber}
                       </span>
                       <span
-                        className={`text-[10px] font-black uppercase px-2 py-0.5 rounded-md border ${getCategoryBadgeClass(
+                        className={`text-xs font-semibold px-2.5 py-0.5 rounded-lg border ${getCategoryBadgeClass(
                           q.category
                         )}`}
                       >
                         {q.category.replace(/_/g, ' ')}
                       </span>
-                      <span className="text-xs font-bold text-slate-700 dark:text-slate-300">
+                      <span className="text-sm font-semibold text-slate-800 dark:text-slate-200">
                         {q.subTopic}
                       </span>
                       <span
-                        className={`text-[10px] font-black px-2 py-0.5 rounded-md ${diffInfo.color}`}
+                        className={`text-xs font-semibold px-2.5 py-0.5 rounded-lg ${diffInfo.color}`}
                       >
                         {diffInfo.label}
                       </span>
                     </div>
 
                     <button
+                      type="button"
                       onClick={() => onToggleBookmark(q.id)}
-                      className="p-1.5 rounded-xl text-slate-400 hover:text-amber-500 hover:bg-amber-50 dark:hover:bg-amber-950/40 transition-colors flex-shrink-0"
+                      className="w-9 h-9 rounded-xl text-slate-400 hover:text-amber-500 hover:bg-amber-50 dark:hover:bg-amber-950/40 flex items-center justify-center transition-colors flex-shrink-0"
                       title={isSaved ? 'Hapus dari tersimpan' : 'Simpan soal ini'}
+                      aria-label={isSaved ? 'Hapus dari tersimpan' : 'Simpan soal ini'}
                     >
                       {isSaved ? (
-                        <BookmarkCheck className="w-4 h-4 text-amber-500 fill-amber-500" />
+                        <BookmarkCheck className="w-[18px] h-[18px] text-amber-500 fill-amber-500" />
                       ) : (
-                        <Bookmark className="w-4 h-4" />
+                        <Bookmark className="w-[18px] h-[18px]" />
                       )}
                     </button>
                   </div>
 
-                  {/* Question Stem Text */}
-                  <p className="text-xs sm:text-sm font-medium text-slate-800 dark:text-slate-100 leading-relaxed whitespace-pre-line">
+                  {/* Readable 15px-16px Question Stem */}
+                  <p className="text-[15px] sm:text-base font-normal text-slate-900 dark:text-slate-100 leading-[1.6] whitespace-pre-line">
                     {q.text}
                   </p>
 
                   {/* Footer Meta & Accordion Action */}
-                  <div className="flex items-center justify-between pt-2 border-t border-slate-100 dark:border-slate-800/80 text-[11px]">
-                    <span className="text-slate-400 font-medium">
-                      {q.options.length} Pilihan Jawaban
+                  <div className="flex items-center justify-between pt-3 border-t border-slate-100 dark:border-slate-800/80">
+                    <span className="text-xs font-medium text-slate-500 dark:text-slate-400 tabular-nums">
+                      {q.options.length} pilihan jawaban
                     </span>
 
                     <button
+                      type="button"
                       onClick={() => toggleExpand(q.id)}
-                      className={`font-bold flex items-center gap-1 px-2.5 py-1 rounded-xl transition-all ${
+                      className={`h-9 px-3 rounded-lg text-[13px] font-semibold flex items-center gap-1.5 transition-colors ${
                         isExpanded
-                          ? 'bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400'
+                          ? 'bg-blue-50 dark:bg-blue-500/15 text-[#2563EB] dark:text-blue-400'
                           : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
                       }`}
                     >
                       <span>{isExpanded ? 'Tutup Jawaban' : 'Kunci & Pembahasan'}</span>
                       {isExpanded ? (
-                        <ChevronUp className="w-3.5 h-3.5" />
+                        <ChevronUp className="w-4 h-4" />
                       ) : (
-                        <ChevronDown className="w-3.5 h-3.5" />
+                        <ChevronDown className="w-4 h-4" />
                       )}
                     </button>
                   </div>
@@ -463,11 +435,10 @@ export const BankView: React.FC<BankViewProps> = ({
 
                 {/* Expandable Options & Explanation Block */}
                 {isExpanded && (
-                  <div className="bg-slate-50 dark:bg-[#0D1322] px-4 sm:px-5 py-4 border-t border-slate-200/70 dark:border-slate-800/80 space-y-3.5 animate-in slide-in-from-top-1 duration-200">
-                    {/* Options List */}
-                    <div className="space-y-1.5">
-                      <p className="text-[11px] font-black uppercase tracking-wider text-slate-400">
-                        Pilihan Jawaban:
+                  <div className="bg-slate-50 dark:bg-[#0D1322] px-5 py-4 border-t border-slate-200/70 dark:border-slate-800 space-y-4 animate-in slide-in-from-top-1 duration-200">
+                    <div className="space-y-2">
+                      <p className="text-xs font-semibold text-slate-500 dark:text-slate-400">
+                        Pilihan Jawaban
                       </p>
                       {q.options.map((opt, optIdx) => {
                         const isCorrect = optIdx === q.correctOptionIndex;
@@ -476,16 +447,16 @@ export const BankView: React.FC<BankViewProps> = ({
                         return (
                           <div
                             key={optIdx}
-                            className={`p-2.5 rounded-xl text-xs font-semibold flex items-start gap-2.5 transition-all ${
+                            className={`p-3 rounded-xl text-sm flex items-start gap-3 transition-colors ${
                               isCorrect
-                                ? 'bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-200 font-bold'
-                                : 'bg-white dark:bg-[#111726] border border-slate-200/60 dark:border-slate-800 text-slate-700 dark:text-slate-300'
+                                ? 'bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-300 dark:border-emerald-800 text-emerald-950 dark:text-emerald-200 font-semibold'
+                                : 'bg-white dark:bg-[#111726] border border-slate-200/70 dark:border-slate-800 text-slate-700 dark:text-slate-300 font-medium'
                             }`}
                           >
                             <span
-                              className={`w-5 h-5 rounded-md flex items-center justify-center text-[10px] font-black flex-shrink-0 ${
+                              className={`w-6 h-6 rounded-md flex items-center justify-center text-xs font-bold flex-shrink-0 ${
                                 isCorrect
-                                  ? 'bg-emerald-500 text-white'
+                                  ? 'bg-emerald-600 text-white'
                                   : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400'
                               }`}
                             >
@@ -493,14 +464,14 @@ export const BankView: React.FC<BankViewProps> = ({
                             </span>
                             <span className="flex-1 leading-relaxed">{opt}</span>
                             {isCorrect && (
-                              <span className="text-[10px] font-black text-emerald-600 dark:text-emerald-400 flex items-center gap-1 flex-shrink-0">
-                                <CheckCircle2 className="w-3.5 h-3.5" />
+                              <span className="text-xs font-semibold text-emerald-700 dark:text-emerald-400 flex items-center gap-1 flex-shrink-0">
+                                <CheckCircle2 className="w-4 h-4" />
                                 <span>Kunci</span>
                               </span>
                             )}
                             {tkpScore !== null && (
                               <span
-                                className={`text-[10px] font-black px-1.5 py-0.5 rounded ${
+                                className={`text-xs font-semibold px-2 py-0.5 rounded-md tabular-nums ${
                                   tkpScore === 5
                                     ? 'bg-emerald-100 dark:bg-emerald-900/60 text-emerald-700 dark:text-emerald-300'
                                     : 'bg-slate-100 dark:bg-slate-800 text-slate-500'
@@ -514,14 +485,13 @@ export const BankView: React.FC<BankViewProps> = ({
                       })}
                     </div>
 
-                    {/* Detailed Explanation / Pembahasan */}
                     {q.explanation && (
-                      <div className="bg-white dark:bg-[#111726] p-3.5 rounded-xl border border-blue-200/60 dark:border-blue-900/40 space-y-1.5">
-                        <div className="flex items-center gap-1.5 text-blue-600 dark:text-blue-400 text-xs font-black">
-                          <Sparkles className="w-3.5 h-3.5" />
-                          <span>Pembahasan Resmi:</span>
+                      <div className="bg-white dark:bg-[#111726] p-4 rounded-xl border border-blue-200/60 dark:border-blue-900/40 space-y-1.5">
+                        <div className="flex items-center gap-1.5 text-[#2563EB] dark:text-blue-400 text-sm font-semibold">
+                          <Sparkles className="w-4 h-4" />
+                          <span>Pembahasan Resmi</span>
                         </div>
-                        <p className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed whitespace-pre-line">
+                        <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed whitespace-pre-line">
                           {q.explanation}
                         </p>
                       </div>
@@ -532,43 +502,48 @@ export const BankView: React.FC<BankViewProps> = ({
             );
           })
         ) : (
-          <div className="bg-white dark:bg-[#111726] rounded-3xl p-10 text-center border border-slate-200/80 dark:border-slate-800 space-y-3">
+          <div className="bg-white dark:bg-[#111726] rounded-2xl p-12 text-center border border-slate-200/80 dark:border-slate-800 space-y-3">
             <BookOpen className="w-10 h-10 text-slate-300 dark:text-slate-600 mx-auto" />
-            <h3 className="text-sm font-black text-slate-700 dark:text-slate-200">
-              Tidak Ada Soal yang Sesuai Filter
+            <h3 className="text-base font-semibold text-slate-900 dark:text-slate-100">
+              Tidak ada soal yang sesuai filter
             </h3>
-            <p className="text-xs text-slate-400 max-w-sm mx-auto">
+            <p className="text-sm text-slate-500 dark:text-slate-400 max-w-sm mx-auto">
               Coba sesuaikan kata kunci pencarian atau ubah filter tingkat kesulitan.
             </p>
-            <button
-              onClick={() => {
-                setSelectedCategory('ALL');
-                setSelectedDifficulty('ALL');
-                setIsShowingBookmarksOnly(false);
-                setSearchQuery('');
-                setCurrentPage(1);
-              }}
-              className="py-2 px-4 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold text-xs rounded-xl hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors inline-flex items-center gap-1.5"
-            >
-              <RotateCcw className="w-3.5 h-3.5" />
-              <span>Reset Filter</span>
-            </button>
+            <div className="pt-1">
+              <button
+                type="button"
+                onClick={() => {
+                  setSelectedCategory('ALL');
+                  setSelectedDifficulty('ALL');
+                  setIsShowingBookmarksOnly(false);
+                  setSearchQuery('');
+                  setCurrentPage(1);
+                }}
+                className="h-10 px-4 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-sm rounded-xl hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors inline-flex items-center gap-2"
+              >
+                <RotateCcw className="w-4 h-4" />
+                <span>Reset Filter</span>
+              </button>
+            </div>
           </div>
         )}
       </div>
 
-      {/* 6. PAGINATION CONTROLS */}
+      {/* 5. PAGINATION CONTROLS */}
       {totalPages > 1 && (
         <div className="flex items-center justify-center gap-2 pt-2">
           <button
+            type="button"
             onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
             disabled={currentPage === 1}
-            className="p-2 rounded-xl bg-white dark:bg-[#111726] border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+            className="w-10 h-10 rounded-xl bg-white dark:bg-[#111726] border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-slate-50 dark:hover:bg-slate-800 flex items-center justify-center transition-colors"
+            aria-label="Halaman sebelumnya"
           >
             <ChevronLeft className="w-4 h-4" />
           </button>
 
-          <div className="flex items-center gap-1 text-xs font-bold">
+          <div className="flex items-center gap-1.5 text-sm font-semibold tabular-nums">
             {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => {
               if (
                 page === 1 ||
@@ -579,10 +554,11 @@ export const BankView: React.FC<BankViewProps> = ({
                 return (
                   <button
                     key={page}
+                    type="button"
                     onClick={() => setCurrentPage(page)}
-                    className={`w-8 h-8 rounded-xl transition-all ${
+                    className={`w-10 h-10 rounded-xl transition-colors ${
                       isActive
-                        ? 'bg-blue-600 text-white shadow-xs'
+                        ? 'bg-[#2563EB] text-white'
                         : 'bg-white dark:bg-[#111726] border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'
                     }`}
                   >
@@ -592,7 +568,7 @@ export const BankView: React.FC<BankViewProps> = ({
               }
               if (page === currentPage - 2 || page === currentPage + 2) {
                 return (
-                  <span key={page} className="text-slate-400 px-1">
+                  <span key={page} className="text-slate-400 px-1.5">
                     ...
                   </span>
                 );
@@ -602,9 +578,11 @@ export const BankView: React.FC<BankViewProps> = ({
           </div>
 
           <button
+            type="button"
             onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
             disabled={currentPage === totalPages}
-            className="p-2 rounded-xl bg-white dark:bg-[#111726] border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+            className="w-10 h-10 rounded-xl bg-white dark:bg-[#111726] border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-slate-50 dark:hover:bg-slate-800 flex items-center justify-center transition-colors"
+            aria-label="Halaman berikutnya"
           >
             <ChevronRight className="w-4 h-4" />
           </button>
