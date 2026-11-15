@@ -18,6 +18,7 @@ import { ToastData } from '@/components/ui/ToastNotification';
 import { validateReportAction } from '@/utils/antiBot';
 import { AuthTriggerReason } from '@/components/auth/AuthModal';
 import { formatUsername } from '@/utils/formatters';
+import { StorageEngine } from '@/utils/storageEngine';
 
 export function useCriliantStore(
   activeTrack: StudyTrack,
@@ -49,64 +50,71 @@ export function useCriliantStore(
       .catch((err) => console.error('Failed to load questions from QuestionService:', err));
   }, []);
 
-  // Load local-first persisted state
+  // Load local-first persisted state (IndexedDB with safe fallback)
   useEffect(() => {
-    try {
-      const savedProfile = localStorage.getItem('criliant_user_profile');
-      if (savedProfile) setUserProfile(JSON.parse(savedProfile));
+    StorageEngine.getItem<UserProfile>('criliant_user_profile')
+      .then((saved) => {
+        if (saved) setUserProfile(saved);
+      })
+      .catch((e) => console.error('[StorageEngine] Error loading profile:', e));
 
-      const savedPosts = localStorage.getItem('criliant_stream_posts');
-      if (savedPosts) setPosts(JSON.parse(savedPosts));
+    StorageEngine.getItem<StreamPost[]>('criliant_stream_posts')
+      .then((saved) => {
+        if (saved && saved.length > 0) setPosts(saved);
+      })
+      .catch((e) => console.error('[StorageEngine] Error loading posts:', e));
 
-      const savedBookmarks = localStorage.getItem('criliant_bookmarks');
-      if (savedBookmarks) setBookmarkedIds(new Set(JSON.parse(savedBookmarks)));
-    } catch (e) {
-      console.error('Error loading local storage data:', e);
-    }
+    StorageEngine.getItem<string[]>('criliant_bookmarks')
+      .then((saved) => {
+        if (saved) setBookmarkedIds(new Set(saved));
+      })
+      .catch((e) => console.error('[StorageEngine] Error loading bookmarks:', e));
   }, []);
 
   const handleLogin = useCallback(
     (user: UserProfile) => {
-      setUserProfile(user);
-      setActiveTrack(user.studyTrack);
-      localStorage.setItem('criliant_user_profile', JSON.stringify(user));
-      showToast(`👋 Selamat Datang, ${user.name}!`, 'Akunmu aktif. Seluruh hak interaksi telah terbuka.', 'success');
+      const cleanUser = StorageEngine.prepareProfilePayload(user);
+      setUserProfile(cleanUser);
+      setActiveTrack(cleanUser.studyTrack);
+      StorageEngine.setItem('criliant_user_profile', cleanUser);
+      showToast(`👋 Selamat Datang, ${cleanUser.name}!`, 'Akunmu aktif. Seluruh hak interaksi telah terbuka.', 'success');
     },
     [setActiveTrack, showToast]
   );
 
   const handleLogout = useCallback(() => {
     setUserProfile(null);
-    localStorage.removeItem('criliant_user_profile');
+    StorageEngine.removeItem('criliant_user_profile');
     showToast('Mode Tamu Aktif', 'Kamu telah keluar dan berada dalam mode penjelajah.', 'info');
   }, [showToast]);
 
   const handleSaveProfile = useCallback(
     (updated: UserProfile) => {
-      setUserProfile(updated);
-      setActiveTrack(updated.studyTrack);
-      localStorage.setItem('criliant_user_profile', JSON.stringify(updated));
+      const cleanUser = StorageEngine.prepareProfilePayload(updated);
+      setUserProfile(cleanUser);
+      setActiveTrack(cleanUser.studyTrack);
+      StorageEngine.setItem('criliant_user_profile', cleanUser);
 
       // Synchronize updated profile (name, username, photo, initial) across existing posts by this user
       setPosts((prevPosts) => {
         const synced = prevPosts.map((p) => {
-          if (p.authorId === updated.id || (userProfile && p.authorName === userProfile.name)) {
+          if (p.authorId === cleanUser.id || (userProfile && p.authorName === userProfile.name)) {
             return {
               ...p,
-              authorId: updated.id,
-              authorName: updated.name,
-              authorUsername: updated.username || formatUsername(null, updated.name),
-              avatarInitial: updated.avatarInitial,
-              authorPhotoUrl: updated.avatarPhotoUrl || null,
+              authorId: cleanUser.id,
+              authorName: cleanUser.name,
+              authorUsername: cleanUser.username || formatUsername(null, cleanUser.name),
+              avatarInitial: cleanUser.avatarInitial,
+              authorPhotoUrl: cleanUser.avatarPhotoUrl || null,
             };
           }
           return p;
         });
-        localStorage.setItem('criliant_stream_posts', JSON.stringify(synced));
+        StorageEngine.setItem('criliant_stream_posts', StorageEngine.preparePostsPayload(synced));
         return synced;
       });
 
-      setViewingProfileUser((prev) => (prev && prev.id === updated.id ? updated : prev));
+      setViewingProfileUser((prev) => (prev && prev.id === cleanUser.id ? cleanUser : prev));
     },
     [setActiveTrack, userProfile]
   );
@@ -115,7 +123,7 @@ export function useCriliantStore(
     if (!userProfile) return;
     const updated: UserProfile = { ...userProfile, questionHistory: {} };
     setUserProfile(updated);
-    localStorage.setItem('criliant_user_profile', JSON.stringify(updated));
+    StorageEngine.setItem('criliant_user_profile', updated);
     showToast('🔄 Riwayat Soal Direset', 'Bank soal akan diacak ulang dari awal.', 'info');
   }, [userProfile, showToast]);
 
@@ -129,7 +137,7 @@ export function useCriliantStore(
         const next = new Set(prev);
         if (next.has(questionId)) next.delete(questionId);
         else next.add(questionId);
-        localStorage.setItem('criliant_bookmarks', JSON.stringify(Array.from(next)));
+        StorageEngine.setItem('criliant_bookmarks', Array.from(next));
         return next;
       });
     },
@@ -158,7 +166,7 @@ export function useCriliantStore(
             upvoteCount: newCount,
           };
         });
-        localStorage.setItem('criliant_stream_posts', JSON.stringify(updated));
+        StorageEngine.setItem('criliant_stream_posts', StorageEngine.preparePostsPayload(updated));
         return updated;
       });
     },
@@ -193,7 +201,7 @@ export function useCriliantStore(
               }
             : p
         );
-        localStorage.setItem('criliant_stream_posts', JSON.stringify(updated));
+        StorageEngine.setItem('criliant_stream_posts', StorageEngine.preparePostsPayload(updated));
         return updated;
       });
     },
@@ -203,7 +211,7 @@ export function useCriliantStore(
   const handleAddPost = useCallback((newPost: StreamPost) => {
     setPosts((prev) => {
       const updated = [newPost, ...prev];
-      localStorage.setItem('criliant_stream_posts', JSON.stringify(updated));
+      StorageEngine.setItem('criliant_stream_posts', StorageEngine.preparePostsPayload(updated));
       return updated;
     });
   }, []);
@@ -226,8 +234,9 @@ export function useCriliantStore(
         followingCount: updatedFollowing.length,
       };
 
-      setUserProfile(updatedProfile);
-      localStorage.setItem('criliant_user_profile', JSON.stringify(updatedProfile));
+      const cleanProfile = StorageEngine.prepareProfilePayload(updatedProfile);
+      setUserProfile(cleanProfile);
+      StorageEngine.setItem('criliant_user_profile', cleanProfile);
       showToast(
         isAlreadyFollowing ? 'Batal Mengikuti' : '✓ Mengikuti Kreator',
         isAlreadyFollowing
@@ -321,7 +330,7 @@ export function useCriliantStore(
             },
           };
         });
-        localStorage.setItem('criliant_stream_posts', JSON.stringify(updated));
+        StorageEngine.setItem('criliant_stream_posts', StorageEngine.preparePostsPayload(updated));
         return updated;
       });
 
@@ -333,8 +342,9 @@ export function useCriliantStore(
           isCompetenceVerified: true,
           reputationKarma: (userProfile.reputationKarma || 10) + (isCorrect ? 15 : 5),
         };
-        setUserProfile(updatedProfile);
-        localStorage.setItem('criliant_user_profile', JSON.stringify(updatedProfile));
+        const cleanProfile = StorageEngine.prepareProfilePayload(updatedProfile);
+        setUserProfile(cleanProfile);
+        StorageEngine.setItem('criliant_user_profile', cleanProfile);
         if (!wasAlreadyVerified) {
           showToast('🎉 Proof of Competence Terverifikasi!', 'Kamu terbukti manusia asli! Hak interaksi aktif penuh.', 'success');
         } else {
@@ -367,8 +377,9 @@ export function useCriliantStore(
         ...userProfile,
         registeredContestIds: updatedRegistered,
       };
-      setUserProfile(updatedProfile);
-      localStorage.setItem('criliant_user_profile', JSON.stringify(updatedProfile));
+      const cleanProfile = StorageEngine.prepareProfilePayload(updatedProfile);
+      setUserProfile(cleanProfile);
+      StorageEngine.setItem('criliant_user_profile', cleanProfile);
 
       showToast(
         isRegistered ? 'Pendaftaran Dibatalkan' : '🎯 Berhasil Terdaftar!',
@@ -444,8 +455,9 @@ export function useCriliantStore(
             contestsAttended: activeContest ? (prev.contestsAttended || 0) + 1 : prev.contestsAttended,
             ratingHistory: updatedRatingHistory,
           };
-          localStorage.setItem('criliant_user_profile', JSON.stringify(up));
-          return up;
+          const cleanUp = StorageEngine.prepareProfilePayload(up);
+          StorageEngine.setItem('criliant_user_profile', cleanUp);
+          return cleanUp;
         });
 
         showToast(
@@ -469,6 +481,39 @@ export function useCriliantStore(
     },
     [userProfile, showToast]
   );
+
+  const handleVacuumStorage = useCallback(async () => {
+    try {
+      const stats = await StorageEngine.vacuumCache();
+      showToast(
+        '🧹 Storage Engine Dioptimalkan',
+        `Pembersihan selesai! Hemat ~${stats.freedKb} KB. Ukuran memori saat ini: ${stats.formattedSize}.`,
+        'success'
+      );
+    } catch (e) {
+      console.error('Failed to vacuum storage:', e);
+      showToast('⚠️ Gagal Mengoptimalkan', 'Terjadi kesalahan saat merapikan database.', 'warning');
+    }
+  }, [showToast]);
+
+  const handleClearMediaCache = useCallback(async () => {
+    try {
+      const stats = await StorageEngine.clearMediaCache();
+      const freshPosts = await StorageEngine.getItem<StreamPost[]>('criliant_stream_posts');
+      if (freshPosts) setPosts(freshPosts);
+      const freshProfile = await StorageEngine.getItem<UserProfile>('criliant_user_profile');
+      if (freshProfile) setUserProfile(freshProfile);
+
+      showToast(
+        '🖼️ Cache Media Berhasil Dihapus',
+        `Blob gambar stream dibersihkan! Ukuran saat ini: ${stats.formattedSize}.`,
+        'success'
+      );
+    } catch (e) {
+      console.error('Failed to clear media cache:', e);
+      showToast('⚠️ Gagal Menghapus Cache', 'Terjadi kesalahan saat membersihkan gambar.', 'warning');
+    }
+  }, [showToast]);
 
   return {
     userProfile,
@@ -494,5 +539,7 @@ export function useCriliantStore(
     handleAnswerQuiz,
     handleRegisterToggleContest,
     recordExamCompletion,
+    handleVacuumStorage,
+    handleClearMediaCache,
   };
 }

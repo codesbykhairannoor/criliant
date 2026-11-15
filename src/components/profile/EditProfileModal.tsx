@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { UserProfile, StudyTrack } from '@/types';
 import { formatUsername } from '@/utils/formatters';
 import {
@@ -16,7 +16,11 @@ import {
   RefreshCw,
   Send,
   Flame,
+  Database,
+  HardDrive,
+  Zap,
 } from 'lucide-react';
+import { StorageEngine } from '@/utils/storageEngine';
 
 export const InstagramIcon: React.FC<{ className?: string }> = ({ className = 'w-3 h-3' }) => (
   <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -32,6 +36,8 @@ interface EditProfileModalProps {
   userProfile: UserProfile;
   onSaveProfile: (updated: UserProfile) => void;
   onResetQuestionHistory?: () => void;
+  onVacuumStorage?: () => Promise<void>;
+  onClearMediaCache?: () => Promise<void>;
 }
 
 export const BANNER_THEMES = {
@@ -75,6 +81,8 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({
   userProfile,
   onSaveProfile,
   onResetQuestionHistory,
+  onVacuumStorage,
+  onClearMediaCache,
 }) => {
   const [name, setName] = useState(userProfile.name);
   const [username, setUsername] = useState(userProfile.username || formatUsername(null, userProfile.name));
@@ -88,6 +96,24 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({
   const [instagramUsername, setInstagramUsername] = useState(userProfile.instagramUsername || '');
   const [isCompressing, setIsCompressing] = useState(false);
   const [showResetConfirm, setShowResetConfirm] = useState(false);
+
+  // Storage Engine State & Analytics
+  const [storageStats, setStorageStats] = useState<{
+    usedBytes: number;
+    formattedUsed: string;
+    profileKb: number;
+    postsKb: number;
+    bookmarksKb: number;
+    isIndexedDBActive: boolean;
+    quotaEstimateText: string;
+  } | null>(null);
+  const [isOptimizing, setIsOptimizing] = useState(false);
+
+  const refreshStorageStats = useCallback(() => {
+    StorageEngine.getStorageStats().then((stats) => {
+      setStorageStats(stats);
+    });
+  }, []);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -103,7 +129,36 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({
     setTelegramUsername(userProfile.telegramUsername || '');
     setInstagramUsername(userProfile.instagramUsername || '');
     setShowResetConfirm(false);
-  }, [userProfile, isOpen]);
+    refreshStorageStats();
+  }, [userProfile, isOpen, refreshStorageStats]);
+
+  const handleRunVacuum = async () => {
+    setIsOptimizing(true);
+    try {
+      if (onVacuumStorage) {
+        await onVacuumStorage();
+      } else {
+        await StorageEngine.vacuumCache();
+      }
+      refreshStorageStats();
+    } finally {
+      setIsOptimizing(false);
+    }
+  };
+
+  const handleRunClearMedia = async () => {
+    setIsOptimizing(true);
+    try {
+      if (onClearMediaCache) {
+        await onClearMediaCache();
+      } else {
+        await StorageEngine.clearMediaCache();
+      }
+      refreshStorageStats();
+    } finally {
+      setIsOptimizing(false);
+    }
+  };
 
   if (!isOpen) return null;
 
@@ -557,6 +612,84 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({
               </div>
             </div>
           )}
+
+          {/* 9. Pusat Penyimpanan & Manajemen Memori (Storage Engine X / Instagram Standard) */}
+          <div className="pt-2 border-t border-slate-100 dark:border-[#1E293B]">
+            <div className="p-3.5 rounded-2xl bg-gradient-to-br from-slate-50 to-blue-50/30 dark:from-[#0F172A] dark:to-[#0B1528] border border-slate-200/90 dark:border-[#1E293B] space-y-3">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <div className="w-7 h-7 rounded-lg bg-blue-100 dark:bg-blue-950/80 text-[#2563EB] dark:text-[#38BDF8] flex items-center justify-center">
+                    <Database className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <h4 className="text-xs font-black text-slate-900 dark:text-white flex items-center gap-1.5">
+                      <span>Pusat Penyimpanan & Memori</span>
+                      <span className="inline-flex items-center px-1.5 py-0.5 rounded-full text-[9px] font-bold bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1 animate-pulse" />
+                        {storageStats?.isIndexedDBActive ? 'IndexedDB Aktif' : 'Local Engine'}
+                      </span>
+                    </h4>
+                    <p className="text-[10px] text-slate-500 dark:text-slate-400">
+                      Standar arsitektur Twitter/X & IG (Bebas limit 5MB crash)
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Progress & Stats Details */}
+              <div className="space-y-1.5 bg-white/70 dark:bg-[#070D18]/70 p-2.5 rounded-xl border border-slate-200/60 dark:border-slate-800">
+                <div className="flex items-center justify-between text-[11px] font-bold">
+                  <span className="text-slate-600 dark:text-slate-300">
+                    Terpakai: <span className="text-[#2563EB] dark:text-[#38BDF8] font-black">{storageStats?.formattedUsed || '0 KB'}</span>
+                  </span>
+                  <span className="text-[10px] text-slate-400 font-normal">
+                    {storageStats?.quotaEstimateText || 'Kapasitas Kuota Fleksibel'}
+                  </span>
+                </div>
+                <div className="w-full bg-slate-200 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                  <div
+                    className="bg-gradient-to-r from-blue-500 to-cyan-400 h-full rounded-full transition-all duration-500"
+                    style={{
+                      width: `${Math.min(100, Math.max(3, ((storageStats?.usedBytes || 0) / (10 * 1024 * 1024)) * 100))}%`,
+                    }}
+                  />
+                </div>
+                <div className="flex items-center gap-2 pt-0.5 text-[10px] text-slate-500 dark:text-slate-400 flex-wrap">
+                  <span className="bg-slate-100 dark:bg-slate-800/80 px-1.5 py-0.5 rounded text-slate-600 dark:text-slate-300">
+                    👤 Profil & Soal: ~{storageStats?.profileKb ?? 0} KB
+                  </span>
+                  <span className="bg-slate-100 dark:bg-slate-800/80 px-1.5 py-0.5 rounded text-slate-600 dark:text-slate-300">
+                    💬 Stream Posts: ~{storageStats?.postsKb ?? 0} KB
+                  </span>
+                  <span className="bg-slate-100 dark:bg-slate-800/80 px-1.5 py-0.5 rounded text-slate-600 dark:text-slate-300">
+                    🔖 Bookmark: ~{storageStats?.bookmarksKb ?? 0} KB
+                  </span>
+                </div>
+              </div>
+
+              {/* Action Buttons: Vacuum & Clear Media */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-0.5">
+                <button
+                  type="button"
+                  onClick={handleRunVacuum}
+                  disabled={isOptimizing}
+                  className="px-3 py-2 rounded-xl bg-blue-50 hover:bg-blue-100 dark:bg-blue-950/40 dark:hover:bg-blue-900/60 border border-blue-200 dark:border-blue-800 text-[#2563EB] dark:text-[#38BDF8] text-[11px] font-bold flex items-center justify-center gap-1.5 active:scale-[0.98] transition-all disabled:opacity-50"
+                >
+                  <Sparkles className="w-3.5 h-3.5" />
+                  <span>{isOptimizing ? 'Merapikan...' : 'Optimalkan Memori (Vacuum)'}</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={handleRunClearMedia}
+                  disabled={isOptimizing}
+                  className="px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800/80 dark:hover:bg-slate-700/80 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-[11px] font-bold flex items-center justify-center gap-1.5 active:scale-[0.98] transition-all disabled:opacity-50"
+                >
+                  <HardDrive className="w-3.5 h-3.5 text-slate-500" />
+                  <span>Bersihkan Cache Gambar</span>
+                </button>
+              </div>
+            </div>
+          </div>
 
           {/* Submit Button */}
           <div className="pt-2">

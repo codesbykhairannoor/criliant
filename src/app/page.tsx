@@ -285,6 +285,8 @@ export default function HomePage() {
           userProfile={store.userProfile}
           onSaveProfile={store.handleSaveProfile}
           onResetQuestionHistory={store.handleResetQuestionHistory}
+          onVacuumStorage={store.handleVacuumStorage}
+          onClearMediaCache={store.handleClearMediaCache}
         />
       )}
 

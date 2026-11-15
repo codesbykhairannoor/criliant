@@ -17,15 +17,22 @@ export async function GET(request: NextRequest) {
         return NextResponse.json({ success: false, error: 'Contest not found' }, { status: 404 });
       }
 
-      return NextResponse.json({
-        success: true,
-        data: {
-          contest,
-          standings: MOCK_CONTEST_STANDINGS,
-          totalParticipants: contest.registeredCount,
-          serverTime: new Date().toISOString(),
+      return NextResponse.json(
+        {
+          success: true,
+          data: {
+            contest,
+            standings: MOCK_CONTEST_STANDINGS,
+            totalParticipants: contest.registeredCount,
+            serverTime: new Date().toISOString(),
+          },
         },
-      });
+        {
+          headers: {
+            'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=300',
+          },
+        }
+      );
     }
 
     // Ambil daftar kontes berdasarkan track
@@ -33,11 +40,18 @@ export async function GET(request: NextRequest) {
       ? SCHEDULED_CONTESTS.filter((c) => c.track === track)
       : SCHEDULED_CONTESTS;
 
-    return NextResponse.json({
-      success: true,
-      data: filtered,
-      serverTime: new Date().toISOString(),
-    });
+    return NextResponse.json(
+      {
+        success: true,
+        data: filtered,
+        serverTime: new Date().toISOString(),
+      },
+      {
+        headers: {
+          'Cache-Control': 'public, s-maxage=120, stale-while-revalidate=600',
+        },
+      }
+    );
   } catch (error) {
     console.error('Error in /api/contests route:', error);
     return NextResponse.json({ success: false, error: 'Internal server error' }, { status: 500 });
