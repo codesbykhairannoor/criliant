@@ -11,7 +11,7 @@ import { ProfileView } from '@/components/profile/ProfileView';
 import { ArenaView } from '@/components/arena/ArenaView';
 import { ExamModal } from '@/components/exam/ExamModal';
 import { ExamResultModal } from '@/components/exam/ExamResultModal';
-import { BankModal } from '@/components/bank/BankModal';
+import { BankView } from '@/components/bank/BankView';
 import { EditProfileModal } from '@/components/profile/EditProfileModal';
 import { AuthModal, AuthTriggerReason } from '@/components/auth/AuthModal';
 import { ReportModal } from '@/components/modals/ReportModal';
@@ -29,7 +29,6 @@ export default function HomePage() {
 
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [authTriggerReason, setAuthTriggerReason] = useState<AuthTriggerReason>('general');
-  const [isBankModalOpen, setIsBankModalOpen] = useState(false);
   const [bankInitialGroup, setBankInitialGroup] = useState<string>('SEMUA');
   const [isEditProfileModalOpen, setIsEditProfileModalOpen] = useState(false);
   const [reportingPostId, setReportingPostId] = useState<string | null>(null);
@@ -67,7 +66,8 @@ export default function HomePage() {
     (tab: string) => {
       if (tab === 'bank') {
         setBankInitialGroup('SEMUA');
-        setIsBankModalOpen(true);
+        setCurrentNavTab('bank');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         return;
       }
       if (tab === 'bookmarks') {
@@ -76,11 +76,12 @@ export default function HomePage() {
           return;
         }
         setBankInitialGroup('BOOKMARKS');
-        setIsBankModalOpen(true);
+        setCurrentNavTab('bank');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         return;
       }
-      setIsBankModalOpen(false);
       setCurrentNavTab(tab);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       if (tab === 'profile') {
         store.setViewingProfileUser(store.userProfile);
       }
@@ -134,7 +135,7 @@ export default function HomePage() {
 
       {/* 1. LEFT SIDEBAR (Desktop/Tablet) */}
       <LeftSidebar
-        currentTab={isBankModalOpen ? (bankInitialGroup === 'BOOKMARKS' ? 'bookmarks' : 'bank') : currentNavTab}
+        currentTab={currentNavTab === 'bank' && bankInitialGroup === 'BOOKMARKS' ? 'bookmarks' : currentNavTab}
         setCurrentTab={handleNavAction}
         activeTrack={activeTrack}
         setActiveTrack={setActiveTrack}
@@ -182,6 +183,17 @@ export default function HomePage() {
                 userProfile={store.userProfile}
                 onEnterContest={exam.handleEnterContest}
                 onRegisterToggleContest={store.handleRegisterToggleContest}
+              />
+            ) : currentNavTab === 'bank' ? (
+              <BankView
+                questions={store.allQuestions}
+                initialGroup={bankInitialGroup}
+                bookmarkedIds={store.bookmarkedIds}
+                onToggleBookmark={store.handleToggleBookmark}
+                onStartCustomDrill={exam.handleStartCustomDrill}
+                activeTrack={activeTrack}
+                setActiveTrack={setActiveTrack}
+                onRequireAuth={() => openAuthModal('bookmark')}
               />
             ) : currentNavTab === 'profile' ? (
               <ProfileView
@@ -245,8 +257,7 @@ export default function HomePage() {
 
       {/* 4. MOBILE BOTTOM NAVIGATION */}
       <MobileBottomNav
-        currentTab={currentNavTab}
-        isBankModalOpen={isBankModalOpen}
+        currentTab={currentNavTab === 'bank' && bankInitialGroup === 'BOOKMARKS' ? 'bookmarks' : currentNavTab}
         bankInitialGroup={bankInitialGroup}
         onSelectTab={handleNavAction}
         onOpenProfile={() => handleNavAction('profile')}
@@ -320,16 +331,6 @@ export default function HomePage() {
           );
         }}
         onRequireAuth={openAuthModal}
-      />
-
-      <BankModal
-        isOpen={isBankModalOpen}
-        onClose={() => setIsBankModalOpen(false)}
-        questions={store.allQuestions}
-        initialGroup={bankInitialGroup}
-        bookmarkedIds={store.bookmarkedIds}
-        onToggleBookmark={store.handleToggleBookmark}
-        onStartCustomDrill={exam.handleStartCustomDrill}
       />
 
       {isEditProfileModalOpen && store.userProfile && (
