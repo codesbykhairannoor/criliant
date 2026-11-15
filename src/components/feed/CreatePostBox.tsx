@@ -3,6 +3,7 @@
 import React, { useState, useRef } from 'react';
 import { StudyTrack, UserProfile, StreamPost } from '@/types';
 import { CASHTAGS_BY_TRACK } from '@/data/constants';
+import { formatUsername } from '@/utils/formatters';
 import { HelpCircle, CheckCircle2, ChevronDown, Image as ImageIcon, X, Sparkles } from 'lucide-react';
 import { AuthTriggerReason } from '@/components/auth/AuthModal';
 
@@ -110,10 +111,12 @@ export const CreatePostBox: React.FC<CreatePostBoxProps> = ({
       id: `post_${Date.now()}`,
       authorId: userProfile.id,
       authorName: userProfile.name,
+      authorUsername: userProfile.username || formatUsername(null, userProfile.name),
       authorBadge: 'Pejuang Aktif',
       avatarInitial: userProfile.avatarInitial,
       authorPhotoUrl: userProfile.avatarPhotoUrl || null,
-      timeAgo: 'Baru saja',
+      createdAt: Date.now(),
+      timeAgo: '1m',
       cashtag: selectedCashtag,
       track: activeTrack,
       content: content.trim() || (selectedImage ? 'Ada yang bisa bantu selesaikan soal di foto ini?' : 'Coba kerjakan kuis mikro ini yuk:'),

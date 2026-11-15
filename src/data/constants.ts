@@ -111,9 +111,10 @@ export const INITIAL_POSTS: StreamPost[] = [
     id: 'quiz_cpns_01',
     authorId: 'usr_mentor_tiu',
     authorName: 'Mentor TIU Master',
+    authorUsername: 'mentor_tiu',
     authorBadge: 'Verified Coach BKN',
     avatarInitial: 'M',
-    timeAgo: '12m lalu',
+    timeAgo: '12m',
     cashtag: '$TIU-Silogisme',
     track: 'cpns',
     content: '⚡ Kuis Silogisme Cepat 15 Detik! Pola partikular "Semua vs Sebagian" ini sering banget jadi jebakan betmen di CAT BKN. Coba jawab langsung di bawah tanpa hitung manual:',
@@ -133,17 +134,18 @@ export const INITIAL_POSTS: StreamPost[] = [
     commentCount: 34,
     isUpvoted: false,
     comments: [
-      { id: 'c1', authorName: 'Budi Setiawan', authorBadge: 'Pejuang NIP', text: 'Mantap kak, ini kaidah term penengah (middle term) ya? Kalau premis negatif kesimpulannya juga negatif kan?', timeAgo: '8m lalu', avatarInitial: 'B' },
-      { id: 'c2', authorName: 'Siti Rahma', authorBadge: null, text: 'Awalnya kejebak opsi C wkwk, makasih pembahasannya langsung paham!', timeAgo: '4m lalu', avatarInitial: 'S' }
+      { id: 'c1', authorName: 'Budi Setiawan', authorUsername: 'budi_setiawan', authorBadge: 'Pejuang NIP', text: 'Mantap kak, ini kaidah term penengah (middle term) ya? Kalau premis negatif kesimpulannya juga negatif kan?', timeAgo: '8m', avatarInitial: 'B' },
+      { id: 'c2', authorName: 'Siti Rahma', authorUsername: 'siti_rahma', authorBadge: null, text: 'Awalnya kejebak opsi C wkwk, makasih pembahasannya langsung paham!', timeAgo: '4m', avatarInitial: 'S' }
     ]
   },
   {
     id: 'post_01',
     authorId: 'usr_rian_pratama',
     authorName: 'Rian Pratama',
+    authorUsername: 'rian_pratama',
     authorBadge: 'Top 1% Scorer',
     avatarInitial: 'R',
-    timeAgo: '35m lalu',
+    timeAgo: '35m',
     cashtag: '$Kemenkeu',
     track: 'cpns',
     content: 'Alhamdulillah tryout akbar paket 1 tembus skor 485! 🔥 Kuncinya jangan overthinking di TKP. Dahulukan soal TIU hitung cepat & silogisme di 35 menit awal, baru hajar TKP dengan fokus empati pelayanan publik & anti-radikalisme.',
@@ -157,17 +159,18 @@ export const INITIAL_POSTS: StreamPost[] = [
     commentCount: 48,
     isUpvoted: true,
     comments: [
-      { id: 'c3', authorName: 'Andi Wijaya', authorBadge: 'Pejuang Kemenkeu', text: 'Gila bro TIU 150 sempurna banget! Lu ada trik khusus buat deret angka bertingkat 3?', timeAgo: '20m lalu', avatarInitial: 'A' },
-      { id: 'c4', authorName: 'Rian Pratama', authorBadge: 'Top 1% Scorer', text: '@Andi Wijaya cari selisih pertama dulu bro. Kalau belum konstan, cari selisih keduanya, biasanya ketemu pola n^2 atau +3, +5, +7.', timeAgo: '15m lalu', avatarInitial: 'R' }
+      { id: 'c3', authorName: 'Andi Wijaya', authorUsername: 'andi_wijaya', authorBadge: 'Pejuang Kemenkeu', text: 'Gila bro TIU 150 sempurna banget! Lu ada trik khusus buat deret angka bertingkat 3?', timeAgo: '20m', avatarInitial: 'A' },
+      { id: 'c4', authorName: 'Rian Pratama', authorUsername: 'rian_pratama', authorBadge: 'Top 1% Scorer', text: '@Andi Wijaya cari selisih pertama dulu bro. Kalau belum konstan, cari selisih keduanya, biasanya ketemu pola n^2 atau +3, +5, +7.', timeAgo: '15m', avatarInitial: 'R' }
     ]
   },
   {
     id: 'quiz_snbt_01',
     authorId: 'usr_dimas_utbk',
     authorName: 'Kak Dimas UTBK',
+    authorUsername: 'dimas_utbk',
     authorBadge: 'Alumni STEI ITB',
     avatarInitial: 'D',
-    timeAgo: '1j lalu',
+    timeAgo: '1h',
     cashtag: '$PenalaranMTK',
     track: 'snbt',
     content: '🎯 Soal HOTS Penalaran Matematika SNBT 2026! Uji insting pemodelan aljabar kamu di bawah ini langsung di feed:',
@@ -187,16 +190,17 @@ export const INITIAL_POSTS: StreamPost[] = [
     commentCount: 29,
     isUpvoted: false,
     comments: [
-      { id: 'c5', authorName: 'Fajar Nugraha', text: 'Rumus cepatnya mantap kak, tinggal beda per selisih indeks!', timeAgo: '45m lalu', avatarInitial: 'F' }
+      { id: 'c5', authorName: 'Fajar Nugraha', authorUsername: 'fajar_nugraha', text: 'Rumus cepatnya mantap kak, tinggal beda per selisih indeks!', timeAgo: '45m', avatarInitial: 'F' }
     ]
   },
   {
     id: 'post_02',
     authorId: 'usr_sarah_amalia',
     authorName: 'Sarah Amalia',
+    authorUsername: 'sarah_amalia',
     authorBadge: 'STAN 2025',
     avatarInitial: 'S',
-    timeAgo: '2j lalu',
+    timeAgo: '2h',
     cashtag: '$STAN',
     track: 'kedinasan',
     content: 'Jangan remehin nilai mati Bahasa Inggris (TBI) SPMB STAN ya guys! Tahun lalu banyak yang nilainya tinggi di TPA tapi gugur karena TBI di bawah 60. Fokus di Inversion sama Subjunctive Mood.',
@@ -204,7 +208,7 @@ export const INITIAL_POSTS: StreamPost[] = [
     commentCount: 18,
     isUpvoted: false,
     comments: [
-      { id: 'c6', authorName: 'Kevin Halim', text: 'Betul banget kak, materi inverted conditional sering keluar di 10 nomor awal.', timeAgo: '1j lalu', avatarInitial: 'K' }
+      { id: 'c6', authorName: 'Kevin Halim', authorUsername: 'kevin_halim', text: 'Betul banget kak, materi inverted conditional sering keluar di 10 nomor awal.', timeAgo: '1h', avatarInitial: 'K' }
     ]
   }
 ];

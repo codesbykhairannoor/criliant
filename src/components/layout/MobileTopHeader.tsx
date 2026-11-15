@@ -126,7 +126,10 @@ export const MobileTopHeader: React.FC<MobileTopHeaderProps> = ({
                     userProfile.avatarInitial
                   )}
                 </div>
-                <span className="text-[11px] font-bold text-[#0F1419] dark:text-white max-w-[70px] truncate">
+                <span
+                  className="text-[11px] font-bold text-[#0F1419] dark:text-white max-w-[80px] truncate"
+                  title={userProfile.name}
+                >
                   {userProfile.name.split(' ')[0]}
                 </span>
               </button>

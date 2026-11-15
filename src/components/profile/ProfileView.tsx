@@ -14,10 +14,13 @@ import {
   ArrowLeft,
   Trophy,
   Send,
+  Share2,
 } from 'lucide-react';
 import { AuthTriggerReason } from '@/components/auth/AuthModal';
 import { CONTEST_TIER_CONFIG, getTierFromRating } from '@/data/contests';
 import { BANNER_THEMES, InstagramIcon } from '@/components/profile/EditProfileModal';
+import { ShareModal } from '@/components/ui/ShareModal';
+import { formatUsername } from '@/utils/formatters';
 
 interface ProfileViewProps {
   userProfile: UserProfile | null;
@@ -79,6 +82,7 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
   const isFollowing = currentUser?.followingIds?.includes(profileToDisplay.id) ?? false;
 
   const [activeTab, setActiveTab] = useState<'posts' | 'quiz' | 'bookmarks' | 'rating'>('posts');
+  const [isShareModalOpen, setIsShareModalOpen] = useState(false);
 
   const profilePosts = posts.filter(
     (p) => p.authorName.toLowerCase() === profileToDisplay.name.toLowerCase() || p.authorId === profileToDisplay.id
@@ -121,42 +125,52 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
                 : '🏛️ SKD BKN 2026'}
           </span>
 
-          {isSelf ? (
+          <div className="flex items-center gap-1.5">
             <button
-              onClick={onOpenEditProfile}
-              className="bg-white/90 hover:bg-white text-slate-900 text-xs font-bold px-3.5 py-1.5 rounded-xl shadow-xs transition-transform active:scale-95 flex items-center gap-1.5"
+              onClick={() => setIsShareModalOpen(true)}
+              className="bg-white/80 hover:bg-white text-slate-800 p-1.5 rounded-xl shadow-xs transition-transform active:scale-95 flex items-center justify-center"
+              title="Bagikan Profil"
             >
-              <Edit3 className="w-3.5 h-3.5" />
-              <span>Edit Profil</span>
+              <Share2 className="w-3.5 h-3.5" />
             </button>
-          ) : (
-            <button
-              onClick={() => {
-                if (!currentUser) {
-                  onRequireAuth?.('general');
-                  return;
-                }
-                onToggleFollow(profileToDisplay.id);
-              }}
-              className={`text-xs font-bold px-4 py-1.5 rounded-xl shadow-xs transition-all active:scale-95 flex items-center gap-1.5 ${
-                isFollowing
-                  ? 'bg-white/90 text-slate-800 hover:bg-white'
-                  : 'bg-blue-600 hover:bg-blue-700 text-white shadow-blue-500/25'
-              }`}
-            >
-              {isFollowing ? (
-                <>
-                  <UserCheck className="w-3.5 h-3.5" />
-                  <span>Mengikuti</span>
-                </>
-              ) : (
-                <>
-                  <UserPlus className="w-3.5 h-3.5" />
-                  <span>+ Ikuti</span>
-                </>
-              )}
-            </button>
-          )}
+
+            {isSelf ? (
+              <button
+                onClick={onOpenEditProfile}
+                className="bg-white/90 hover:bg-white text-slate-900 text-xs font-bold px-3.5 py-1.5 rounded-xl shadow-xs transition-transform active:scale-95 flex items-center gap-1.5"
+              >
+                <Edit3 className="w-3.5 h-3.5" />
+                <span>Edit Profil</span>
+              </button>
+            ) : (
+              <button
+                onClick={() => {
+                  if (!currentUser) {
+                    onRequireAuth?.('general');
+                    return;
+                  }
+                  onToggleFollow(profileToDisplay.id);
+                }}
+                className={`text-xs font-bold px-4 py-1.5 rounded-xl shadow-xs transition-all active:scale-95 flex items-center gap-1.5 ${
+                  isFollowing
+                    ? 'bg-white/90 text-slate-800 hover:bg-white'
+                    : 'bg-blue-600 hover:bg-blue-700 text-white shadow-blue-500/25'
+                }`}
+              >
+                {isFollowing ? (
+                  <>
+                    <UserCheck className="w-3.5 h-3.5" />
+                    <span>Mengikuti</span>
+                  </>
+                ) : (
+                  <>
+                    <UserPlus className="w-3.5 h-3.5" />
+                    <span>+ Ikuti</span>
+                  </>
+                )}
+              </button>
+            )}
+          </div>
         </div>
 
         {/* Identity & Avatar Section */}
@@ -198,24 +212,31 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
           </div>
 
           <div>
-            <div className="flex items-center gap-2 flex-wrap">
-              <h2 className="text-lg sm:text-xl font-black text-slate-900 dark:text-white">
+            <div className="flex items-center gap-2 flex-wrap min-w-0">
+              <h2
+                className="text-lg sm:text-xl font-black text-slate-900 dark:text-white truncate max-w-[280px] sm:max-w-[420px]"
+                title={profileToDisplay.name}
+              >
                 {profileToDisplay.name}
               </h2>
               {profileToDisplay.highestExamScore && profileToDisplay.highestExamScore >= 450 && (
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-200/50">
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-200/50 flex-shrink-0">
                   🏆 Top Scorer
                 </span>
               )}
               {profileToDisplay.dailyGoalQuestions && (
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 border border-indigo-200/50">
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 border border-indigo-200/50 flex-shrink-0">
                   🎯 Target {profileToDisplay.dailyGoalQuestions} Soal/Hari
                 </span>
               )}
             </div>
 
-            <p className="text-xs font-bold text-blue-600 dark:text-blue-400 mt-1 flex items-center gap-1.5">
-              <Target className="w-3.5 h-3.5" />
+            <p className="text-xs text-blue-600 dark:text-blue-400 font-mono font-bold mt-0.5 truncate">
+              @{formatUsername(profileToDisplay.username, profileToDisplay.name)}
+            </p>
+
+            <p className="text-xs font-bold text-slate-600 dark:text-slate-300 mt-1.5 flex items-center gap-1.5">
+              <Target className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
               <span>Target: {profileToDisplay.targetAgency}</span>
             </p>
 
@@ -517,6 +538,20 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
           </div>
         )}
       </div>
+      {/* Share Profile Modal Dialog */}
+      <ShareModal
+        isOpen={isShareModalOpen}
+        onClose={() => setIsShareModalOpen(false)}
+        title="Bagikan Profil Pejuang"
+        shareUrl={
+          typeof window !== 'undefined'
+            ? `${window.location.origin}/?pejuang=${formatUsername(profileToDisplay.username, profileToDisplay.name)}`
+            : ''
+        }
+        shareText={`Profil Pejuang: ${profileToDisplay.name} (@${formatUsername(profileToDisplay.username, profileToDisplay.name)}) - Target: ${profileToDisplay.targetAgency} | Belajar bareng di Criliant!`}
+        previewAuthor={`${profileToDisplay.name} (@${formatUsername(profileToDisplay.username, profileToDisplay.name)})`}
+        previewDetails={`Target: ${profileToDisplay.targetAgency} • ${profileToDisplay.streakDays} Hari Streak • ELO Rating: ${rating}`}
+      />
     </div>
   );
 };

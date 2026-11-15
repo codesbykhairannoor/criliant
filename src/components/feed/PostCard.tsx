@@ -17,6 +17,8 @@ import {
 import { AuthTriggerReason } from '@/components/auth/AuthModal';
 import { MicroQuizCard } from './MicroQuizCard';
 import { PostCommentsSection } from './PostCommentsSection';
+import { ShareModal } from '@/components/ui/ShareModal';
+import { formatCompactTime, formatUsername } from '@/utils/formatters';
 
 interface PostCardProps {
   post: StreamPost;
@@ -54,6 +56,7 @@ export const PostCard: React.FC<PostCardProps> = ({
   const [isImageZoomed, setIsImageZoomed] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isHeartAnimating, setIsHeartAnimating] = useState(false);
+  const [isShareModalOpen, setIsShareModalOpen] = useState(false);
 
   const isBookmarked = externalIsBookmarked ?? false;
   const isLiked = post.isLiked ?? post.isUpvoted ?? false;
@@ -70,9 +73,7 @@ export const PostCard: React.FC<PostCardProps> = ({
   };
 
   const handleShare = () => {
-    navigator.clipboard?.writeText(window.location.href);
-    setCopiedToast(true);
-    setTimeout(() => setCopiedToast(false), 2000);
+    setIsShareModalOpen(true);
   };
 
   return (
@@ -94,35 +95,44 @@ export const PostCard: React.FC<PostCardProps> = ({
               post.avatarInitial
             )}
           </div>
-          <div className="min-w-0">
-            <div className="flex items-center gap-1.5 flex-wrap">
+          <div className="min-w-0 flex-1">
+            <div className="flex items-center gap-1.5 flex-wrap min-w-0">
               <span
                 onClick={() => onOpenProfile?.(post.authorId || post.authorName, post.authorName)}
-                className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white truncate max-w-[150px] sm:max-w-none cursor-pointer hover:underline"
+                className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white truncate max-w-[125px] sm:max-w-[200px] cursor-pointer hover:underline"
+                title={post.authorName}
               >
                 {post.authorName}
               </span>
+              <span
+                onClick={() => onOpenProfile?.(post.authorId || post.authorName, post.authorName)}
+                className="text-[11px] text-slate-400 dark:text-slate-500 font-normal truncate max-w-[90px] sm:max-w-[130px] cursor-pointer hover:underline"
+                title={`@${formatUsername(post.authorUsername, post.authorName)}`}
+              >
+                @{formatUsername(post.authorUsername, post.authorName)}
+              </span>
+              <span className="text-slate-300 dark:text-slate-600 text-[10px] flex-shrink-0">•</span>
+              <span className="text-[10px] sm:text-[11px] text-slate-400 dark:text-slate-500 font-medium flex-shrink-0">
+                {formatCompactTime(post.createdAt || post.timeAgo)}
+              </span>
               {post.authorBadge && (
-                <span className="text-[9px] sm:text-[10px] font-bold px-1.5 sm:px-2 py-0.5 rounded-full bg-blue-50 dark:bg-blue-950/70 text-blue-700 dark:text-blue-300 border border-blue-200/60 dark:border-blue-800/60 truncate max-w-[120px] sm:max-w-none">
+                <span className="text-[9px] sm:text-[10px] font-bold px-1.5 sm:px-2 py-0.5 rounded-full bg-blue-50 dark:bg-blue-950/70 text-blue-700 dark:text-blue-300 border border-blue-200/60 dark:border-blue-800/60 truncate max-w-[110px] sm:max-w-none flex-shrink-0">
                   {post.authorBadge}
                 </span>
               )}
               {userProfile?.name.toLowerCase() !== post.authorName.toLowerCase() && onToggleFollow && (
                 <button
                   onClick={() => onToggleFollow(post.authorId || post.authorName)}
-                  className={`text-[10px] font-bold px-2 py-0.5 rounded-lg transition-all ${
+                  className={`text-[10px] font-bold px-1.5 py-0.5 rounded-lg transition-all flex-shrink-0 ${
                     isFollowingAuthor
                       ? 'text-slate-400 bg-slate-100 dark:bg-slate-800 hover:text-rose-500'
                       : 'text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/50'
                   }`}
                 >
-                  {isFollowingAuthor ? '✓ Mengikuti' : '+ Ikuti'}
+                  {isFollowingAuthor ? '✓' : '+ Ikuti'}
                 </button>
               )}
             </div>
-            <p className="text-[10px] sm:text-[11px] text-slate-400 dark:text-slate-500 font-medium">
-              {post.timeAgo}
-            </p>
           </div>
         </div>
 
@@ -151,12 +161,28 @@ export const PostCard: React.FC<PostCardProps> = ({
                   <button
                     onClick={() => {
                       setIsMenuOpen(false);
-                      handleShare();
+                      setIsShareModalOpen(true);
+                    }}
+                    className="w-full px-3 py-2 text-left hover:bg-slate-50 dark:hover:bg-slate-800 flex items-center gap-2"
+                  >
+                    <Share2 className="w-3.5 h-3.5 text-blue-500" />
+                    <span>Bagikan Postingan</span>
+                  </button>
+
+                  <button
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      if (typeof navigator !== 'undefined' && navigator.clipboard) {
+                        const url = typeof window !== 'undefined' ? `${window.location.origin}/?post=${post.id}` : '';
+                        navigator.clipboard.writeText(url);
+                        setCopiedToast(true);
+                        setTimeout(() => setCopiedToast(false), 2000);
+                      }
                     }}
                     className="w-full px-3 py-2 text-left hover:bg-slate-50 dark:hover:bg-slate-800 flex items-center gap-2"
                   >
                     <Link2 className="w-3.5 h-3.5 text-slate-400" />
-                    <span>Salin Tautan Soal</span>
+                    <span>Salin Tautan Langsung</span>
                   </button>
 
                   <button
@@ -346,6 +372,17 @@ export const PostCard: React.FC<PostCardProps> = ({
           </div>
         </div>
       )}
+
+      {/* Share Modal Dialog */}
+      <ShareModal
+        isOpen={isShareModalOpen}
+        onClose={() => setIsShareModalOpen(false)}
+        title="Bagikan Postingan"
+        shareUrl={typeof window !== 'undefined' ? `${window.location.origin}/?post=${post.id}` : ''}
+        shareText={`[${post.cashtag}] ${post.content.slice(0, 100)}... - Diskusi di Criliant`}
+        previewAuthor={`${post.authorName} (@${formatUsername(post.authorUsername, post.authorName)})`}
+        previewDetails={post.content}
+      />
     </article>
   );
 };

@@ -17,6 +17,7 @@ import { QuestionRepository } from '@/server/questions/repository';
 import { ToastData } from '@/components/ui/ToastNotification';
 import { validateReportAction } from '@/utils/antiBot';
 import { AuthTriggerReason } from '@/components/auth/AuthModal';
+import { formatUsername } from '@/utils/formatters';
 
 export function useCriliantStore(
   activeTrack: StudyTrack,
@@ -86,7 +87,7 @@ export function useCriliantStore(
       setActiveTrack(updated.studyTrack);
       localStorage.setItem('criliant_user_profile', JSON.stringify(updated));
 
-      // Synchronize updated profile (name, photo, initial) across existing posts by this user
+      // Synchronize updated profile (name, username, photo, initial) across existing posts by this user
       setPosts((prevPosts) => {
         const synced = prevPosts.map((p) => {
           if (p.authorId === updated.id || (userProfile && p.authorName === userProfile.name)) {
@@ -94,6 +95,7 @@ export function useCriliantStore(
               ...p,
               authorId: updated.id,
               authorName: updated.name,
+              authorUsername: updated.username || formatUsername(null, updated.name),
               avatarInitial: updated.avatarInitial,
               authorPhotoUrl: updated.avatarPhotoUrl || null,
             };
@@ -180,8 +182,10 @@ export function useCriliantStore(
                   {
                     id: `c_${Date.now()}`,
                     authorName: userProfile.name,
+                    authorUsername: userProfile.username || formatUsername(null, userProfile.name),
                     text,
-                    timeAgo: 'Baru saja',
+                    timeAgo: '1m',
+                    createdAt: Date.now(),
                     avatarInitial: userProfile.avatarInitial,
                     authorPhotoUrl: userProfile.avatarPhotoUrl || null,
                   },
@@ -243,9 +247,12 @@ export function useCriliantStore(
         const matchingPost = posts.find(
           (p) => (p.authorId === authorId || p.authorName === authorName) && p.authorPhotoUrl
         );
+        const derivedUsername =
+          matchingPost?.authorUsername || formatUsername(null, authorName);
         setViewingProfileUser({
           id: authorId,
           name: authorName,
+          username: derivedUsername,
           targetAgency: authorName.includes('STAN') ? 'PKN STAN' : authorName.includes('ITB') ? 'STEI ITB' : 'Kementerian Keuangan',
           avatarInitial: authorName.charAt(0).toUpperCase(),
           avatarPhotoUrl: matchingPost?.authorPhotoUrl || null,

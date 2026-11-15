@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { UserProfile, StudyTrack } from '@/types';
+import { formatUsername } from '@/utils/formatters';
 import {
   User,
   Target,
@@ -76,6 +77,7 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({
   onResetQuestionHistory,
 }) => {
   const [name, setName] = useState(userProfile.name);
+  const [username, setUsername] = useState(userProfile.username || formatUsername(null, userProfile.name));
   const [targetAgency, setTargetAgency] = useState(userProfile.targetAgency);
   const [bio, setBio] = useState(userProfile.bio);
   const [track, setTrack] = useState<StudyTrack>(userProfile.studyTrack);
@@ -91,6 +93,7 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({
 
   useEffect(() => {
     setName(userProfile.name);
+    setUsername(userProfile.username || formatUsername(null, userProfile.name));
     setTargetAgency(userProfile.targetAgency);
     setBio(userProfile.bio);
     setTrack(userProfile.studyTrack);
@@ -144,9 +147,14 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({
     e.preventDefault();
     if (!name.trim()) return;
 
+    const cleanUsername =
+      username.trim().toLowerCase().replace(/[^a-z0-9_]/g, '').slice(0, 20) ||
+      formatUsername(null, name);
+
     onSaveProfile({
       ...userProfile,
       name: name.trim(),
+      username: cleanUsername,
       avatarInitial: name.trim().charAt(0).toUpperCase() || 'P',
       avatarPhotoUrl,
       bannerTheme,
@@ -226,10 +234,13 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({
             </div>
 
             <div className="flex-1 min-w-0 pb-1">
-              <span className="font-extrabold text-sm text-[#0F1419] dark:text-white block truncate">
+              <span className="font-extrabold text-sm text-[#0F1419] dark:text-white block truncate" title={name}>
                 {name || 'Nama Pejuang'}
               </span>
-              <span className="text-[11px] text-[#536471] dark:text-slate-400 block truncate">
+              <span className="text-[11px] text-[#2563EB] dark:text-[#38BDF8] font-mono block truncate">
+                @{username || formatUsername(null, name)}
+              </span>
+              <span className="text-[10px] text-[#536471] dark:text-slate-400 block truncate">
                 Target: {targetAgency || 'Kementerian Keuangan'}
               </span>
             </div>
@@ -282,19 +293,39 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({
 
         {/* Edit Form */}
         <form onSubmit={handleSubmit} className="space-y-3.5">
-          {/* 1. Nama Tampilan */}
-          <div>
-            <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
-              Nama Tampilan Pejuang:
-            </label>
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="w-full text-xs font-semibold px-3.5 py-2.5 bg-slate-50 dark:bg-[#0F172A] rounded-xl border border-slate-200 dark:border-[#1E293B] focus:border-[#2563EB] focus:outline-none text-[#0F1419] dark:text-white"
-              placeholder="Contoh: Rian Pratama"
-              required
-            />
+          {/* 1. Nama Tampilan & Username Handle */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+            <div>
+              <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+                Nama Lengkap / Tampilan:
+              </label>
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="w-full text-xs font-semibold px-3.5 py-2.5 bg-slate-50 dark:bg-[#0F172A] rounded-xl border border-slate-200 dark:border-[#1E293B] focus:border-[#2563EB] focus:outline-none text-[#0F1419] dark:text-white"
+                placeholder="Contoh: Rian Pratama"
+                required
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1 flex items-center justify-between">
+                <span>Username (@):</span>
+                <span className="text-[10px] text-slate-400 font-mono font-normal">@{username || 'pejuang'}</span>
+              </label>
+              <div className="relative">
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs font-bold">@</span>
+                <input
+                  type="text"
+                  value={username}
+                  onChange={(e) =>
+                    setUsername(e.target.value.toLowerCase().replace(/[^a-z0-9_]/g, '').slice(0, 20))
+                  }
+                  className="w-full text-xs font-mono font-bold pl-7 pr-3 py-2.5 bg-slate-50 dark:bg-[#0F172A] rounded-xl border border-slate-200 dark:border-[#1E293B] focus:border-[#2563EB] focus:outline-none text-[#0F1419] dark:text-white"
+                  placeholder="rian_pratama"
+                />
+              </div>
+            </div>
           </div>
 
           {/* 2. Fokus Jalur */}

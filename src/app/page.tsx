@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useState, useCallback, useMemo, useEffect } from 'react';
 import { StudyTrack } from '@/types';
 import { LeftSidebar } from '@/components/layout/LeftSidebar';
 import { RightSidebar } from '@/components/layout/RightSidebar';
@@ -43,6 +43,16 @@ export default function HomePage() {
   }, []);
 
   const store = useCriliantStore(activeTrack, setActiveTrack, openAuthModal, navigateToProfile);
+
+  // Handle direct links to user profiles (e.g. ?pejuang=rian_pratama)
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const urlParams = new URLSearchParams(window.location.search);
+    const sharedUser = urlParams.get('pejuang') || urlParams.get('user');
+    if (sharedUser) {
+      store.handleOpenUserProfile(sharedUser, sharedUser);
+    }
+  }, []);
 
   const exam = useExamController(
     activeTrack,

@@ -107,9 +107,11 @@ export interface VerifiedScoreBadge {
 export interface PostComment {
   id: string;
   authorName: string;
+  authorUsername?: string;
   authorBadge?: string | null;
   text: string;
   timeAgo: string;
+  createdAt?: number;
   avatarInitial?: string;
   authorPhotoUrl?: string | null;
 }
@@ -133,9 +135,11 @@ export interface StreamPost {
   id: string;
   authorId?: string;
   authorName: string;
+  authorUsername?: string;
   authorBadge?: string | null;
   authorPhotoUrl?: string | null;
   avatarInitial: string;
+  createdAt?: number;
   timeAgo: string;
   cashtag: string;
   track: StudyTrack;
@@ -210,6 +214,7 @@ export interface ContestParticipantStanding {
 export interface UserProfile {
   id: string;
   name: string;
+  username?: string;
   targetAgency: string;
   avatarInitial: string;
   avatarPhotoUrl?: string | null;

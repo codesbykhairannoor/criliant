@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { PostComment, UserProfile } from '@/types';
 import { Send } from 'lucide-react';
 import { AuthTriggerReason } from '@/components/auth/AuthModal';
+import { formatCompactTime, formatUsername } from '@/utils/formatters';
 
 interface PostCommentsSectionProps {
   postId: string;
@@ -50,10 +51,19 @@ export const PostCommentsSection: React.FC<PostCommentsSectionProps> = ({
                 )}
               </div>
               <div className="flex-1 min-w-0 space-y-1">
-                <div className="flex items-center justify-between gap-2">
+                <div className="flex items-center justify-between gap-1.5 flex-wrap">
                   <div className="flex items-center gap-1.5 min-w-0">
-                    <span className="font-bold text-slate-900 dark:text-white truncate">
+                    <span
+                      className="font-bold text-slate-900 dark:text-white truncate max-w-[110px] sm:max-w-[170px]"
+                      title={c.authorName}
+                    >
                       {c.authorName}
+                    </span>
+                    <span
+                      className="text-[10px] text-slate-400 dark:text-slate-500 font-normal truncate max-w-[80px] sm:max-w-[120px]"
+                      title={`@${formatUsername(c.authorUsername, c.authorName)}`}
+                    >
+                      @{formatUsername(c.authorUsername, c.authorName)}
                     </span>
                     {c.authorBadge && (
                       <span className="text-[9px] font-semibold px-1.5 py-0.2 rounded bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 flex-shrink-0">
@@ -61,7 +71,9 @@ export const PostCommentsSection: React.FC<PostCommentsSectionProps> = ({
                       </span>
                     )}
                   </div>
-                  <span className="text-[10px] text-slate-400 flex-shrink-0">{c.timeAgo}</span>
+                  <span className="text-[10px] text-slate-400 flex-shrink-0 font-medium">
+                    {formatCompactTime(c.createdAt || c.timeAgo)}
+                  </span>
                 </div>
                 <p className="text-slate-700 dark:text-slate-300 font-normal leading-relaxed">
                   {c.text}

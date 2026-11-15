@@ -23,6 +23,7 @@ import { StudyTrack, UserProfile } from '@/types';
 import { STUDY_TRACKS } from '@/data/constants';
 import { EXAM_PACKAGES } from '@/data/examPackages';
 import { useTheme } from '@/context/ThemeContext';
+import { formatUsername } from '@/utils/formatters';
 import { AuthTriggerReason } from '@/components/auth/AuthModal';
 
 interface LeftSidebarProps {
@@ -204,15 +205,23 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between gap-1">
-                  <span className="font-extrabold text-xs text-[#0F1419] dark:text-white truncate group-hover:underline">
-                    {userProfile.name}
-                  </span>
+                  <div className="min-w-0">
+                    <span
+                      className="font-extrabold text-xs text-[#0F1419] dark:text-white truncate block group-hover:underline"
+                      title={userProfile.name}
+                    >
+                      {userProfile.name}
+                    </span>
+                    <span className="text-[10px] text-blue-600 dark:text-blue-400 font-mono block truncate">
+                      @{formatUsername(userProfile.username, userProfile.name)}
+                    </span>
+                  </div>
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
                       onLogout();
                     }}
-                    className="p-1 rounded-md text-slate-400 hover:text-red-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                    className="p-1 rounded-md text-slate-400 hover:text-red-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors flex-shrink-0"
                     title="Keluar dari Akun"
                   >
                     <LogOut className="w-3.5 h-3.5" />
