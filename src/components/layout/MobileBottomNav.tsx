@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Home, BookOpen, Swords, Bookmark, User } from 'lucide-react';
+import { Home, BookOpen, Swords, Flame, User } from 'lucide-react';
 
 interface MobileBottomNavProps {
   currentTab: string;
@@ -16,9 +16,6 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
   onSelectTab,
   onOpenProfile,
 }) => {
-  const isBankActive = currentTab === 'bank' && bankInitialGroup !== 'BOOKMARKS';
-  const isBookmarksActive = currentTab === 'bookmarks' || (currentTab === 'bank' && bankInitialGroup === 'BOOKMARKS');
-
   return (
     <nav className="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-white/95 dark:bg-[#0B0F19]/95 backdrop-blur-md border-t border-[#EFF3F4] dark:border-[#1E293B] z-40 px-2 flex items-center justify-around transition-colors select-none">
       {/* 1. Feed */}
@@ -34,17 +31,17 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
         <span>Feed</span>
       </button>
 
-      {/* 2. Bank Soal */}
+      {/* 2. Latihan & Daily */}
       <button
-        onClick={() => onSelectTab('bank')}
+        onClick={() => onSelectTab('latihan')}
         className={`flex flex-col items-center justify-center gap-0.5 min-w-[56px] py-1 text-[10px] font-bold transition-colors ${
-          isBankActive
-            ? 'text-[#2563EB] dark:text-[#38BDF8]'
+          currentTab === 'latihan'
+            ? 'text-amber-500 dark:text-amber-400'
             : 'text-[#536471] dark:text-slate-400 hover:text-[#0F1419] dark:hover:text-white'
         }`}
       >
-        <BookOpen className="w-5 h-5" />
-        <span>Bank Soal</span>
+        <Flame className="w-5 h-5" />
+        <span>Latihan</span>
       </button>
 
       {/* 3. Center Elevated Button: Arena */}
@@ -71,17 +68,17 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
         </span>
       </div>
 
-      {/* 4. Bookmarks */}
+      {/* 4. Bank Soal */}
       <button
-        onClick={() => onSelectTab('bookmarks')}
+        onClick={() => onSelectTab('bank')}
         className={`flex flex-col items-center justify-center gap-0.5 min-w-[56px] py-1 text-[10px] font-bold transition-colors ${
-          isBookmarksActive
+          currentTab === 'bank'
             ? 'text-[#2563EB] dark:text-[#38BDF8]'
             : 'text-[#536471] dark:text-slate-400 hover:text-[#0F1419] dark:hover:text-white'
         }`}
       >
-        <Bookmark className="w-5 h-5" />
-        <span>Simpan</span>
+        <BookOpen className="w-5 h-5" />
+        <span>Bank Soal</span>
       </button>
 
       {/* 5. Profile */}

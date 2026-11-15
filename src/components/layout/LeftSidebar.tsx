@@ -11,6 +11,7 @@ import {
   User,
   PlusCircle,
   Target,
+  Flame,
   Sun,
   Moon,
   ChevronDown,
@@ -53,18 +54,17 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
   onLogout,
 }) => {
   const { isDark, toggleTheme } = useTheme();
-  const flagshipCount = (EXAM_PACKAGES[activeTrack] || EXAM_PACKAGES.cpns)[0]?.questionCount || 110;
   const arenaLabel =
     activeTrack === 'snbt'
-      ? 'Arena UTBK SNBT'
+      ? 'Arena UTBK'
       : activeTrack === 'kedinasan'
         ? 'Arena Kedinasan'
-        : 'Arena CAT BKN';
+        : 'Arena CAT';
 
   const navItems = [
     { id: 'feed', label: 'Feed Utama', icon: Home, badge: 'Live' },
-    { id: 'profile', label: 'Profil Pejuang', icon: User },
-    { id: 'arena', label: arenaLabel, icon: Swords, badge: `${flagshipCount} Soal` },
+    { id: 'latihan', label: 'Latihan & Daily', icon: Flame, badge: 'Streak' },
+    { id: 'arena', label: arenaLabel, icon: Swords, badge: 'ELO' },
     { id: 'bank', label: 'Bank Soal', icon: BookOpen, badge: `${totalQuestionsCount}+` },
     { id: 'bookmarks', label: 'Soal Tersimpan', icon: Bookmark },
   ];
@@ -72,7 +72,7 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
   const tracks: StudyTrack[] = ['cpns', 'snbt', 'kedinasan'];
 
   return (
-    <aside className="hidden md:flex flex-col justify-between w-60 xl:w-64 flex-shrink-0 h-screen sticky top-0 left-0 border-r border-[#EFF3F4] dark:border-[#1E293B] bg-white dark:bg-[#0B0F19] p-4 overflow-y-auto transition-colors z-30 select-none">
+    <aside className="hidden md:flex flex-col justify-between w-52 xl:w-56 flex-shrink-0 h-screen sticky top-0 left-0 border-r border-[#EFF3F4] dark:border-[#1E293B] bg-white dark:bg-[#0B0F19] p-3 overflow-y-auto transition-colors z-30 select-none">
       {/* 1. TOP SECTION: BRAND & MINIMALIST NAVIGATION */}
       <div className="space-y-5">
         {/* Brand Header */}

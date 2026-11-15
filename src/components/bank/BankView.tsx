@@ -205,7 +205,7 @@ export const BankView: React.FC<BankViewProps> = ({
   const optionLabels = ['A', 'B', 'C', 'D', 'E'];
 
   return (
-    <div className="space-y-4 max-w-3xl mx-auto pb-12 select-none">
+    <div className="space-y-4 max-w-5xl xl:max-w-6xl w-full mx-auto pb-12 select-none">
       {/* 1. TOP HERO HEADER */}
       <div className="bg-white dark:bg-[#111726] rounded-3xl p-5 sm:p-6 border border-slate-200/80 dark:border-slate-800 shadow-xs relative overflow-hidden transition-colors">
         <div className="flex items-center justify-between gap-3 mb-2 flex-wrap">

@@ -9,6 +9,7 @@ import { MobileBottomNav } from '@/components/layout/MobileBottomNav';
 import { FeedStage } from '@/components/feed/FeedStage';
 import { ProfileView } from '@/components/profile/ProfileView';
 import { ArenaView } from '@/components/arena/ArenaView';
+import { LatihanView } from '@/components/latihan/LatihanView';
 import { ExamModal } from '@/components/exam/ExamModal';
 import { ExamResultModal } from '@/components/exam/ExamResultModal';
 import { BankView } from '@/components/bank/BankView';
@@ -40,6 +41,7 @@ export default function HomePage() {
 
   const navigateToProfile = useCallback(() => {
     setCurrentNavTab('profile');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
   const store = useCriliantStore(activeTrack, setActiveTrack, openAuthModal, navigateToProfile);
@@ -64,6 +66,21 @@ export default function HomePage() {
 
   const handleNavAction = useCallback(
     (tab: string) => {
+      if (tab === 'profile') {
+        if (!store.userProfile) {
+          openAuthModal('general');
+          return;
+        }
+        store.setViewingProfileUser(store.userProfile);
+        setCurrentNavTab('profile');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+      if (tab === 'latihan') {
+        setCurrentNavTab('latihan');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
       if (tab === 'bank') {
         setBankInitialGroup('SEMUA');
         setCurrentNavTab('bank');
@@ -82,9 +99,6 @@ export default function HomePage() {
       }
       setCurrentNavTab(tab);
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      if (tab === 'profile') {
-        store.setViewingProfileUser(store.userProfile);
-      }
     },
     [store, openAuthModal]
   );
@@ -163,21 +177,27 @@ export default function HomePage() {
         <div
           className={`w-full ${
             currentNavTab === 'feed'
-              ? 'max-w-[960px] xl:max-w-[1020px]'
-              : 'max-w-3xl xl:max-w-4xl'
+              ? 'max-w-6xl xl:max-w-7xl'
+              : 'max-w-5xl xl:max-w-6xl'
           } flex justify-center min-h-screen`}
         >
           <main
             className={`w-full ${
               currentNavTab === 'feed'
-                ? 'max-w-[620px] xl:max-w-[660px]'
+                ? 'max-w-[660px] xl:max-w-[700px]'
                 : 'max-w-full'
-            } flex-shrink-0 min-h-screen px-3 sm:px-4 py-3 sm:py-4 pb-24 md:pb-8 transition-colors`}
+            } flex-shrink-0 min-h-screen px-3 sm:px-6 py-3 sm:py-5 pb-24 md:pb-8 transition-colors`}
           >
-            {currentNavTab === 'arena' ? (
+            {currentNavTab === 'latihan' ? (
+              <LatihanView
+                activeTrack={activeTrack}
+                onStartExam={exam.handleStartExam}
+                userProfile={store.userProfile}
+                onRequireAuth={() => openAuthModal('general')}
+              />
+            ) : currentNavTab === 'arena' ? (
               <ArenaView
                 activeTrack={activeTrack}
-                setActiveTrack={setActiveTrack}
                 onStartExam={exam.handleStartExam}
                 totalQuestionsAvailable={store.allQuestions.length}
                 userProfile={store.userProfile}

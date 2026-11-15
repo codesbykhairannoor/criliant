@@ -58,25 +58,40 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
   onBackToFeed,
   onGoToArena,
 }) => {
-  const profileToDisplay: UserProfile = targetUser || currentUser || {
-    id: 'guest_user',
-    name: 'Pejuang Tamu',
-    targetAgency: 'Kementerian Keuangan (DJP)',
-    avatarInitial: 'P',
-    bio: 'Pejuang Seleksi 2026. Belajar konsisten bersama ribuan pejuang lainnya di Criliant! 🎯',
-    streakDays: 1,
-    studyTrack: 'cpns' as StudyTrack,
-    quizzesSolvedCount: 0,
-    isCompetenceVerified: false,
-    reputationKarma: 10,
-    followersCount: 0,
-    followingCount: 0,
-    followingIds: [],
-    highestExamScore: 0,
-    contestRating: 1500,
-    contestsAttended: 0,
-    ratingHistory: [],
-  };
+  // If not viewing someone else's public profile and not logged in, enforce authentication
+  if (!targetUser && !currentUser) {
+    return (
+      <div className="max-w-xl mx-auto py-16 px-4 text-center space-y-4">
+        <div className="w-16 h-16 rounded-full bg-blue-100 dark:bg-blue-950/60 text-[#2563EB] dark:text-[#38BDF8] flex items-center justify-center mx-auto text-2xl shadow-inner">
+          👤
+        </div>
+        <div className="space-y-1.5">
+          <h3 className="text-xl font-black text-slate-900 dark:text-white">
+            Akses Profil Pejuang
+          </h3>
+          <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-md mx-auto leading-relaxed">
+            Masuk atau daftarkan akunmu untuk menyimpan riwayat kuis, mencatat rapor resmi simulasi CAT, mengumpulkan ELO rating, dan berinteraksi di feed.
+          </p>
+        </div>
+        <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-2.5 max-w-xs mx-auto">
+          <button
+            onClick={() => (onRequireAuth ? onRequireAuth('general') : null)}
+            className="w-full py-3 px-5 bg-blue-600 hover:bg-blue-500 text-white font-black text-xs rounded-2xl shadow-md shadow-blue-500/20 active:scale-95 transition-all"
+          >
+            Masuk / Daftar Akun
+          </button>
+          <button
+            onClick={onBackToFeed}
+            className="w-full py-3 px-5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold text-xs rounded-2xl transition-all"
+          >
+            Kembali ke Feed
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  const profileToDisplay: UserProfile = (targetUser || currentUser)!;
 
   const isSelf = currentUser?.id === profileToDisplay.id;
   const isFollowing = currentUser?.followingIds?.includes(profileToDisplay.id) ?? false;
@@ -99,7 +114,7 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
     BANNER_THEMES[profileToDisplay.bannerTheme || 'default']?.class || BANNER_THEMES.default.class;
 
   return (
-    <div className="space-y-4 max-w-2xl mx-auto pb-12">
+    <div className="space-y-4 max-w-4xl xl:max-w-5xl w-full mx-auto pb-12">
       {/* Back to Feed Button */}
       <div className="flex items-center justify-between px-1">
         <button
