@@ -89,34 +89,20 @@ export const AuthModal: React.FC<AuthModalProps> = ({
   const reasonData = getReasonContent();
   const ReasonIcon = reasonData.icon;
 
-  const handleQuickLogin = (demoType: 'verified' | 'novice') => {
-    if (demoType === 'verified') {
-      onSuccessLogin({
-        id: 'usr_rian_pratama',
-        name: 'Rian Pratama',
-        targetAgency: 'Kementerian Keuangan (DJP)',
-        avatarInitial: 'R',
-        bio: 'Pejuang NIP 2026 • Top 1% Scorer SKD 🔥',
-        streakDays: 7,
-        studyTrack: 'cpns',
-        quizzesSolvedCount: 14,
-        isCompetenceVerified: true,
-        reputationKarma: 185,
-      });
-    } else {
-      onSuccessLogin({
-        id: `usr_${Date.now()}`,
-        name: name.trim() || 'Pejuang Baru',
-        targetAgency: 'Badan Kepegawaian Negara',
-        avatarInitial: (name.trim().charAt(0) || 'P').toUpperCase(),
-        bio: 'Mulai perjalanan lulus seleksi CASN 2026 🎯',
-        streakDays: 1,
-        studyTrack: 'cpns',
-        quizzesSolvedCount: 0,
-        isCompetenceVerified: false,
-        reputationKarma: 10,
-      });
-    }
+  const handleGoogleLogin = () => {
+    const derivedName = name.trim() || 'Pejuang Criliant';
+    onSuccessLogin({
+      id: `usr_google_${Date.now()}`,
+      name: derivedName,
+      targetAgency: 'Kementerian Keuangan',
+      avatarInitial: (derivedName.charAt(0) || 'G').toUpperCase(),
+      bio: 'Pejuang NIP 2026 bersama Criliant 🔥',
+      streakDays: 1,
+      studyTrack: 'cpns',
+      quizzesSolvedCount: 0,
+      isCompetenceVerified: true,
+      reputationKarma: 25,
+    });
     onClose();
   };
 
@@ -169,7 +155,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
         {/* 1. Official Google OAuth Button */}
         <div className="space-y-3 pt-1">
           <button
-            onClick={() => handleQuickLogin('verified')}
+            onClick={handleGoogleLogin}
             className="w-full h-11 px-4 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#0B0F19] hover:bg-slate-50 dark:hover:bg-slate-800/80 text-slate-900 dark:text-white font-semibold text-sm shadow-xs active:scale-[0.99] transition-all flex items-center justify-center gap-2.5"
           >
             {/* Google Multi-Color SVG G Logo */}
@@ -254,29 +240,6 @@ export const AuthModal: React.FC<AuthModalProps> = ({
             >
               {isSignUp ? 'Sudah punya akun? Masuk di sini' : 'Belum punya akun? Daftar gratis'}
             </button>
-          </div>
-
-          {/* Quick Demo Sandbox Login for Instant Testing */}
-          <div className="pt-3 border-t border-slate-200/80 dark:border-slate-800">
-            <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 block mb-2 text-center">
-              Akses Cepat Pengujian (1-Klik)
-            </span>
-            <div className="grid grid-cols-2 gap-2.5">
-              <button
-                onClick={() => handleQuickLogin('verified')}
-                className="h-9 px-3 bg-emerald-50 dark:bg-emerald-950/40 hover:bg-emerald-100 dark:hover:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 rounded-lg text-xs font-semibold border border-emerald-500/20 text-center transition-colors truncate"
-                title="Masuk sebagai Rian Pratama (Top 1% Scorer, Verified Human)"
-              >
-                Akun Terverifikasi
-              </button>
-              <button
-                onClick={() => handleQuickLogin('novice')}
-                className="h-9 px-3 bg-blue-50 dark:bg-blue-950/40 hover:bg-blue-100 dark:hover:bg-blue-900/50 text-[#2563EB] dark:text-[#38BDF8] rounded-lg text-xs font-semibold border border-blue-500/20 text-center transition-colors truncate"
-                title="Masuk sebagai Akun Baru (Belum PoC)"
-              >
-                Akun Pejuang Baru
-              </button>
-            </div>
           </div>
         </div>
 
