@@ -191,7 +191,9 @@ export default function HomePage() {
             {currentNavTab === 'latihan' ? (
               <LatihanView
                 activeTrack={activeTrack}
+                allQuestions={store.allQuestions}
                 onStartExam={exam.handleStartExam}
+                onStartCustomWorkout={exam.handleStartCustomWorkout}
                 userProfile={store.userProfile}
                 onRequireAuth={() => openAuthModal('general')}
               />

@@ -4,15 +4,24 @@ import { useState, useCallback, useEffect } from 'react';
 import {
   StudyTrack,
   Question,
+  Category,
   ExamMode,
   ExamResultSummary,
   ScheduledContest,
   UserProfile,
   ActiveExamSession,
 } from '@/types';
-import { resolveExamPackage, getFilteredQuestionsForTrack } from '@/data/examPackages';
+import { resolveExamPackage, getFilteredQuestionsForTrack, TRACK_CATEGORIES } from '@/data/examPackages';
 import { QuestionService } from '@/services/questionService';
 import { StorageEngine } from '@/utils/storageEngine';
+
+export interface CustomWorkoutConfig {
+  categories?: Category[];
+  difficulty?: 'ALL' | 'easy' | 'medium' | 'hard' | 'hard_hots' | string;
+  count: number;
+  isTimed?: boolean;
+  title?: string;
+}
 
 export function useExamController(
   activeTrack: StudyTrack,
@@ -175,6 +184,46 @@ export function useExamController(
     [activeTrack]
   );
 
+  const handleStartCustomWorkout = useCallback(
+    (config: CustomWorkoutConfig) => {
+      const trackCategories = TRACK_CATEGORIES[activeTrack] || TRACK_CATEGORIES.cpns;
+      const allowedCategories = config.categories && config.categories.length > 0
+        ? config.categories
+        : trackCategories;
+
+      let pool = allQuestions.filter((q) => allowedCategories.includes(q.category));
+
+      if (config.difficulty && config.difficulty !== 'ALL') {
+        const matchingDiff = pool.filter((q) => q.difficulty === config.difficulty);
+        if (matchingDiff.length > 0) {
+          pool = matchingDiff;
+        }
+      }
+
+      if (pool.length === 0) {
+        pool = allQuestions.filter((q) => trackCategories.includes(q.category));
+      }
+
+      const shuffled = [...pool].sort(() => 0.5 - Math.random());
+      const selected = shuffled.slice(0, Math.min(config.count, shuffled.length));
+
+      if (selected.length === 0) return;
+
+      const durationSeconds = config.isTimed ? selected.length * 60 : selected.length * 120;
+
+      setInitialSessionForExam(null);
+      setActiveContest(null);
+      setExamTrack(activeTrack);
+      setExamTitle(config.title || `Latihan Mandiri (${selected.length} Soal)`);
+      setExamIsFullCpnsSkd(false);
+      setExamMode('NORMAL');
+      setExamDuration(durationSeconds);
+      setExamQuestions(selected);
+      setIsExamModalOpen(true);
+    },
+    [activeTrack, allQuestions]
+  );
+
   const handleFinishExam = useCallback(
     (summary: ExamResultSummary) => {
       setIsExamModalOpen(false);
@@ -212,6 +261,7 @@ export function useExamController(
     handleStartExam,
     handleEnterContest,
     handleStartCustomDrill,
+    handleStartCustomWorkout,
     handleFinishExam,
   };
 }
