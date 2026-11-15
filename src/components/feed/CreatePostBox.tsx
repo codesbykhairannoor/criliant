@@ -112,6 +112,7 @@ export const CreatePostBox: React.FC<CreatePostBoxProps> = ({
       authorName: userProfile.name,
       authorBadge: 'Pejuang Aktif',
       avatarInitial: userProfile.avatarInitial,
+      authorPhotoUrl: userProfile.avatarPhotoUrl || null,
       timeAgo: 'Baru saja',
       cashtag: selectedCashtag,
       track: activeTrack,
@@ -180,8 +181,16 @@ export const CreatePostBox: React.FC<CreatePostBoxProps> = ({
     <div className="bg-white dark:bg-[#111726] rounded-2xl border border-slate-200/80 dark:border-slate-800 p-3.5 sm:p-4 mb-4 shadow-sm transition-colors">
       <div className="flex gap-2.5 sm:gap-3">
         {/* User Avatar */}
-        <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 text-white font-black text-xs flex items-center justify-center flex-shrink-0 shadow-sm">
-          {userProfile.avatarInitial}
+        <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 text-white font-black text-xs flex items-center justify-center flex-shrink-0 shadow-sm overflow-hidden">
+          {userProfile.avatarPhotoUrl ? (
+            <img
+              src={userProfile.avatarPhotoUrl}
+              alt={userProfile.name}
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            userProfile.avatarInitial
+          )}
         </div>
 
         {/* Input Form */}

@@ -89,6 +89,14 @@ export function useCriliantStore(
     [setActiveTrack]
   );
 
+  const handleResetQuestionHistory = useCallback(() => {
+    if (!userProfile) return;
+    const updated: UserProfile = { ...userProfile, questionHistory: {} };
+    setUserProfile(updated);
+    localStorage.setItem('criliant_user_profile', JSON.stringify(updated));
+    showToast('🔄 Riwayat Soal Direset', 'Bank soal akan diacak ulang dari awal.', 'info');
+  }, [userProfile, showToast]);
+
   const handleToggleBookmark = useCallback(
     (questionId: string) => {
       if (!userProfile) {
@@ -211,11 +219,15 @@ export function useCriliantStore(
       if (userProfile && (userProfile.id === authorId || userProfile.name === authorName)) {
         setViewingProfileUser(userProfile);
       } else {
+        const matchingPost = posts.find(
+          (p) => (p.authorId === authorId || p.authorName === authorName) && p.authorPhotoUrl
+        );
         setViewingProfileUser({
           id: authorId,
           name: authorName,
           targetAgency: authorName.includes('STAN') ? 'PKN STAN' : authorName.includes('ITB') ? 'STEI ITB' : 'Kementerian Keuangan',
           avatarInitial: authorName.charAt(0).toUpperCase(),
+          avatarPhotoUrl: matchingPost?.authorPhotoUrl || null,
           bio: 'Mentor & kreator materi edukasi di Criliant. Berbagi tips dan bedah soal HOTS persiapan seleksi nasional 🚀',
           streakDays: 14,
           studyTrack: activeTrack,
@@ -234,7 +246,7 @@ export function useCriliantStore(
       onNavigateProfile();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     },
-    [userProfile, activeTrack, onNavigateProfile]
+    [userProfile, posts, activeTrack, onNavigateProfile]
   );
 
   const handleSubmitReport = useCallback(
@@ -443,6 +455,7 @@ export function useCriliantStore(
     handleLogin,
     handleLogout,
     handleSaveProfile,
+    handleResetQuestionHistory,
     handleToggleBookmark,
     handleLike,
     handleAddComment,

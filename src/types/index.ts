@@ -211,9 +211,14 @@ export interface UserProfile {
   name: string;
   targetAgency: string;
   avatarInitial: string;
+  avatarPhotoUrl?: string | null;
+  bannerTheme?: 'default' | 'emerald' | 'amber' | 'rose' | 'midnight';
   bio: string;
   streakDays: number;
   studyTrack: StudyTrack;
+  dailyGoalQuestions?: number;
+  telegramUsername?: string;
+  instagramUsername?: string;
   quizzesSolvedCount?: number; // Proof of Competence: Number of quizzes solved
   isCompetenceVerified?: boolean; // True once user completes >= 1 quiz or exam
   reputationKarma?: number; // Peer-reviewed reputation
@@ -228,4 +233,5 @@ export interface UserProfile {
   ratingHistory?: ContestRatingHistoryItem[];
   registeredContestIds?: string[];
 }
+
 

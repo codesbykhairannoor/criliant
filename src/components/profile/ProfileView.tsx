@@ -13,9 +13,11 @@ import {
   Target,
   ArrowLeft,
   Trophy,
+  Send,
 } from 'lucide-react';
 import { AuthTriggerReason } from '@/components/auth/AuthModal';
 import { CONTEST_TIER_CONFIG, getTierFromRating } from '@/data/contests';
+import { BANNER_THEMES, InstagramIcon } from '@/components/profile/EditProfileModal';
 
 interface ProfileViewProps {
   userProfile: UserProfile | null;
@@ -89,6 +91,9 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
   const tierInfo = CONTEST_TIER_CONFIG[getTierFromRating(rating)];
   const ratingHistory = profileToDisplay.ratingHistory || [];
 
+  const bannerGradient =
+    BANNER_THEMES[profileToDisplay.bannerTheme || 'default']?.class || BANNER_THEMES.default.class;
+
   return (
     <div className="space-y-4 max-w-2xl mx-auto pb-12">
       {/* Back to Feed Button */}
@@ -107,7 +112,7 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
 
       {/* Hero Card: ID Card Pejuang */}
       <div className="bg-white dark:bg-[#111726] rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm overflow-hidden transition-colors">
-        <div className="h-24 sm:h-32 bg-gradient-to-r from-blue-600 via-indigo-600 to-sky-500 relative p-4 flex justify-between items-start">
+        <div className={`h-24 sm:h-32 bg-gradient-to-r ${bannerGradient} relative p-4 flex justify-between items-start transition-all`}>
           <span className="bg-white/20 backdrop-blur-md text-white text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full border border-white/20 flex items-center gap-1">
             {profileToDisplay.studyTrack === 'snbt'
               ? '🎓 SNBT UTBK 2026'
@@ -157,8 +162,16 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
         {/* Identity & Avatar Section */}
         <div className="px-4 sm:px-5 pb-5 pt-0 relative">
           <div className="flex justify-between items-end -mt-9 sm:-mt-12 mb-3">
-            <div className="w-18 h-18 sm:w-22 sm:h-22 rounded-2xl bg-gradient-to-tr from-blue-700 to-indigo-800 border-4 border-white dark:border-[#111726] text-white font-black text-2xl flex items-center justify-center shadow-lg">
-              {profileToDisplay.avatarInitial}
+            <div className="w-18 h-18 sm:w-22 sm:h-22 rounded-2xl bg-gradient-to-tr from-blue-700 to-indigo-800 border-4 border-white dark:border-[#111726] text-white font-black text-2xl flex items-center justify-center shadow-lg overflow-hidden shrink-0">
+              {profileToDisplay.avatarPhotoUrl ? (
+                <img
+                  src={profileToDisplay.avatarPhotoUrl}
+                  alt={profileToDisplay.name}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                profileToDisplay.avatarInitial
+              )}
             </div>
 
             <div className="flex items-center gap-2">
@@ -194,6 +207,11 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
                   🏆 Top Scorer
                 </span>
               )}
+              {profileToDisplay.dailyGoalQuestions && (
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 border border-indigo-200/50">
+                  🎯 Target {profileToDisplay.dailyGoalQuestions} Soal/Hari
+                </span>
+              )}
             </div>
 
             <p className="text-xs font-bold text-blue-600 dark:text-blue-400 mt-1 flex items-center gap-1.5">
@@ -204,6 +222,34 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
             <p className="text-xs text-slate-600 dark:text-slate-300 mt-2.5 leading-relaxed font-normal">
               {profileToDisplay.bio || 'Pejuang konsisten yang sedang mempersiapkan diri menghadapi seleksi nasional bersama Criliant.'}
             </p>
+
+            {/* Social Handles if Present */}
+            {(profileToDisplay.telegramUsername || profileToDisplay.instagramUsername) && (
+              <div className="flex items-center gap-2 mt-3 flex-wrap">
+                {profileToDisplay.telegramUsername && (
+                  <a
+                    href={`https://t.me/${profileToDisplay.telegramUsername.replace('@', '')}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-sky-50 dark:bg-sky-950/40 text-sky-600 dark:text-sky-400 border border-sky-200/50 hover:underline"
+                  >
+                    <Send className="w-3 h-3" />
+                    <span>t.me/{profileToDisplay.telegramUsername.replace('@', '')}</span>
+                  </a>
+                )}
+                {profileToDisplay.instagramUsername && (
+                  <a
+                    href={`https://instagram.com/${profileToDisplay.instagramUsername.replace('@', '')}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-pink-50 dark:bg-pink-950/40 text-pink-600 dark:text-pink-400 border border-pink-200/50 hover:underline"
+                  >
+                    <InstagramIcon className="w-3 h-3" />
+                    <span>@{profileToDisplay.instagramUsername.replace('@', '')}</span>
+                  </a>
+                )}
+              </div>
+            )}
           </div>
 
           {/* Followers & Streak Row */}

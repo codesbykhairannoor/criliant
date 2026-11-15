@@ -82,9 +82,17 @@ export const PostCard: React.FC<PostCardProps> = ({
         <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
           <div
             onClick={() => onOpenProfile?.(post.authorId || post.authorName, post.authorName)}
-            className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 text-white font-black text-xs sm:text-sm flex items-center justify-center flex-shrink-0 shadow-sm cursor-pointer hover:opacity-90 transition-opacity"
+            className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 text-white font-black text-xs sm:text-sm flex items-center justify-center flex-shrink-0 shadow-sm cursor-pointer hover:opacity-90 transition-opacity overflow-hidden"
           >
-            {post.avatarInitial}
+            {post.authorPhotoUrl ? (
+              <img
+                src={post.authorPhotoUrl}
+                alt={post.authorName}
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              post.avatarInitial
+            )}
           </div>
           <div className="min-w-0">
             <div className="flex items-center gap-1.5 flex-wrap">

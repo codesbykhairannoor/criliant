@@ -274,6 +274,7 @@ export default function HomePage() {
           onClose={() => setIsEditProfileModalOpen(false)}
           userProfile={store.userProfile}
           onSaveProfile={store.handleSaveProfile}
+          onResetQuestionHistory={store.handleResetQuestionHistory}
         />
       )}
 

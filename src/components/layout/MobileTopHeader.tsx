@@ -115,8 +115,16 @@ export const MobileTopHeader: React.FC<MobileTopHeaderProps> = ({
                 onClick={onOpenProfile}
                 className="flex items-center gap-1.5 pl-1 pr-2.5 py-1 rounded-xl bg-[#F8FAFC] dark:bg-[#0F172A] border border-[#EFF3F4] dark:border-[#1E293B]"
               >
-                <div className="w-6 h-6 rounded-lg bg-[#2563EB] text-white font-black text-[10px] flex items-center justify-center">
-                  {userProfile.avatarInitial}
+                <div className="w-6 h-6 rounded-lg bg-[#2563EB] text-white font-black text-[10px] flex items-center justify-center overflow-hidden shrink-0">
+                  {userProfile.avatarPhotoUrl ? (
+                    <img
+                      src={userProfile.avatarPhotoUrl}
+                      alt={userProfile.name}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    userProfile.avatarInitial
+                  )}
                 </div>
                 <span className="text-[11px] font-bold text-[#0F1419] dark:text-white max-w-[70px] truncate">
                   {userProfile.name.split(' ')[0]}

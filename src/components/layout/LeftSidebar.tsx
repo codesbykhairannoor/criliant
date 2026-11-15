@@ -191,8 +191,16 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
             className="p-2.5 rounded-2xl hover:bg-[#F8FAFC] dark:hover:bg-[#0F172A] cursor-pointer transition-all border border-transparent hover:border-[#EFF3F4] dark:hover:border-[#1E293B] group relative"
           >
             <div className="flex items-center gap-2.5 mb-1.5">
-              <div className="w-9 h-9 rounded-full bg-[#0F1419] dark:bg-blue-600 text-white font-black text-xs flex items-center justify-center flex-shrink-0 shadow-sm">
-                {userProfile.avatarInitial}
+              <div className="w-9 h-9 rounded-full bg-[#0F1419] dark:bg-blue-600 text-white font-black text-xs flex items-center justify-center flex-shrink-0 shadow-sm overflow-hidden">
+                {userProfile.avatarPhotoUrl ? (
+                  <img
+                    src={userProfile.avatarPhotoUrl}
+                    alt={userProfile.name}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  userProfile.avatarInitial
+                )}
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between gap-1">
