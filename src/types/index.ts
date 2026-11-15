@@ -123,6 +123,7 @@ export interface MicroQuizData {
 
 export interface StreamPost {
   id: string;
+  authorId?: string;
   authorName: string;
   authorBadge?: string | null;
   authorPhotoUrl?: string | null;
@@ -156,5 +157,9 @@ export interface UserProfile {
   quizzesSolvedCount?: number; // Proof of Competence: Number of quizzes solved
   isCompetenceVerified?: boolean; // True once user completes >= 1 quiz or exam
   reputationKarma?: number; // Peer-reviewed reputation
+  followersCount?: number;
+  followingCount?: number;
+  followingIds?: string[]; // IDs of users/creators this user follows
+  highestExamScore?: number;
 }
 

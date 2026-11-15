@@ -109,6 +109,7 @@ export const CASHTAGS_BY_TRACK = {
 export const INITIAL_POSTS: StreamPost[] = [
   {
     id: 'quiz_cpns_01',
+    authorId: 'usr_mentor_tiu',
     authorName: 'Mentor TIU Master',
     authorBadge: 'Verified Coach BKN',
     avatarInitial: 'M',
@@ -138,6 +139,7 @@ export const INITIAL_POSTS: StreamPost[] = [
   },
   {
     id: 'post_01',
+    authorId: 'usr_rian_pratama',
     authorName: 'Rian Pratama',
     authorBadge: 'Top 1% Scorer',
     avatarInitial: 'R',
@@ -161,6 +163,7 @@ export const INITIAL_POSTS: StreamPost[] = [
   },
   {
     id: 'quiz_snbt_01',
+    authorId: 'usr_dimas_utbk',
     authorName: 'Kak Dimas UTBK',
     authorBadge: 'Alumni STEI ITB',
     avatarInitial: 'D',
@@ -189,6 +192,7 @@ export const INITIAL_POSTS: StreamPost[] = [
   },
   {
     id: 'post_02',
+    authorId: 'usr_sarah_amalia',
     authorName: 'Sarah Amalia',
     authorBadge: 'STAN 2025',
     avatarInitial: 'S',

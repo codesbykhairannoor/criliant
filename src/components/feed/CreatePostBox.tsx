@@ -142,8 +142,8 @@ export const CreatePostBox: React.FC<CreatePostBoxProps> = ({
 
   if (!userProfile) {
     return (
-      <div className="bg-white dark:bg-[#0B0F19] border-b border-[#EFF3F4] dark:border-[#1E293B] p-3.5 sm:p-4 transition-colors">
-        <div className="flex items-center justify-between p-3.5 rounded-2xl bg-gradient-to-r from-blue-50/70 to-indigo-50/50 dark:from-blue-950/40 dark:to-indigo-950/20 border border-blue-500/20">
+      <div className="bg-white dark:bg-[#111726] rounded-2xl border border-slate-200/80 dark:border-slate-800 p-4 mb-4 shadow-sm transition-colors">
+        <div className="flex items-center justify-between p-3 rounded-xl bg-gradient-to-r from-blue-50/70 to-indigo-50/50 dark:from-blue-950/40 dark:to-indigo-950/20 border border-blue-500/20">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-xl bg-[#2563EB] text-white flex items-center justify-center font-bold text-sm shadow-md shadow-blue-500/20">
               ✨
@@ -169,10 +169,10 @@ export const CreatePostBox: React.FC<CreatePostBoxProps> = ({
   }
 
   return (
-    <div className="bg-white dark:bg-[#0B0F19] border-b border-[#EFF3F4] dark:border-[#1E293B] p-3.5 sm:p-4 transition-colors">
+    <div className="bg-white dark:bg-[#111726] rounded-2xl border border-slate-200/80 dark:border-slate-800 p-4 mb-4 shadow-sm transition-colors">
       <div className="flex gap-3">
         {/* User Avatar */}
-        <div className="w-9 h-9 rounded-full bg-[#0F1419] dark:bg-blue-600 text-white font-extrabold text-xs flex items-center justify-center flex-shrink-0 shadow-sm">
+        <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 text-white font-black text-xs flex items-center justify-center flex-shrink-0 shadow-sm">
           {userProfile.avatarInitial}
         </div>
 

@@ -8,6 +8,7 @@ import {
   BookOpen,
   Bookmark,
   BarChart3,
+  User,
   PlusCircle,
   Target,
   Sun,
@@ -52,10 +53,10 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
 
   const navItems = [
     { id: 'feed', label: 'Feed Utama', icon: Home, badge: 'Live' },
+    { id: 'profile', label: 'Profil Pejuang', icon: User },
     { id: 'arena', label: 'Arena CAT BKN', icon: Swords, badge: '110 Soal' },
     { id: 'bank', label: 'Bank Soal', icon: BookOpen, badge: '154+' },
     { id: 'bookmarks', label: 'Soal Tersimpan', icon: Bookmark },
-    { id: 'stats', label: 'Rapor & Statistik', icon: BarChart3 },
   ];
 
   const tracks: StudyTrack[] = ['cpns', 'snbt', 'kedinasan'];

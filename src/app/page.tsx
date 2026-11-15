@@ -9,92 +9,64 @@ import {
   ExamMode,
   ExamResultSummary
 } from '@/types';
-import {
-  INITIAL_POSTS,
-  EXAM_MODES
-} from '@/data/constants';
+import { INITIAL_POSTS } from '@/data/constants';
+import { EXAM_PACKAGES, getFilteredQuestionsForTrack } from '@/data/examPackages';
 import questionsData from '@/data/questions.json';
 
 import { LeftSidebar } from '@/components/layout/LeftSidebar';
 import { RightSidebar } from '@/components/layout/RightSidebar';
 import { MobileBottomNav } from '@/components/layout/MobileBottomNav';
-import { FeedHeader } from '@/components/feed/FeedHeader';
-import { CreatePostBox } from '@/components/feed/CreatePostBox';
-import { PostCard } from '@/components/feed/PostCard';
+import { FeedStage } from '@/components/feed/FeedStage';
+import { ProfileView } from '@/components/profile/ProfileView';
+import { ArenaView } from '@/components/arena/ArenaView';
 import { ExamModal } from '@/components/exam/ExamModal';
 import { ExamResultModal } from '@/components/exam/ExamResultModal';
 import { BankModal } from '@/components/bank/BankModal';
 import { EditProfileModal } from '@/components/profile/EditProfileModal';
-import { ArenaView } from '@/components/arena/ArenaView';
 import { AuthModal, AuthTriggerReason } from '@/components/auth/AuthModal';
-import { validateVoteAction, validateReportAction } from '@/utils/antiBot';
-import { Swords, BookOpen, Bookmark, Sparkles, Flame, CheckCircle2, ShieldAlert, X } from 'lucide-react';
+import { ReportModal } from '@/components/modals/ReportModal';
+import { ToastNotification, ToastData } from '@/components/ui/ToastNotification';
+import { validateReportAction } from '@/utils/antiBot';
 
 export default function HomePage() {
-  // 1. Local-First State (Persisted in LocalStorage)
+  // 1. Navigation & Track States (Isolasi Kamar Ujian)
   const [activeTrack, setActiveTrack] = useState<StudyTrack>('cpns');
   const [currentNavTab, setCurrentNavTab] = useState<string>('feed');
   const [feedCategoryTab, setFeedCategoryTab] = useState<string>('all');
   const [selectedCashtag, setSelectedCashtag] = useState<string>('#Semua');
 
-  // 1. Authenticated User Profile (null = Public Guest / Lurker Mode like Reddit & TikTok)
+  // 2. User & Auth States
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
+  const [viewingProfileUser, setViewingProfileUser] = useState<UserProfile | null>(null);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [authTriggerReason, setAuthTriggerReason] = useState<AuthTriggerReason>('general');
+
+  // 3. Modals & Notifications
+  const [isExamModalOpen, setIsExamModalOpen] = useState(false);
+  const [examQuestions, setExamQuestions] = useState<Question[]>([]);
+  const [examMode, setExamMode] = useState<ExamMode>('TRYOUT_FULL');
+  const [examDuration, setExamDuration] = useState(6000);
+  const [lastExamResult, setLastExamResult] = useState<ExamResultSummary | null>(null);
+  const [isResultModalOpen, setIsResultModalOpen] = useState(false);
+  const [isBankModalOpen, setIsBankModalOpen] = useState(false);
+  const [isEditProfileModalOpen, setIsEditProfileModalOpen] = useState(false);
+  const [reportingPostId, setReportingPostId] = useState<string | null>(null);
+  const [toastNotification, setToastNotification] = useState<ToastData | null>(null);
+
+  // 4. Data Posts & Bookmarks
+  const [posts, setPosts] = useState<StreamPost[]>(INITIAL_POSTS);
+  const [bookmarkedIds, setBookmarkedIds] = useState<Set<string>>(new Set(['TWK-01', 'TWK-02']));
+  const allQuestions = questionsData as unknown as Question[];
+
+  const showToast = (title: string, message: string, type: 'success' | 'warning' | 'info' = 'info') => {
+    setToastNotification({ title, message, type });
+    setTimeout(() => setToastNotification(null), 4500);
+  };
 
   const openAuthModal = (reason: AuthTriggerReason = 'general') => {
     setAuthTriggerReason(reason);
     setIsAuthModalOpen(true);
   };
-
-  const handleLogin = (user: UserProfile) => {
-    setUserProfile(user);
-    setActiveTrack(user.studyTrack);
-    localStorage.setItem('criliant_user_profile', JSON.stringify(user));
-    showToast(
-      `👋 Selamat Datang, ${user.name}!`,
-      'Akunmu aktif. Seluruh progres dan hak interaksi telah terbuka.',
-      'success'
-    );
-  };
-
-  const handleLogout = () => {
-    setUserProfile(null);
-    localStorage.removeItem('criliant_user_profile');
-    showToast('Mode Tamu Aktif', 'Kamu telah keluar dan berada dalam mode penjelajah.', 'info');
-  };
-
-  const [posts, setPosts] = useState<StreamPost[]>(INITIAL_POSTS);
-  const [bookmarkedIds, setBookmarkedIds] = useState<Set<string>>(new Set(['q_twk_01', 'q_tiu_02']));
-
-  // Modals State
-  const [isExamModalOpen, setIsExamModalOpen] = useState(false);
-  const [examQuestions, setExamQuestions] = useState<Question[]>([]);
-  const [examMode, setExamMode] = useState<ExamMode>('TRYOUT_FULL');
-  const [examDuration, setExamDuration] = useState(6000);
-
-  const [lastExamResult, setLastExamResult] = useState<ExamResultSummary | null>(null);
-  const [isResultModalOpen, setIsResultModalOpen] = useState(false);
-
-  const [isBankModalOpen, setIsBankModalOpen] = useState(false);
-  const [isEditProfileModalOpen, setIsEditProfileModalOpen] = useState(false);
-
-  // Anti-Bot & Proof of Competence Toast Feedback
-  const [toastNotification, setToastNotification] = useState<{
-    title: string;
-    message: string;
-    type: 'success' | 'warning' | 'info';
-  } | null>(null);
-
-  const showToast = (title: string, message: string, type: 'success' | 'warning' | 'info' = 'info') => {
-    setToastNotification({ title, message, type });
-    setTimeout(() => {
-      setToastNotification(null);
-    }, 4500);
-  };
-
-  // Cast parsed questions
-  const allQuestions = questionsData as unknown as Question[];
 
   // Load state from LocalStorage on mount
   useEffect(() => {
@@ -112,7 +84,19 @@ export default function HomePage() {
     }
   }, []);
 
-  // Save changes to LocalStorage
+  const handleLogin = (user: UserProfile) => {
+    setUserProfile(user);
+    setActiveTrack(user.studyTrack);
+    localStorage.setItem('criliant_user_profile', JSON.stringify(user));
+    showToast(`👋 Selamat Datang, ${user.name}!`, 'Akunmu aktif. Seluruh hak interaksi telah terbuka.', 'success');
+  };
+
+  const handleLogout = () => {
+    setUserProfile(null);
+    localStorage.removeItem('criliant_user_profile');
+    showToast('Mode Tamu Aktif', 'Kamu telah keluar dan berada dalam mode penjelajah.', 'info');
+  };
+
   const handleSaveProfile = (updated: UserProfile) => {
     setUserProfile(updated);
     setActiveTrack(updated.studyTrack);
@@ -133,7 +117,6 @@ export default function HomePage() {
     });
   };
 
-  // Clean Twitter/X Style: Like Post Handler (Instant & Authenticated)
   const handleLike = (postId: string) => {
     if (!userProfile) {
       openAuthModal('like');
@@ -164,26 +147,83 @@ export default function HomePage() {
     });
   };
 
-  // Shadow-Report Protection Handler (Anti-Competitor Bot Attack)
-  const handleReportPost = (postId: string, reason: string) => {
+  const handleToggleFollow = (targetAuthorId: string) => {
     if (!userProfile) {
       openAuthModal('general');
       return;
     }
 
-    const reportCheck = validateReportAction(userProfile);
+    const currentFollowing = userProfile.followingIds || [];
+    const isAlreadyFollowing = currentFollowing.includes(targetAuthorId);
+    const updatedFollowing = isAlreadyFollowing
+      ? currentFollowing.filter((id) => id !== targetAuthorId)
+      : [...currentFollowing, targetAuthorId];
 
-    // Give courteous feedback to the user (Bot thinks it succeeded, but low-trust reports are shadow-dropped)
+    const updatedProfile: UserProfile = {
+      ...userProfile,
+      followingIds: updatedFollowing,
+      followingCount: updatedFollowing.length,
+    };
+
+    setUserProfile(updatedProfile);
+    localStorage.setItem('criliant_user_profile', JSON.stringify(updatedProfile));
     showToast(
-      '🛡️ Laporan Diterima',
-      'Terima kasih telah menjaga ekosistem Criliant. Tim moderator akan meninjau postingan ini.',
+      isAlreadyFollowing ? 'Batal Mengikuti' : '✓ Mengikuti Kreator',
+      isAlreadyFollowing
+        ? 'Kamu berhenti mengikuti pembaruan dari kreator ini.'
+        : 'Berhasil mengikuti! Soal & trik kreator ini akan muncul di tab Mengikuti.',
       'info'
     );
   };
 
-  // Proof of Competence: Handle answering micro-quiz directly in feed
+  const handleOpenUserProfile = (authorId: string, authorName: string) => {
+    if (userProfile && (userProfile.id === authorId || userProfile.name === authorName)) {
+      setViewingProfileUser(userProfile);
+    } else {
+      setViewingProfileUser({
+        id: authorId,
+        name: authorName,
+        targetAgency: authorName.includes('STAN') ? 'PKN STAN' : authorName.includes('ITB') ? 'STEI ITB' : 'Kementerian Keuangan',
+        avatarInitial: authorName.charAt(0).toUpperCase(),
+        bio: `Mentor & kreator materi edukasi di Criliant. Berbagi tips dan bedah soal HOTS persiapan seleksi nasional 🚀`,
+        streakDays: 14,
+        studyTrack: activeTrack,
+        quizzesSolvedCount: 45,
+        isCompetenceVerified: true,
+        reputationKarma: 320,
+        followersCount: 1420,
+        followingCount: 38,
+        followingIds: [],
+        highestExamScore: 485,
+      });
+    }
+    setCurrentNavTab('profile');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleSubmitReport = (postId: string, category: string, reasonDetails: string) => {
+    if (!userProfile) return;
+    const reportCheck = validateReportAction(userProfile);
+
+    try {
+      const savedReports = JSON.parse(localStorage.getItem('criliant_reports') || '[]');
+      savedReports.push({
+        postId,
+        category,
+        details: reasonDetails,
+        reporter: userProfile.id,
+        isShadowDropped: reportCheck.isShadowDropped,
+        createdAt: new Date().toISOString(),
+      });
+      localStorage.setItem('criliant_reports', JSON.stringify(savedReports));
+    } catch (e) {
+      console.error('Error saving report:', e);
+    }
+
+    showToast('🛡️ Laporan Terkirim', reportCheck.message, 'info');
+  };
+
   const handleAnswerQuiz = (postId: string, selectedIndex: number, isCorrect: boolean) => {
-    // 1. Update post state
     setPosts((prev) => {
       const updated = prev.map((p) => {
         if (p.id === postId && p.microQuiz) {
@@ -211,82 +251,27 @@ export default function HomePage() {
       return updated;
     });
 
-    // 2. If user is logged in, update User Profile with Proof of Competence & Karma
     if (userProfile) {
       const wasAlreadyVerified = userProfile.isCompetenceVerified || (userProfile.quizzesSolvedCount ?? 0) >= 1;
-      const newCount = (userProfile.quizzesSolvedCount || 0) + 1;
-      const karmaBonus = isCorrect ? 15 : 5;
-      const newKarma = (userProfile.reputationKarma || 10) + karmaBonus;
-
       const updatedProfile: UserProfile = {
         ...userProfile,
-        quizzesSolvedCount: newCount,
+        quizzesSolvedCount: (userProfile.quizzesSolvedCount || 0) + 1,
         isCompetenceVerified: true,
-        reputationKarma: newKarma,
+        reputationKarma: (userProfile.reputationKarma || 10) + (isCorrect ? 15 : 5),
       };
 
       setUserProfile(updatedProfile);
       localStorage.setItem('criliant_user_profile', JSON.stringify(updatedProfile));
-
       if (!wasAlreadyVerified) {
-        showToast(
-          '🎉 Proof of Competence Terverifikasi!',
-          'Kamu terbukti manusia asli (Anti-Bot lulus)! Hak interaksi aktif penuh.',
-          'success'
-        );
+        showToast('🎉 Proof of Competence Terverifikasi!', 'Kamu terbukti manusia asli! Hak interaksi aktif penuh.', 'success');
       } else {
-        showToast(
-          isCorrect ? '🎯 Jawaban Benar (+15 Karma)!' : '💡 Jawaban Tersimpan (+5 Karma)!',
-          isCorrect
-            ? 'Insting kamu tajam! Skor reputasi karma bertambah.'
-            : 'Pelajari pembahasan resmi untuk memperkuat pemahaman.',
-          'info'
-        );
+        showToast(isCorrect ? '🎯 Jawaban Benar (+15 Karma)!' : '💡 Jawaban Tersimpan (+5 Karma)!', isCorrect ? 'Insting tajam!' : 'Pelajari pembahasannya.', 'info');
       }
     } else {
-      // Guest answered: encourage sign in to claim karma points
-      showToast(
-        isCorrect ? '🎯 Jawabanmu Benar!' : '💡 Jawaban Tersimpan!',
-        'Masuk akunmu untuk mengklaim +15 Karma dan menyimpan riwayat belajar.',
-        'info'
-      );
+      showToast(isCorrect ? '🎯 Jawabanmu Benar!' : '💡 Jawaban Tersimpan!', 'Masuk akunmu untuk mengklaim +15 Karma.', 'info');
     }
   };
 
-  // Add Comment (Authenticated)
-  const handleAddComment = (postId: string, commentText: string) => {
-    if (!userProfile) {
-      openAuthModal('comment');
-      return;
-    }
-
-    setPosts((prev) => {
-      const updated = prev.map((p) => {
-        if (p.id === postId) {
-          return {
-            ...p,
-            commentCount: p.commentCount + 1,
-            comments: [
-              ...p.comments,
-              {
-                id: `c_${Date.now()}`,
-                authorName: userProfile.name,
-                authorBadge: userProfile.isCompetenceVerified ? 'Verified Human' : 'Pejuang Aktif',
-                text: commentText,
-                timeAgo: 'Baru saja',
-                avatarInitial: userProfile.avatarInitial,
-              },
-            ],
-          };
-        }
-        return p;
-      });
-      localStorage.setItem('criliant_stream_posts', JSON.stringify(updated));
-      return updated;
-    });
-  };
-
-  // Add New Post to Feed
   const handleAddPost = (newPost: StreamPost) => {
     setPosts((prev) => {
       const updated = [newPost, ...prev];
@@ -295,45 +280,28 @@ export default function HomePage() {
     });
   };
 
-  // Start Exam Launcher
-  const handleStartExam = (modeId: string) => {
-    const config = EXAM_MODES.find((m) => m.id === modeId) || EXAM_MODES[5];
-    setExamMode(config.id);
-    setExamDuration(config.durationSeconds);
+  // 5. Official Exam Package Launcher (100% Sesuai Kurikulum Kamar)
+  const handleStartExam = (packageOrModeId: string) => {
+    const packagesForTrack = EXAM_PACKAGES[activeTrack] || EXAM_PACKAGES.cpns;
+    const selectedPkg = packagesForTrack.find((p) => p.id === packageOrModeId) || packagesForTrack[0];
 
-    let selected: Question[] = [];
-    if (config.id === 'TRYOUT_FULL') {
-      // 30 TWK, 35 TIU, 45 TKP
-      const twk = allQuestions.filter((q) => q.category === 'TWK').slice(0, 30);
-      const tiu = allQuestions.filter((q) => q.category === 'TIU').slice(0, 35);
-      const tkp = allQuestions.filter((q) => q.category === 'TKP').slice(0, 45);
-      selected = [...twk, ...tiu, ...tkp];
-      if (selected.length < 110) {
-        selected = allQuestions.slice(0, 110);
-      }
-    } else {
-      selected = [...allQuestions].sort(() => 0.5 - Math.random()).slice(0, config.questionCount);
-    }
+    const questionsForExam = getFilteredQuestionsForTrack(
+      allQuestions,
+      activeTrack,
+      selectedPkg.questionCount
+    );
 
-    setExamQuestions(selected);
+    setExamMode('TRYOUT_FULL');
+    setExamDuration(selectedPkg.durationSeconds);
+    setExamQuestions(questionsForExam);
     setIsExamModalOpen(true);
   };
 
-  // Start Custom Drill
-  const handleStartCustomDrill = (drillQuestions: Question[]) => {
-    setExamMode('NORMAL');
-    setExamDuration(drillQuestions.length * 60);
-    setExamQuestions(drillQuestions);
-    setIsExamModalOpen(true);
-  };
-
-  // Finish Exam Handler
   const handleFinishExam = (summary: ExamResultSummary) => {
     setIsExamModalOpen(false);
     setLastExamResult(summary);
     setIsResultModalOpen(true);
 
-    // Increment streak if passed and user is logged in
     if (summary.isOverallPassed && userProfile) {
       setUserProfile((prev) => {
         if (!prev) return null;
@@ -344,39 +312,36 @@ export default function HomePage() {
     }
   };
 
-  // Filter Posts
+  // 6. Hard Boundary Filter (Konten Tidak Pernah Tercampur)
   const filteredPosts = posts.filter((post) => {
-    // 1. Track filter
     if (post.track !== activeTrack) return false;
-
-    // 2. Feed Tab Filter
+    if (feedCategoryTab === 'following') {
+      const followingList = userProfile?.followingIds || [];
+      const isAuthorFollowed = followingList.includes(post.authorId || '') || followingList.includes(post.authorName);
+      if (!isAuthorFollowed) return false;
+    }
     if (feedCategoryTab === 'quiz' && !post.microQuiz) return false;
     if (feedCategoryTab === 'flex' && !post.verifiedScore) return false;
-    if (feedCategoryTab === 'discuss' && (post.microQuiz || post.verifiedScore)) return false;
 
-    // 3. Cashtag filter
     if (selectedCashtag !== '#Semua' && !selectedCashtag.includes('Trending')) {
       const pureTag = selectedCashtag.replace('$', '');
       if (!post.cashtag.includes(pureTag) && !post.content.includes(pureTag)) return false;
     }
-
     return true;
   });
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] dark:bg-[#090D16] flex transition-colors relative">
-      {/* 1. LEFT SIDEBAR (Docked flush to the left edge like Reddit) */}
+      {/* 1. LEFT SIDEBAR */}
       <LeftSidebar
         currentTab={currentNavTab}
         setCurrentTab={(tab) => {
           setCurrentNavTab(tab);
+          if (tab === 'profile') setViewingProfileUser(userProfile);
           if (tab === 'bank') setIsBankModalOpen(true);
           if (tab === 'bookmarks') {
-            if (!userProfile) {
-              openAuthModal('bookmark');
-            } else {
-              setIsBankModalOpen(true);
-            }
+            if (!userProfile) openAuthModal('bookmark');
+            else setIsBankModalOpen(true);
           }
         }}
         activeTrack={activeTrack}
@@ -392,21 +357,17 @@ export default function HomePage() {
         }}
         onStartExam={handleStartExam}
         onOpenEditProfile={() => {
-          if (!userProfile) {
-            openAuthModal('general');
-          } else {
-            setIsEditProfileModalOpen(true);
-          }
+          if (!userProfile) openAuthModal('general');
+          else setIsEditProfileModalOpen(true);
         }}
         onOpenAuthModal={openAuthModal}
         onLogout={handleLogout}
       />
 
-      {/* 2. MAIN VIEWPORT (Feed + Right Sidebar centered in remaining canvas) */}
+      {/* 2. MAIN VIEWPORT */}
       <div className="flex-1 flex justify-center min-h-screen overflow-x-hidden">
         <div className="w-full max-w-[960px] xl:max-w-[1020px] flex justify-center min-h-screen">
-          {/* CENTER STAGE (Feed or Arena Hub) */}
-          <main className="w-full max-w-[580px] xl:max-w-[620px] flex-shrink-0 min-h-screen border-r border-[#EFF3F4] dark:border-[#1E293B] bg-white dark:bg-[#0B0F19] pb-20 md:pb-6 transition-colors">
+          <main className="w-full max-w-[620px] xl:max-w-[660px] flex-shrink-0 min-h-screen px-3 sm:px-4 py-4 pb-24 md:pb-8 transition-colors">
             {currentNavTab === 'arena' ? (
               <ArenaView
                 activeTrack={activeTrack}
@@ -414,70 +375,76 @@ export default function HomePage() {
                 onStartExam={handleStartExam}
                 totalQuestionsAvailable={allQuestions.length}
               />
+            ) : currentNavTab === 'profile' ? (
+              <ProfileView
+                userProfile={userProfile}
+                currentUser={userProfile}
+                targetUser={viewingProfileUser}
+                posts={posts}
+                bookmarkedIds={bookmarkedIds}
+                onLike={handleLike}
+                onAddComment={(postId, text) => {
+                  setPosts((prev) => prev.map((p) => p.id === postId ? {
+                    ...p,
+                    commentCount: p.commentCount + 1,
+                    comments: [...p.comments, {
+                      id: `c_${Date.now()}`,
+                      authorName: userProfile?.name || 'Pejuang',
+                      text,
+                      timeAgo: 'Baru saja',
+                      avatarInitial: userProfile?.avatarInitial || 'P'
+                    }]
+                  } : p));
+                }}
+                onStartExam={handleStartExam}
+                onAnswerQuiz={handleAnswerQuiz}
+                onReportPost={(postId) => setReportingPostId(postId)}
+                onToggleBookmark={handleToggleBookmark}
+                onOpenEditProfile={() => setIsEditProfileModalOpen(true)}
+                onToggleFollow={handleToggleFollow}
+                onRequireAuth={openAuthModal}
+                onBackToFeed={() => setCurrentNavTab('feed')}
+              />
             ) : (
-              <>
-                {/* Clean Sticky Feed Header */}
-                <FeedHeader
-                  activeTab={feedCategoryTab}
-                  setActiveTab={setFeedCategoryTab}
-                  selectedCashtag={selectedCashtag}
-                  setSelectedCashtag={setSelectedCashtag}
-                  activeTrack={activeTrack}
-                  setActiveTrack={setActiveTrack}
-                />
-
-                {/* Create Post / Compose Box */}
-                <CreatePostBox
-                  userProfile={userProfile}
-                  activeTrack={activeTrack}
-                  onAddPost={handleAddPost}
-                  onRequireAuth={openAuthModal}
-                />
-
-                {/* Feed Post List */}
-                <div className="divide-y divide-[#EFF3F4] dark:divide-[#1E293B]">
-                  {filteredPosts.length > 0 ? (
-                    filteredPosts.map((post) => (
-                      <PostCard
-                        key={post.id}
-                        post={post}
-                        userProfile={userProfile}
-                        onLike={handleLike}
-                        onAddComment={handleAddComment}
-                        onStartExam={handleStartExam}
-                        onAnswerQuiz={handleAnswerQuiz}
-                        onReportPost={handleReportPost}
-                        onToggleBookmark={handleToggleBookmark}
-                        isBookmarked={bookmarkedIds.has(post.id)}
-                        onRequireAuth={openAuthModal}
-                      />
-                    ))
-                  ) : (
-                    <div className="text-center py-16 px-4 space-y-3">
-                      <div className="w-12 h-12 rounded-2xl bg-blue-50 dark:bg-blue-950/60 text-[#2563EB] dark:text-[#38BDF8] flex items-center justify-center mx-auto font-black text-xl">
-                        #
-                      </div>
-                      <h4 className="font-extrabold text-[#0F1419] dark:text-white text-sm">
-                        Belum ada diskusi untuk topik {selectedCashtag}
-                      </h4>
-                      <p className="text-xs text-[#536471] dark:text-slate-400 max-w-sm mx-auto">
-                        Jadilah pejuang pertama yang memulai diskusi atau membagikan kuis mikro untuk topik ini!
-                      </p>
-                      <button
-                        onClick={() => setSelectedCashtag('#Semua')}
-                        className="px-4 py-2 bg-[#2563EB] hover:bg-[#1D4ED8] text-white rounded-xl text-xs font-bold shadow-sm transition-all"
-                      >
-                        Kembali ke Semua Postingan
-                      </button>
-                    </div>
-                  )}
-                </div>
-              </>
+              <FeedStage
+                activeTrack={activeTrack}
+                setActiveTrack={setActiveTrack}
+                feedCategoryTab={feedCategoryTab}
+                setFeedCategoryTab={setFeedCategoryTab}
+                selectedCashtag={selectedCashtag}
+                setSelectedCashtag={setSelectedCashtag}
+                userProfile={userProfile}
+                filteredPosts={filteredPosts}
+                bookmarkedIds={bookmarkedIds}
+                onAddPost={handleAddPost}
+                onLike={handleLike}
+                onAddComment={(postId, text) => {
+                  setPosts((prev) => prev.map((p) => p.id === postId ? {
+                    ...p,
+                    commentCount: p.commentCount + 1,
+                    comments: [...p.comments, {
+                      id: `c_${Date.now()}`,
+                      authorName: userProfile?.name || 'Pejuang',
+                      text,
+                      timeAgo: 'Baru saja',
+                      avatarInitial: userProfile?.avatarInitial || 'P'
+                    }]
+                  } : p));
+                }}
+                onStartExam={handleStartExam}
+                onAnswerQuiz={handleAnswerQuiz}
+                onReportPost={(postId) => setReportingPostId(postId)}
+                onToggleBookmark={handleToggleBookmark}
+                onRequireAuth={openAuthModal}
+                onToggleFollow={handleToggleFollow}
+                onOpenProfile={handleOpenUserProfile}
+              />
             )}
           </main>
 
-          {/* 3. RIGHT SIDEBAR (Widgets & Trends) */}
+          {/* 3. RIGHT SIDEBAR */}
           <RightSidebar
+            activeTrack={activeTrack}
             onSelectCashtag={(tag) => setSelectedCashtag(tag)}
             onStartExam={handleStartExam}
             streakDays={userProfile?.streakDays ?? 0}
@@ -485,31 +452,25 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* 4. MOBILE BOTTOM NAVIGATION (Visible only on phone) */}
+      {/* 4. MOBILE BOTTOM NAVIGATION */}
       <MobileBottomNav
         currentTab={currentNavTab}
         setCurrentTab={(tab) => {
           setCurrentNavTab(tab);
           if (tab === 'bank') setIsBankModalOpen(true);
           if (tab === 'bookmarks') {
-            if (!userProfile) {
-              openAuthModal('bookmark');
-            } else {
-              setIsBankModalOpen(true);
-            }
+            if (!userProfile) openAuthModal('bookmark');
+            else setIsBankModalOpen(true);
           }
         }}
         onStartExam={handleStartExam}
         onOpenEditProfile={() => {
-          if (!userProfile) {
-            openAuthModal('general');
-          } else {
-            setIsEditProfileModalOpen(true);
-          }
+          setViewingProfileUser(userProfile);
+          setCurrentNavTab('profile');
         }}
       />
 
-      {/* 5. FULLSCREEN EXAM SIMULATOR MODAL */}
+      {/* 5. MODALS & SIMULATOR */}
       <ExamModal
         isOpen={isExamModalOpen}
         onClose={() => setIsExamModalOpen(false)}
@@ -519,27 +480,37 @@ export default function HomePage() {
         onFinishExam={handleFinishExam}
       />
 
-      {/* 6. EXAM RESULT RAPOR MODAL */}
-      <ExamResultModal
-        isOpen={isResultModalOpen}
-        onClose={() => setIsResultModalOpen(false)}
-        result={lastExamResult}
-        userProfile={userProfile}
-        onFlexToStream={handleAddPost}
-        onRequireAuth={openAuthModal}
-      />
+      {lastExamResult && (
+        <ExamResultModal
+          isOpen={isResultModalOpen}
+          onClose={() => setIsResultModalOpen(false)}
+          result={lastExamResult}
+          userProfile={userProfile}
+          onFlexToStream={(post) => {
+            handleAddPost(post);
+            setIsResultModalOpen(false);
+            showToast('🎉 Rapor Resmi Dibagikan!', 'Hasil skormu telah tampil di feed dengan lencana terverifikasi.', 'success');
+          }}
+          onRequireAuth={openAuthModal}
+        />
+      )}
 
-      {/* 7. BANK SOAL & DRILLING MODAL */}
+      {/* 6. BANK SOAL MODAL */}
       <BankModal
         isOpen={isBankModalOpen}
         onClose={() => setIsBankModalOpen(false)}
         questions={allQuestions}
-        onStartCustomDrill={handleStartCustomDrill}
         bookmarkedIds={bookmarkedIds}
         onToggleBookmark={handleToggleBookmark}
+        onStartCustomDrill={(selectedQuestions: Question[]) => {
+          setExamMode('NORMAL');
+          setExamDuration(selectedQuestions.length * 60);
+          setExamQuestions(selectedQuestions);
+          setIsExamModalOpen(true);
+        }}
       />
 
-      {/* 8. EDIT PROFILE MODAL */}
+      {/* 7. PROFILE & REPORT MODALS */}
       {isEditProfileModalOpen && userProfile && (
         <EditProfileModal
           isOpen={isEditProfileModalOpen}
@@ -549,7 +520,13 @@ export default function HomePage() {
         />
       )}
 
-      {/* 9. AUTHENTICATION & LOGIN GATE MODAL (The Reddit & TikTok Paradigm) */}
+      <ReportModal
+        isOpen={reportingPostId !== null}
+        onClose={() => setReportingPostId(null)}
+        postId={reportingPostId}
+        onSubmitReport={handleSubmitReport}
+      />
+
       <AuthModal
         isOpen={isAuthModalOpen}
         onClose={() => setIsAuthModalOpen(false)}
@@ -557,35 +534,11 @@ export default function HomePage() {
         triggerReason={authTriggerReason}
       />
 
-      {/* 10. FLOATING TOAST NOTIFICATION (Proof of Competence & Anti-Bot Alerts) */}
-      {toastNotification && (
-        <div className="fixed bottom-6 right-6 z-50 max-w-sm w-full bg-white dark:bg-[#0B0F19] p-4 rounded-2xl shadow-2xl border border-slate-200 dark:border-[#1E293B] flex items-start gap-3 animate-in slide-in-from-bottom-5 duration-200">
-          <div className="p-2 rounded-xl flex-shrink-0 bg-blue-50 dark:bg-blue-950/60 text-[#2563EB] dark:text-[#38BDF8]">
-            {toastNotification.type === 'success' ? (
-              <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
-            ) : toastNotification.type === 'warning' ? (
-              <ShieldAlert className="w-5 h-5 text-amber-500" />
-            ) : (
-              <Sparkles className="w-5 h-5 text-[#2563EB] dark:text-[#38BDF8]" />
-            )}
-          </div>
-          <div className="flex-1 min-w-0">
-            <h5 className="font-extrabold text-xs text-[#0F1419] dark:text-white leading-tight">
-              {toastNotification.title}
-            </h5>
-            <p className="text-[11px] text-[#536471] dark:text-slate-400 mt-0.5 leading-snug">
-              {toastNotification.message}
-            </p>
-          </div>
-          <button
-            onClick={() => setToastNotification(null)}
-            className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors p-1"
-          >
-            <X className="w-3.5 h-3.5" />
-          </button>
-        </div>
-      )}
+      {/* 8. FLOATING TOAST NOTIFICATION */}
+      <ToastNotification
+        toast={toastNotification}
+        onClose={() => setToastNotification(null)}
+      />
     </div>
   );
 }
-
