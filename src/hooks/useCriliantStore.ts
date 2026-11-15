@@ -85,8 +85,28 @@ export function useCriliantStore(
       setUserProfile(updated);
       setActiveTrack(updated.studyTrack);
       localStorage.setItem('criliant_user_profile', JSON.stringify(updated));
+
+      // Synchronize updated profile (name, photo, initial) across existing posts by this user
+      setPosts((prevPosts) => {
+        const synced = prevPosts.map((p) => {
+          if (p.authorId === updated.id || (userProfile && p.authorName === userProfile.name)) {
+            return {
+              ...p,
+              authorId: updated.id,
+              authorName: updated.name,
+              avatarInitial: updated.avatarInitial,
+              authorPhotoUrl: updated.avatarPhotoUrl || null,
+            };
+          }
+          return p;
+        });
+        localStorage.setItem('criliant_stream_posts', JSON.stringify(synced));
+        return synced;
+      });
+
+      setViewingProfileUser((prev) => (prev && prev.id === updated.id ? updated : prev));
     },
-    [setActiveTrack]
+    [setActiveTrack, userProfile]
   );
 
   const handleResetQuestionHistory = useCallback(() => {
@@ -163,6 +183,7 @@ export function useCriliantStore(
                     text,
                     timeAgo: 'Baru saja',
                     avatarInitial: userProfile.avatarInitial,
+                    authorPhotoUrl: userProfile.avatarPhotoUrl || null,
                   },
                 ],
               }

@@ -111,6 +111,7 @@ export interface PostComment {
   text: string;
   timeAgo: string;
   avatarInitial?: string;
+  authorPhotoUrl?: string | null;
 }
 
 export interface MicroQuizOption {

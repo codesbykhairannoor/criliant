@@ -40,24 +40,33 @@ export const PostCommentsSection: React.FC<PostCommentsSectionProps> = ({
           {comments.map((c) => (
             <div
               key={c.id}
-              className="bg-slate-50 dark:bg-[#0E1524] p-2.5 rounded-xl text-xs space-y-1 border border-slate-200/70 dark:border-slate-800"
+              className="bg-slate-50 dark:bg-[#0E1524] p-2.5 rounded-xl text-xs border border-slate-200/70 dark:border-slate-800 flex gap-2.5 items-start"
             >
-              <div className="flex items-center justify-between gap-2">
-                <div className="flex items-center gap-1.5 min-w-0">
-                  <span className="font-bold text-slate-900 dark:text-white truncate">
-                    {c.authorName}
-                  </span>
-                  {c.authorBadge && (
-                    <span className="text-[9px] font-semibold px-1.5 py-0.2 rounded bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 flex-shrink-0">
-                      {c.authorBadge}
-                    </span>
-                  )}
-                </div>
-                <span className="text-[10px] text-slate-400 flex-shrink-0">{c.timeAgo}</span>
+              <div className="w-6 h-6 rounded-lg bg-gradient-to-tr from-blue-600 to-indigo-600 text-white font-black text-[10px] flex items-center justify-center overflow-hidden shrink-0 mt-0.5 shadow-xs">
+                {c.authorPhotoUrl ? (
+                  <img src={c.authorPhotoUrl} alt={c.authorName} className="w-full h-full object-cover" />
+                ) : (
+                  c.avatarInitial || c.authorName.charAt(0).toUpperCase()
+                )}
               </div>
-              <p className="text-slate-700 dark:text-slate-300 font-normal leading-relaxed">
-                {c.text}
-              </p>
+              <div className="flex-1 min-w-0 space-y-1">
+                <div className="flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-1.5 min-w-0">
+                    <span className="font-bold text-slate-900 dark:text-white truncate">
+                      {c.authorName}
+                    </span>
+                    {c.authorBadge && (
+                      <span className="text-[9px] font-semibold px-1.5 py-0.2 rounded bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 flex-shrink-0">
+                        {c.authorBadge}
+                      </span>
+                    )}
+                  </div>
+                  <span className="text-[10px] text-slate-400 flex-shrink-0">{c.timeAgo}</span>
+                </div>
+                <p className="text-slate-700 dark:text-slate-300 font-normal leading-relaxed">
+                  {c.text}
+                </p>
+              </div>
             </div>
           ))}
         </div>
