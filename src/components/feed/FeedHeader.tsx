@@ -37,8 +37,8 @@ export const FeedHeader: React.FC<FeedHeaderProps> = ({
 
   return (
     <div className="md:sticky md:top-2 bg-white/95 dark:bg-[#0B0F19]/95 backdrop-blur-md z-20 transition-colors select-none mb-3.5 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm overflow-hidden">
-      {/* 1. UNIVERSE / ROOM SWITCHER */}
-      <div className="p-2 border-b border-slate-100 dark:border-slate-800/80 bg-slate-50/70 dark:bg-[#0D1322]">
+      {/* 1. UNIVERSE / ROOM SWITCHER (Mobile only, desktop uses LeftSidebar) */}
+      <div className="md:hidden p-2 border-b border-slate-100 dark:border-slate-800/80 bg-slate-50/70 dark:bg-[#0D1322]">
         <div className="hidden sm:flex items-center justify-between mb-1.5 px-1">
           <span className="text-[10px] font-black uppercase tracking-wider text-slate-400">
             Kamar Ujian Aktif:

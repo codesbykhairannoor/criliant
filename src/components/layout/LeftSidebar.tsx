@@ -188,10 +188,12 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
       <div className="pt-3 border-t border-[#EFF3F4] dark:border-[#1E293B]">
         {userProfile ? (
           <div
-            onClick={onOpenEditProfile}
-            className="p-2.5 rounded-2xl hover:bg-[#F8FAFC] dark:hover:bg-[#0F172A] cursor-pointer transition-all border border-transparent hover:border-[#EFF3F4] dark:hover:border-[#1E293B] group relative"
+            onClick={() => setCurrentTab('profile')}
+            className={`p-2.5 rounded-2xl hover:bg-[#F8FAFC] dark:hover:bg-[#0F172A] cursor-pointer transition-all border border-transparent hover:border-[#EFF3F4] dark:hover:border-[#1E293B] group relative ${
+              currentTab === 'profile' ? 'bg-[#F8FAFC] dark:bg-[#0F172A] border-slate-200 dark:border-slate-800' : ''
+            }`}
           >
-            <div className="flex items-center gap-2.5 mb-1.5">
+            <div className="flex items-center gap-2.5">
               <div className="w-9 h-9 rounded-full bg-[#0F1419] dark:bg-blue-600 text-white font-black text-xs flex items-center justify-center flex-shrink-0 shadow-sm overflow-hidden">
                 {userProfile.avatarPhotoUrl ? (
                   <img
@@ -223,42 +225,12 @@ export const LeftSidebar: React.FC<LeftSidebarProps> = ({
                     }}
                     className="p-1 rounded-md text-slate-400 hover:text-red-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors flex-shrink-0"
                     title="Keluar dari Akun"
+                    aria-label="Logout"
                   >
                     <LogOut className="w-3.5 h-3.5" />
                   </button>
                 </div>
-                <span className="text-[10px] text-[#536471] dark:text-slate-400 truncate flex items-center gap-1 mt-0.5">
-                  <Target className="w-2.5 h-2.5 text-[#2563EB] dark:text-[#38BDF8] flex-shrink-0" />
-                  <span className="truncate">{userProfile.targetAgency}</span>
-                </span>
               </div>
-            </div>
-
-            <div className="flex items-center justify-between text-[10px] font-bold bg-[#F8FAFC] dark:bg-[#090D16] px-2.5 py-1 rounded-xl border border-[#EFF3F4] dark:border-[#1E293B]">
-              <span className="text-[#536471] dark:text-slate-400">Streak Belajar</span>
-              <span className="text-amber-600 dark:text-amber-400 font-black">
-                🔥 {userProfile.streakDays} Hari
-              </span>
-            </div>
-
-            {/* Proof of Competence (Anti-Bot Status) */}
-            <div
-              className={`mt-1.5 flex items-center justify-between text-[10px] font-bold px-2.5 py-1 rounded-xl border transition-colors ${userProfile.isCompetenceVerified
-                  ? 'bg-emerald-50/70 dark:bg-emerald-950/40 border-emerald-500/20 text-emerald-700 dark:text-emerald-400'
-                  : 'bg-amber-50/70 dark:bg-amber-950/40 border-amber-500/20 text-amber-700 dark:text-amber-400'
-                }`}
-            >
-              <span className="flex items-center gap-1">
-                {userProfile.isCompetenceVerified ? (
-                  <ShieldCheck className="w-3 h-3 text-emerald-600 dark:text-emerald-400" />
-                ) : (
-                  <ShieldAlert className="w-3 h-3 text-amber-600 dark:text-amber-400" />
-                )}
-                <span>{userProfile.isCompetenceVerified ? 'Verified Human' : 'Perlu PoC'}</span>
-              </span>
-              <span className="font-mono text-[9px] font-black">
-                {userProfile.isCompetenceVerified ? 'Aktif 🛡️' : `${userProfile.quizzesSolvedCount || 0}/1 Kuis`}
-              </span>
             </div>
           </div>
         ) : (

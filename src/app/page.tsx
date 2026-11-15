@@ -159,8 +159,20 @@ export default function HomePage() {
 
       {/* 2. MAIN VIEWPORT */}
       <div className="flex-1 flex justify-center min-h-screen overflow-x-hidden">
-        <div className="w-full max-w-[960px] xl:max-w-[1020px] flex justify-center min-h-screen">
-          <main className="w-full max-w-[620px] xl:max-w-[660px] flex-shrink-0 min-h-screen px-3 sm:px-4 py-3 sm:py-4 pb-24 md:pb-8 transition-colors">
+        <div
+          className={`w-full ${
+            currentNavTab === 'feed'
+              ? 'max-w-[960px] xl:max-w-[1020px]'
+              : 'max-w-3xl xl:max-w-4xl'
+          } flex justify-center min-h-screen`}
+        >
+          <main
+            className={`w-full ${
+              currentNavTab === 'feed'
+                ? 'max-w-[620px] xl:max-w-[660px]'
+                : 'max-w-full'
+            } flex-shrink-0 min-h-screen px-3 sm:px-4 py-3 sm:py-4 pb-24 md:pb-8 transition-colors`}
+          >
             {currentNavTab === 'arena' ? (
               <ArenaView
                 activeTrack={activeTrack}
@@ -217,15 +229,17 @@ export default function HomePage() {
             )}
           </main>
 
-          {/* 3. RIGHT SIDEBAR */}
-          <RightSidebar
-            activeTrack={activeTrack}
-            onSelectCashtag={(tag) => setSelectedCashtag(tag)}
-            onStartExam={exam.handleStartExam}
-            streakDays={store.userProfile?.streakDays ?? 0}
-            searchQuery={searchQuery}
-            onSearchChange={setSearchQuery}
-          />
+          {/* 3. RIGHT SIDEBAR (Only visible on Feed tab) */}
+          {currentNavTab === 'feed' && (
+            <RightSidebar
+              activeTrack={activeTrack}
+              onSelectCashtag={(tag) => setSelectedCashtag(tag)}
+              onStartExam={exam.handleStartExam}
+              streakDays={store.userProfile?.streakDays ?? 0}
+              searchQuery={searchQuery}
+              onSearchChange={setSearchQuery}
+            />
+          )}
         </div>
       </div>
 
