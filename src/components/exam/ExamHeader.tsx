@@ -12,6 +12,8 @@ interface ExamHeaderProps {
   remainingSeconds: number;
   answeredCount: number;
   totalQuestions: number;
+  fontSize?: 'normal' | 'large' | 'xlarge';
+  onFontSizeChange?: (size: 'normal' | 'large' | 'xlarge') => void;
   onRequestExit: () => void;
   onOpenGrid: () => void;
   onRequestFinish: () => void;
@@ -24,6 +26,8 @@ export const ExamHeader: React.FC<ExamHeaderProps> = ({
   remainingSeconds,
   answeredCount,
   totalQuestions,
+  fontSize = 'normal',
+  onFontSizeChange,
   onRequestExit,
   onOpenGrid,
   onRequestFinish,
@@ -90,6 +94,51 @@ export const ExamHeader: React.FC<ExamHeaderProps> = ({
         >
           {isDark ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-slate-600" />}
         </button>
+
+        {/* Font Size Scaler (A- / A / A+) */}
+        {onFontSizeChange && (
+          <div className="flex items-center rounded-xl bg-[#F8FAFC] dark:bg-[#0F172A] p-0.5 border border-[#EFF3F4] dark:border-[#1E293B]">
+            <button
+              type="button"
+              onClick={() => onFontSizeChange('normal')}
+              className={`px-1.5 sm:px-2 py-1 text-[10px] font-extrabold rounded-lg transition-all ${
+                fontSize === 'normal'
+                  ? 'bg-white dark:bg-slate-800 text-[#2563EB] dark:text-[#38BDF8] shadow-xs'
+                  : 'text-[#536471] dark:text-slate-400 hover:text-black dark:hover:text-white'
+              }`}
+              title="Ukuran Huruf Standar"
+              aria-label="Ukuran Huruf Standar"
+            >
+              A
+            </button>
+            <button
+              type="button"
+              onClick={() => onFontSizeChange('large')}
+              className={`px-1.5 sm:px-2 py-1 text-[11px] font-extrabold rounded-lg transition-all ${
+                fontSize === 'large'
+                  ? 'bg-white dark:bg-slate-800 text-[#2563EB] dark:text-[#38BDF8] shadow-xs'
+                  : 'text-[#536471] dark:text-slate-400 hover:text-black dark:hover:text-white'
+              }`}
+              title="Ukuran Huruf Besar (+15%)"
+              aria-label="Ukuran Huruf Besar"
+            >
+              A+
+            </button>
+            <button
+              type="button"
+              onClick={() => onFontSizeChange('xlarge')}
+              className={`px-1.5 sm:px-2 py-1 text-[12px] font-black rounded-lg transition-all hidden md:block ${
+                fontSize === 'xlarge'
+                  ? 'bg-white dark:bg-slate-800 text-[#2563EB] dark:text-[#38BDF8] shadow-xs'
+                  : 'text-[#536471] dark:text-slate-400 hover:text-black dark:hover:text-white'
+              }`}
+              title="Ukuran Huruf Ekstra Besar (+30%)"
+              aria-label="Ukuran Huruf Ekstra Besar"
+            >
+              A++
+            </button>
+          </div>
+        )}
 
         <div className="text-right hidden sm:block">
           <span className="text-xs font-bold text-[#0F1419] dark:text-white">

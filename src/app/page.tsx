@@ -18,6 +18,7 @@ import { ReportModal } from '@/components/modals/ReportModal';
 import { ToastNotification } from '@/components/ui/ToastNotification';
 import { useCriliantStore } from '@/hooks/useCriliantStore';
 import { useExamController } from '@/hooks/useExamController';
+import { X } from 'lucide-react';
 
 export default function HomePage() {
   const [activeTrack, setActiveTrack] = useState<StudyTrack>('cpns');
@@ -237,6 +238,44 @@ export default function HomePage() {
         onOpenProfile={() => handleNavAction('profile')}
       />
 
+      {/* 4.5. CRASH RECOVERY SESSION PROMPT DOCK */}
+      {exam.pendingResumeSession && !exam.isExamModalOpen && (
+        <aside
+          aria-label="Sesi simulasi tersimpan"
+          className="fixed bottom-16 sm:bottom-5 left-1/2 -translate-x-1/2 z-40 w-full max-w-md px-3 animate-in slide-in-from-bottom-3 duration-300 pointer-events-auto"
+        >
+          <div className="bg-[#0B0F19]/95 dark:bg-[#070D18]/95 text-white p-3.5 rounded-2xl shadow-2xl border border-blue-500/40 flex items-center justify-between gap-3 backdrop-blur-md">
+            <div className="min-w-0 flex items-center gap-2.5">
+              <span className="w-2.5 h-2.5 rounded-full bg-blue-500 animate-ping flex-shrink-0" />
+              <div className="truncate">
+                <p className="text-xs font-black truncate">{exam.pendingResumeSession.examTitle}</p>
+                <p className="text-[10px] text-slate-400">
+                  No. {exam.pendingResumeSession.currentIndex + 1} dari {exam.pendingResumeSession.questions.length} • Sisa ~{Math.round(exam.pendingResumeSession.remainingSeconds / 60)} mnt
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center gap-1.5 flex-shrink-0">
+              <button
+                type="button"
+                onClick={exam.handleResumeActiveSession}
+                className="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white font-black text-xs rounded-xl shadow-xs active:scale-95 transition-all flex items-center gap-1"
+              >
+                <span>Lanjutkan</span>
+              </button>
+              <button
+                type="button"
+                onClick={exam.handleDismissResumeSession}
+                className="p-1.5 text-slate-400 hover:text-white rounded-lg transition-colors"
+                title="Hapus Sesi"
+                aria-label="Hapus Sesi Tersimpan"
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
+            </div>
+          </div>
+        </aside>
+      )}
+
       {/* 5. SIMULATOR & EVALUATION MODALS */}
       <ExamModal
         isOpen={exam.isExamModalOpen}
@@ -248,6 +287,7 @@ export default function HomePage() {
         isFullCpnsSkd={exam.examIsFullCpnsSkd}
         contestId={exam.activeContest?.id}
         durationSeconds={exam.examDuration}
+        initialSession={exam.initialSessionForExam}
         onFinishExam={exam.handleFinishExam}
       />
 

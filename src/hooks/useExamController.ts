@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import {
   StudyTrack,
   Question,
@@ -8,9 +8,11 @@ import {
   ExamResultSummary,
   ScheduledContest,
   UserProfile,
+  ActiveExamSession,
 } from '@/types';
 import { resolveExamPackage, getFilteredQuestionsForTrack } from '@/data/examPackages';
 import { QuestionService } from '@/services/questionService';
+import { StorageEngine } from '@/utils/storageEngine';
 
 export function useExamController(
   activeTrack: StudyTrack,
@@ -33,8 +35,54 @@ export function useExamController(
   const [lastExamResult, setLastExamResult] = useState<ExamResultSummary | null>(null);
   const [isResultModalOpen, setIsResultModalOpen] = useState(false);
 
+  // Crash Recovery State
+  const [pendingResumeSession, setPendingResumeSession] = useState<ActiveExamSession | null>(null);
+  const [initialSessionForExam, setInitialSessionForExam] = useState<ActiveExamSession | null>(null);
+
+  // Check for saved exam session on startup (within last 24 hours)
+  useEffect(() => {
+    StorageEngine.getItem<ActiveExamSession>('criliant_active_exam_session')
+      .then((saved) => {
+        if (saved && saved.questions && saved.questions.length > 0) {
+          const oneDayAgo = Date.now() - 24 * 60 * 60 * 1000;
+          if (saved.lastSavedAt && saved.lastSavedAt > oneDayAgo && saved.remainingSeconds > 10) {
+            setPendingResumeSession(saved);
+          } else {
+            StorageEngine.removeItem('criliant_active_exam_session');
+          }
+        }
+      })
+      .catch((e) => console.warn('[StorageEngine] Error reading active exam session:', e));
+  }, []);
+
+  const handleResumeActiveSession = useCallback(() => {
+    if (!pendingResumeSession) return;
+    setInitialSessionForExam(pendingResumeSession);
+    setExamQuestions(pendingResumeSession.questions);
+    setExamTrack(pendingResumeSession.track);
+    setExamTitle(pendingResumeSession.examTitle);
+    setExamIsFullCpnsSkd(pendingResumeSession.isFullCpnsSkd);
+    setExamMode(pendingResumeSession.mode);
+    setExamDuration(pendingResumeSession.durationSeconds);
+    setActiveContest(null);
+    setIsExamModalOpen(true);
+    setPendingResumeSession(null);
+    showToast(
+      '⚡ Sesi Simulasi Dipulihkan!',
+      `Melanjutkan dari soal No. ${pendingResumeSession.currentIndex + 1} dengan sisa waktu ${Math.round(pendingResumeSession.remainingSeconds / 60)} menit.`,
+      'success'
+    );
+  }, [pendingResumeSession, showToast]);
+
+  const handleDismissResumeSession = useCallback(() => {
+    StorageEngine.removeItem('criliant_active_exam_session');
+    setPendingResumeSession(null);
+    showToast('Sesi Tersimpan Dihapus', 'Kamu dapat memulai sesi simulasi baru.', 'info');
+  }, [showToast]);
+
   const handleStartExam = useCallback(
     async (packageOrModeId: string) => {
+      setInitialSessionForExam(null);
       const selectedPkg = resolveExamPackage(activeTrack, packageOrModeId);
       const seenQuestionIds = userProfile?.questionHistory ? Object.keys(userProfile.questionHistory) : [];
       const isDaily = packageOrModeId === 'DAILY' || packageOrModeId.startsWith('DAILY_');
@@ -74,6 +122,7 @@ export function useExamController(
 
   const handleEnterContest = useCallback(
     async (contest: ScheduledContest) => {
+      setInitialSessionForExam(null);
       const seenQuestionIds = userProfile?.questionHistory ? Object.keys(userProfile.questionHistory) : [];
       const isFullSkd = contest.track === 'cpns' && contest.questionCount >= 90;
 
@@ -113,6 +162,7 @@ export function useExamController(
   const handleStartCustomDrill = useCallback(
     (selectedQuestions: Question[]) => {
       if (selectedQuestions.length === 0) return;
+      setInitialSessionForExam(null);
       setActiveContest(null);
       setExamTrack(activeTrack);
       setExamTitle(`Drilling Bank Soal (${selectedQuestions.length} Soal)`);
@@ -128,6 +178,7 @@ export function useExamController(
   const handleFinishExam = useCallback(
     (summary: ExamResultSummary) => {
       setIsExamModalOpen(false);
+      setInitialSessionForExam(null);
       const eloOutcome = recordExamCompletion(summary, activeContest);
       const enrichedSummary: ExamResultSummary = {
         ...summary,
@@ -154,6 +205,10 @@ export function useExamController(
     lastExamResult,
     isResultModalOpen,
     setIsResultModalOpen,
+    pendingResumeSession,
+    initialSessionForExam,
+    handleResumeActiveSession,
+    handleDismissResumeSession,
     handleStartExam,
     handleEnterContest,
     handleStartCustomDrill,

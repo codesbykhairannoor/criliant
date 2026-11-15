@@ -240,4 +240,20 @@ export interface UserProfile {
   registeredContestIds?: string[];
 }
 
+export interface ActiveExamSession {
+  questions: Question[];
+  currentIndex: number;
+  userAnswers: Record<string, UserAnswer>;
+  eliminatedOptions: Record<string, number[]>;
+  lifelinesRemaining: number;
+  remainingSeconds: number;
+  durationSeconds: number;
+  mode: ExamMode;
+  track: StudyTrack;
+  examTitle: string;
+  isFullCpnsSkd: boolean;
+  contestId?: string;
+  lastSavedAt: number;
+}
+
 

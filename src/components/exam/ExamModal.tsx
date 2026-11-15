@@ -8,6 +8,7 @@ import {
   ExamResultSummary,
   QuestionReviewItem,
   StudyTrack,
+  ActiveExamSession,
 } from '@/types';
 import {
   Sparkles,
@@ -24,6 +25,7 @@ import {
 import { ExamHeader } from './ExamHeader';
 import { ExamQuestionGridDrawer } from './ExamQuestionGridDrawer';
 import { ExamConfirmDialogs } from './ExamConfirmDialogs';
+import { StorageEngine } from '@/utils/storageEngine';
 
 interface ExamModalProps {
   isOpen: boolean;
@@ -35,6 +37,7 @@ interface ExamModalProps {
   isFullCpnsSkd?: boolean;
   contestId?: string;
   durationSeconds: number;
+  initialSession?: ActiveExamSession | null;
   onFinishExam: (summary: ExamResultSummary) => void;
 }
 
@@ -48,6 +51,7 @@ export const ExamModal: React.FC<ExamModalProps> = ({
   isFullCpnsSkd = false,
   contestId,
   durationSeconds,
+  initialSession,
   onFinishExam,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -55,21 +59,51 @@ export const ExamModal: React.FC<ExamModalProps> = ({
   const [eliminatedOptions, setEliminatedOptions] = useState<Record<string, Set<number>>>({});
   const [lifelinesRemaining, setLifelinesRemaining] = useState(3);
   const [remainingSeconds, setRemainingSeconds] = useState(durationSeconds);
+  const [fontSize, setFontSize] = useState<'normal' | 'large' | 'xlarge'>('normal');
   const [isGridOpen, setIsGridOpen] = useState(false);
   const [isConfirmFinishOpen, setIsConfirmFinishOpen] = useState(false);
   const [isConfirmExitOpen, setIsConfirmExitOpen] = useState(false);
 
   const hasFinishedRef = useRef(false);
 
-  // Initialize and reset state whenever modal opens
+  // Load saved font size preference
+  useEffect(() => {
+    StorageEngine.getItem<'normal' | 'large' | 'xlarge'>('criliant_exam_font_size').then((saved) => {
+      if (saved) setFontSize(saved);
+    });
+  }, []);
+
+  const handleFontSizeChange = useCallback((size: 'normal' | 'large' | 'xlarge') => {
+    setFontSize(size);
+    StorageEngine.setItem('criliant_exam_font_size', size);
+  }, []);
+
+  // Initialize and reset state (or restore previous active session) whenever modal opens
   useEffect(() => {
     if (!isOpen) return;
     hasFinishedRef.current = false;
-    setRemainingSeconds(durationSeconds);
-    setCurrentIndex(0);
-    setUserAnswers({});
-    setEliminatedOptions({});
-    setLifelinesRemaining(3);
+
+    if (initialSession && initialSession.questions && initialSession.questions.length > 0) {
+      setCurrentIndex(initialSession.currentIndex || 0);
+      setUserAnswers(initialSession.userAnswers || {});
+      setRemainingSeconds(initialSession.remainingSeconds || durationSeconds);
+      setLifelinesRemaining(initialSession.lifelinesRemaining ?? 3);
+
+      const restoredEliminated: Record<string, Set<number>> = {};
+      if (initialSession.eliminatedOptions) {
+        Object.entries(initialSession.eliminatedOptions).forEach(([qid, arr]) => {
+          restoredEliminated[qid] = new Set(arr);
+        });
+      }
+      setEliminatedOptions(restoredEliminated);
+    } else {
+      setRemainingSeconds(durationSeconds);
+      setCurrentIndex(0);
+      setUserAnswers({});
+      setEliminatedOptions({});
+      setLifelinesRemaining(3);
+    }
+
     setIsGridOpen(false);
     setIsConfirmFinishOpen(false);
     setIsConfirmExitOpen(false);
@@ -79,7 +113,7 @@ export const ExamModal: React.FC<ExamModalProps> = ({
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [isOpen, durationSeconds]);
+  }, [isOpen, durationSeconds, initialSession]);
 
   const currentQ = questions[currentIndex] || questions[0];
   const currentAnswer = currentQ ? userAnswers[currentQ.id] : undefined;
@@ -250,6 +284,7 @@ export const ExamModal: React.FC<ExamModalProps> = ({
       createdAt: Date.now(),
     };
 
+    StorageEngine.removeItem('criliant_active_exam_session');
     onFinishExam(summary);
   }, [questions, userAnswers, isFullCpnsSkd, track, mode, examTitle, contestId, durationSeconds, remainingSeconds, onFinishExam]);
 
@@ -265,14 +300,85 @@ export const ExamModal: React.FC<ExamModalProps> = ({
     }
   }, [isOpen, remainingSeconds, questions.length]);
 
-  // Keyboard Shortcuts
+  // Auto-save active exam session to StorageEngine periodically and on state changes
+  useEffect(() => {
+    if (!isOpen || questions.length === 0 || hasFinishedRef.current) return;
+
+    const serializedEliminated: Record<string, number[]> = {};
+    Object.entries(eliminatedOptions).forEach(([qid, set]) => {
+      serializedEliminated[qid] = Array.from(set);
+    });
+
+    const session: ActiveExamSession = {
+      questions,
+      currentIndex,
+      userAnswers,
+      eliminatedOptions: serializedEliminated,
+      lifelinesRemaining,
+      remainingSeconds,
+      durationSeconds,
+      mode,
+      track,
+      examTitle: examTitle || (track === 'cpns' ? 'Simulasi CAT BKN' : track === 'snbt' ? 'Simulasi SNBT UTBK' : 'Simulasi SPMB Kedinasan'),
+      isFullCpnsSkd,
+      contestId,
+      lastSavedAt: Date.now(),
+    };
+
+    StorageEngine.setItem('criliant_active_exam_session', session);
+  }, [
+    isOpen,
+    questions,
+    currentIndex,
+    userAnswers,
+    eliminatedOptions,
+    lifelinesRemaining,
+    remainingSeconds,
+    durationSeconds,
+    mode,
+    track,
+    examTitle,
+    isFullCpnsSkd,
+    contestId,
+  ]);
+
+  // Comprehensive Keyboard Shortcuts (Official CAT BKN Standard)
   useEffect(() => {
     if (!isOpen) return;
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (isConfirmFinishOpen || isConfirmExitOpen || isGridOpen) return;
+      // Don't intercept if user is typing in an input or textarea
+      const targetTag = (e.target as HTMLElement)?.tagName?.toLowerCase();
+      if (['input', 'textarea', 'select'].includes(targetTag)) return;
 
       const key = e.key.toLowerCase();
+
+      // Dismiss dialogs with Escape
+      if (key === 'escape') {
+        if (isGridOpen) {
+          setIsGridOpen(false);
+          return;
+        }
+        if (isConfirmFinishOpen) {
+          setIsConfirmFinishOpen(false);
+          return;
+        }
+        if (isConfirmExitOpen) {
+          setIsConfirmExitOpen(false);
+          return;
+        }
+      }
+
+      if (isConfirmFinishOpen || isConfirmExitOpen) return;
+
+      // Toggle Grid Drawer with 'G'
+      if (key === 'g') {
+        setIsGridOpen((prev) => !prev);
+        return;
+      }
+
+      if (isGridOpen) return;
+
       if (['a', '1'].includes(key)) handleSelectOption(0);
       else if (['b', '2'].includes(key)) handleSelectOption(1);
       else if (['c', '3'].includes(key)) handleSelectOption(2);
@@ -281,7 +387,11 @@ export const ExamModal: React.FC<ExamModalProps> = ({
       else if (key === 'r') handleToggleDoubt();
       else if (key === 'l') handleUseLifeline();
       else if (key === 'arrowright' || key === 'enter') {
-        setCurrentIndex((prev) => Math.min(questions.length - 1, prev + 1));
+        if (currentIndex < questions.length - 1) {
+          setCurrentIndex((prev) => Math.min(questions.length - 1, prev + 1));
+        } else {
+          setIsConfirmFinishOpen(true);
+        }
       } else if (key === 'arrowleft') {
         setCurrentIndex((prev) => Math.max(0, prev - 1));
       }
@@ -294,6 +404,7 @@ export const ExamModal: React.FC<ExamModalProps> = ({
     isConfirmFinishOpen,
     isConfirmExitOpen,
     isGridOpen,
+    currentIndex,
     questions.length,
     handleSelectOption,
     handleToggleDoubt,
@@ -324,6 +435,8 @@ export const ExamModal: React.FC<ExamModalProps> = ({
         remainingSeconds={remainingSeconds}
         answeredCount={answeredCount}
         totalQuestions={questions.length}
+        fontSize={fontSize}
+        onFontSizeChange={handleFontSizeChange}
         onRequestExit={() => setIsConfirmExitOpen(true)}
         onOpenGrid={() => setIsGridOpen(true)}
         onRequestFinish={() => setIsConfirmFinishOpen(true)}
@@ -351,14 +464,22 @@ export const ExamModal: React.FC<ExamModalProps> = ({
               </div>
             </div>
 
-            {/* Question Prompt */}
+            {/* Question Prompt with Dynamic Font Scaling */}
             <div className="py-1 sm:py-2">
-              <p className="text-[15px] sm:text-[17px] font-semibold text-[#0F1419] dark:text-white leading-relaxed whitespace-pre-line">
+              <p
+                className={`font-semibold text-[#0F1419] dark:text-white whitespace-pre-line ${
+                  fontSize === 'normal'
+                    ? 'text-[15px] sm:text-[17px] leading-relaxed'
+                    : fontSize === 'large'
+                      ? 'text-[17px] sm:text-[19px] leading-relaxed'
+                      : 'text-[19px] sm:text-[22px] leading-loose'
+                }`}
+              >
                 {currentQ.text}
               </p>
             </div>
 
-            {/* Options List */}
+            {/* Options List with Dynamic Font Scaling */}
             <div className="space-y-2.5 sm:space-y-3 pt-1">
               {currentQ.options.map((opt, idx) => {
                 const isSelected = currentAnswer?.selectedOptionIndex === idx;
@@ -369,7 +490,7 @@ export const ExamModal: React.FC<ExamModalProps> = ({
                     key={idx}
                     onClick={() => handleSelectOption(idx)}
                     disabled={isEliminated}
-                    className={`w-full p-3 sm:p-4 rounded-2xl border-2 text-left text-xs sm:text-sm font-semibold transition-all flex items-start gap-3 sm:gap-3.5 group relative ${
+                    className={`w-full p-3 sm:p-4 rounded-2xl border-2 text-left font-semibold transition-all flex items-start gap-3 sm:gap-3.5 group relative ${
                       isEliminated
                         ? 'opacity-30 line-through bg-slate-100/70 dark:bg-slate-900/50 border-slate-200 dark:border-slate-800 text-slate-400 cursor-not-allowed'
                         : isSelected
@@ -387,7 +508,17 @@ export const ExamModal: React.FC<ExamModalProps> = ({
                       {String.fromCharCode(65 + idx)}
                     </div>
 
-                    <span className="pt-0.5 leading-relaxed flex-1">{opt}</span>
+                    <span
+                      className={`pt-0.5 leading-relaxed flex-1 ${
+                        fontSize === 'normal'
+                          ? 'text-xs sm:text-sm'
+                          : fontSize === 'large'
+                            ? 'text-sm sm:text-base'
+                            : 'text-base sm:text-lg'
+                      }`}
+                    >
+                      {opt}
+                    </span>
 
                     {isSelected && (
                       <Check className="w-4 h-4 text-[#2563EB] dark:text-[#38BDF8] flex-shrink-0 mt-1" />
@@ -397,13 +528,13 @@ export const ExamModal: React.FC<ExamModalProps> = ({
               })}
             </div>
 
-            {/* Keyboard Hint Strip */}
-            <div className="hidden sm:flex items-center justify-center gap-4 text-[11px] text-[#536471] dark:text-slate-400 pt-3">
+            {/* Keyboard Hint Strip (Official CAT Standard) */}
+            <div className="hidden sm:flex items-center justify-center gap-3 text-[11px] text-[#536471] dark:text-slate-400 pt-3 flex-wrap">
               <span className="flex items-center gap-1 font-mono">
                 <kbd className="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded border border-slate-200 dark:border-slate-700 text-[10px]">
-                  A-E
+                  1-5 / A-E
                 </kbd>{' '}
-                Pilih Opsi
+                Opsi
               </span>
               <span className="flex items-center gap-1 font-mono">
                 <kbd className="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded border border-slate-200 dark:border-slate-700 text-[10px]">
@@ -413,9 +544,15 @@ export const ExamModal: React.FC<ExamModalProps> = ({
               </span>
               <span className="flex items-center gap-1 font-mono">
                 <kbd className="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded border border-slate-200 dark:border-slate-700 text-[10px]">
-                  ← / →
+                  G
                 </kbd>{' '}
-                Pindah Soal
+                Kisi Soal
+              </span>
+              <span className="flex items-center gap-1 font-mono">
+                <kbd className="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded border border-slate-200 dark:border-slate-700 text-[10px]">
+                  ← / → / Enter
+                </kbd>{' '}
+                Pindah
               </span>
             </div>
           </div>
@@ -513,6 +650,7 @@ export const ExamModal: React.FC<ExamModalProps> = ({
         onCancelExit={() => setIsConfirmExitOpen(false)}
         onConfirmExit={() => {
           setIsConfirmExitOpen(false);
+          StorageEngine.removeItem('criliant_active_exam_session');
           onClose();
         }}
       />
