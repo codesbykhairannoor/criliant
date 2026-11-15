@@ -146,6 +146,13 @@ export interface StreamPost {
   comments: PostComment[];
 }
 
+export interface QuestionHistoryRecord {
+  questionId: string;
+  isCorrect: boolean;
+  attemptedAt: number;
+  timesSeen: number;
+}
+
 export interface UserProfile {
   id: string;
   name: string;
@@ -161,5 +168,6 @@ export interface UserProfile {
   followingCount?: number;
   followingIds?: string[]; // IDs of users/creators this user follows
   highestExamScore?: number;
+  questionHistory?: Record<string, QuestionHistoryRecord>; // Anti-soal berulang history
 }
 

@@ -292,16 +292,23 @@ export default function HomePage() {
     });
   };
 
-  // 5. Official Exam Package Launcher (100% Sesuai Kurikulum Kamar)
+  // 5. Official Exam Package Launcher (100% Sesuai Kurikulum Kamar & Anti-Soal Berulang)
   const handleStartExam = async (packageOrModeId: string) => {
     const packagesForTrack = EXAM_PACKAGES[activeTrack] || EXAM_PACKAGES.cpns;
     const selectedPkg = packagesForTrack.find((p) => p.id === packageOrModeId) || packagesForTrack[0];
+
+    // Ambil daftar ID soal yang pernah dikerjakan user dari profile
+    const seenQuestionIds = userProfile?.questionHistory
+      ? Object.keys(userProfile.questionHistory)
+      : [];
 
     try {
       const questionsForExam = await QuestionService.generateExamSession(
         activeTrack,
         selectedPkg.questionCount,
-        selectedPkg.targetedCategories
+        selectedPkg.targetedCategories,
+        false,
+        seenQuestionIds
       );
 
       setExamMode('TRYOUT_FULL');
@@ -328,13 +335,41 @@ export default function HomePage() {
     setLastExamResult(summary);
     setIsResultModalOpen(true);
 
-    if (summary.isOverallPassed && userProfile) {
+    if (userProfile) {
       setUserProfile((prev) => {
         if (!prev) return null;
-        const up = { ...prev, streakDays: prev.streakDays + 1 };
+        const currentHistory = { ...(prev.questionHistory || {}) };
+
+        // Catat setiap soal yang dikerjakan beserta status benar/salah dan timestamp
+        summary.reviewItems.forEach((item) => {
+          const qid = item.question.id;
+          const prevRecord = currentHistory[qid];
+          currentHistory[qid] = {
+            questionId: qid,
+            isCorrect: item.isCorrect,
+            attemptedAt: Date.now(),
+            timesSeen: (prevRecord?.timesSeen || 0) + 1,
+          };
+        });
+
+        const updatedScore = Math.max(prev.highestExamScore || 0, summary.totalScore);
+        const up: UserProfile = {
+          ...prev,
+          streakDays: summary.isOverallPassed ? prev.streakDays + 1 : prev.streakDays,
+          highestExamScore: updatedScore,
+          quizzesSolvedCount: (prev.quizzesSolvedCount || 0) + summary.answeredCount,
+          isCompetenceVerified: true,
+          questionHistory: currentHistory,
+        };
         localStorage.setItem('criliant_user_profile', JSON.stringify(up));
         return up;
       });
+
+      showToast(
+        summary.isOverallPassed ? '🎉 Selamat Lulus Passing Grade!' : '📊 Tryout Selesai!',
+        `Skor: ${summary.totalScore} | Riwayat soal tersimpan agar kamu dapat soal baru besok.`,
+        summary.isOverallPassed ? 'success' : 'info'
+      );
     }
   };
 

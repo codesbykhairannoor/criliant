@@ -10,9 +10,15 @@ export async function POST(request: NextRequest) {
     const track: StudyTrack = body.track || 'cpns';
     const count: number = Number(body.count) || 25;
     const targetedCategories: Category[] | undefined = body.targetedCategories;
+    const seenQuestionIds: string[] | undefined = body.seenQuestionIds;
     const sanitizeAnswers: boolean = body.sanitizeAnswers ?? true;
 
-    const questions = QuestionRepository.generateExamSession(track, count, targetedCategories);
+    const questions = QuestionRepository.generateExamSession(
+      track,
+      count,
+      targetedCategories,
+      seenQuestionIds
+    );
 
     // Kirim versi soal (bisa disanitasi jika diinginkan mode anti-bocor atau menyertakan kunci untuk mode review)
     const clientQuestions = sanitizeAnswers

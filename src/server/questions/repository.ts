@@ -2,6 +2,7 @@ import { Question, StudyTrack, Category } from '@/types';
 import { CPNS_QUESTION_BANK } from './cpnsBank';
 import { SNBT_QUESTION_BANK } from './snbtBank';
 import { KEDINASAN_QUESTION_BANK } from './kedinasanBank';
+import { ParametricQuestionGenerator } from './parametricGenerator';
 
 export interface QuestionFilterParams {
   track?: StudyTrack;
@@ -92,11 +93,51 @@ export class QuestionRepository {
     return { questions: paginated, total };
   }
 
-  // Generate paket ujian teracak dengan sanitasi opsi aman (tanpa bocor jawaban ke browser)
+  // Acak urutan opsi pilihan ganda dan perbarui correctOptionIndex agar peserta tidak bisa menghafal huruf A/B/C
+  public static shuffleQuestionOptions(question: Question): Question {
+    // Untuk soal TKP berbobot 1-5, simpan pemetaan poinnya
+    if (question.category === 'TKP' && question.tkpOptionPoints) {
+      const combined = question.options.map((opt, idx) => ({
+        text: opt,
+        point: question.tkpOptionPoints![idx],
+      }));
+
+      for (let i = combined.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [combined[i], combined[j]] = [combined[j], combined[i]];
+      }
+
+      return {
+        ...question,
+        options: combined.map((c) => c.text),
+        tkpOptionPoints: combined.map((c) => c.point),
+      };
+    }
+
+    const correctText = question.options[question.correctOptionIndex];
+    const originalOptions = [...question.options];
+
+    // Fisher-Yates shuffle opsi
+    for (let i = originalOptions.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [originalOptions[i], originalOptions[j]] = [originalOptions[j], originalOptions[i]];
+    }
+
+    const newCorrectIdx = originalOptions.indexOf(correctText);
+
+    return {
+      ...question,
+      options: originalOptions,
+      correctOptionIndex: newCorrectIdx >= 0 ? newCorrectIdx : question.correctOptionIndex,
+    };
+  }
+
+  // Generate paket ujian teracak dengan Anti-Soal Berulang (Prioritaskan Unseen Questions)
   public static generateExamSession(
     track: StudyTrack,
     questionCount: number,
-    targetedCategories?: Category[]
+    targetedCategories?: Category[],
+    seenQuestionIds?: string[]
   ): Question[] {
     let pool: Question[] = [];
 
@@ -118,14 +159,62 @@ export class QuestionRepository {
       }
     }
 
-    // Algoritma Fisher-Yates Shuffle
-    const shuffled = [...pool];
-    for (let i = shuffled.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    // Suntikkan beberapa soal parametrik dinamis (angka selalu fresh setiap sesi)
+    const parametricItems: Question[] = [];
+    try {
+      if (targetedCategories?.includes('TIU') || track === 'cpns') {
+        parametricItems.push(ParametricQuestionGenerator.generateNumberSeries('cpns'));
+        parametricItems.push(ParametricQuestionGenerator.generateWorkforceRate('cpns'));
+        parametricItems.push(ParametricQuestionGenerator.generateAritmetikaSosial('cpns'));
+        parametricItems.push(ParametricQuestionGenerator.generateSyllogism());
+      }
+      if (targetedCategories?.includes('TPS_KUANTITATIF') || track === 'snbt') {
+        parametricItems.push(ParametricQuestionGenerator.generateNumberSeries('snbt'));
+        parametricItems.push(ParametricQuestionGenerator.generateAritmetikaSosial('snbt'));
+      }
+      if (targetedCategories?.includes('TPA') || track === 'kedinasan') {
+        parametricItems.push(ParametricQuestionGenerator.generateNumberSeries('kedinasan'));
+        parametricItems.push(ParametricQuestionGenerator.generateWorkforceRate('kedinasan'));
+      }
+    } catch (e) {
+      console.warn('Parametric generator skipped:', e);
     }
 
-    return shuffled.slice(0, questionCount);
+    // 1. Prioritaskan Unseen Questions (Soal yang belum pernah dilihat user)
+    const seenSet = new Set(seenQuestionIds || []);
+    const unseenPool: Question[] = [];
+    const alreadySeenPool: Question[] = [];
+
+    for (const q of pool) {
+      if (seenSet.has(q.id)) {
+        alreadySeenPool.push(q);
+      } else {
+        unseenPool.push(q);
+      }
+    }
+
+    // Fisher-Yates Shuffle masing-masing pool
+    const shuffleArray = (arr: Question[]) => {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    };
+
+    const shuffledUnseen = shuffleArray(unseenPool);
+    const shuffledAlreadySeen = shuffleArray(alreadySeenPool);
+
+    // Gabungkan: Soal Baru + Soal Parametrik Baru di depan, lalu fallback soal lama jika kurang
+    const candidatePool = [...shuffledUnseen, ...parametricItems, ...shuffledAlreadySeen];
+
+    // Ambil sejumlah questionCount dan acak urutan pilihan gandanya (Option Shuffling)
+    const finalSelected = candidatePool
+      .slice(0, questionCount)
+      .map((q) => this.shuffleQuestionOptions(q));
+
+    return finalSelected;
   }
 
   // Sanitasi jawaban agar kunci jawaban tidak dapat diintip di Developer Tools browser

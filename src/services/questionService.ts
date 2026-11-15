@@ -54,15 +54,17 @@ export class QuestionService {
 
   /**
    * Menggenerate sesi ujian resmi yang diacak (Fisher-Yates) sesuai kurikulum kamar
+   * Mendukung Anti-Soal Berulang dengan memprioritaskan soal yang belum pernah dikerjakan
    */
   public static async generateExamSession(
     track: StudyTrack,
     count: number,
     targetedCategories?: Category[],
-    sanitizeAnswers = false
+    sanitizeAnswers = false,
+    seenQuestionIds?: string[]
   ): Promise<Question[]> {
     if (typeof window === 'undefined') {
-      const q = QuestionRepository.generateExamSession(track, count, targetedCategories);
+      const q = QuestionRepository.generateExamSession(track, count, targetedCategories, seenQuestionIds);
       return sanitizeAnswers ? QuestionRepository.sanitizeForClient(q) : q;
     }
 
@@ -75,6 +77,7 @@ export class QuestionService {
           count,
           targetedCategories,
           sanitizeAnswers,
+          seenQuestionIds,
         }),
       });
       if (!res.ok) throw new Error(`HTTP error ${res.status}`);
@@ -82,7 +85,7 @@ export class QuestionService {
       return json.data || [];
     } catch (err) {
       console.warn('Fallback to local repository generateExamSession:', err);
-      const q = QuestionRepository.generateExamSession(track, count, targetedCategories);
+      const q = QuestionRepository.generateExamSession(track, count, targetedCategories, seenQuestionIds);
       return sanitizeAnswers ? QuestionRepository.sanitizeForClient(q) : q;
     }
   }
