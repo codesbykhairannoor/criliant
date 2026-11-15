@@ -435,6 +435,51 @@ export default function HomePage() {
                 setActiveTrack={setActiveTrack}
                 onStartExam={handleStartExam}
                 totalQuestionsAvailable={allQuestions.length}
+                userProfile={userProfile}
+                onEnterContest={async (contest) => {
+                  try {
+                    const questions = await QuestionService.generateExamSession(
+                      contest.track,
+                      contest.questionCount,
+                      contest.targetCategories,
+                      false,
+                      userProfile?.questionHistory ? Object.keys(userProfile.questionHistory) : []
+                    );
+                    setExamMode('TRYOUT_FULL');
+                    setExamDuration(contest.durationMinutes * 60);
+                    setExamQuestions(questions);
+                    setIsExamModalOpen(true);
+                    showToast('⚔️ Masuk Ruang Kontes!', `Memulai ${contest.title} (${contest.durationMinutes} Menit)`, 'info');
+                  } catch (e) {
+                    console.error('Failed to start contest session:', e);
+                  }
+                }}
+                onRegisterToggleContest={(contestId) => {
+                  if (!userProfile) {
+                    openAuthModal('general');
+                    return;
+                  }
+                  const currentRegistered = userProfile.registeredContestIds || [];
+                  const isRegistered = currentRegistered.includes(contestId);
+                  const updatedRegistered = isRegistered
+                    ? currentRegistered.filter((id) => id !== contestId)
+                    : [...currentRegistered, contestId];
+
+                  const updatedProfile: UserProfile = {
+                    ...userProfile,
+                    registeredContestIds: updatedRegistered,
+                  };
+                  setUserProfile(updatedProfile);
+                  localStorage.setItem('criliant_user_profile', JSON.stringify(updatedProfile));
+
+                  showToast(
+                    isRegistered ? 'Pendaftaran Dibatalkan' : '🎯 Berhasil Terdaftar!',
+                    isRegistered
+                      ? 'Kamu membatalkan keikutsertaan kontes ini.'
+                      : 'Notifikasi dan pengingat kontes telah disiapkan. Selamat berjuang!',
+                    isRegistered ? 'info' : 'success'
+                  );
+                }}
               />
             ) : currentNavTab === 'profile' ? (
               <ProfileView

@@ -76,7 +76,7 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
   const isSelf = currentUser?.id === profileToDisplay.id;
   const isFollowing = currentUser?.followingIds?.includes(profileToDisplay.id) ?? false;
 
-  const [activeTab, setActiveTab] = useState<'posts' | 'quiz' | 'bookmarks'>('posts');
+  const [activeTab, setActiveTab] = useState<'posts' | 'quiz' | 'bookmarks' | 'rating'>('posts');
 
   // Filter posts created by this profile
   const profilePosts = posts.filter(
@@ -223,25 +223,48 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
             </div>
           </div>
 
-          {/* 3 Study Dossier Metrics */}
-          <div className="grid grid-cols-3 gap-2.5 mt-3 pt-3 border-t border-slate-100 dark:border-slate-800">
-            <div className="p-2.5 bg-slate-50 dark:bg-[#0D1322] rounded-xl border border-slate-200/70 dark:border-slate-800 text-center">
-              <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Skor Terbaik</p>
-              <p className="text-sm font-black text-blue-600 dark:text-blue-400 mt-0.5">
-                {profileToDisplay.highestExamScore || 485} SKD
+          {/* 4 Study Dossier & LeetCode ELO Metrics */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-3 pt-3 border-t border-slate-100 dark:border-slate-800">
+            <div className="p-2.5 bg-indigo-50/70 dark:bg-indigo-950/30 rounded-xl border border-indigo-200/60 dark:border-indigo-900/50 text-center">
+              <p className="text-[9px] text-indigo-600 dark:text-indigo-400 font-bold uppercase tracking-wider flex items-center justify-center gap-1">
+                <span>🏆</span> ELO Rating
               </p>
-            </div>
-            <div className="p-2.5 bg-slate-50 dark:bg-[#0D1322] rounded-xl border border-slate-200/70 dark:border-slate-800 text-center">
-              <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Soal Terjawab</p>
-              <p className="text-sm font-black text-slate-800 dark:text-slate-100 mt-0.5">
-                {profileToDisplay.quizzesSolvedCount || 14} Soal
+              <p className="text-base font-black text-indigo-700 dark:text-indigo-300 mt-0.5">
+                {profileToDisplay.contestRating || 1500}
               </p>
+              <span className="text-[9px] font-bold text-slate-500 dark:text-slate-400 block">
+                Top 4.2%
+              </span>
             </div>
+
             <div className="p-2.5 bg-slate-50 dark:bg-[#0D1322] rounded-xl border border-slate-200/70 dark:border-slate-800 text-center">
-              <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Apresiasi</p>
-              <p className="text-sm font-black text-rose-500 mt-0.5">
+              <p className="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Skor Terbaik</p>
+              <p className="text-base font-black text-blue-600 dark:text-blue-400 mt-0.5">
+                {profileToDisplay.highestExamScore || 485}
+              </p>
+              <span className="text-[9px] font-bold text-slate-500 dark:text-slate-400 block">
+                CAT Nasional
+              </span>
+            </div>
+
+            <div className="p-2.5 bg-slate-50 dark:bg-[#0D1322] rounded-xl border border-slate-200/70 dark:border-slate-800 text-center">
+              <p className="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Soal Selesai</p>
+              <p className="text-base font-black text-slate-800 dark:text-slate-100 mt-0.5">
+                {profileToDisplay.quizzesSolvedCount || 14}
+              </p>
+              <span className="text-[9px] font-bold text-slate-500 dark:text-slate-400 block">
+                Proof of Comp.
+              </span>
+            </div>
+
+            <div className="p-2.5 bg-slate-50 dark:bg-[#0D1322] rounded-xl border border-slate-200/70 dark:border-slate-800 text-center">
+              <p className="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Apresiasi</p>
+              <p className="text-base font-black text-rose-500 mt-0.5">
                 ❤️ {totalHeartsReceived || 428}
               </p>
+              <span className="text-[9px] font-bold text-slate-500 dark:text-slate-400 block">
+                Reputasi
+              </span>
             </div>
           </div>
         </div>
@@ -283,6 +306,17 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
             Disimpan ({bookmarkedPosts.length})
           </button>
         )}
+
+        <button
+          onClick={() => setActiveTab('rating')}
+          className={`flex-1 py-2 font-bold rounded-xl transition-all text-center ${
+            activeTab === 'rating'
+              ? 'bg-slate-100 dark:bg-[#162137] text-amber-500 dark:text-amber-400 shadow-xs'
+              : 'text-slate-500 hover:text-slate-900 dark:hover:text-white'
+          }`}
+        >
+          🏆 Rating & Kontes
+        </button>
       </div>
 
       {/* Feed List Render */}
@@ -357,6 +391,69 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
               Belum ada soal atau trik yang kamu simpan. Tekan ikon bookmark di feed untuk menyimpan materi penting!
             </div>
           )
+        )}
+
+        {/* LeetCode Style Rating History Sub-Tab */}
+        {activeTab === 'rating' && (
+          <div className="space-y-3">
+            <div className="bg-white dark:bg-[#111726] p-5 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h4 className="text-sm font-black text-slate-900 dark:text-white flex items-center gap-1.5">
+                    <span>👑</span> Riwayat Rating Kontes Resmi
+                  </h4>
+                  <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
+                    Perkembangan ELO Rating dari Weekly CAT Grand Prix dan Night Clash
+                  </p>
+                </div>
+                <div className="text-right">
+                  <span className="text-xl font-black text-amber-500">
+                    {profileToDisplay.contestRating || 1500}
+                  </span>
+                  <span className="text-[10px] text-slate-400 block font-bold">Rating Saat Ini</span>
+                </div>
+              </div>
+
+              {/* Contest Log Rows */}
+              <div className="space-y-2 pt-2">
+                <div className="p-3 rounded-2xl border border-slate-100 dark:border-slate-800/80 bg-slate-50 dark:bg-slate-900/50 flex items-center justify-between">
+                  <div>
+                    <span className="text-[10px] font-bold text-slate-400 block">10 November 2026</span>
+                    <h5 className="font-bold text-xs text-slate-900 dark:text-white mt-0.5">
+                      Weekly CAT BKN Grand Prix #47
+                    </h5>
+                    <span className="text-[10px] text-slate-500 font-medium">
+                      Peringkat: #42 dari 6.140 Peserta
+                    </span>
+                  </div>
+                  <div className="text-right">
+                    <span className="text-xs font-black text-emerald-600 dark:text-emerald-400 block">
+                      +48 ELO 📈
+                    </span>
+                    <span className="text-[10px] font-bold text-slate-400">Skor: 485/550</span>
+                  </div>
+                </div>
+
+                <div className="p-3 rounded-2xl border border-slate-100 dark:border-slate-800/80 bg-slate-50 dark:bg-slate-900/50 flex items-center justify-between">
+                  <div>
+                    <span className="text-[10px] font-bold text-slate-400 block">3 November 2026</span>
+                    <h5 className="font-bold text-xs text-slate-900 dark:text-white mt-0.5">
+                      Midweek Night Clash #11 (TIU Speedrun)
+                    </h5>
+                    <span className="text-[10px] text-slate-500 font-medium">
+                      Peringkat: #89 dari 3.200 Peserta
+                    </span>
+                  </div>
+                  <div className="text-right">
+                    <span className="text-xs font-black text-emerald-600 dark:text-emerald-400 block">
+                      +32 ELO 📈
+                    </span>
+                    <span className="text-[10px] font-bold text-slate-400">Skor: 140/150</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         )}
       </div>
     </div>

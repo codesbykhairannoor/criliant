@@ -153,6 +153,52 @@ export interface QuestionHistoryRecord {
   timesSeen: number;
 }
 
+export type ContestStatus = 'UPCOMING' | 'LIVE' | 'FINISHED';
+
+export type ContestTier = 'NOVICE' | 'FIGHTER' | 'EXPERT' | 'MASTER' | 'GRANDMASTER';
+
+export interface ContestRatingHistoryItem {
+  contestId: string;
+  contestTitle: string;
+  rank: number;
+  totalParticipants: number;
+  score: number;
+  deltaRating: number;
+  newRating: number;
+  date: string;
+}
+
+export interface ScheduledContest {
+  id: string;
+  track: StudyTrack;
+  title: string;
+  subtitle: string;
+  type: 'WEEKLY' | 'NIGHT_CLASH' | 'MONTHLY_GRAND';
+  status: ContestStatus;
+  startTime: string; // ISO String
+  endTime: string;   // ISO String
+  durationMinutes: number;
+  questionCount: number;
+  registeredCount: number;
+  bannerGradient: string;
+  badgeTag: string;
+  description: string;
+  targetCategories: Category[];
+  isRegistered?: boolean;
+}
+
+export interface ContestParticipantStanding {
+  rank: number;
+  userId: string;
+  userName: string;
+  avatarInitial: string;
+  rating: number;
+  tier: ContestTier;
+  score: number;
+  penaltyTimeSeconds: number; // Finish time + wrong submission penalty
+  isCurrentUser?: boolean;
+}
+
 export interface UserProfile {
   id: string;
   name: string;
@@ -169,5 +215,10 @@ export interface UserProfile {
   followingIds?: string[]; // IDs of users/creators this user follows
   highestExamScore?: number;
   questionHistory?: Record<string, QuestionHistoryRecord>; // Anti-soal berulang history
+  contestRating?: number; // LeetCode style ELO Rating (e.g. 1500)
+  contestsAttended?: number;
+  globalRank?: number;
+  ratingHistory?: ContestRatingHistoryItem[];
+  registeredContestIds?: string[];
 }
 
