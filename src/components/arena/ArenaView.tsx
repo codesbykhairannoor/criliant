@@ -139,13 +139,20 @@ export const ArenaView: React.FC<ArenaViewProps> = ({
         </button>
       </div>
 
-      {/* 3. DRILLING SPESIFIK MATERI (Bukan Easy/Hard Generic) */}
+      {/* 3. LATIHAN TERFOKUS PER 1 KATEGORI (Fokus Kuasai 1 Materi) */}
       <div className="space-y-3">
         <div className="flex items-center justify-between px-1">
-          <h4 className="text-xs font-black uppercase tracking-wider text-slate-400">
-            Paket Drilling Khusus {activeTrack.toUpperCase()}
-          </h4>
-          <span className="text-[11px] font-semibold text-slate-500">Materi Terfokus</span>
+          <div>
+            <h4 className="text-xs font-black uppercase tracking-wider text-slate-900 dark:text-white">
+              Latihan Terfokus per 1 Kategori ({activeTrack.toUpperCase()})
+            </h4>
+            <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
+              Pilih satu materi yang ingin kamu kuasai secara mendalam tanpa tercampur materi lain.
+            </p>
+          </div>
+          <span className="text-[10px] font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 px-2.5 py-1 rounded-lg border border-blue-200/50 flex-shrink-0">
+            Fokus 1 Sub-Tes
+          </span>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
